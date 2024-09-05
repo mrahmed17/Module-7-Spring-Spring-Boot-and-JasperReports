@@ -33,7 +33,7 @@ public class DepartmentRestController {
     }
 
     @PutMapping("/update")
-    public void updateDEpartment(@RequestBody Department department) {
+    public void updateDepartment(@RequestBody Department department) {
         departmentService.updateDep(department);
     }
 }

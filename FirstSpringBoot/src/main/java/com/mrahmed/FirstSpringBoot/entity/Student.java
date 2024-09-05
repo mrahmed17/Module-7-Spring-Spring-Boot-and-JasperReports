@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//If you want to use all function on lombok, you can add lombok.(dot)*(star)
+//If you want to use all function on lombok,
+// you can add lombok.(dot)*(star)
 
 import java.util.Date;
 
@@ -25,8 +26,13 @@ public class Student {
     @Column(nullable = false, unique = true)
     private String cell;
     private String gender;
+
     @Temporal(TemporalType.DATE)
     private Date dob; //java.sql.Date
+
+    @ManyToOne
+    @JoinColumn(name = "departmentId")
+    private Department department;
 
 
 

@@ -16,6 +16,7 @@ public class StudentRestController {
 
     @GetMapping("/")
     public List<Student> getAllStudents() {
+
         return studentService.getAllStudents();
     }
 
@@ -29,15 +30,15 @@ public class StudentRestController {
         studentService.deleteById(id);
     }
 
-//    @PutMapping("/update/")
-//    public void updateStudent(@RequestBody Student student) {
-//        studentService.saveStudent(student);
-//    }
-
-    @PutMapping("/update/{id}")
-    public void updateStudent(@RequestBody Student student, @PathVariable int id) {
-        studentService.updateStudent(student, id);
+    @PutMapping("/update/")
+    public void updateStudent(@RequestBody Student student) {
+        studentService.saveStudent(student);
     }
+
+//    @PutMapping("/update/{id}")
+//    public void updateStudent(@RequestBody Student student, @PathVariable int id) {
+//        studentService.updateStudent(student, id);
+//    }
 
 
 

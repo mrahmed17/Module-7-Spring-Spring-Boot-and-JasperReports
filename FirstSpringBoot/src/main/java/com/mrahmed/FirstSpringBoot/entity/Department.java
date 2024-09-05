@@ -15,7 +15,11 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = false, length = 40)
+    @Column(nullable = false, unique = true, length = 40)
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "facultyId")
+    private Faculty faculty;
 
 }

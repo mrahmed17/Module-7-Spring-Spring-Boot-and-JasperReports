@@ -25,35 +25,32 @@ public class StudentController {
         return "savestudentform";
     }
 
-    @RequestMapping(value = "/saveStudent", method= RequestMethod.POST)
+    @RequestMapping(value = "/saveStudent")
     public String saveStudent(@ModelAttribute("student") Student student) {
        studentService.saveStudent(student);
-       return "redirect:/studentlist";
+       return "redirect:/showAllStudent";
     }
 
-    @RequestMapping("/studentlist")
-    public String studentlist(Model m) {
-        m.addAttribute("title", "Students List");
-
+    @RequestMapping("/showAllStudent")
+    public String showAllStudent(Model m) {
         List<Student> studentList = studentService.getAllStudents();
+        m.addAttribute("title", "Al Students");
         m.addAttribute("studentList", studentList);
-        return "studentlist";
+        return "showAllStudent";
     }
 
     @RequestMapping(value = "/deleteStudent/{id}")
-    public String deleteStudent(@PathVariable ("id") Integer id) {
-
+    public String deleteStudent(@PathVariable ("id") int id) {
         studentService.deleteById(id);
-
-        return "redirect:/studentlist";
+        return "redirect:/showAllStudent";
     }
 
-    @RequestMapping("/editstudentform/{id}")
-    public String  editStudent(@PathVariable ("id") Integer id, Model m) {
+    @RequestMapping("/editstudent/{id}")
+    public String  editStudent(@PathVariable ("id") int id, Model m) {
         m.addAttribute("title", "Edit Student");
         Student student =studentService.findById(id);
         m.addAttribute("student", student);
-        return "studentform";
+        return "savestudentform";
     }
 
 }
