@@ -10,7 +10,6 @@ import java.util.Date;
 @Table(name = "advance_salaries")
 @Getter
 @Setter
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdvanceSalary {
