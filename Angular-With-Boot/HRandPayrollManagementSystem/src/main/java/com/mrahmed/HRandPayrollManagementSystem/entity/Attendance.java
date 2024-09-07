@@ -4,7 +4,7 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "attendances")
@@ -22,7 +22,7 @@ public class Attendance {
     private Date clockOutTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
 
