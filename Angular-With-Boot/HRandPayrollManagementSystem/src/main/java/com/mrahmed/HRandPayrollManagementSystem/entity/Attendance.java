@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "attendances")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,22 +16,15 @@ public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private int id;
+    private Date date;
+    private Date clockInTime;
+    private Date clockOutTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employee_id", nullable = false,
-            referencedColumnName = "id")
-    private Employee employee;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(nullable = false)
-    private Date date;
-
-    @Column(nullable = false)
-    private Date clockInTime;
-
-    @Column(nullable = false)
-    private Date clockOutTime;
 
 
 
