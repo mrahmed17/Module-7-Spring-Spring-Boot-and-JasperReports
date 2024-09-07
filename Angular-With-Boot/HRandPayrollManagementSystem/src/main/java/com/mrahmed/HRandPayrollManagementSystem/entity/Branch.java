@@ -25,6 +25,6 @@ public class Branch {
     private String country;
     private Date createdAt;
     private Date updateAt;
-    private String photo;
+    private String branchPhoto;
 
 }
