@@ -18,7 +18,7 @@ public class Department {
     private String numberOfEmployees;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "branch_id", nullable = false)
+    @JoinColumn(name = "branch_id")
     private Branch branch;
 
 
