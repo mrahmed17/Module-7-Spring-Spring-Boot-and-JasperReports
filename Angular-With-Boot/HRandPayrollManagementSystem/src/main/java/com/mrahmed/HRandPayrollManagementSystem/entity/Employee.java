@@ -1,48 +1,62 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
+@Table(name = "employees")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private int id;
 
-    @Column(length =100, nullable = false)
+    @Column(nullable = false, length =100)
     private String fullName;
 
-    @Column(length =100, nullable = false)
+    @Column(nullable = false, length =100)
     private String email;
 
-    @Column(length =100, nullable = false)
+    @Column(nullable = false, length =100)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length =255)
     private String address;
 
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false, length =10)
     private String gender;
 
-    @Column(length = 12, nullable = false)
+    @Column(nullable = false)
     private Date dateOfBirth;
 
     @Column(nullable = false, length =16)
     private String nationalId;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length =15)
     private String contact;
 
-    @Column( nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable =false, name = "department_id",
+            referencedColumnName = "id")
+    private Department department;
+
+    @Column(nullable = false)
     private String role;
+
+    @Column(nullable = false)
+    private double basicSalary;
+
+    @Column(nullable = false)
+    private Date joinedDate;
 
     @Column(nullable = true)
     private boolean isActive;
@@ -55,5 +69,6 @@ public class User {
 
     @Column(nullable = false)
     private String profilePhoto;
+
 
 }
