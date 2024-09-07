@@ -25,9 +25,15 @@ public class User {
     private String nationalId;
     private String contact;
     private String role;
+    private double basicSalary;
+    private Date joinedDate;
     private boolean isActive;
     private Date createdAt;
     private Date updateAt;
     private String profilePhoto;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
 }
