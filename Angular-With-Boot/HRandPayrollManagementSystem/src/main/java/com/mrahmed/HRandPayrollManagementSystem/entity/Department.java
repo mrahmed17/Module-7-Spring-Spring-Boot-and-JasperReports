@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "departments")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,8 +13,8 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = true)
-    private int id;
+    @Column(nullable = false)
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -24,8 +23,7 @@ public class Department {
     private String numberOfEmployees;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "branch_id", nullable = false,
-            referencedColumnName = "id")
+    @JoinColumn(name = "branch_id", nullable = false)
     private Branch branch;
 
 

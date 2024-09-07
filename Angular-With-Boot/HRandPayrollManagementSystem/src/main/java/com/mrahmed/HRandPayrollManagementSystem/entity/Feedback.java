@@ -6,7 +6,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "feedbacks")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +15,7 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
 
 

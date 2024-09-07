@@ -10,7 +10,6 @@ import java.util.Date;
 @Table(name = "advance_salaries")
 @Getter
 @Setter
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdvanceSalary {
@@ -18,15 +17,14 @@ public class AdvanceSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employee_id", nullable = false,
-            referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     @Column(nullable = false, length =5)
-    private double advanaceSalary;
+    private Double advanaceSalary;
 
 
     @Column(nullable = false)

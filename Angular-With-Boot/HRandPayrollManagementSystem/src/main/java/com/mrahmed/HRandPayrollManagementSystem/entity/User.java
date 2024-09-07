@@ -6,7 +6,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(length =100, nullable = false)
     private String fullName;
@@ -44,7 +43,7 @@ public class User {
     @Column( nullable = false)
     private String role;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private boolean isActive;
 
     @Column(nullable = false)

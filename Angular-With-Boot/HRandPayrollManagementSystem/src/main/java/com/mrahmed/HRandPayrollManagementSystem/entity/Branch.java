@@ -1,15 +1,12 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-
-
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "branches")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,8 +15,8 @@ public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = true)
-    private int id;
+    @Column(nullable = false)
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String name;

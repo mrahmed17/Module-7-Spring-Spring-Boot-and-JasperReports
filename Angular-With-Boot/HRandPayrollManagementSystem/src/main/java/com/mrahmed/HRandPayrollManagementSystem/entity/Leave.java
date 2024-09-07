@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "leaves")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +16,7 @@ public class Leave {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id", referencedColumnName = "id",

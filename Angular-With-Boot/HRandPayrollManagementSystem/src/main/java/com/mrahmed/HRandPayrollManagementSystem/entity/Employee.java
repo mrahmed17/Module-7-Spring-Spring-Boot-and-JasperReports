@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "employees")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,7 +17,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @Column(nullable = false, length =100)
     private String fullName;
@@ -45,20 +44,19 @@ public class Employee {
     private String contact;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable =false, name = "department_id",
-            referencedColumnName = "id")
+    @JoinColumn(nullable =false, name = "department_id")
     private Department department;
 
     @Column(nullable = false)
     private String role;
 
     @Column(nullable = false)
-    private double basicSalary;
+    private Double basicSalary;
 
     @Column(nullable = false)
     private Date joinedDate;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private boolean isActive;
 
     @Column(nullable = false)

@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "bonuses")
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +18,7 @@ public class Bonus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private int id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id", referencedColumnName = "id",
@@ -28,7 +27,7 @@ public class Bonus {
 
 
     @Column(nullable = false, length =5)
-    private double bonusAmount;
+    private Double bonusAmount;
 
     @Column(nullable = false)
     private Date bonusDate;
