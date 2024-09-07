@@ -18,15 +18,13 @@ public class AdvanceSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
-
     private double advanaceSalary;
     private String reason;
     private Date advanceDate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
 
 
 
