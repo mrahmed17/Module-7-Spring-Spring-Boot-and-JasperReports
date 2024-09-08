@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mrahmed</groupId>
-	<artifactId>FirstSpringBoot</artifactId>
+	<artifactId>FirstSpringBoot</artifactId>bmj,jkg
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FirstSpringBoot</name>
 	<description>Demo project for Spring Boot</description>
@@ -66,10 +66,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+
+		<!--<dependency>
+			<groupId>org.eclipse.angus</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.3</version>
+		</dependency>-->
 
 	</dependencies>
 

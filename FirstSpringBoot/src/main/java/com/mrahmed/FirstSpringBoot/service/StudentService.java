@@ -1,6 +1,8 @@
 package com.mrahmed.FirstSpringBoot.service;
 
+import com.mrahmed.FirstSpringBoot.entity.Department;
 import com.mrahmed.FirstSpringBoot.entity.Student;
+import com.mrahmed.FirstSpringBoot.repository.DepartmentRepository;
 import com.mrahmed.FirstSpringBoot.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,16 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-        public void saveStudent(Student s){
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    public void saveStudent(Student s){
+            Department d=departmentRepository.findById(s.getDepartment().getId())
+                    .orElseThrow(
+                            ()-> new RuntimeException("Student Not Saved ")
+                    );
+            s.setDepartment(d);
+
             studentRepository.save(s);
         }
 

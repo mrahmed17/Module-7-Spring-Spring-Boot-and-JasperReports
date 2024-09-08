@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/dep")
+@CrossOrigin("*")
 public class DepartmentRestController {
 
     @Autowired
@@ -27,6 +28,7 @@ public class DepartmentRestController {
     public DepartmentService getDepartmentService() {
         return departmentService;
     }
+
     @DeleteMapping("/delete/{id}")
     public void deleteDepartment(@PathVariable("id") int id) {
         departmentService.deleteDepBy(id);

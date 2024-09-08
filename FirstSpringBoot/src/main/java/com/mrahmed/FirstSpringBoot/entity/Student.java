@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 //If you want to use all function on lombok,
 // you can add lombok.(dot)*(star)
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="students")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
