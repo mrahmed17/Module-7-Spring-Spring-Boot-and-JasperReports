@@ -16,26 +16,31 @@ public class FacultyService {
     private FacultyRepository facultyRepository;
 
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private  DepartmentRepository departmentRepository;
 
-    public void saveFaculty(Faculty faculty) {
-      facultyRepository.save(faculty);
+
+    public  void saveFaculty(Faculty f){
+
+         facultyRepository.save(f);
     }
 
-    public List<Faculty> getAllFaculty() {
-        return facultyRepository.findAll();
+    public List<Faculty>  getAllFaculty(){
+
+        return  facultyRepository.findAll();
     }
 
-    public void deleteFacultyById(int id) {
+    public  void deleteFacultyById(int id){
         facultyRepository.deleteById(id);
     }
 
-    public Faculty findById(int id) {
-        return facultyRepository.findById(id).get();
+    public  Faculty findById(int id){
+        return  facultyRepository.findById(id).get();
+
     }
 
-    public void updateFaculty(Faculty faculty) {
-        facultyRepository.save(faculty);
+    public  void updateFaculty(Faculty f){
+        facultyRepository.save(f);
+
     }
 
 
