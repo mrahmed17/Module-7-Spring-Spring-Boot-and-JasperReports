@@ -11,8 +11,9 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
+
     @Query("SELECT h FROM Hotel h WHERE h.location.name = :locationName")
-    List<Hotel> findHotelByLocationName(@Param("locationName") String locationName);
+    List<Hotel> findHotelsByLocationName(@Param("locationName") String locationName);
 
 
 }
