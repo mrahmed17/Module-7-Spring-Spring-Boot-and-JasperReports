@@ -8,35 +8,62 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "salaries")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PRIVATE) // Make the no-argument constructor private
 public class Salary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    private Double medicare;
+    private double medicare;
     private boolean overTime; //If yes then add =(baseSalary/4*5)
-    private Double fund; // baseSalary * (2% = 0.02)
-    private Double netSalary; // (base-advance+bonus+insurance+medicare+overTime-fund)
-    private Date paymentDate;
-    private Double insurance;
+    private double fund; // baseSalary * (2% = 0.02)
+    private double netSalary; // (base-advance+bonus+insurance+medicare+overTime-fund)
+    private Date paymentDate; //ava.time.LocalDate
+    private double insurance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")         
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "advancesalary_id")
+    @JoinColumn(name = "advancesalaryId")
     private AdvanceSalary advanceSalary; // advancedSalary
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bonus_id")
+    @JoinColumn(name = "bonusId")
     private Bonus bonus; // bonusAmount
 
+
+//    @Version
+//    @NotNull
+//    private Long version;
+
+//    @PrePersist
+//    public void validateOverTime() {
+//        if (overTime && netSalary < 0) {
+//            throw new RuntimeException("Net salary cannot be negative when over time is true");
+//        }
+//    }
+
+
+//    @PrePersist
+//    public void validateNetSalary() {
+//        if (netSalary < 0) {
+//            throw new RuntimeException("Net salary cannot be negative");
+//        }
+//    }
+
+
+//    @PrePersist
+//    public void validateFundAndInsurance() {
+//        if (fund < 0 || insurance < 0) {
+//            throw new RuntimeException("Fund and insurance cannot be negative");
+//        }
+//    }
 
 
 }
