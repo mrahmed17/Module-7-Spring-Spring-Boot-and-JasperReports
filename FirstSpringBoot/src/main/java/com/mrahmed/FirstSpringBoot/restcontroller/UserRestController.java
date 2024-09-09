@@ -18,8 +18,16 @@ import java.util.List;
 @CrossOrigin("*")
 public class UserRestController {
 
+
     @Autowired
     private UserService userService;
+
+
+//    @PostMapping("/save")
+//    public  void saveDep(@RequestBody User u) throws MessagingException {
+//        userService.saveUser(u);
+//    }
+
 
     @PostMapping("/save")
     public ResponseEntity<String> addUser(
@@ -32,6 +40,7 @@ public class UserRestController {
             return new ResponseEntity<>("Failed to add user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
     @GetMapping("/")
