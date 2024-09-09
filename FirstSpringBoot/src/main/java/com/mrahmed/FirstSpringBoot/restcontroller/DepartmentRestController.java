@@ -16,13 +16,13 @@ public class DepartmentRestController {
     private DepartmentService departmentService;
 
     @GetMapping("/")
-    public List<Department> getAllDep() {
-        return departmentService.getAllDepartment();
+    public List<Department> getAllDep(){
+        return  departmentService.getAllDep();
     }
 
     @PostMapping("/save")
-    public void saveDepartment(@RequestBody Department department) {
-        departmentService.saveDep(department);
+    public  void saveDep(@RequestBody Department d){
+        departmentService.saveDep(d);
     }
 
     public DepartmentService getDepartmentService() {
@@ -30,12 +30,19 @@ public class DepartmentRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteDepartment(@PathVariable("id") int id) {
-        departmentService.deleteDepBy(id);
+    public  void deleteDep(@PathVariable("id") int id){
+
+        departmentService.deleteDepById(id);
+
     }
 
+
+
     @PutMapping("/update")
-    public void updateDepartment(@RequestBody Department department) {
-        departmentService.updateDep(department);
+    public  void upadteDep(@RequestBody Department d){
+        departmentService.updateDep(d);
     }
+
+
+
 }
