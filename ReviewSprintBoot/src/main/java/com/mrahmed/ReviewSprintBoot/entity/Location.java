@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "locations")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "locations")
 public class Location {
 
     @Id
@@ -21,5 +21,6 @@ public class Location {
     private String name;
 
     private String image;
+
 
 }
