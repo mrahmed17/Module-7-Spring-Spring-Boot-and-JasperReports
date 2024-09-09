@@ -4,6 +4,7 @@ import com.mrahmed.FirstSpringBoot.entity.User;
 import com.mrahmed.FirstSpringBoot.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,16 +17,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
-
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
-    private EmailService emailService;
-
+    private  EmailService emailService;
     @Value("${image.upload.dir}")
     private String uploadDir;
 
@@ -64,24 +62,23 @@ public class UserService {
         return filename; // Return the filename for storing in the database
     }
 
+    public List<User> getAllUsers(){
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return  userRepository.findAll();
     }
 
-    public void deleteUserById(int id) {
+    public  void deleteUserById(int id){
         userRepository.deleteById(id);
     }
 
-    public User findById(int id) {
-        return userRepository.findById(id).get();
+    public  User findById(int id){
+        return  userRepository.findById(id).get();
+
     }
 
-    public void updateUser(User user) {
-        userRepository.save(user);
+    public  void updateUser(User u){
+        userRepository.save(u);
+
     }
 
 }
-
-
-
