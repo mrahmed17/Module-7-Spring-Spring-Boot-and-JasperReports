@@ -20,6 +20,6 @@ public class Department {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "facultyId")
-    private Faculty faculty;
+    private  Faculty faculty;
 
 }
