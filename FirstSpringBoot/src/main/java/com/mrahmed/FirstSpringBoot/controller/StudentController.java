@@ -18,9 +18,9 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping("/savestudentform")
-    public String saveStudentFom(Model m) {
-        m.addAttribute("title", "Add New Student");
+    public String saveStudentForm(Model m) {
         m.addAttribute("student", new Student());
+        m.addAttribute("title", "Add New Student");
         return "savestudentform";
     }
 
@@ -35,7 +35,7 @@ public class StudentController {
         List<Student> studentList = studentService.getAllStudents();
         m.addAttribute("title", "Al Students");
         m.addAttribute("studentList", studentList);
-        return "showallstudent";
+        return "showAllStudent";
     }
 
     @RequestMapping(value = "/deleteStudent/{id}")
