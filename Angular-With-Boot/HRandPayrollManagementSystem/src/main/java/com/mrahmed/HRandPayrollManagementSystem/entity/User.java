@@ -19,14 +19,14 @@ public class User {
     private String password;
     private String address;
     private String gender;
-    private Date dateOfBirth; //java.time.LocalDate
+    private Date dateOfBirth;
     private String nationalId;
     private String contact;
     private double basicSalary;
-    private Date joinedDate; //java.time.LocalDate
+    private Date joinedDate;
     private boolean isActive;
-    private Date createdAt; //java.time.LocalDate
-    private Date updateAt; //java.time.LocalDate
+    private Date createdAt;
+    private Date updateAt;
     private String profilePhoto;
 
     @Enumerated(EnumType.STRING)
@@ -35,27 +35,6 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId")
     private Department department;
-
-
-//    @Version
-//    @NotNull
-//    private Long version;
-
-
-//    @PrePersist
-//    public void validateIsActive() {
-//        if (isActive != true && isActive != false) {
-//            throw new RuntimeException("isActive must be either true or false");
-//        }
-//    }
-
-
-//    @PrePersist
-//    public void validateRole() {
-//        if (role == null) {
-//            throw new RuntimeException("Role cannot be null");
-//        }
-//    }
 
 
 }

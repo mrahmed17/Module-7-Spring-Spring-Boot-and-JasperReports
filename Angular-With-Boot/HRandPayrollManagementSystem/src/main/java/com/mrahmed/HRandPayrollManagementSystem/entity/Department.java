@@ -8,7 +8,6 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PRIVATE) // Make the no-argument constructor private
 public class Department {
 
     @Id
@@ -21,16 +20,5 @@ public class Department {
     @JoinColumn(name = "branchId")
     private Branch branch;
 
-
-//    @Version
-//    @NotNull
-//    private Long version;
-
-//    @PrePersist
-//    public void validateNumberOfEmployees() {
-//        if (numberOfEmployees < 0) {
-//            throw new RuntimeException("Number of employees cannot be negative");
-//        }
-//    }
 
 }

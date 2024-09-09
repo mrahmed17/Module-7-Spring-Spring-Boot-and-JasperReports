@@ -12,20 +12,18 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PRIVATE)   // Make the no-argument constructor private
 public class AdvanceSalary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private double advanceSalary; // BigDecimal
+    private double advanceSalary;
     private String reason;
-    private Date advanceDate; //java.time.LocalDate  >which is a more modern and flexible date type.
+    private Date advanceDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
-
 
 
 }

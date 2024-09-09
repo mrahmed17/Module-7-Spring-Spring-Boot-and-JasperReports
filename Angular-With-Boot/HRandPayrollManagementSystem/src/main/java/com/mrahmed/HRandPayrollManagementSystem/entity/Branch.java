@@ -12,7 +12,6 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PRIVATE) // Make the no-argument constructor private
 public class Branch {
 
     @Id
@@ -23,13 +22,10 @@ public class Branch {
     private String city;
     private String zipCode;
     private String country;
-    private Date createdAt; //java.time.LocalDateTime
-    private Date updateAt; //java.time.LocalDateTime
+    private Date createdAt;
+    private Date updateAt;
     private String branchPhoto;
 
 
-//    @Version
-//    @NotNull
-//    private Long version;
 
 }

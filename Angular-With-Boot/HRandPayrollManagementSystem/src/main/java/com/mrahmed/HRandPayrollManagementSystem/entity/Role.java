@@ -21,7 +21,6 @@ public enum Role {
         return value;
     }
 
-
     public static Role fromValue(String value) {
         for (Role role : values()) {
             if (role.getValue().equals(value)) {

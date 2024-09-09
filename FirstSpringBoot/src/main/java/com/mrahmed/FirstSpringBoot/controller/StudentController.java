@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class StudentController {
         List<Student> studentList = studentService.getAllStudents();
         m.addAttribute("title", "Al Students");
         m.addAttribute("studentList", studentList);
-        return "showAllStudent";
+        return "showallstudent";
     }
 
     @RequestMapping(value = "/deleteStudent/{id}")

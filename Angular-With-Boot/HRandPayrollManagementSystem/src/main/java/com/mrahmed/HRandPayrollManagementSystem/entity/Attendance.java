@@ -11,29 +11,18 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// @NoArgsConstructor(access = AccessLevel.PRIVATE) // Make the no-argument constructor private
 public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date date; //java.time.LocalDate
-    private Date clockInTime; //java.time.LocalTime
-    private Date clockOutTime; //java.time.LocalTime
-
-//    @Version
-//    private Long version;
+    private Date date;
+    private Date clockInTime;
+    private Date clockOutTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
-//    @PrePersist
-//    public void validateClockTimes() {
-//        if (clockOutTime.isBefore(clockInTime)) {
-//            throw new RuntimeException("Clock out time cannot be earlier than clock in time");
-//        }
-//    }
-
-
 }
+

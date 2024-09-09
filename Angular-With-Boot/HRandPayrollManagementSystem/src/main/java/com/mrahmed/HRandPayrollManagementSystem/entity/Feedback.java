@@ -11,7 +11,6 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@NoArgsConstructor(access = AccessLevel.PRIVATE) // Make the no-argument constructor private
 public class Feedback {
 
     @Id
@@ -19,26 +18,11 @@ public class Feedback {
     private long id;
     private String rating;
     private String comment;
-    private Date date; //java.time.LocalDateTime
+    private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user; //Id, employeeName
 
-
-//    @Version
-//    @NotNull
-//    private Long version;
-
-//    @PrePersist
-//    public void validateRating() {
-//        if (rating == null || rating.isEmpty() || rating.length() > 1) {
-//            throw new RuntimeException("Invalid rating");
-//        }
-//        int ratingValue = Integer.parseInt(rating);
-//        if (ratingValue < 1 || ratingValue > 5) {
-//            throw new RuntimeException("Rating must be between 1 and 5");
-//        }
-//    }
 
 }
