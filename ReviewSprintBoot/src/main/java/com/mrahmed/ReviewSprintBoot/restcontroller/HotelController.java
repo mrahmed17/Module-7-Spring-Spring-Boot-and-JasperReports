@@ -14,8 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/hotel")
 public class HotelController {
+
     @Autowired
-    private HotelService hotelService;
+   private HotelService hotelService;
 
 
     @PostMapping("/save")
@@ -37,7 +38,7 @@ public class HotelController {
         return ResponseEntity.ok(hotels);
     }
 
-    @GetMapping("/h/searchhotel")
+ @GetMapping("/h/searchhotel")
     public ResponseEntity<List<Hotel>> findHotelsByLocationName(@RequestParam(value = "locationName") String locationName) {
         List<Hotel> hotels = hotelService.findHotelsByLocationName(locationName);
         return ResponseEntity.ok(hotels);
