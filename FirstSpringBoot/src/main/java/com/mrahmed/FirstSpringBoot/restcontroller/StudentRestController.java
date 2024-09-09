@@ -12,34 +12,33 @@ import java.util.List;
 @CrossOrigin("*")
 public class StudentRestController {
 
+
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/")
-    public List<Student> getAllStudents() {
 
-        return studentService.getAllStudents();
+    @GetMapping("/")
+    public List<Student> getAllStudent() {
+
+        return studentService.getAllStu();
     }
 
     @PostMapping("/save")
-    public void saveStudent(@RequestBody Student student) {
-        studentService.saveStudent(student);
+    public void saveStudent(@RequestBody Student s) {
+
+        studentService.saveStu(s);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteStudent(@PathVariable int id) {
+    public  void deleteStudet(@PathVariable int id){
         studentService.deleteById(id);
     }
 
     @PutMapping("/update/")
-    public void updateStudent(@RequestBody Student student) {
-        studentService.saveStudent(student);
+    public  void updateStudet(@RequestBody Student s){
+        studentService.saveStu(s);
     }
 
-//    @PutMapping("/update/{id}")
-//    public void updateStudent(@RequestBody Student student, @PathVariable int id) {
-//        studentService.updateStudent(student, id);
-//    }
 
 
 
