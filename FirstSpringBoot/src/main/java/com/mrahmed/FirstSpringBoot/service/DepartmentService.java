@@ -13,25 +13,27 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public void saveDep(Department department) {
-        departmentRepository.save(department);
+    public  void saveDep(Department d){
+            departmentRepository.save(d);
     }
 
-    public List<Department> getAllDepartment() {
+    public List<Department>  getAllDep(){
+
         return departmentRepository.findAll();
     }
 
-    public void deleteDepBy(Integer id) {
+    public  void deleteDepById(Integer id){
         departmentRepository.deleteById(id);
     }
 
-    public Department findById(Integer id) {
+    public Department findById(Integer id){
         return departmentRepository.findById(id).get();
     }
 
-    public void updateDep(Department department) {
-        departmentRepository.save(department);
+    public  void updateDep(Department d){
+        departmentRepository.save(d);
     }
+
 
 
 }
