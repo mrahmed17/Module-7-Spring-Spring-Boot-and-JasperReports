@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import java.util.List;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -15,15 +12,18 @@ import java.util.List;
 @Table(name = "Faculties")
 public class Faculty {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
-    @Column(nullable = false, unique = true, length = 40)
-    private  String name;
+    private int id;
 
-    @Column(nullable = false)
-    private  int totalSeat;
+    @Column(unique=true, nullable=false, length=40)
+    private String name;
 
+    @Column(nullable=false)
+    private String totalSeat;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "depId")
+    private Department department;
 
 }
