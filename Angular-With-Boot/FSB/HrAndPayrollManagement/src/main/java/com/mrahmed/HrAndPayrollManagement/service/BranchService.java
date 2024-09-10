@@ -3,9 +3,11 @@ package com.mrahmed.HrAndPayrollManagement.service;
 import com.mrahmed.HrAndPayrollManagement.entity.Branch;
 import com.mrahmed.HrAndPayrollManagement.repository.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BranchService {
 
     @Autowired
@@ -24,7 +26,9 @@ public class BranchService {
     }
 
     public Branch findById(Long id) {
-        return branchRepository.findById(id).orElseThrow(()-> new RuntimeException("Branch not found by this id: " + id));
+        return branchRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException
+                        ("Branch not found by this id: " + id));
     }
 
 
