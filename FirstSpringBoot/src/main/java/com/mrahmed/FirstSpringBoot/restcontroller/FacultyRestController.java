@@ -15,8 +15,6 @@ public class FacultyRestController {
     @Autowired
     private FacultyService facultyService;
 
-
-
     @GetMapping("/")
     public List<Faculty> getAllFaculty(){
         return  facultyService.getAllFaculty();
@@ -28,18 +26,15 @@ public class FacultyRestController {
     }
 
 
-
     @DeleteMapping("/delete/{id}")
     public  void deleteFaculty(@PathVariable("id") int id){
-
         facultyService.deleteFacultyById(id);
 
     }
 
 
-
-    @PutMapping("/update")
-    public  void upadteFaculty(@RequestBody Faculty f){
+    @PutMapping("/update/{id}")
+    public  void updateFaculty(@RequestBody Faculty f, @PathVariable("id") int id){
         facultyService.updateFaculty(f);
     }
 

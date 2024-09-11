@@ -25,21 +25,14 @@ public class DepartmentRestController {
         departmentService.saveDep(d);
     }
 
-    public DepartmentService getDepartmentService() {
-        return departmentService;
-    }
-
     @DeleteMapping("/delete/{id}")
     public  void deleteDep(@PathVariable("id") int id){
-
         departmentService.deleteDepById(id);
 
     }
 
-
-
-    @PutMapping("/update")
-    public  void upadteDep(@RequestBody Department d){
+    @PutMapping("/update/{id}")
+    public  void updateDep(@RequestBody Department d, @PathVariable("id") int id){
         departmentService.updateDep(d);
     }
 

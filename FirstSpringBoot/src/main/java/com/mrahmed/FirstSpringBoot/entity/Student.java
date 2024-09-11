@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 
 @Entity
-@Table(name = "studentssp")
+@Table(name = "students")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,12 +28,12 @@ public class Student {
     private String cell;
 
     private String gender;
-
     private Date dob;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId")
     private Department department;
+
 
 
 }

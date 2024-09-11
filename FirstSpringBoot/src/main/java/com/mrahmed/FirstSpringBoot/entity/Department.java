@@ -1,9 +1,7 @@
 package com.mrahmed.FirstSpringBoot.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "departments")
@@ -18,4 +16,10 @@ public class Department {
 
     @Column(nullable = false, unique = true, length = 40)
     private String name;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "facultyId")
+    private Faculty faculty;
+
+
 }

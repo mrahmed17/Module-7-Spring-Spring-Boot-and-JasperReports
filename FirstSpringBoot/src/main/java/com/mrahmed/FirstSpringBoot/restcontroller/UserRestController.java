@@ -18,10 +18,8 @@ import java.util.List;
 @CrossOrigin("*")
 public class UserRestController {
 
-
     @Autowired
     private UserService userService;
-
 
 //    @PostMapping("/save")
 //    public  void saveDep(@RequestBody User u) throws MessagingException {
