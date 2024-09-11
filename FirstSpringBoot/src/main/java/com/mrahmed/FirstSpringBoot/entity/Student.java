@@ -28,12 +28,12 @@ public class Student {
     private String cell;
 
     private String gender;
-
     private Date dob;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "depId")
     private Department department;
+
 
 
 }

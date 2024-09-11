@@ -16,16 +16,13 @@ public class StudentRestController {
     @Autowired
     private StudentService studentService;
 
-
     @GetMapping("/")
     public List<Student> getAllStudent() {
-
         return studentService.getAllStu();
     }
 
     @PostMapping("/save")
     public void saveStudent(@RequestBody Student s) {
-
         studentService.saveStu(s);
     }
 
@@ -48,8 +45,6 @@ public class StudentRestController {
     public  void updateStudent(@RequestBody Student s){    //This method is bad for angular
         studentService.saveStu(s);
     }
-
-
 
 
 
