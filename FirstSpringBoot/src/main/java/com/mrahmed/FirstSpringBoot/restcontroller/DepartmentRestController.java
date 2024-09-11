@@ -36,11 +36,9 @@ public class DepartmentRestController {
 
     }
 
-
-
-    @PutMapping("/update")
-    public  void upadteDep(@RequestBody Department d){
-        departmentService.updateDep(d);
+    @PutMapping("/update/{id}")
+    public  void updateDep(@RequestBody Department d,@PathVariable("id") int id){
+        departmentService.updateDep(d,id);
     }
 
 

@@ -22,8 +22,8 @@ public class Faculty {
     @Column(nullable=false)
     private String totalSeat;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "depId")
-    private Department department;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "depId")
+//    private Department department;
 
 }

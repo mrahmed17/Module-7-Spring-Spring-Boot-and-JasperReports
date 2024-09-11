@@ -30,7 +30,7 @@ public class DepartmentService {
         return departmentRepository.findById(id).get();
     }
 
-    public  void updateDep(Department d){
+    public  void updateDep(Department d,Integer id){
         departmentRepository.save(d);
     }
 

@@ -27,7 +27,6 @@ public class  StudentController {
 
     @PostMapping("/savestudent")
     public String saveStudent(@ModelAttribute("student") Student student){
-
         studentService.saveStu(student);
         return "redirect:/showAllStudent";
     }

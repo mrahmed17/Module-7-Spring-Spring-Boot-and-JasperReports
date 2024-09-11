@@ -16,31 +16,28 @@ public class FacultyRestController {
     private FacultyService facultyService;
 
 
-
     @GetMapping("/")
-    public List<Faculty> getAllFaculty(){
-        return  facultyService.getAllFaculty();
+    public List<Faculty> getAllFaculty() {
+        return facultyService.getAllFaculty();
     }
 
     @PostMapping("/save")
-    public  void saveFaculty(@RequestBody Faculty f){
+    public void saveFaculty(@RequestBody Faculty f) {
         facultyService.saveFaculty(f);
     }
 
 
-
     @DeleteMapping("/delete/{id}")
-    public  void deleteFaculty(@PathVariable("id") int id){
+    public void deleteFaculty(@PathVariable("id") int id) {
 
         facultyService.deleteFacultyById(id);
 
     }
 
 
-
-    @PutMapping("/update")
-    public  void upadteFaculty(@RequestBody Faculty f){
-        facultyService.updateFaculty(f);
+    @PutMapping("/update/{id}")
+    public void updateFaculty(@RequestBody Faculty f,@PathVariable Integer id) {
+        facultyService.updateFaculty(f,id);
     }
 
 

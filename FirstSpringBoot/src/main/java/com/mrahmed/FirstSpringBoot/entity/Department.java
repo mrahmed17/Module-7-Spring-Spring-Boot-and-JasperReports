@@ -18,4 +18,8 @@ public class Department {
 
     @Column(nullable = false, unique = true, length = 40)
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "facId")
+    private Faculty faculty;
 }

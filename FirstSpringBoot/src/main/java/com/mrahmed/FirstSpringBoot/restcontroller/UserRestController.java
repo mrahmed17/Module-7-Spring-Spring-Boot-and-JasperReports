@@ -22,6 +22,12 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
 
 //    @PostMapping("/save")
 //    public  void saveDep(@RequestBody User u) throws MessagingException {
@@ -42,12 +48,6 @@ public class UserRestController {
     }
 
 
-
-    @GetMapping("/")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
 
 
 }

@@ -1,6 +1,5 @@
 package com.mrahmed.FirstSpringBoot.service;
 
-import com.mrahmed.FirstSpringBoot.entity.Department;
 import com.mrahmed.FirstSpringBoot.entity.Faculty;
 import com.mrahmed.FirstSpringBoot.repository.DepartmentRepository;
 import com.mrahmed.FirstSpringBoot.repository.FacultyRepository;
@@ -38,7 +37,7 @@ public class FacultyService {
 
     }
 
-    public  void updateFaculty(Faculty f){
+    public  void updateFaculty(Faculty f, Integer id){
         facultyRepository.save(f);
 
     }
