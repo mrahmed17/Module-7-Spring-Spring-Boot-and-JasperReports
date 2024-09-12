@@ -18,7 +18,7 @@ public class Bonus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double bonusAmount;
-    private Date bonusDate; //java.time.LocalDate
+    private Date bonusDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")

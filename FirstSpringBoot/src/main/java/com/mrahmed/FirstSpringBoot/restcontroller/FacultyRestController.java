@@ -35,7 +35,7 @@ public class FacultyRestController {
 
     @PutMapping("/update/{id}")
     public  void updateFaculty(@RequestBody Faculty f, @PathVariable("id") int id){
-        facultyService.updateFaculty(f);
+        facultyService.updateFaculty(f, id);
     }
 
 

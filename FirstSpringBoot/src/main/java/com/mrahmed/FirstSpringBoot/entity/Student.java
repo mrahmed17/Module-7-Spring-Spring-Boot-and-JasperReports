@@ -30,7 +30,7 @@ public class Student {
     private String gender;
     private Date dob;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "depId")
     private Department department;
 

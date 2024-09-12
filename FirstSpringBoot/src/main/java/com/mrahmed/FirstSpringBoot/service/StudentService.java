@@ -33,7 +33,7 @@ public class StudentService{
     }
 
     public  Student findById(int id){
-        return  studentRepository.findById(id).get();
+        return studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student Not Found with id : " + id));
     }
 
     public  void updateStudent(Student s, int id){

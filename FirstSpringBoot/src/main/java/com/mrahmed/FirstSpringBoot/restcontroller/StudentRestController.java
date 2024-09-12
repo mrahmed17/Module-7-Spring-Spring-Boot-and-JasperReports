@@ -13,39 +13,89 @@ import java.util.List;
 public class StudentRestController {
 
 
+//    @Autowired
+//    private StudentService studentService;
+//
+//    @GetMapping("/")
+//    public List<Student> getAllStudent() {
+//        return studentService.getAllStu();
+//    }
+//
+//    @PostMapping("/save")
+//    public void saveStudent(@RequestBody Student s) {
+//        studentService.saveStu(s);
+//    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public  void deleteStudent(@PathVariable int id){
+//        studentService.deleteById(id);
+//    }
+//
+//
+//    //2 Way Updates System by updateStudent method
+//
+//    @PutMapping("/update/{id}")
+//    public  void updateStudentById(@RequestBody Student s,@PathVariable("id") int id){
+//        studentService.updateStudent(s,id);  //This method is good for angular
+//    }
+//
+//    //2 Way Updates System by saveStudent method
+//
+//    @PutMapping("/update")
+//    public  void updateStudent(@RequestBody Student s){    //This method is bad for angular
+//        studentService.saveStu(s);
+//    }
+
+
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/")
-    public List<Student> getAllStudent() {
-        return studentService.getAllStu();
-    }
+//    @GetMapping("view")
+//    public List<Student> getAllStudents() {
+//        return studentService.getAllstu();
+//    }
+//    @GetMapping("view")
+//    public ResponseEntity<List<Student>> getAllStudents() {
+//        studentService.getAllstu();
+//        return ResponseEntity.ok().body(studentService.getAllstu());
+//    }
 
-    @PostMapping("/save")
-    public void saveStudent(@RequestBody Student s) {
+    @GetMapping("view")
+    public ResponseEntity<List<Student>> getAllStudents() {
+        List<Student>students=studentService.getAllstu();
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+//
+//    @PostMapping("save")
+//    public void saveStudent(@RequestBody Student s) {
+//        studentService.saveStu(s);
+//    }
+
+    @PostMapping("save")
+    public ResponseEntity<Student> saveStudent(@RequestBody Student s) {
         studentService.saveStu(s);
+        return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public  void deleteStudent(@PathVariable int id){
+    //    @DeleteMapping("delete/{id}")
+//    public void deleteStudent(@PathVariable int id) {
+//        studentService.deleteById(id);
+//    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") int id) {
         studentService.deleteById(id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
-
-    //2 Way Updates System by updateStudent method
-
-    @PutMapping("/update/{id}")
-    public  void updateStudentById(@RequestBody Student s,@PathVariable("id") int id){
-        studentService.updateStudent(s,id);  //This method is good for angular
+    //    @PutMapping("update/{id}")
+//    public void updateStudent(@PathVariable int id, @RequestBody Student s) {
+//        studentService.updateStu(s, id);
+//    }
+    @PutMapping("update/{id}")
+    public ResponseEntity<String> updateStudent(@PathVariable("id") int id, @RequestBody Student s) {
+        studentService.updateStu(s, id);
+        return new ResponseEntity<>("Updated", HttpStatus.OK);
     }
-
-    //2 Way Updates System by saveStudent method
-
-    @PutMapping("/update")
-    public  void updateStudent(@RequestBody Student s){    //This method is bad for angular
-        studentService.saveStu(s);
-    }
-
 
 
 }

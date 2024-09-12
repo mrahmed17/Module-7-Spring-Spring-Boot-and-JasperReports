@@ -30,19 +30,13 @@ public class Salary {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advancesalaryId")
-    private AdvanceSalary advanceSalary; // One salary to one advance salary
+    private AdvanceSalary advanceSalary;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bonusId")
     private Bonus bonus;   // One salary to one bonus
-
-
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "advancesalaryId")
-//    private AdvanceSalary advanceSalary;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "bonusId")
