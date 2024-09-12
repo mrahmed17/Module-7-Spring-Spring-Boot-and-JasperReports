@@ -24,17 +24,29 @@ public class Salary {
     private Date paymentDate;
     private double insurance;
 
+    private Date paymentCycle; // Represents the month and year for the payment cycle (e.g., 2024-09 for September 2024)
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advancesalaryId")
-    private AdvanceSalary advanceSalary;
+    private AdvanceSalary advanceSalary; // One salary to one advance salary
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bonusId")
-    private Bonus bonus;
+    private Bonus bonus;   // One salary to one bonus
+
+
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "advancesalaryId")
+//    private AdvanceSalary advanceSalary;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "bonusId")
+//    private Bonus bonus;
 
 
 }

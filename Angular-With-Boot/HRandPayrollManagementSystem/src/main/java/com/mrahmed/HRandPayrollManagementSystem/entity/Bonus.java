@@ -17,7 +17,7 @@ public class Bonus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private BigDecimal bonusAmount;
+    private double bonusAmount;
     private Date bonusDate; //java.time.LocalDate
 
     @ManyToOne(fetch = FetchType.EAGER)
