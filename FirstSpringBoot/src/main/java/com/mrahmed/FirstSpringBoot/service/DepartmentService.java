@@ -64,11 +64,15 @@ public class DepartmentService {
     public void deleteDepartmentById(int id) {
         departmentRepository.deleteById(id);
     }
+
+
     public Department findById(int id) {
         return departmentRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("No department found with id: " + id)
         );
     }
+
+
     public void updateDepartment( Department d, int id) {
         departmentRepository.save(d);
     }

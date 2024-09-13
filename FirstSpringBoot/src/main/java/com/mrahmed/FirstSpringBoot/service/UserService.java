@@ -71,12 +71,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public  User findById(int id){
+    public  User findUserById(int id){
         return  userRepository.findById(id).get();
 
     }
 
-    public  void updateUser(User u){
+    public  void updateUserById(User u){
         userRepository.save(u);
 
     }

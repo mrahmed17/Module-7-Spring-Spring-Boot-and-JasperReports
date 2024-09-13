@@ -3,6 +3,8 @@ package com.mrahmed.FirstSpringBoot.restcontroller;
 import com.mrahmed.FirstSpringBoot.entity.Student;
 import com.mrahmed.FirstSpringBoot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,19 +52,10 @@ public class StudentRestController {
     @Autowired
     private StudentService studentService;
 
-//    @GetMapping("view")
-//    public List<Student> getAllStudents() {
-//        return studentService.getAllstu();
-//    }
-//    @GetMapping("view")
-//    public ResponseEntity<List<Student>> getAllStudents() {
-//        studentService.getAllstu();
-//        return ResponseEntity.ok().body(studentService.getAllstu());
-//    }
 
-    @GetMapping("view")
+    @GetMapping("/")
     public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student>students=studentService.getAllstu();
+        List<Student>students=studentService.getAllStu();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 //
@@ -93,7 +86,7 @@ public class StudentRestController {
 //    }
     @PutMapping("update/{id}")
     public ResponseEntity<String> updateStudent(@PathVariable("id") int id, @RequestBody Student s) {
-        studentService.updateStu(s, id);
+        studentService.updateStudent(s, id);
         return new ResponseEntity<>("Updated", HttpStatus.OK);
     }
 

@@ -1,7 +1,6 @@
 package com.mrahmed.FirstSpringBoot.service;
 
 import com.mrahmed.FirstSpringBoot.entity.Faculty;
-import com.mrahmed.FirstSpringBoot.repository.DepartmentRepository;
 import com.mrahmed.FirstSpringBoot.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,6 @@ public class FacultyService {
 
     @Autowired
     private FacultyRepository facultyRepository;
-
-    @Autowired
-    private  DepartmentRepository departmentRepository;
 
 
     public  void saveFaculty(Faculty f){
@@ -33,9 +29,9 @@ public class FacultyService {
     }
 
     public  Faculty findById(int id){
-        return  facultyRepository.findById(id).get();
+        return  facultyRepository.findById(id).orElseThrow(()-> new RuntimeException("Couldn't find faculty' by this id: " + id));
+    };
 
-    }
 
     public  void updateFaculty(Faculty f, Integer id){
         facultyRepository.save(f);
