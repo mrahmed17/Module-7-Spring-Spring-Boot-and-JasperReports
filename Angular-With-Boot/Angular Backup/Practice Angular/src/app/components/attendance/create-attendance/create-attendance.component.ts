@@ -1,28 +1,84 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AttendanceModel } from '../../../models/attendance.model';
 import { AttendanceService } from '../../../services/attendance.service';
+import { UserModel } from '../../../models/user.model';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-create-attendance',
   templateUrl: './create-attendance.component.html',
-  styleUrl: './create-attendance.component.css'
+  styleUrl: './create-attendance.component.css',
 })
-export class CreateAttendanceComponent {
+export class CreateAttendanceComponent implements OnInit {
+  users: any[] = []; 
+  attendances: any[] = []; 
+  selectedUserId: number | null = null;
 
-  attendance: AttendanceModel = new AttendanceModel();
+  constructor(
+    private attendanceService: AttendanceService,
+    private notificationService: NotificationService
+  ) {}
 
-  constructor(private attendanceService: AttendanceService) { }
+  ngOnInit(): void {
+    this.loadUsers();
+    this.loadAttendances();
+  }
 
-  saveAttendance() {
-    this.attendanceService.saveAttendance(this.attendance).subscribe(
-      (response) => {
-        console.log('Attendance saved successfully', response);
-        alert('Attendance saved successfully');
+  loadUsers(): void {
+    this.attendanceService.getAllUsers().subscribe(
+      {
+        next:(data) => {
+        this.users = data;
       },
-      (error) => {
-        console.error('Error saving attendance', error);
-        alert('Error saving attendance');
+     error: (error) => {
+        console.error('Error loading users:', error);
+      }
       }
     );
+  }
+
+  loadAttendances(): void {
+    this.attendanceService.getAllAttendances().subscribe(
+      {
+        next: (data) => {
+          this.attendances = data;
+           console.log('Attendance Data:', data);
+        },
+        error: (error) => {
+          console.error('Error loading attendances:', error);
+        }
+      });
+  }
+
+  checkIn(): void {
+    if (this.selectedUserId) {
+      this.attendanceService.checkIn(this.selectedUserId).subscribe({
+        next: (data) => {
+          this.loadAttendances();
+          alert('Check in created successfully.');
+          this.notificationService.showNotify('Check in created successfully.');
+        },
+        error: (error) => {
+          console.error('Error during check-in:', error);
+        },
+      });
+    }
+  }
+
+  checkOut(): void {
+    if (this.selectedUserId) {
+      this.attendanceService.checkOut(this.selectedUserId).subscribe({
+        next: (data) => {
+          this.loadAttendances();
+          alert('Check out created successfully.');
+          this.notificationService.showNotify(
+            'Check out created successfully.'
+          );
+        },
+        error: (error) => {
+          console.error('Error during check-in:', error);
+        },
+      });
+    }
   }
 }

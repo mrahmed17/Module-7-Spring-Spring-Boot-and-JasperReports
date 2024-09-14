@@ -24,41 +24,8 @@
      <!-- Admin-specific links -->
 
 
-     <!-- Manager Panel -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Manager
-       </a>
-       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="/managers/create">Add Manager</a></li>
-        <li>
-         <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" routerLink="/managers/list">Manager List</a></li>
-
-       </ul>
-      </li>
-     </ul>
-
-     <!-- Employee Panel -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Employee
-       </a>
-       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="/employees/create">Add Employee</a></li>
-        <li>
-         <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" routerLink="/employees/list">Employee List</a></li>
-       </ul>
-      </li>
-     </ul>
-
      <!-- Department Panel -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Department</a>
@@ -70,10 +37,10 @@
         <li><a class="dropdown-item" routerLink="/departments/list">Department List</a></li>
        </ul>
       </li>
-     </ul>
+     </ul> -->
 
      <!-- Location Panel -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Location</a>
@@ -85,15 +52,15 @@
         <li><a class="dropdown-item" routerLink="/locations/list">Location List</a></li>
        </ul>
       </li>
-     </ul>
+     </ul> -->
 
      <!-- Miscellaneous Panel -->
-     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Miscellaneous</a>
        <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="/attendances/list">Attendance</a></li>
+        <li><a class="dropdown-item" routerLink="/attendance/list">Attendance</a></li>
         <li>
          <hr class="dropdown-divider">
         </li>
@@ -108,18 +75,28 @@
         <li><a class="dropdown-item" routerLink="/feedbacks/list">Feedback</a></li>
        </ul>
       </li>
-     </ul>
+     </ul> -->
     <!-- </ng-container> -->
 
     <!-- <ng-container *ngIf="userRole === 'User'"> -->
      <!-- User-specific links -->
      <!-- Employee Panel -->
      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <a class="nav-link " routerLink="/attendances/create" aria-expanded="false">
-       Attendance
+      <a class="nav-link " routerLink="/attendance/create" aria-expanded="false">
+      Give Attendance
       </a>
      </ul>
      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <a class="nav-link " routerLink="/attendance/list" aria-expanded="false">
+       Attendance List
+      </a>
+     </ul>
+     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <a class="nav-link " routerLink="/attendance/report" aria-expanded="false">
+       Attendance Report
+      </a>
+     </ul>
+     <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <a class="nav-link " routerLink="/feedbacks/create" aria-expanded="false">
        Feedback
       </a>
@@ -128,7 +105,7 @@
       <a class="nav-link " routerLink="/leaves/create" aria-expanded="false">
        Leave
       </a>
-     </ul>
+     </ul> -->
     <!-- </ng-container> -->
    </ul>
 
@@ -140,7 +117,7 @@
           <button class="btn btn-success" type="submit">Search</button>
         </form> -->
     <!-- Profile dropdown -->
-    <ul class="navbar-nav d-flex me-4 me-auto">
+    <!-- <ul class="navbar-nav d-flex me-4 me-auto">
      <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
        Profile </a>
@@ -162,19 +139,19 @@
        </li>
       </ul>
      </li>
-    </ul>
+    </ul> -->
    <!-- </ng-container> -->
 
    <!-- Log In Button: Only show if no user is logged in -->
 
    <!-- <ng-container *ngIf="!userRole"> -->
-    <ul class="navbar-nav">
+    <!-- <ul class="navbar-nav">
      <li class="nav-item dropdown">
       <a class="btn btn-info text-white" routerLink="/login" role="button" aria-expanded="false">
        Log In
       </a>
      </li>
-    </ul>
+    </ul> -->
    <!-- </ng-container> -->
 
   </div>

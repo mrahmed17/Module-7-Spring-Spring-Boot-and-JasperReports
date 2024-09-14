@@ -8,7 +8,7 @@ export class NotificationService {
   private notificationSubject = new Subject<string>();
   notification$ = this.notificationSubject.asObservable();
 
-  showNotification(message: string) {
+  showNotify(message: string) {
     this.notificationSubject.next(message);
   }
 }

@@ -17,13 +17,13 @@ export class ListAttendanceComponent implements OnInit {
   }
 
   getAllAttendances() {
-    this.attendanceService.getAllAttendances().subscribe(
-      (data) => {
+    this.attendanceService.getAllAttendances().subscribe({
+      next: (data) => {
         this.attendances = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching attendances', error);
-      }
-    );
+      },
+    });
   }
 }

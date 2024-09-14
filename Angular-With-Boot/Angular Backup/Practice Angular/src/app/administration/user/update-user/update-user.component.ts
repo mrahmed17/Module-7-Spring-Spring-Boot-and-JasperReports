@@ -3,6 +3,7 @@ import { UserModel } from '../../../models/user.model';
 import { RoleEnum } from '../../../models/role.enum';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-update-user',
@@ -17,7 +18,8 @@ export class UpdateUserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class UpdateUserComponent implements OnInit {
   updateUser(): void {
     this.userService.updateUser(this.id, this.user).subscribe(() => {
       this.router.navigate(['/user/list']);
+       this.notificationService.showNotify('User data updated successfully.');
     });
   }
 }

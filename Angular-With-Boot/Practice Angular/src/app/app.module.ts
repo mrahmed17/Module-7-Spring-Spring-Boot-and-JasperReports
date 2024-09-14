@@ -33,7 +33,6 @@ import { HeaderComponent } from './template/header/header.component';
 import { ForgetpasswordComponent } from './administration/forgetpassword/forgetpassword.component';
 import { LoginComponent } from './administration/login/login.component';
 import { LogoutComponent } from './administration/logout/logout.component';
-import { EnvironmentComponent } from './errorhandling/environment/environment.component';
 
 
 @NgModule({
@@ -58,7 +57,6 @@ import { EnvironmentComponent } from './errorhandling/environment/environment.co
     ForgetpasswordComponent,
     LoginComponent,
     LogoutComponent,
-    EnvironmentComponent,
   ],
   imports: [
     BrowserModule,

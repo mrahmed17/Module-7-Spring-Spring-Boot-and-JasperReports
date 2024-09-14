@@ -24,7 +24,7 @@ import { BreadcrumbComponent } from './template/breadcrumb/breadcrumb.component'
 import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { HomeComponent } from './template/home/home.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
-import { NotificationComponent } from './template/notification/notification.component';
+import { NotificationComponent } from './errorhandling/notification/notification.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from './errorhandling/error/error.component';

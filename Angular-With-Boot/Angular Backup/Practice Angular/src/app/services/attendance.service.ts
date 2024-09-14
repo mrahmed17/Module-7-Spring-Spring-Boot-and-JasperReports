@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { AttendanceModel } from '../models/attendance.model';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttendanceService {
-  private baseUrl = 'http://localhost:8080/api/attendance';
+  // private baseUrl = 'http://localhost:8080/api/attendance';
+
+  private baseUrl = `${environment.apiUrl}/attendance`;
 
   constructor(private http: HttpClient) {}
 
@@ -17,14 +20,30 @@ export class AttendanceService {
   }
 
   getAttendanceById(id: number): Observable<AttendanceModel> {
-    return this.http.get<AttendanceModel>(`${this.baseUrl}/view/${id}`);
+    return this.http.get<AttendanceModel>(`${this.baseUrl}/attendance/${id}`);
   }
 
-   saveAttendance(attendance: AttendanceModel): Observable<AttendanceModel> {
-    return this.http.post<AttendanceModel>(`${this.baseUrl}/save`, attendance);
+  getAttendancesByUserId(id: number): Observable<AttendanceModel[]> {
+    return this.http.get<AttendanceModel[]>(
+      `${this.baseUrl}/user/${id}/attendances`
+    );
   }
-
   
+
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${this.baseUrl}/alluser`);
+  }
+
+  checkIn(userId: number): Observable<AttendanceModel> {
+    const body = { userId };
+    return this.http.post<AttendanceModel>(`${this.baseUrl}/checkin`, body);
+  }
+
+  checkOut(userId: number): Observable<AttendanceModel> {
+    const body = { userId };
+    return this.http.put<AttendanceModel>(`${this.baseUrl}/checkout`, body);
+  }
+
   getAttendanceInRange(
     startDate: string,
     endDate: string
@@ -32,9 +51,8 @@ export class AttendanceService {
     const params = new HttpParams()
       .set('startDate', startDate)
       .set('endDate', endDate);
-
     return this.http.get<Map<UserModel, number>>(
-      `${this.baseUrl}/attendance-with-range`,
+      `${this.baseUrl}/attendancerange`,
       { params }
     );
   }

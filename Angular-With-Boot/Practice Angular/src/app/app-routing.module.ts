@@ -14,7 +14,7 @@ import { ListUserComponent } from './administration/user/list-user/list-user.com
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   {
     path: 'dashboard',
