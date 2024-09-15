@@ -26,6 +26,11 @@ public class LeaveService {
     @Autowired
     private AttendanceRepository attendanceRepository;
 
+
+    public List<Leave> getLeavesByUserId(long userId) {
+        return leaveRepository.findByUserId(userId);
+    }
+
     // Calculate the number of days for a leave period
     private int calculateLeaveDays(Leave leave) {
         return (int) ChronoUnit.DAYS.between(leave.getStartDate(), leave.getEndDate()) + 1;
@@ -75,10 +80,6 @@ public class LeaveService {
         leaveRepository.save(leave);
     }
 
-    // Get all leaves for a user
-    public List<Leave> getLeavesByUserId(long userId) {
-        return leaveRepository.findByUserId(userId);
-    }
 
     // Get all approved leaves for a user
     public List<Leave> getApprovedLeavesByUserId(long userId) {

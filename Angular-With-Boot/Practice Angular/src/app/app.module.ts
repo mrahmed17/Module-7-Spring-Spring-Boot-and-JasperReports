@@ -4,6 +4,8 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateAttendanceComponent } from './components/attendance/create-attendance/create-attendance.component';
@@ -65,11 +67,11 @@ import { LogoutComponent } from './administration/logout/logout.component';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideHttpClient(withFetch()),   
-  ],
+  providers: [provideClientHydration(), provideHttpClient(withFetch())],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+}

@@ -29,7 +29,8 @@ public class UserService {
     }
 
     public User getUserById(long id) {
-        return userRepository.findById(id).orElseThrow(()-> new RuntimeException("Couldn't find user' by this id: " + id));
+        return userRepository.findById(id).orElseThrow(()->
+                new RuntimeException("Couldn't find user' by this id: " + id));
     }
 
     public void deleteUserById(long id) {

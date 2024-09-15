@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceModel } from '../../../models/attendance.model';
 import { AttendanceService } from '../../../services/attendance.service';
-import { UserModel } from '../../../models/user.model';
 import { NotificationService } from '../../../services/notification.service';
+import { faCalendarAlt, faClock, faIdBadge, faList, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-create-attendance',
@@ -10,9 +10,17 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrl: './create-attendance.component.css',
 })
 export class CreateAttendanceComponent implements OnInit {
-  users: any[] = []; 
-  attendances: any[] = []; 
+  users: any[] = [];
+  attendances: any[] = [];
   selectedUserId: number | null = null;
+
+  faUser = faUser;
+  faSignIn = faSignInAlt;
+  faSignOut = faSignOutAlt;
+  faList = faList;
+  faIdBadge = faIdBadge;
+  faCalendarAlt = faCalendarAlt;
+  faClock = faClock;
 
   constructor(
     private attendanceService: AttendanceService,
@@ -25,29 +33,26 @@ export class CreateAttendanceComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.attendanceService.getAllUsers().subscribe(
-      {
-        next:(data) => {
+    this.attendanceService.getAllUsers().subscribe({
+      next: (data) => {
         this.users = data;
       },
-     error: (error) => {
+      error: (error) => {
         console.error('Error loading users:', error);
-      }
-      }
-    );
+      },
+    });
   }
 
   loadAttendances(): void {
-    this.attendanceService.getAllAttendances().subscribe(
-      {
-        next: (data) => {
-          this.attendances = data;
-           console.log('Attendance Data:', data);
-        },
-        error: (error) => {
-          console.error('Error loading attendances:', error);
-        }
-      });
+    this.attendanceService.getAllAttendances().subscribe({
+      next: (data) => {
+        this.attendances = data;
+        console.log('Attendance Data:', data);
+      },
+      error: (error) => {
+        console.error('Error loading attendances:', error);
+      },
+    });
   }
 
   checkIn(): void {

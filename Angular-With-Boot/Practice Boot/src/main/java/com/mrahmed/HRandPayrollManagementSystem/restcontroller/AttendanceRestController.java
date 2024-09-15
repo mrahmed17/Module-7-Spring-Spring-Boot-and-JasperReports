@@ -61,7 +61,7 @@ public class AttendanceRestController {
     }
 
     @GetMapping("/user/{id}/attendances")
-    public ResponseEntity<List<Attendance>> getAttendancesByUserId(@PathVariable Long id) {
+    public ResponseEntity<List<Attendance>> getAttendancesByUserId(@PathVariable ("id")Long id) {
         List<Attendance> attendances = attendanceService.getAttendanceByUserId(id);
         return ResponseEntity.ok(attendances);
     }
