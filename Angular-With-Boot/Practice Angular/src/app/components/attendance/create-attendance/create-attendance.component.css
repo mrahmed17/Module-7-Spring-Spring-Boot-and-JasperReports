@@ -30,7 +30,7 @@ input[type="time"] {
 }
 button {
   display: block;
-  margin: 20px auto;
+  margin: 40px auto;
   width: 50%;
   padding: 10px;
   background-color: #007BFF;
@@ -45,7 +45,7 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   form {
     width: 90%;
     padding: 15px;
@@ -74,7 +74,7 @@ th, td {
   text-align: left;
 }
 
-tbody tr:hover {
+tbody, tr :hover {
   background-color: #b6f1c2;
 }
 .row {
@@ -100,7 +100,7 @@ select.form-control {
   }
 
   button {
-    width: 100%;
+    width: 30%;
     margin-bottom: 10px;
   }
 }

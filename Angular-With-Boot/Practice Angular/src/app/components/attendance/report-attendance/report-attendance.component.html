@@ -1,36 +1,40 @@
-<h2>Attendance Report (Date Range)</h2>
-<form (ngSubmit)="getUsersWithAttendanceInRange()">
- <label for="startDate">Start Date</label>
- <input type="date" [(ngModel)]="startDate" name="startDate" required>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Attendance Report (Date Range)</h2>
+    <form (ngSubmit)="getUsersWithAttendanceInRange()">
+      <label for="startDate">Start Date</label>
+      <input type="date" [(ngModel)]="startDate" name="startDate" required>
 
- <label for="endDate">End Date</label>
- <input type="date" [(ngModel)]="endDate" name="endDate" required>
+      <label for="endDate">End Date</label>
+      <input type="date" [(ngModel)]="endDate" name="endDate" required>
 
- <button type="submit">Get Report</button>
-</form>
+      <button type="submit">Get Report</button>
+    </form>
+  </div>
 
-<h3>Results</h3>
-<table *ngIf="userAttendance && userAttendance.size > 0">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Attendance Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let key of userAttendance | keyvalue">
-      <td>{{ key.key.fullName }}</td>
-      <td>{{ key.value }}</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="col-md-6">
+    <h3>Results</h3>
+    <table *ngIf="userAttendance && userAttendance.size > 0">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Attendance Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of userAttendance | keyvalue">
+          <td>{{ key.key.fullName }}</td>
+          <td>{{ key.value }}</td>
+        </tr>
+      </tbody>
+    </table>
 
 
-<div *ngIf="errorMessage">
- <p>{{ errorMessage }}</p>
-</div>
-
-<!-- 
+    <div *ngIf="errorMessage">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+  <!-- 
 <h2>Attendance Report</h2>
 <div>
  <button (click)="getAttendanceById(1)">Get Attendance By ID</button>
