@@ -17,20 +17,26 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
     @Query("SELECT l FROM Leave l WHERE l.user.id = :userId")
     List<Leave> findByUserId(@Param("userId") Long userId);
 
-    // Find approved leaves for a specific user
-    @Query("SELECT l FROM Leave l WHERE l.user.id = :userId AND l.isApproved = true")
+    // Find approved leave requests for a specific employee
+    @Query("SELECT l FROM Leave l WHERE l.user.id = :userId AND l.requestStatus = 'APPROVED'")
     List<Leave> findApprovedLeavesByUserId(@Param("userId") Long userId);
 
-    // Find leaves within a specific date range
-    @Query("SELECT l FROM Leave l WHERE l.startDate BETWEEN :startDate AND :endDate OR l.endDate BETWEEN :startDate AND :endDate OR (l.startDate <= :startDate AND l.endDate >= :endDate)")
+    // Find leave requests for a specific date range
+    @Query("SELECT l FROM Leave l WHERE (l.startDate BETWEEN :startDate AND :endDate) OR (l.endDate BETWEEN :startDate AND :endDate) OR (l.startDate <= :startDate AND l.endDate >= :endDate)")
     List<Leave> findLeavesInDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     // Find overlapping leaves with a specific date range
     @Query("SELECT l FROM Leave l WHERE (l.startDate <= :endDate AND l.endDate >= :startDate)")
     List<Leave> findOverlappingLeaves(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    // Find leaves within a specific date range
-    @Query("SELECT l FROM Leave l WHERE l.startDate BETWEEN :startDate AND :endDate OR l.endDate BETWEEN :startDate AND :endDate")
-    List<Leave> findByStartDateBetween(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    // Find all pending leave requests
+    @Query("SELECT l FROM Leave l WHERE l.requestStatus = 'PENDING'")
+    List<Leave> findAllPendingLeaveRequests();
+
+    // Find all leave requests by status
+    @Query("SELECT l FROM Leave l WHERE l.requestStatus = :status")
+    List<Leave> findAllLeavesByStatus(@Param("status") String status);
+
+
 }
 

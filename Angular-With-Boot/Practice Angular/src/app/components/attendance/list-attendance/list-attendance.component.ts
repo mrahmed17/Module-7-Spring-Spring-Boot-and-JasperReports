@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendanceModel } from '../../../models/attendance.model';
 import { AttendanceService } from '../../../services/attendance.service';
+import { faCalendarAlt, faClock, faIdBadge, faListUl } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-attendance',
@@ -8,6 +9,11 @@ import { AttendanceService } from '../../../services/attendance.service';
   styleUrl: './list-attendance.component.css',
 })
 export class ListAttendanceComponent implements OnInit {
+  faListUl = faListUl;
+  faIdBadge = faIdBadge;
+  faCalendarAlt = faCalendarAlt;
+  faClock = faClock;
+
   attendances: AttendanceModel[] = [];
 
   constructor(private attendanceService: AttendanceService) {}

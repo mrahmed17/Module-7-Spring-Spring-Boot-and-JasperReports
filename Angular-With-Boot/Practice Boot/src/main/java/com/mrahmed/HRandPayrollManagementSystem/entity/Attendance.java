@@ -22,6 +22,7 @@ public class Attendance {
     private LocalDate date;
     private LocalDateTime clockInTime;
     private LocalDateTime clockOutTime;
+    private boolean overTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", nullable = false)

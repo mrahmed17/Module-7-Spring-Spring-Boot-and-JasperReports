@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-notification',
@@ -7,6 +8,8 @@ import { NotificationService } from '../../services/notification.service';
   styleUrl: './notification.component.css',
 })
 export class NotificationComponent implements OnInit {
+  faCheckCircle = faCheckCircle;
+
   message: string = '';
 
   constructor(private notificationService: NotificationService) {}

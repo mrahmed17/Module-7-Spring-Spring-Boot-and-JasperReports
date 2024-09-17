@@ -4,6 +4,7 @@ import { RoleEnum } from '../../../models/role.enum';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification.service';
+import { faEnvelope, faPhone, faSave, faUser, faUserEdit, faUserTag } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-update-user',
@@ -11,6 +12,13 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrl: './update-user.component.css',
 })
 export class UpdateUserComponent implements OnInit {
+  faUserEdit = faUserEdit;
+  faUser = faUser;
+  faEnvelope = faEnvelope;
+  faPhone = faPhone;
+  faUserTag = faUserTag;
+  faSave = faSave;
+
   user: UserModel = new UserModel();
   roles = Object.values(RoleEnum);
   id!: number;
@@ -32,7 +40,7 @@ export class UpdateUserComponent implements OnInit {
   updateUser(): void {
     this.userService.updateUser(this.id, this.user).subscribe(() => {
       this.router.navigate(['/user/list']);
-       this.notificationService.showNotify('User data updated successfully.');
+      this.notificationService.showNotify('User data updated successfully.');
     });
   }
 }

@@ -21,9 +21,11 @@ public class Leave {
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate requestDate;
-    private boolean isApproved;
+
     private int remainingLeave; // total 25 days: (reserve 10 + sick 15 days), remainingcalculation(total -(end-startdate))
 
+    @Enumerated(EnumType.STRING)
+    private LeaveRequestStatus requestStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", nullable = false)

@@ -1,9 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
-import com.mrahmed.HRandPayrollManagementSystem.entity.Attendance;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Leave;
-import com.mrahmed.HRandPayrollManagementSystem.entity.LeaveType;
-import com.mrahmed.HRandPayrollManagementSystem.entity.User;
+import com.mrahmed.HRandPayrollManagementSystem.entity.*;
 import com.mrahmed.HRandPayrollManagementSystem.repository.AttendanceRepository;
 import com.mrahmed.HRandPayrollManagementSystem.repository.LeaveRepository;
 import com.mrahmed.HRandPayrollManagementSystem.repository.UserRepository;
@@ -59,7 +56,6 @@ public class LeaveService {
             case SICK_PAID -> 15; // 15 days of paid sick leave
             case SICK_UNPAID -> 0; // 0 days of unpaid sick leave
             case RESERVE_UNPAID -> 10; // 10 days of reserve unpaid leave
-            default -> 0;
         };
     }
 
@@ -73,8 +69,8 @@ public class LeaveService {
             throw new RuntimeException("Leave request overlaps with existing attendance");
         }
 
-        if (leave.isApproved()) {
-            updateRemainingLeave(leave); // Update remaining leave for the leave record
+        if (leave.getRequestStatus() == LeaveRequestStatus.APPROVED) {
+            updateRemainingLeave(leave); // Update remaining leave if the leave is approved
         }
 
         leaveRepository.save(leave);
@@ -87,9 +83,9 @@ public class LeaveService {
     }
 
     // Get all leaves in a date range
-    public List<Leave> getLeavesInRange(LocalDate startDate, LocalDate endDate) {
-        return leaveRepository.findByStartDateBetween(startDate, endDate);
-    }
+//    public List<Leave> getLeavesInRange(LocalDate startDate, LocalDate endDate) {
+//        return leaveRepository.findByStartDateBetween(startDate, endDate);
+//    }
 
     // Calculate total approved leave days for a user
     public int calculateTotalLeaveDaysForUser(long userId) {
@@ -98,16 +94,42 @@ public class LeaveService {
                 .sum();
     }
 
-    // Update leave approval status
-    public Leave approveLeave(long leaveId) {
+    public Leave approveLeave(long leaveId, long approverId) {
         Leave leave = leaveRepository.findById(leaveId)
                 .orElseThrow(() -> new RuntimeException("Leave not found"));
 
-        leave.setApproved(true);
-        leaveRepository.save(leave);
+        // Fetch the approver (admin/manager)
+        User approver = userRepository.findById(approverId)
+                .orElseThrow(() -> new RuntimeException("Approver not found"));
 
-        updateRemainingLeave(leave); // Update remaining leave for the leave record if it is approved
+        // Check if the approver has the correct role (ADMIN, COMPANY, or MANAGER)
+        if (approver.getRole() == Role.ADMIN || approver.getRole() == Role.COMPANY || approver.getRole() == Role.MANAGER) {
+            leave.setRequestStatus(LeaveRequestStatus.APPROVED);
+            leaveRepository.save(leave);
+        } else {
+            throw new RuntimeException("User does not have permission to approve leave");
+        }
 
         return leave;
     }
+
+    // Method to reject a leave request
+    public Leave rejectLeave(long leaveId, long approverId) {
+        Leave leave = leaveRepository.findById(leaveId)
+                .orElseThrow(() -> new RuntimeException("Leave not found"));
+
+        User approver = userRepository.findById(approverId)
+                .orElseThrow(() -> new RuntimeException("Approver not found"));
+
+        // Check if the approver has the correct role (ADMIN, COMPANY, or MANAGER)
+        if (approver.getRole() == Role.ADMIN || approver.getRole() == Role.COMPANY || approver.getRole() == Role.MANAGER) {
+            leave.setRequestStatus(LeaveRequestStatus.REJECTED);
+            leaveRepository.save(leave);
+        } else {
+            throw new RuntimeException("User does not have permission to reject leave");
+        }
+
+        return leave;
+    }
+
 }

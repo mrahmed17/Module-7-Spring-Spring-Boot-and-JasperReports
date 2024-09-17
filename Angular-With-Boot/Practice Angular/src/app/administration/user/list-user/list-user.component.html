@@ -1,13 +1,13 @@
-<h2>User List</h2>
+<h2><fa-icon [icon]="faUsers"></fa-icon> User List</h2>
 <table>
  <thead>
   <tr>
-   <th>ID</th>
-   <th>Name</th>
-   <th>Email</th>
-   <th>Contact</th>
-   <th>Role</th>
-   <th>Actions</th>
+   <th><fa-icon [icon]="faIdBadge"></fa-icon> ID</th>
+   <th><fa-icon [icon]="faUser"></fa-icon> Name</th>
+   <th><fa-icon [icon]="faEnvelope"></fa-icon> Email</th>
+   <th><fa-icon [icon]="faPhone"></fa-icon> Contact</th>
+   <th><fa-icon [icon]="faUserTag"></fa-icon> Role</th>
+   <th><fa-icon [icon]="faCog"></fa-icon> Actions</th>
   </tr>
  </thead>
  <tbody>
@@ -18,11 +18,17 @@
    <td>{{ user.contact }}</td>
    <td>{{ user.role }}</td>
    <td>
-    <button class="delete" (click)="deleteUser(user.id)">Delete</button>
-    <button class="edit" [routerLink]="['/user/edit', user.id]">Edit</button>
+    <button (click)="deleteUser(user.id)">
+     <fa-icon [icon]="faTrash"></fa-icon>
+    </button>
+    <button [routerLink]="['/user/edit', user.id]">
+     <fa-icon [icon]="faEdit"></fa-icon>
+    </button>
    </td>
   </tr>
  </tbody>
 </table>
 
-<a routerLink="/user/create">Add New User</a>
+<a routerLink="/user/create">
+ <fa-icon [icon]="faUserPlus"></fa-icon> Add New User
+</a>

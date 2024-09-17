@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { faChevronRight, faFolder, faHome } from '@fortawesome/free-solid-svg-icons';
 import { filter } from 'rxjs';
 
 @Component({
@@ -8,6 +9,10 @@ import { filter } from 'rxjs';
   styleUrl: './breadcrumb.component.css',
 })
 export class BreadcrumbComponent implements OnInit {
+  faHome = faHome;
+  faFolder = faFolder;
+  faChevronRight = faChevronRight;
+
   breadcrumbs: Array<{ label: string; url: string }> = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {

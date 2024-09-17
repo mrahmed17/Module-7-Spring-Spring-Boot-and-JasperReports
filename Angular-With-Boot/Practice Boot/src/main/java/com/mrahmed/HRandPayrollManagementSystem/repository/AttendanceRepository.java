@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
-
     // 1. Find attendance by user and date
     Optional<Attendance> findByUserIdAndDate(long userId, LocalDate date);
 
@@ -88,6 +87,19 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 //    List<Attendance> findAbsencesWithReasonInRange(@Param("startDate") LocalDate startDate,
 //                                                   @Param("endDate") LocalDate endDate);
 
+    // NEW QUERIES BASED ON YOUR REQUIREMENTS:
 
+    // 18. Search attendance record by User FullName or part of the name
+    @Query("SELECT a FROM Attendance a WHERE LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<Attendance> findAttendancesByUserNamePart(@Param("name") String name);
 
+    // 19. Filter user role-based attendance in the date range
+    @Query("SELECT a FROM Attendance a WHERE a.user.role = :role AND a.date BETWEEN :startDate AND :endDate")
+    List<Attendance> findAttendanceByRoleAndDateRange(@Param("role") String role,
+                                                      @Param("startDate") LocalDate startDate,
+                                                      @Param("endDate") LocalDate endDate);
+
+    // 20. Show only today's attendance after check-in or check-out
+    @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
+    List<Attendance> findTodaysAttendanceByUserId(@Param("userId") long userId);
 }

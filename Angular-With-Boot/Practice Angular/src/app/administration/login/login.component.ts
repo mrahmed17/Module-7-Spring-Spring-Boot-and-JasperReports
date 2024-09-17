@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faEnvelope, faLock, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,10 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  faSignInAlt = faSignInAlt;
+  faEnvelope = faEnvelope;
+  faLock = faLock;
+
   loginForm!: FormGroup;
 
   constructor(
