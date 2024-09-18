@@ -8,6 +8,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "Companies")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,6 +30,5 @@ public class Company {
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<User> users;
-
 
 }

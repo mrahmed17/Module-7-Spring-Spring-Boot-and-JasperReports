@@ -1,33 +1,30 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "attendances")
+@Table(name = "feedbacks")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Attendance {
-
+public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate date;
-    private LocalDateTime clockInTime;
-    private LocalDateTime clockOutTime;
-    private boolean overTime;
+    private LocalDateTime date;
+    private String rating;
+    private String comment;
 
     @Enumerated(EnumType.STRING)
-    private Month month;
+    private Month feedbackMonth;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     private User user;
 
-}
 
+
+}

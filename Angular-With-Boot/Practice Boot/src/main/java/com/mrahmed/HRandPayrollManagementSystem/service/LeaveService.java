@@ -7,7 +7,6 @@ import com.mrahmed.HRandPayrollManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -69,7 +68,7 @@ public class LeaveService {
             throw new RuntimeException("Leave request overlaps with existing attendance");
         }
 
-        if (leave.getRequestStatus() == LeaveRequestStatus.APPROVED) {
+        if (leave.getRequestStatus() == RequestStatus.APPROVED) {
             updateRemainingLeave(leave); // Update remaining leave if the leave is approved
         }
 
@@ -104,7 +103,7 @@ public class LeaveService {
 
         // Check if the approver has the correct role (ADMIN, COMPANY, or MANAGER)
         if (approver.getRole() == Role.ADMIN || approver.getRole() == Role.COMPANY || approver.getRole() == Role.MANAGER) {
-            leave.setRequestStatus(LeaveRequestStatus.APPROVED);
+            leave.setRequestStatus(RequestStatus.APPROVED);
             leaveRepository.save(leave);
         } else {
             throw new RuntimeException("User does not have permission to approve leave");
@@ -123,7 +122,7 @@ public class LeaveService {
 
         // Check if the approver has the correct role (ADMIN, COMPANY, or MANAGER)
         if (approver.getRole() == Role.ADMIN || approver.getRole() == Role.COMPANY || approver.getRole() == Role.MANAGER) {
-            leave.setRequestStatus(LeaveRequestStatus.REJECTED);
+            leave.setRequestStatus(RequestStatus.REJECTED);
             leaveRepository.save(leave);
         } else {
             throw new RuntimeException("User does not have permission to reject leave");

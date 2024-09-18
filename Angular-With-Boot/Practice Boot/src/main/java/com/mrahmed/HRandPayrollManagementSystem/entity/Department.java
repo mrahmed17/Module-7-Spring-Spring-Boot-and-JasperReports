@@ -6,29 +6,29 @@ import lombok.*;
 
 import java.util.List;
 
-
 @Entity
+@Table(name = "departments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String name;
+    private int employeesNum;
     private String photo;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JsonIgnore
-    private List<Branch> branches;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branchId")
+    private Branch branch;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JsonIgnore
-    private List<Department> departments;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
+    private Company company;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<User> users;
-
 
 }

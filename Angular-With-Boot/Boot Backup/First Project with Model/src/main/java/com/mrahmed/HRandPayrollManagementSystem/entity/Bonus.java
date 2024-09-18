@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bonuses")
@@ -18,7 +19,7 @@ public class Bonus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double bonusAmount;
-    private Date bonusDate;
+    private LocalDateTime bonusDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")

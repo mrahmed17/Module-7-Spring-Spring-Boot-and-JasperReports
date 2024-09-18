@@ -1,6 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-public enum LeaveRequestStatus {
+public enum RequestStatus {
     PENDING,
     APPROVED,
     REJECTED;

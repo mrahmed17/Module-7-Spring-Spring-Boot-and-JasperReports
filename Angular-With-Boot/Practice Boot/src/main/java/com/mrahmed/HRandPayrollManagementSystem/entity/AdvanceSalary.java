@@ -1,33 +1,29 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "attendances")
+@Table(name = "advancesalaries")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Attendance {
-
+public class AdvanceSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate date;
-    private LocalDateTime clockInTime;
-    private LocalDateTime clockOutTime;
-    private boolean overTime;
+    private double advanceSalary;
+    private String reason;
+    private LocalDateTime advanceDate;
+    private int year;
 
     @Enumerated(EnumType.STRING)
-    private Month month;
+    private Month advanceMonth;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     private User user;
 
 }
-
