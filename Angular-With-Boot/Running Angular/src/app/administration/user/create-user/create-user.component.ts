@@ -62,37 +62,51 @@ export class CreateUserComponent {
   }
 
   onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
+  const file = event.target.files[0];
+  if (file) {
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = ['image/jpeg', 'image/png'];
+
+    if (allowedTypes.includes(file.type) && file.size <= maxSize) {
       this.profilePhoto = file;
+    } else {
+      this.errorMessage = 'Invalid file type or size. Please upload a .jpg or .png image below 5MB.';
     }
   }
+}
 
   onSubmit() {
-    if (this.userForm.invalid) {
-      this.errorMessage = 'Please fill out the form correctly.';
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('user', JSON.stringify(this.userForm.value));
-    if (this.profilePhoto) {
-      formData.append('profilePhoto', this.profilePhoto);
-    }
-
-    this.userService.createUser(formData).subscribe({
-      next: (message) => {
-        this.successMessage = message;
-        this.errorMessage = null;
-        this.userForm.reset();
-        this.profilePhoto = null;
-      },
-      error: (err) => {
-        this.successMessage = null;
-        this.errorMessage = 'An error occurred while creating the user.';
-        console.error(err);
-      },
-    });
+  if (this.userForm.invalid) {
+    this.errorMessage = 'Please fill out the form correctly.';
+    return;
   }
+
+  const formData = new FormData();
+  
+  // Append form controls individually to the formData object
+  Object.keys(this.userForm.controls).forEach(key => {
+    formData.append(key, this.userForm.get(key)?.value);
+  });
+
+  // Append the profile photo if selected
+  if (this.profilePhoto) {
+    formData.append('profilePhoto', this.profilePhoto);
+  }
+
+  this.userService.createUser(formData).subscribe({
+    next: (message) => {
+      this.successMessage = message;
+      this.errorMessage = null;
+      this.userForm.reset();
+      this.profilePhoto = null;
+    },
+    error: (err) => {
+      // Use specific error message if available
+      this.successMessage = null;
+      this.errorMessage = err?.error?.message || 'An error occurred while creating the user.';
+      console.error(err);
+    }
+  });
+}
 
 }
