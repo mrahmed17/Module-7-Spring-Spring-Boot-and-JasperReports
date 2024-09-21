@@ -18,10 +18,16 @@ import java.util.Map;
 @CrossOrigin("*")
 public class AttendanceRestController {
 
+    private final AttendanceService attendanceService;
+
+    private final UserService userService;
+
     @Autowired
-    private AttendanceService attendanceService;
-    @Autowired
-    private UserService userService;
+    public AttendanceRestController(UserService userService, AttendanceService attendanceService) {
+        this.userService = userService;
+        this.attendanceService = attendanceService;
+    }
+
 
     @GetMapping("/")
     public ResponseEntity<List<Attendance>> getAllAttendances() {
@@ -32,12 +38,11 @@ public class AttendanceRestController {
         return ResponseEntity.ok(attendances);
     }
 
-    @GetMapping("/alluser")
+    @GetMapping("/allUsers")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
-
 
     @PostMapping("/checkin")
     public ResponseEntity<Attendance> checkIn(@RequestBody Map<String, Object> request) {
@@ -66,11 +71,106 @@ public class AttendanceRestController {
         return ResponseEntity.ok(attendances);
     }
 
-    @GetMapping("/attendancerange")
+    @GetMapping("/attendanceRange")
     public ResponseEntity<Map<User, Long>> getUsersWithAttendanceInRange(
             @RequestParam("startDate") LocalDate startDate,
             @RequestParam("endDate") LocalDate endDate) {
         Map<User, Long> userAttendance = attendanceService.getUsersAttendanceInRange(startDate, endDate);
         return ResponseEntity.ok(userAttendance);
     }
+
+    @GetMapping("/peakAttendanceDay")
+    public ResponseEntity<List<Object[]>> getPeakAttendanceDay() {
+        List<Object[]> peakAttendanceDay = attendanceService.getPeakAttendanceDay();
+        if (peakAttendanceDay.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(peakAttendanceDay);
+    }
+
+
+    @GetMapping("/peakAttendanceMonth")
+    public ResponseEntity<List<Object[]>> getPeakAttendanceMonth() {
+        List<Object[]> peakAttendanceMonth = attendanceService.getPeakAttendanceMonth();
+        if (peakAttendanceMonth.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(peakAttendanceMonth);
+    }
+
+    @GetMapping("/peakAttendanceYear")
+    public ResponseEntity<List<Object[]>> getPeakAttendanceYear() {
+        List<Object[]> peakAttendanceYear = attendanceService.getPeakAttendanceYear();
+        if (peakAttendanceYear.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(peakAttendanceYear);
+    }
+
+
+    @PostMapping("/holidayAttendance")
+    public ResponseEntity<List<Object[]>> getHolidayAttendance(@RequestBody List<LocalDate> holidayDates) {
+        List<Object[]> holidayAttendance = attendanceService.getHolidayAttendance(holidayDates);
+        if (holidayAttendance.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(holidayAttendance);
+    }
+
+    @GetMapping("/lateCheckIns")
+    public ResponseEntity<List<Attendance>> getLateCheckIns(
+            @RequestParam("lateTime") String lateTime,
+            @RequestParam("startDate") LocalDate startDate,
+            @RequestParam("endDate") LocalDate endDate) {
+        List<Attendance> lateCheckIns = attendanceService.getLateCheckIns(lateTime, startDate, endDate);
+        if (lateCheckIns.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(lateCheckIns);
+    }
+
+    @GetMapping("/shiftPlanning")
+    public ResponseEntity<List<Object[]>> getRegularEmployeesForShiftPlanning(
+            @RequestParam("startDate") LocalDate startDate,
+            @RequestParam("endDate") LocalDate endDate) {
+        List<Object[]> regularEmployees = attendanceService.getRegularEmployeesForShiftPlanning(startDate, endDate);
+        if (regularEmployees.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(regularEmployees);
+    }
+
+    @GetMapping("/searchByName")
+    public ResponseEntity<List<Attendance>> getAttendancesByUserNamePart(@RequestParam("name") String name) {
+        List<Attendance> attendances = attendanceService.getAttendancesByUserNamePart(name);
+        if (attendances.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(attendances);
+    }
+
+    @GetMapping("/roleAttendance")
+    public ResponseEntity<List<Attendance>> getAttendanceByRoleAndDateRange(
+            @RequestParam("role") String role,
+            @RequestParam("startDate") LocalDate startDate,
+            @RequestParam("endDate") LocalDate endDate) {
+        List<Attendance> attendances = attendanceService.getAttendanceByRoleAndDateRange(role, startDate, endDate);
+        if (attendances.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(attendances);
+    }
+
+
+    @GetMapping("/todayAttendance/{userId}")
+    public ResponseEntity<List<Attendance>> getTodayAttendanceByUserId(@PathVariable("userId") long userId) {
+        List<Attendance> todayAttendance = attendanceService.getTodayAttendanceByUserId(userId);
+        if (todayAttendance.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(todayAttendance);
+    }
+
+
+
 }

@@ -8,62 +8,30 @@ import { ReportAttendanceComponent } from './components/attendance/report-attend
 import { ViewAttendanceComponent } from './components/attendance/view-attendance/view-attendance.component';
 import { ListAttendanceComponent } from './components/attendance/list-attendance/list-attendance.component';
 import { CreateUserComponent } from './administration/user/create-user/create-user.component';
-import { UpdateUserComponent } from './administration/user/update-user/update-user.component';
-import { ViewUserComponent } from './administration/user/view-user/view-user.component';
 import { ListUserComponent } from './administration/user/list-user/list-user.component';
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
+import { UserDetailComponent } from './administration/user/user-detail/user-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
-  {
-    path: 'sidebar',
-    component: SidebarComponent,
-  },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'sidebar', component: SidebarComponent },
   {
     path: 'attendance',
     children: [
-      {
-        path: 'create',
-        component: CreateAttendanceComponent,
-      },
-      {
-        path: 'report',
-        component: ReportAttendanceComponent,
-      },
-      {
-        path: 'view/:id',
-        component: ViewAttendanceComponent,
-      },
-      {
-        path: 'list',
-        component: ListAttendanceComponent,
-      },
+      { path: 'create', component: CreateAttendanceComponent },
+      { path: 'report', component: ReportAttendanceComponent },
+      { path: 'view/:id', component: ViewAttendanceComponent },
+      { path: 'list', component: ListAttendanceComponent },
     ],
   },
   {
     path: 'user',
     children: [
-      {
-        path: 'create',
-        component: CreateUserComponent,
-      },
-      {
-        path: 'edit/:id',
-        component: UpdateUserComponent,
-      },
-      {
-        path: 'view/:id',
-        component: ViewUserComponent,
-      },
-      {
-        path: 'list',
-        component: ListUserComponent,
-      },
+      { path: 'create', component: CreateUserComponent },
+      { path: 'view/:id', component: UserDetailComponent },
+      { path: 'list', component: ListUserComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faEnvelope, faKey, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -7,12 +8,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './forgetpassword.component.css',
 })
 export class ForgetpasswordComponent implements OnInit {
+  faKey = faKey;
+  faEnvelope = faEnvelope;
+  faPaperPlane = faPaperPlane;
+
   forgotPasswordForm!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
-    // private authService: AuthService
-  ) {}
+    private formBuilder: FormBuilder
+  ) // private authService: AuthService
+  {}
 
   ngOnInit(): void {
     this.initForgotPasswordForm();

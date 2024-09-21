@@ -68,5 +68,40 @@ public class AttendanceService {
         return attendanceRepository.findUsersWithoutAttendanceForToday(LocalDate.now());
     }
 
+    public List<Object[]> getPeakAttendanceDay() {
+        return attendanceRepository.findPeakAttendanceDay();
+    }
+
+    public List<Object[]> getPeakAttendanceMonth() {
+        return attendanceRepository.findPeakAttendanceMonth();
+    }
+
+    public List<Object[]> getPeakAttendanceYear() {
+        return attendanceRepository.findPeakAttendanceYear();
+    }
+
+    public List<Object[]> getHolidayAttendance(List<LocalDate> holidayDates) {
+        return attendanceRepository.findHolidayAttendance(holidayDates);
+    }
+
+    public List<Attendance> getLateCheckIns(String lateTime, LocalDate startDate, LocalDate endDate) {
+        return attendanceRepository.findLateCheckIns(lateTime, startDate, endDate);
+    }
+
+    public List<Object[]> getRegularEmployeesForShiftPlanning(LocalDate startDate, LocalDate endDate) {
+        return attendanceRepository.findRegularEmployeesForShiftPlanning(startDate, endDate);
+    }
+
+    public List<Attendance> getAttendancesByUserNamePart(String name) {
+        return attendanceRepository.findAttendancesByUserNamePart(name);
+    }
+
+    public List<Attendance> getAttendanceByRoleAndDateRange(String role, LocalDate startDate, LocalDate endDate) {
+        return attendanceRepository.findAttendanceByRoleAndDateRange(role, startDate, endDate);
+    }
+
+    public List<Attendance> getTodayAttendanceByUserId(long userId) {
+        return attendanceRepository.findTodayAttendanceByUserId(userId);
+    }
 
 }

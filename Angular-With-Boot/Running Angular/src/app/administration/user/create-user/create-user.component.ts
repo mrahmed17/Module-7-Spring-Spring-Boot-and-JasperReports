@@ -1,28 +1,98 @@
 import { Component } from '@angular/core';
-import { UserModel } from '../../../models/user.model';
-import { RoleEnum } from '../../../models/role.enum';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
-import { NotificationService } from '../../../services/notification.service';
+
+// import {
+//   faArrowLeft,
+//   faCalendarAlt,
+//   faCalendarDay,
+//   faDollarSign,
+//   faEnvelope,
+//   faHome,
+//   faIdCard,
+//   faImage,
+//   faPhone,
+//   faPlusCircle,
+//   faUser,
+//   faUserPlus,
+//   faUserTag,
+//   faVenusMars,
+// } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
-  styleUrl: './create-user.component.css',
+  styleUrls: ['./create-user.component.css'],
 })
 export class CreateUserComponent {
-  user: UserModel = new UserModel();
-  roles = Object.values(RoleEnum);
+  // faUserPlus = faUserPlus;
+  // faHome = faHome;
+  // faVenusMars = faVenusMars;
+  // faCalendarAlt = faCalendarAlt;
+  // faUser = faUser;
+  // faIdCard = faIdCard;
+  // faCalendarDay = faCalendarDay;
+  // faDollarSign = faDollarSign;
+  // faEnvelope = faEnvelope;
+  // faPhone = faPhone;
+  // faUserTag = faUserTag;
+  // faArrowLeft = faArrowLeft;
+  // faImage = faImage;
+  // faPlusCircle = faPlusCircle;
 
-  constructor(private userService: UserService, private router: Router,
-    private notificationService: NotificationService
-  ) {}
+  userForm: FormGroup;
+  profilePhoto: File | null = null;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
-  addUser(): void {
-    this.userService.saveUser(this.user).subscribe(() => {
-      this.router.navigate(['/user/list']);
-       alert('User created successfully.');
-       this.notificationService.showNotify('User created successfully.');
+  constructor(private fb: FormBuilder, private userService: UserService) {
+    this.userForm = this.fb.group({
+      fullName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      address: [''],
+      gender: [''],
+      dateOfBirth: [''],
+      nationalId: [''],
+      contact: [''],
+      basicSalary: [''],
+      joinedDate: [''],
+      role: [''],
     });
   }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.profilePhoto = file;
+    }
+  }
+
+  onSubmit() {
+    if (this.userForm.invalid) {
+      this.errorMessage = 'Please fill out the form correctly.';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('user', JSON.stringify(this.userForm.value));
+    if (this.profilePhoto) {
+      formData.append('profilePhoto', this.profilePhoto);
+    }
+
+    this.userService.createUser(formData).subscribe({
+      next: (message) => {
+        this.successMessage = message;
+        this.errorMessage = null;
+        this.userForm.reset();
+        this.profilePhoto = null;
+      },
+      error: (err) => {
+        this.successMessage = null;
+        this.errorMessage = 'An error occurred while creating the user.';
+        console.error(err);
+      },
+    });
+  }
+
 }

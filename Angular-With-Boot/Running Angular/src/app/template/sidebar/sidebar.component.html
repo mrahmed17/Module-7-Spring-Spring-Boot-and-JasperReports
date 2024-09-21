@@ -2,29 +2,29 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>HR & PM System Admin</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR & PM System Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
- <!-- <ng-container *ngIf="userRole === 'Admin'"> -->
+  <!-- <ng-container *ngIf="userRole === 'Admin'"> -->
   <!-- Sidebar -->
   <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-   <div class="position-sticky pt-3">
-    <ul class="nav flex-column">
-     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/dashboard">
-       <span data-feather="home"></span>
-       Dashboard
-      </a>
-     </li>
+    <div class="position-sticky pt-3">
+      <ul class="nav flex-column">
+        <!-- Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/dashboard">
+            <span data-feather="home" class="icon">Dashboard</span>
+          </a>
+        </li>
 
 
-     <!-- Admins Dropdown -->
+        <!-- Admins Dropdown -->
 
-     <!-- <li class="nav-item">
+        <!-- <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="adminsDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
        <span data-feather="users"></span>
@@ -36,8 +36,8 @@
       </ul>
      </li> -->
 
-     <!-- Managers Dropdown -->
-<!--       
+        <!-- Managers Dropdown -->
+        <!--       
      <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="managersDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
@@ -50,8 +50,8 @@
       </ul>
      </li> -->
 
-     <!-- Employees Dropdown -->
-<!--       
+        <!-- Employees Dropdown -->
+        <!--       
      <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="employeesDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
@@ -64,8 +64,8 @@
       </ul>
      </li> -->
 
-     <!-- Locations Dropdown -->
-<!--       
+        <!-- Locations Dropdown -->
+        <!--       
      <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
@@ -78,9 +78,9 @@
       </ul>
      </li> -->
 
-     <!-- Departments Dropdown -->
+        <!-- Departments Dropdown -->
 
-     <!-- <li class="nav-item">
+        <!-- <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="departmentsDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
        <span data-feather="layers"></span>
@@ -92,23 +92,21 @@
       </ul>
      </li> -->
 
-     <!-- Attendances Dropdown -->
-      
-     <li class="nav-item">
-      <a class="nav-link dropdown-toggle" href="#" id="attendancesDropdown" role="button" data-bs-toggle="dropdown"
-       aria-expanded="false">
-       <span data-feather="check-circle"></span>
-       Attendances
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="attendancesDropdown">
-        <li><a class="dropdown-item" href="/attendance/create">Create Attendance</a></li>
-        <li><a class="dropdown-item" href="/attendance/list">Attendances List</a></li>
-       <li><a class="dropdown-item" href="/attendance/report">Attendance Report</a></li>
-      </ul>
-     </li>
+        <!-- Attendances Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="attendancesDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span data-feather="check-circle" class="icon">Attendance</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="attendancesDropdown">
+            <li><a class="dropdown-item" href="/attendance/create">Create Attendance</a></li>
+            <li><a class="dropdown-item" href="/attendance/list">Attendances List</a></li>
+            <li><a class="dropdown-item" href="/attendance/report">Attendance Report</a></li>
+          </ul>
+        </li>
 
-     <!-- Leaves Dropdown -->
-     <li class="nav-item">
+        <!-- Leaves Dropdown -->
+        <!-- <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="leavesDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <span data-feather="calendar"></span>
@@ -118,10 +116,10 @@
             <li><a class="dropdown-item" href="/leaves/list">Leaves List</a></li>
             <li><a class="dropdown-item" href="/leaves/create">Create Leave</a></li>
           </ul>
-        </li>
+        </li> -->
 
-     <!-- Payrolls Dropdown -->
-
+        <!-- Payrolls Dropdown -->
+        <!-- 
      <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="payrollsDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
@@ -132,10 +130,10 @@
        <li><a class="dropdown-item" href="/payrolls/list">Payrolls List</a></li>
        <li><a class="dropdown-item" href="/payrolls/create">Create Payroll</a></li>
       </ul>
-     </li>
+     </li> -->
 
-     <!-- Performances Dropdown -->
-     <li class="nav-item">
+        <!-- Performances Dropdown -->
+        <!-- <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="performancesDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
        <span data-feather="bar-chart-2"></span>
@@ -145,10 +143,10 @@
        <li><a class="dropdown-item" href="/performances/list">Performances List</a></li>
        <li><a class="dropdown-item" href="/performances/create">Create Performance</a></li>
       </ul>
-     </li>
+     </li> -->
 
-     <!-- Feedbacks Dropdown -->
-     <!-- <li class="nav-item">
+        <!-- Feedbacks Dropdown -->
+        <!-- <li class="nav-item">
       <a class="nav-link dropdown-toggle" href="#" id="feedbacksDropdown" role="button" data-bs-toggle="dropdown"
        aria-expanded="false">
        <span data-feather="message-circle"></span>
@@ -160,9 +158,9 @@
       </ul>
      </li> -->
 
-     <!-- Authentication -->
+        <!-- Authentication -->
 
-     <li class="nav-item">
+        <!-- <li class="nav-item">
       <a class="nav-link" routerLink="/userprofile">
        <span data-feather="user"></span>
        Profile
@@ -186,23 +184,28 @@
        <span data-feather="log-out"></span>
        Logout
       </a>
-     </li>
-     <li class="nav-item">
+     </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/unauthorized">
             <span data-feather="alert-circle"></span>
             Unauthorized
           </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout">
+            <span data-feather="log-out" class="icon"></span>
+          </a>
         </li>
-    </ul>
-   </div>
+      </ul>
+    </div>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
-   feather.replace()
+    feather.replace()
   </script>
- <!-- </ng-container> -->
+  <!-- </ng-container> -->
 </body>
 
 </html>

@@ -68,6 +68,7 @@ public class UserService {
             throws IOException {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
         existingUser.setFullName(updatedUser.getFullName());
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setPassword(updatedUser.getPassword());
@@ -78,6 +79,7 @@ public class UserService {
         existingUser.setContact(updatedUser.getContact());
         existingUser.setBasicSalary(updatedUser.getBasicSalary());
         existingUser.setRole(updatedUser.getRole());
+
         if (profilePhoto != null && !profilePhoto.isEmpty()) {
             String imageFilename = saveImage(profilePhoto, existingUser);
             existingUser.setProfilePhoto(imageFilename);

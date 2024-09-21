@@ -1,34 +1,46 @@
-<h2>Attendance Report (Date Range)</h2>
-<form (ngSubmit)="getUsersWithAttendanceInRange()">
- <label for="startDate">Start Date</label>
- <input type="date" [(ngModel)]="startDate" name="startDate" required>
+<!-- <div class="row">
+  <div class="col-md-4">
+    <h2><fa-icon [icon]="faCalendarDay"></fa-icon> Attendance Report (Date Range)</h2>
+    <form (ngSubmit)="getUsersWithAttendanceInRange()">
+      <div>
+        <label for="startDate"><fa-icon [icon]="faCalendarAlt"></fa-icon> Start Date</label>
+        <input type="date" [(ngModel)]="startDate" name="startDate" required>
+      </div>
+      <div>
+        <label for="endDate"><fa-icon [icon]="faCalendarAlt"></fa-icon> End Date</label>
+        <input type="date" [(ngModel)]="endDate" name="endDate" required>
+      </div>
+      <button type="submit"><fa-icon [icon]="faSearch"></fa-icon> Get Report</button>
+    </form>
+  </div>
 
- <label for="endDate">End Date</label>
- <input type="date" [(ngModel)]="endDate" name="endDate" required>
+  <div class="col-md-8">
+    <h3><fa-icon [icon]="faTable"></fa-icon> Results</h3>
+    <table *ngIf="userAttendance && userAttendance.size > 0">
+      <thead>
+        <tr>
+          <th><fa-icon [icon]="faUser"></fa-icon> User</th>
+          <th><fa-icon [icon]="faListUl"></fa-icon> Attendance Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of userAttendance | keyvalue">
+          <td>{{ key.key.fullName }}</td>
+          <td>{{ key.value }}</td>
+        </tr>
+      </tbody>
+    </table>
 
- <button type="submit">Get Report</button>
-</form>
-
-<h3>Results</h3>
-<table *ngIf="userAttendance && userAttendance.size > 0">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Attendance Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let key of userAttendance | keyvalue">
-      <td>{{ key.key.fullName }}</td>
-      <td>{{ key.value }}</td>
-    </tr>
-  </tbody>
-</table>
+    <div *ngIf="errorMessage">
+      <p><fa-icon [icon]="faExclamationTriangle"></fa-icon> {{ errorMessage }}</p>
+    </div>
+  </div>
+</div> -->
 
 
-<div *ngIf="errorMessage">
- <p>{{ errorMessage }}</p>
-</div>
+
+
+<!-- Old part below -->
 
 <!-- 
 <h2>Attendance Report</h2>

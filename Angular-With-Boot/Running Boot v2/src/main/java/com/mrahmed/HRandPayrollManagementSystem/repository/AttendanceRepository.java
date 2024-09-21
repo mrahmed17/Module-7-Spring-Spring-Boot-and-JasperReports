@@ -14,8 +14,6 @@ import java.util.Optional;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
-    Optional<Attendance> findByUserIdAndDate(long userId, LocalDate date);
-
     long countByUserIdAndDate(long userId, LocalDate date);
 
     @Query("SELECT a FROM Attendance a WHERE a.date BETWEEN :startDate AND :endDate")
@@ -33,15 +31,15 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     // NEW FEATURES IMPLEMENTED BELOW
 
-    // 7. Daily peak attendance (which day had the most/least attendance)
+    // 7. Daily peak attendance (which day had the most or least attendance)
     @Query("SELECT a.date, COUNT(a) FROM Attendance a GROUP BY a.date ORDER BY COUNT(a) DESC")
     List<Object[]> findPeakAttendanceDay();
 
-    // 8. Monthly attendance trends (which month had the most/least attendance)
+    // 8. Monthly attendance trends (which month had the most or least attendance)
     @Query("SELECT MONTH(a.date), COUNT(a) FROM Attendance a GROUP BY MONTH(a.date) ORDER BY COUNT(a) DESC")
     List<Object[]> findPeakAttendanceMonth();
 
-    // 9. Yearly attendance trends (which year had the most/least attendance)
+    // 9. Yearly attendance trends (which year had the most or least attendance)
     @Query("SELECT YEAR(a.date), COUNT(a) FROM Attendance a GROUP BY YEAR(a.date) ORDER BY COUNT(a) DESC")
     List<Object[]> findPeakAttendanceYear();
 
@@ -60,7 +58,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 //    List<Object[]> findSickLeaveTrends();
 
     // 13. Employees with high leave rate (to track absenteeism)
-//    @Query("SELECT u.id, COUNT(a) FROM Attendance a JOIN a.user u WHERE a.leaveType IS NOT NULL GROUP BY u.id HAVING COUNT(a) > :threshold")
+//    @Query("SELECT u.id, COUNT(a) FROM Attendance a JOIN a.user u WHERE a.leaveType IS NOT NULL GROUP BY
+//    u.id HAVING COUNT(a) > :threshold")
 //    List<User> findEmployeesWithHighLeaveRate(@Param("threshold") long threshold);
 
     // 14. Holiday attendance (which holidays had the least attendance)
@@ -97,7 +96,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     // 20. Show only today's attendance after check-in or check-out
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
-    List<Attendance> findTodaysAttendanceByUserId(@Param("userId") long userId);
-
+    List<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
 
 }

@@ -5,10 +5,19 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class NotificationService {
-  private notificationSubject = new Subject<string>();
+  private notificationSubject = new Subject<{
+    message: string;
+    type: string;
+  }>();
   notification$ = this.notificationSubject.asObservable();
 
-  showNotify(message: string) {
-    this.notificationSubject.next(message);
+  showNotify(message: string, type: string) {
+    this.notificationSubject.next({ message, type });
   }
+  // private notificationSubject = new Subject<string>();
+  // notification$ = this.notificationSubject.asObservable();
+
+  // showNotify(message: string, p0: string) {
+  //   this.notificationSubject.next(message);
+  // }
 }

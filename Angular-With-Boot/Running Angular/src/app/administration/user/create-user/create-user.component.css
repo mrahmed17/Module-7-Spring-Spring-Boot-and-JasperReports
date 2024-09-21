@@ -1,70 +1,30 @@
-form {
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
+.create-user-container {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #d3efef;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-form div {
-  margin-bottom: 15px;
 }
 
 label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
 }
 
 input, select {
-  width: 95%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: #c2bdbd;
-}
-
-input:focus, select:focus {
-  border-color: #007BFF;
-  outline: none;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
 }
 
 button {
-  display: block;
-  margin: 20px auto;
-  width: 50%;
-  padding: 10px;
-  background-color: #007BFF;
+  background-color: #4CAF50;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
-
-@media (max-width: 600px) {
-  form {
-    width: 90%;
-    padding: 10px;
-  }
-
-  input, select, button {
-    font-size: 14px;
-    padding: 8px;
-  }
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

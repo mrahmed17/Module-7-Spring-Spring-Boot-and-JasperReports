@@ -4,6 +4,8 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateAttendanceComponent } from './components/attendance/create-attendance/create-attendance.component';
@@ -11,9 +13,8 @@ import { ListAttendanceComponent } from './components/attendance/list-attendance
 import { ViewAttendanceComponent } from './components/attendance/view-attendance/view-attendance.component';
 import { ReportAttendanceComponent } from './components/attendance/report-attendance/report-attendance.component';
 import { CreateUserComponent } from './administration/user/create-user/create-user.component';
-import { UpdateUserComponent } from './administration/user/update-user/update-user.component';
 import { ListUserComponent } from './administration/user/list-user/list-user.component';
-import { ViewUserComponent } from './administration/user/view-user/view-user.component';
+
 import {
   HTTP_INTERCEPTORS,
   HttpClientModule,
@@ -33,6 +34,7 @@ import { HeaderComponent } from './template/header/header.component';
 import { ForgetpasswordComponent } from './administration/forgetpassword/forgetpassword.component';
 import { LoginComponent } from './administration/login/login.component';
 import { LogoutComponent } from './administration/logout/logout.component';
+import { UserDetailComponent } from './administration/user/user-detail/user-detail.component';
 
 
 @NgModule({
@@ -43,9 +45,7 @@ import { LogoutComponent } from './administration/logout/logout.component';
     ViewAttendanceComponent,
     ReportAttendanceComponent,
     CreateUserComponent,
-    UpdateUserComponent,
     ListUserComponent,
-    ViewUserComponent,
     BreadcrumbComponent,
     DashboardComponent,
     HomeComponent,
@@ -57,6 +57,7 @@ import { LogoutComponent } from './administration/logout/logout.component';
     ForgetpasswordComponent,
     LoginComponent,
     LogoutComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,11 +66,11 @@ import { LogoutComponent } from './administration/logout/logout.component';
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideHttpClient(withFetch()),   
-  ],
+  providers: [provideClientHydration(), provideHttpClient(withFetch())],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+}

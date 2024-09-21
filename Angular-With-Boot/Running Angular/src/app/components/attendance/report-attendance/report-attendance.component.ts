@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserModel } from '../../../models/user.model';
 import { AttendanceService } from '../../../services/attendance.service';
+import { faCalendarAlt, faCalendarDay, faExclamationTriangle, faListUl, faSearch, faTable, faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -9,6 +10,14 @@ import { AttendanceService } from '../../../services/attendance.service';
   styleUrl: './report-attendance.component.css',
 })
 export class ReportAttendanceComponent {
+  faCalendarDay = faCalendarDay;
+  faCalendarAlt = faCalendarAlt;
+  faSearch = faSearch;
+  faTable = faTable;
+  faUser = faUser;
+  faListUl = faListUl;
+  faExclamationTriangle = faExclamationTriangle;
+
   startDate!: string;
   endDate!: string;
   userAttendance: Map<UserModel, number> = new Map();
@@ -16,64 +25,69 @@ export class ReportAttendanceComponent {
 
   constructor(private attendanceService: AttendanceService) {}
 
- getUsersWithAttendanceInRange(): void {
-    if (!this.startDate || !this.endDate) {
-      this.errorMessage = 'Please select a valid date range.';
-      return;
-    }
+  // getUsersWithAttendanceInRange(): void {
+  //   if (!this.startDate || !this.endDate) {
+  //     this.errorMessage = 'Please select a valid date range.';
+  //     return;
+  //   }
 
-    this.attendanceService.getAttendanceInRange(this.startDate, this.endDate).subscribe({
-      next: (data: any) => {
-        console.log('Fetched Data:', data);
-        const map = new Map<UserModel, number>();
+  //   this.attendanceService
+  //     .getAttendanceInRange(this.startDate, this.endDate)
+  //     .subscribe({
+  //       next: (data: any) => {
+  //         console.log('Fetched Data:', data);
+  //         const map = new Map<UserModel, number>();
 
-        Object.keys(data).forEach((key) => {
-          const user: UserModel = this.parseUserFromKey(key);
-          const attendanceCount = data[key];
-          map.set(user, attendanceCount);
-        });
+  //         Object.keys(data).forEach((key) => {
+  //           const user: UserModel = this.parseUserFromKey(key);
+  //           const attendanceCount = data[key];
+  //           map.set(user, attendanceCount);
+  //         });
 
-        this.userAttendance = map;
-        this.errorMessage = '';
-      },
-      error: (err) => {
-        this.errorMessage = 'Failed to fetch attendance data. Please try again.';
-        console.error(err);
-      },
-    });
-  }
+  //         this.userAttendance = map;
+  //         this.errorMessage = '';
+  //       },
+  //       error: (err) => {
+  //         this.errorMessage =
+  //           'Failed to fetch attendance data. Please try again.';
+  //         console.error(err);
+  //       },
+  //     });
+  // }
 
-  parseUserFromKey(key: string): UserModel {
-    const userPattern = /User\(id=(\d+), fullName=([^,]+), email=([^,]+), contact=([^,]+), role=(\w+)\)/;
-    const match = key.match(userPattern);
+  // parseUserFromKey(key: string): UserModel {
+  //   const userPattern =
+  //     /User\(id=(\d+), fullName=([^,]+), email=([^,]+), contact=([^,]+), role=(\w+)\)/;
+  //   const match = key.match(userPattern);
 
-    if (match) {
-      return {
-        id: parseInt(match[1], 10),
-        fullName: match[2],
-        email: match[3],
-        contact: match[4],
-        role: match[5] as any,
-      };
-    } else {
-      console.error('Failed to parse user from key:', key);
-      return {
-        id: 0,
-        fullName: 'Unknown',
-        email: 'unknown',
-        contact: 'unknown',
-        role: 'UNKNOWN' as any,
-      };
-    }
-  
-  }
+  //   if (match) {
+  //     return {
+  //       id: parseInt(match[1], 10),
+  //       fullName: match[2],
+  //       email: match[3],
+  //       contact: match[4],
+  //       role: match[5] as any,
+  //     };
+  //   } else {
+  //     console.error('Failed to parse user from key:', key);
+  //     return {
+  //       id: 0,
+  //       fullName: 'Unknown',
+  //       email: 'unknown',
+  //       contact: 'unknown',
+  //       role: 'UNKNOWN' as any,
+  //     };
+  //   }
+ // }
+ 
+
   //   this.attendanceService
   //     .getAttendanceInRange(this.startDate, this.endDate)
   //     .subscribe({
   //       next: (data) => {
   //         console.log('Fetched Data:', data);
-  //         this.userAttendance = data; 
-  //         this.errorMessage = ''; 
+  //         this.userAttendance = data;
+  //         this.errorMessage = '';
   //       },
   //       error: (err) => {
   //         this.errorMessage =

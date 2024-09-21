@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository <User, Long> {
+
     // Finding Users by Email
     Optional<User> findByEmail(String email);
 
@@ -29,16 +30,15 @@ public interface UserRepository extends JpaRepository <User, Long> {
 
     // Search User record by User FullName or part of the name
     @Query("SELECT u FROM User u WHERE LOWER(u.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<User> findUserByUserNamePart(@Param("name") String name);
+    List<User> findByFullNameContaining(@Param("name") String name);
 
     // Search User record by User Gender
     @Query("SELECT u FROM User u WHERE u.gender = :gender")
-    List<User> findUserByGender(@Param("gender") String gender);
-
+    List<User> findByGender(@Param("gender") String gender);
 
     // Search User record by User Joined Date
     @Query("SELECT u FROM User u WHERE u.joinedDate = :joinedDate")
-    List<User> findUserByJoinedDate(@Param("joinedDate") LocalDate joinedDate);
+    List<User> findByJoinedDate(@Param("joinedDate") LocalDate joinedDate);
 
 
 }
