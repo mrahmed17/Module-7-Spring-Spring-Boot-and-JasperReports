@@ -63,7 +63,7 @@ public class AttendanceRestController {
     }
 
 
-    @GetMapping("/attendance/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Attendance> findAttendanceById(@PathVariable("id") long id) {
         Attendance attendance = attendanceService.findAttendanceById(id);
         return ResponseEntity.ok(attendance);

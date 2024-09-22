@@ -20,6 +20,7 @@ import {
   faUserTag,
   faVenusMars,
 } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -48,7 +49,11 @@ export class CreateUserComponent {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.userForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -116,6 +121,7 @@ export class CreateUserComponent {
         this.errorMessage = null;
         this.userForm.reset();
         this.profilePhoto = null;
+        this.router.navigate(['/user/list']);
       },
       error: (err) => {
         this.successMessage = null;

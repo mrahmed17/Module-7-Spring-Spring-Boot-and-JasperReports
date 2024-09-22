@@ -2,6 +2,7 @@ package com.mrahmed.HRandPayrollManagementSystem.service;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Role;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
+import com.mrahmed.HRandPayrollManagementSystem.repository.AttendanceRepository;
 import com.mrahmed.HRandPayrollManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,35 +28,30 @@ public class UserService {
 
     @Value("${upload.directory}")
     private String uploadDir;
+    @Autowired
+    private AttendanceRepository attendanceRepository;
 
 //    @Value("src/main/resources/static/images")
 //    private String uploadDir;
 
     @Transactional
     public User saveUser(User user, MultipartFile profilePhoto) throws IOException {
-        // Handle profile photo upload if provided
         if (profilePhoto != null && !profilePhoto.isEmpty()) {
             String profilePhotoFilename = saveImage(profilePhoto, user.getFullName());
             user.setProfilePhoto(profilePhotoFilename);
         }
-
-        // Save the user to the database
         return userRepository.save(user);
     }
 
     private String saveImage(MultipartFile file, String fullName) throws IOException {
         Path uploadPath = Paths.get(uploadDir, "profilePhotos");
-
-        // Ensure the directory exists
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-
-        // Extract the file extension and create a unique filename
         String originalFilename = file.getOriginalFilename();
         String fileExtension = (originalFilename != null && originalFilename.contains("."))
                 ? originalFilename.substring(originalFilename.lastIndexOf("."))
-                : ""; // Default extension
+                : "";
         String filename = fullName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
         Path filePath = uploadPath.resolve(filename);
 
@@ -92,7 +88,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(Long id, User updatedUser, MultipartFile profilePhoto) throws IOException {
+    public User updateuser(Long id, User updatedUser, MultipartFile profilePhoto) throws IOException {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
 
@@ -106,8 +102,6 @@ public class UserService {
         existingUser.setContact(updatedUser.getContact());
         existingUser.setBasicSalary(updatedUser.getBasicSalary());
         existingUser.setRole(updatedUser.getRole());
-
-        // Update profile photo if a new one is provided
         if (profilePhoto != null && !profilePhoto.isEmpty()) {
             String profilePhotoFilename = saveImage(profilePhoto, updatedUser.getFullName());
             existingUser.setProfilePhoto(profilePhotoFilename);
@@ -117,6 +111,7 @@ public class UserService {
     }
 
     public void deleteUserById(Long id) {
+        attendanceRepository.deleteByUserId(id);
         userRepository.deleteById(id);
     }
 

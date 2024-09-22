@@ -8,7 +8,9 @@
  </button>
  <div class="user-detail">
   <div class="user-photo">
-   <img [src]="user.profilePhoto" alt="{{ user.fullName }}" class="img-fluid" />
+   <img
+    [src]="user.profilePhoto ? 'http://localhost:8080/images/profilePhotos/' + user.profilePhoto : 'static/images/*.jpg'"
+    alt="{{ user.fullName }}" class="img-fluid" />
   </div>
   <h2><fa-icon [icon]="faUser"></fa-icon> {{ user.fullName }}</h2>
   <p><fa-icon [icon]="faIdBadge"></fa-icon> ID: {{ user.id }}</p>

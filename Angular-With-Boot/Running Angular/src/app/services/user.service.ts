@@ -27,7 +27,7 @@ export class UserService {
     id: number,
     user: UserModel,
     profilePhoto?: File
-  ): Observable<string> {
+  ): Observable<any> {
     const formData = new FormData();
     formData.append('user', JSON.stringify(user));
     if (profilePhoto) {
@@ -35,8 +35,8 @@ export class UserService {
     }
 
     return this.httpClient
-      .put<string>(`${this.baseUrl}/update/${id}`, formData)
-      .pipe(catchError(this.handleError<string>('updateUser')));
+      .put(`${this.baseUrl}/update/${id}`, formData)
+      .pipe(catchError(this.handleError<any>('updateUser')));
   }
 
   getAllUsers(): Observable<UserModel[]> {
@@ -48,15 +48,15 @@ export class UserService {
  
   getUserById(id: number): Observable<UserModel> {
     return this.httpClient
-      .get<UserModel>(`${this.baseUrl}/${id}`)
+      .get<UserModel>(`${this.baseUrl}/find/${id}`)
       .pipe(catchError(this.handleError<UserModel>('getUserById')));
   }
 
  
-  deleteUserById(id: number): Observable<string> {
+  deleteUserById(id: number): Observable<void> {
     return this.httpClient
-      .delete<string>(`${this.baseUrl}/delete/${id}`)
-      .pipe(catchError(this.handleError<string>('deleteUserById')));
+      .delete<void>(`${this.baseUrl}/delete/${id}`)
+      .pipe(catchError(this.handleError<void>('deleteUserById')));
   }
 
 

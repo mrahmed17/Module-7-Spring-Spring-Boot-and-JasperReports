@@ -3,6 +3,7 @@ package com.mrahmed.HRandPayrollManagementSystem.repository;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Attendance;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -103,4 +104,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
     List<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
 
+    @Modifying
+    @Query("DELETE FROM Attendance a WHERE a.user.id = :userId")
+    void deleteByUserId(@Param("userId") Long userId);
 }

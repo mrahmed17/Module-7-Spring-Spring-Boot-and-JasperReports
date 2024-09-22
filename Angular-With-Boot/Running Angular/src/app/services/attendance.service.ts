@@ -38,7 +38,7 @@ export class AttendanceService {
   }
 
   getAttendanceById(id: number): Observable<AttendanceModel> {
-    return this.http.get<AttendanceModel>(`${this.baseUrl}/attendance/${id}`);
+    return this.http.get<AttendanceModel>(`${this.baseUrl}/find/${id}`);
   }
 
   getAttendancesByUserId(id: number): Observable<AttendanceModel[]> {

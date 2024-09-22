@@ -33,7 +33,7 @@ public class User {
     private LocalDate joinedDate;
     private String profilePhoto;
 
-    @Column(name = "isActive", nullable = false, columnDefinition = "boolean default true")
+    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
     private boolean active;
 
     @Enumerated(EnumType.STRING)
@@ -43,7 +43,7 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Attendance> attendances;
 

@@ -96,12 +96,15 @@ export class ListUserComponent implements OnInit {
   }
 
   deleteUser(id: number): void {
-    if (id != null) {
+    if (confirm('Are you sure you want to delete this user?')) {
       this.userService.deleteUserById(id).subscribe({
-        next: () => this.loadUsers(),
+        next: (response) => {
+          this.notificationService.showNotify('User deleted successfully','success');
+          this.loadUsers();
+        },
         error: (err) => {
           this.errorMessage = 'An error occurred while deleting the user.';
-          console.error(err);
+          console.error('Delete Error:', err);
         },
       });
     }

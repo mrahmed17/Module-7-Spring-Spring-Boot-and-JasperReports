@@ -35,6 +35,7 @@ import { ForgetpasswordComponent } from './administration/forgetpassword/forgetp
 import { LoginComponent } from './administration/login/login.component';
 import { LogoutComponent } from './administration/logout/logout.component';
 import { UserDetailComponent } from './administration/user/user-detail/user-detail.component';
+import { EditUserComponent } from './administration/user/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { UserDetailComponent } from './administration/user/user-detail/user-deta
     LoginComponent,
     LogoutComponent,
     UserDetailComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

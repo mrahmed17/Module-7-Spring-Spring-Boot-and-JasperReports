@@ -1,5 +1,9 @@
 <div class="container mt-3">
   <h2>Attendance Report</h2>
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
 
   <!-- Filter Section -->
   <div class="row mb-3">
@@ -61,11 +65,6 @@
         <fa-icon [icon]="faCalendarAlt"></fa-icon> Regular Employees
       </button>
     </div>
-  </div>
-
-  <!-- Error Message -->
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
   </div>
 
   <!-- Attendance Data Table -->

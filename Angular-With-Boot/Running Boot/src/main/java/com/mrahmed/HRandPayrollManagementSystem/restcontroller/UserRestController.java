@@ -53,7 +53,7 @@ public class UserRestController {
             @RequestPart(value = "profilePhoto", required = false) MultipartFile profilePhoto
     ) {
         try {
-            userService.updateUser(id, user, profilePhoto);
+            userService.updateuser(id, user, profilePhoto);
             return new ResponseEntity<>("User updated successfully.", HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>("Failed to update user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -77,7 +77,7 @@ public class UserRestController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<User> findUserById(@PathVariable Long id) {
         try {
             User user = userService.findUserById(id);
@@ -89,7 +89,7 @@ public class UserRestController {
 
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUserById(id);
             return new ResponseEntity<>("User deleted successfully.", HttpStatus.OK);

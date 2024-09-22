@@ -69,14 +69,10 @@
     <tbody>
       <tr *ngFor="let user of filteredUsers">
         <td>{{ user.id }}</td>
-        <td>
-            <!-- <img
-                [src]="user.profilePhoto ? 'http://localhost:8080/images/' + user.profilePhoto : 'static/images/default-image.jpg'"
-                alt="Profile Photo" class="img-thumbnail" width="50" height="50" /> -->
-            <img
-                [src]="user.profilePhoto ? 'http://localhost:8080/images/' + user.profilePhoto : 'static/images/*.jpg'"
-                alt="Profile Photo" class="img-thumbnail" width="50" height="50" />
-          <!-- <img [src]="user.profilePhoto" alt="Profile Photo" class="img-thumbnail" width="50" height="50" /> -->
+        <td class="user-photo">
+          <img
+            [src]="user.profilePhoto ? 'http://localhost:8080/images/profilePhotos/' + user.profilePhoto : 'static/images/*.jpg'"
+            alt="Profile Photo" class="img-thumbnail" />
         </td>
         <td>{{ user.fullName }}</td>
         <td>{{ user.email }}</td>

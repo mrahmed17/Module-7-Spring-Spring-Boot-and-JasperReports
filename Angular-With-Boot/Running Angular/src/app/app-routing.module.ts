@@ -11,6 +11,7 @@ import { CreateUserComponent } from './administration/user/create-user/create-us
 import { ListUserComponent } from './administration/user/list-user/list-user.component';
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
 import { UserDetailComponent } from './administration/user/user-detail/user-detail.component';
+import { EditUserComponent } from './administration/user/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'create', component: CreateUserComponent },
       { path: 'view/:id', component: UserDetailComponent },
       { path: 'list', component: ListUserComponent },
+      { path: 'edit/:id', component: EditUserComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },
