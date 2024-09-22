@@ -4,201 +4,82 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ec77d91-38c8-40e3-8998-fa58230f5363" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/components/attendance/create-attendance/create-attendance.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Angular Backup/Attendance with user/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular Backup/Attendance with user/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/Basic Project wirh Dependancy/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/java/com/mrahmed/HrAndPayrollManagement/HrAndPayrollManagementApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/java/com/mrahmed/HrAndPayrollManagement/entity/Branch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/java/com/mrahmed/HrAndPayrollManagement/repository/BranchRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/java/com/mrahmed/HrAndPayrollManagement/restcontroller/BranchController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/java/com/mrahmed/HrAndPayrollManagement/service/BranchService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/FSB/HrAndPayrollManagement/src/test/java/com/mrahmed/HrAndPayrollManagement/HrAndPayrollManagementApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Payroll.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Boot Backup/First Project with Model/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/.vscode/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/forgetpassword/forgetpassword.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/forgetpassword/forgetpassword.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/forgetpassword/forgetpassword.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/forgetpassword/forgetpassword.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/login/login.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/login/login.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/login/login.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/login/login.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/logout/logout.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/logout/logout.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/logout/logout.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/logout/logout.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/create-user/create-user.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/create-user/create-user.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/create-user/create-user.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/create-user/create-user.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/list-user/list-user.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/list-user/list-user.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/list-user/list-user.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/list-user/list-user.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/update-user/update-user.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/update-user/update-user.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/update-user/update-user.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/update-user/update-user.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/view-user/view-user.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/view-user/view-user.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/view-user/view-user.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/administration/user/view-user/view-user.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app-routing.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.module.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/create-attendance/create-attendance.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/create-attendance/create-attendance.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/create-attendance/create-attendance.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/list-attendance/list-attendance.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/list-attendance/list-attendance.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/list-attendance/list-attendance.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/list-attendance/list-attendance.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/report-attendance/report-attendance.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/report-attendance/report-attendance.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/report-attendance/report-attendance.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/report-attendance/report-attendance.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/view-attendance/view-attendance.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/view-attendance/view-attendance.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/view-attendance/view-attendance.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/components/attendance/view-attendance/view-attendance.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/error/error.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/error/error.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/error/error.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/error/error.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notfound/notfound.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notfound/notfound.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notfound/notfound.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notfound/notfound.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notification/notification.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notification/notification.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notification/notification.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/errorhandling/notification/notification.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/models/attendance.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/models/role.enum.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/models/user.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/services/attendance.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/services/notification.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/services/user.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/breadcrumb/breadcrumb.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/breadcrumb/breadcrumb.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/breadcrumb/breadcrumb.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/breadcrumb/breadcrumb.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/dashboard/dashboard.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/dashboard/dashboard.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/dashboard/dashboard.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/dashboard/dashboard.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/header/header.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/header/header.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/header/header.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/header/header.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/home/home.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/home/home.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/home/home.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/home/home.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/sidebar/sidebar.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/sidebar/sidebar.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/sidebar/sidebar.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/app/template/sidebar/sidebar.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/main.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Angular/tsconfig.spec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Payroll.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice Boot/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
+    <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Advance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/components/attendance/report-attendance/report-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/components/attendance/report-attendance/report-attendance.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/services/attendance.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Angular Backup/Attendance with user v2/src/app/services/attendance.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Boot Backup/Practice Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/list-user/list-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/role.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/role.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/attendance.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/attendance.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/main/resources/static/images/static/images/user/Raju_3ad99289-7e39-427d-86eb-2ee756b2c8d1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Boot v2/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -210,26 +91,51 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
-  <component name="ProjectId" id="2mN4bZKp7NZS3q3ZYwZW39VOutW" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2mIbx3s0idxiMmAr8jpO7KuplAV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.HRandPayrollManagementSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="HRandPayrollManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="HRandPayrollManagementSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mrahmed.HRandPayrollManagementSystem.HRandPayrollManagementSystemApplication" />
       <method v="2">
@@ -248,12 +154,27 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0ec77d91-38c8-40e3-8998-fa58230f5363" name="Changes" comment="" />
-      <created>1726903771740</created>
+      <changelist id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="" />
+      <created>1726767280718</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1726903771740</updated>
-      <workItem from="1726903773104" duration="40000" />
+      <updated>1726767280718</updated>
+      <workItem from="1726767282027" duration="222000" />
+      <workItem from="1726826335069" duration="507000" />
+      <workItem from="1726829339524" duration="386000" />
+      <workItem from="1726840895151" duration="666000" />
+      <workItem from="1726887608631" duration="15000" />
+      <workItem from="1726887653057" duration="5313000" />
+      <workItem from="1726900061423" duration="1000" />
+      <workItem from="1726900097329" duration="653000" />
+      <workItem from="1726902053791" duration="38000" />
+      <workItem from="1726902304398" duration="4000" />
+      <workItem from="1726903233475" duration="187000" />
+      <workItem from="1726941720198" duration="45000" />
+      <workItem from="1726941909729" duration="300000" />
+      <workItem from="1726942288221" duration="13637000" />
+      <workItem from="1726971837620" duration="3002000" />
+      <workItem from="1726985142082" duration="697000" />
     </task>
     <servers />
   </component>

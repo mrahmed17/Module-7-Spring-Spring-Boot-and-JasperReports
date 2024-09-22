@@ -31,7 +31,7 @@ export class AttendanceService {
   
 
   getAllUsers(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(`${this.baseUrl}/alluser`);
+    return this.http.get<UserModel[]>(`${this.baseUrl}/allUsers`);
   }
 
   checkIn(userId: number): Observable<AttendanceModel> {
