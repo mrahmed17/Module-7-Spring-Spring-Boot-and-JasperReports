@@ -5,6 +5,7 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.LeaveType;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,29 +14,37 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/leaves")
+@RequestMapping("/api/leaves")
+@CrossOrigin("*")
 public class LeaveRestController {
 
 
     @Autowired
     private LeaveService leaveService;
 
-    // Save or update a leave request
-    @PostMapping
+    // Save a leave request
+    @PostMapping("/save")
     public ResponseEntity<Leave> saveLeaveRequest(@RequestBody Leave leave) {
         Leave savedLeave = leaveService.saveLeaveRequest(leave);
         return ResponseEntity.ok(savedLeave);
     }
 
+    // update a leave request
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Leave> updateLeaveRequest(@PathVariable("id") Long id ,@RequestBody Leave leave) {
+        leaveService.updateLeaveRequest(leave, id);
+        return new ResponseEntity<>(leave, HttpStatus.OK);
+    }
+
     // Delete a leave by ID
-    @DeleteMapping("/{leaveId}")
+    @DeleteMapping("/delete/{leaveId}")
     public ResponseEntity<Void> deleteLeave(@PathVariable Long leaveId) {
         leaveService.deleteLeave(leaveId);
         return ResponseEntity.noContent().build();
     }
 
     // Find a leave by ID
-    @GetMapping("/{leaveId}")
+    @GetMapping("/find/{leaveId}")
     public ResponseEntity<Leave> getLeaveById(@PathVariable Long leaveId) {
         Optional<Leave> leave = leaveService.getLeaveById(leaveId);
         return leave.map(ResponseEntity::ok)
@@ -127,5 +136,5 @@ public class LeaveRestController {
 
 
 
-
 }
+

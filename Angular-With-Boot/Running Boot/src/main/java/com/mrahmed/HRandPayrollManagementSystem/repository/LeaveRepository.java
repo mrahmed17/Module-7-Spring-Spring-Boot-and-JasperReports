@@ -38,5 +38,8 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
     @Query("SELECT COUNT(l) FROM Leave l WHERE l.user.id = :userId AND l.leaveType IN (:leaveTypes) AND l.year = :year")
     int getTotalUnpaidLeaveDays(@Param("userId") Long userId, @Param("leaveTypes") List<LeaveType> leaveTypes, @Param("year") int year);
 
+    @Query("SELECT l FROM Leave l WHERE l.reason = :reason")
+    List<Leave> findLeavesByReason(@Param("reason") String reason);
+
 
 }

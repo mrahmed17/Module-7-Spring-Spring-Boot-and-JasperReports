@@ -1,10 +1,13 @@
+
+
 import { UserModel } from "./user.model";
 
 export class AttendanceModel{
- id!: number;
+ id?: number;
  date!: Date;
  clockInTime!: Date;
  clockOutTime!: Date;
+
  user!: UserModel;
 }
 

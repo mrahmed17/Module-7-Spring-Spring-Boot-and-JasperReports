@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/advancesalaries")
+@RequestMapping("/api/advanceSalaries")
+@CrossOrigin("*")
 public class AdvanceSalaryRestController {
 
     @Autowired

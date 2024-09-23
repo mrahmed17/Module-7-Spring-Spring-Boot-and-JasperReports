@@ -19,7 +19,8 @@ public class Leave {
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDateTime requestDate;
-    private int remainingLeave; // total 25 days in a year: (reserve 10 + sick 15 days), remainingcalculation(total -(end-startdate))
+    private String reason;
+    private int remainingLeave; // total 25 days in a year: (reserve 10 + sick 15 days), remainingCalculation(total -(endDate-startDate))
     private int year;
 
     @Enumerated(EnumType.STRING)
@@ -32,7 +33,7 @@ public class Leave {
     private RequestStatus requestStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }
 

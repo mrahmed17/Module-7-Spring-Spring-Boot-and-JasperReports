@@ -5,32 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/user-detail/user-detail.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Advance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ahskjdfha.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,35 +53,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.HRandPayrollManagementSystemApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/M. R. Ahmed/Desktop/tongyi-jetbrains-1.4.0.zip&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.HRandPayrollManagementSystemApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/M. R. Ahmed/Desktop/tongyi-jetbrains-1.4.0.zip",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "settings.sync",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="HRandPayrollManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -149,6 +132,7 @@
       <workItem from="1727063713328" duration="8815000" />
       <workItem from="1727072870089" duration="445000" />
       <workItem from="1727073500043" duration="2438000" />
+      <workItem from="1727082246978" duration="9213000" />
     </task>
     <servers />
   </component>

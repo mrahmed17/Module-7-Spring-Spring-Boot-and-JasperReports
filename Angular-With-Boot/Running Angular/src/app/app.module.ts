@@ -36,6 +36,12 @@ import { LoginComponent } from './administration/login/login.component';
 import { LogoutComponent } from './administration/logout/logout.component';
 import { UserDetailComponent } from './administration/user/user-detail/user-detail.component';
 import { EditUserComponent } from './administration/user/edit-user/edit-user.component';
+import { ApplyLeaveComponent } from './components/leave/apply-leave/apply-leave.component';
+import { ListLeaveComponent } from './components/leave/list-leave/list-leave.component';
+import { DetailsLeaveComponent } from './components/leave/details-leave/details-leave.component';
+import { LeaveApprovalComponent } from './components/leave/leave-approval/leave-approval.component';
+import { LeaveSummaryComponent } from './components/leave/leave-summary/leave-summary.component';
+import { LeaveHistoryComponent } from './components/leave/leave-history/leave-history.component';
 
 
 @NgModule({
@@ -60,6 +66,12 @@ import { EditUserComponent } from './administration/user/edit-user/edit-user.com
     LogoutComponent,
     UserDetailComponent,
     EditUserComponent,
+    ApplyLeaveComponent,
+    ListLeaveComponent,
+    DetailsLeaveComponent,
+    LeaveApprovalComponent,
+    LeaveSummaryComponent,
+    LeaveHistoryComponent,
   ],
   imports: [
     BrowserModule,

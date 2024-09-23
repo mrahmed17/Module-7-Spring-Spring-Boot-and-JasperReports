@@ -83,7 +83,7 @@ public class UserService {
     }
 
     @Transactional
-    public User updateuser(Long id, User updatedUser, MultipartFile profilePhoto) throws IOException {
+    public void updateuser(Long id, User updatedUser, MultipartFile profilePhoto) throws IOException {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
 
@@ -102,7 +102,7 @@ public class UserService {
             existingUser.setProfilePhoto(profilePhotoFilename);
         }
 
-        return userRepository.save(existingUser);
+        userRepository.save(existingUser);
     }
 
     public void deleteUserById(Long id) {
