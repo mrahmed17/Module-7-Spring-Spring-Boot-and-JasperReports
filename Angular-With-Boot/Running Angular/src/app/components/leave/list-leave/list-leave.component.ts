@@ -4,6 +4,7 @@ import { LeaveModel } from '../../../models/leave.model';
 import { UserModel } from '../../../models/user.model';
 import { LeaveTypeEnum } from '../../../models/leave-type.enum';
 import { RequestStatusEnum } from '../../../models/request-status.enum';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-list-leave',
@@ -13,14 +14,13 @@ import { RequestStatusEnum } from '../../../models/request-status.enum';
 export class ListLeaveComponent implements OnInit {
   leaves: LeaveModel[] = [];
   filteredLeaves: LeaveModel[] = [];
-  filterUserId: number | undefined;
-  filterStartDate: Date | undefined;
-  filterEndDate: Date | undefined;
-  filterLeaveType: string | undefined;
-  filterStatus: string | undefined;
+  filterUserId?: number;
+  filterStartDate?: Date;
+  filterEndDate?: Date;
+  filterLeaveType?: LeaveTypeEnum;
+  filterStatus?: RequestStatusEnum;
   users: UserModel[] = [];
 
-  // Exposing enum keys as arrays for the template
   leaveTypeKeys = Object.keys(LeaveTypeEnum).filter((key) =>
     isNaN(Number(key))
   );
@@ -28,7 +28,10 @@ export class ListLeaveComponent implements OnInit {
     isNaN(Number(key))
   );
 
-  constructor(private leaveService: LeaveService) {}
+  constructor(
+    private leaveService: LeaveService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.getLeaves();
@@ -37,7 +40,7 @@ export class ListLeaveComponent implements OnInit {
 
   getLeaves(): void {
     this.leaveService.getPendingLeaveRequests().subscribe({
-      next: (leaves) => {
+      next: (leaves: LeaveModel[]) => {
         this.leaves = leaves;
         this.filteredLeaves = leaves;
       },
@@ -48,21 +51,22 @@ export class ListLeaveComponent implements OnInit {
   }
 
   getUsers(): void {
-    // Implement the logic to fetch users or adjust as needed
+    this.userService.getAllUsers().subscribe({
+      next: (users: UserModel[]) => {
+        this.users = users;
+      },
+      error: (error) => {
+        console.error('Error fetching users', error);
+      },
+    });
   }
 
   applyFilter(): void {
     this.filteredLeaves = this.leaves.filter((leave) => {
       const leaveTypeMatch =
-        !this.filterLeaveType ||
-        leave.leaveType ===
-          LeaveTypeEnum[this.filterLeaveType as keyof typeof LeaveTypeEnum];
+        !this.filterLeaveType || leave.leaveType === this.filterLeaveType;
       const statusMatch =
-        !this.filterStatus ||
-        leave.requestStatus ===
-          RequestStatusEnum[
-            this.filterStatus as keyof typeof RequestStatusEnum
-          ];
+        !this.filterStatus || leave.requestStatus === this.filterStatus;
 
       return (
         (!this.filterUserId || leave.user.id === this.filterUserId) &&

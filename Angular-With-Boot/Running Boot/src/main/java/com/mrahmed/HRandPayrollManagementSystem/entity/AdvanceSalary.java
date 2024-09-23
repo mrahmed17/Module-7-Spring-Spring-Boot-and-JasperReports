@@ -24,7 +24,7 @@ public class AdvanceSalary {
     @Enumerated(EnumType.STRING)
     private Month advanceMonth;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 }

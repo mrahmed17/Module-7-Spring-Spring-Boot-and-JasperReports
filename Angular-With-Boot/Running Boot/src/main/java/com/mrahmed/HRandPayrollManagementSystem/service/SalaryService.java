@@ -19,6 +19,56 @@ public class SalaryService {
     @Autowired
     private UserService userService;
 
+
+    /**
+     * Save a new salary record.
+     *
+     * @param salary Salary entity
+     * @return Saved Salary entity
+     */
+    public Salary saveSalary(Salary salary) {
+        return salaryRepository.save(salary);
+    }
+
+    /**
+     * Update an existing salary record.
+     *
+     * @param salaryId Salary ID
+     * @param salary   Salary entity with updated information
+     * @return Updated Salary entity
+     */
+    public Salary updateSalary(Long salaryId, Salary salary) {
+        if (!salaryRepository.existsById(salaryId)) {
+            throw new RuntimeException("Salary record not found.");
+        }
+        salary.setId(salaryId);
+        return salaryRepository.save(salary);
+    }
+
+    /**
+     * Delete a salary record by ID.
+     *
+     * @param salaryId Salary ID
+     */
+    public void deleteSalary(Long salaryId) {
+        if (!salaryRepository.existsById(salaryId)) {
+            throw new RuntimeException("Salary record not found.");
+        }
+        salaryRepository.deleteById(salaryId);
+    }
+
+    /**
+     * Get a salary record by ID.
+     *
+     * @param salaryId Salary ID
+     * @return Salary entity
+     */
+    public Salary getSalaryById(Long salaryId) {
+        return salaryRepository.findById(salaryId)
+                .orElseThrow(() -> new RuntimeException("Salary record not found."));
+    }
+
+
     /**
      * Calculate overtime salary for a specific user between a date range
      *

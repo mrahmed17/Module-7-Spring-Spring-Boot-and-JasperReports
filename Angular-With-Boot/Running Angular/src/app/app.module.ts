@@ -42,6 +42,12 @@ import { DetailsLeaveComponent } from './components/leave/details-leave/details-
 import { LeaveApprovalComponent } from './components/leave/leave-approval/leave-approval.component';
 import { LeaveSummaryComponent } from './components/leave/leave-summary/leave-summary.component';
 import { LeaveHistoryComponent } from './components/leave/leave-history/leave-history.component';
+import { BonusManagementComponent } from './components/bonus/bonus-management/bonus-management.component';
+import { BonusSummaryComponent } from './components/bonus/bonus-summary/bonus-summary.component';
+import { BonusHistoryComponent } from './components/bonus/bonus-history/bonus-history.component';
+import { BonusReportComponent } from './components/bonus/bonus-report/bonus-report.component';
+import { BonusCreateComponent } from './components/bonus/bonus-create/bonus-create.component';
+import { BonusAnalyticsComponent } from './components/bonus/bonus-analytics/bonus-analytics.component';
 
 
 @NgModule({
@@ -72,6 +78,12 @@ import { LeaveHistoryComponent } from './components/leave/leave-history/leave-hi
     LeaveApprovalComponent,
     LeaveSummaryComponent,
     LeaveHistoryComponent,
+    BonusManagementComponent,
+    BonusSummaryComponent,
+    BonusHistoryComponent,
+    BonusReportComponent,
+    BonusCreateComponent,
+    BonusAnalyticsComponent,
   ],
   imports: [
     BrowserModule,

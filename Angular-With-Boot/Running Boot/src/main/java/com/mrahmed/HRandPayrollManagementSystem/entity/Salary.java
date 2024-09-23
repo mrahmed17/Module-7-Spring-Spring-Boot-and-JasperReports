@@ -29,7 +29,7 @@ public class Salary {
     private int year;
     private BigDecimal tax;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "overTime")
     private List<Attendance> overTime; //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
     //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)
@@ -37,20 +37,20 @@ public class Salary {
     @Enumerated(EnumType.STRING)
     private Month payrollMonth;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "advanceSalaryId")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "advanceSalary_id")
     private AdvanceSalary advanceSalary;
 
     @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "bonusId")
+    @JoinColumn(name = "bonus_id")
     private List<Bonus> bonuses;
 
     @OneToMany (fetch = FetchType.LAZY)
-    @JoinColumn(name = "leaveId")
+    @JoinColumn(name = "leave_id")
     private List<Leave> leaves;
 
 

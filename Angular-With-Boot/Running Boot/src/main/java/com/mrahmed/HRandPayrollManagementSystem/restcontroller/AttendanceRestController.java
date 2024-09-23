@@ -65,18 +65,45 @@ public class AttendanceRestController {
     }
 
     @PostMapping("/checkin")
-    public ResponseEntity<Attendance> checkIn(@RequestBody Map<String, Object> request) {
-        long userId = Long.parseLong(request.get("userId").toString());
-        Attendance attendance = attendanceService.checkIn(userId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
+    public ResponseEntity<?> checkIn(@RequestBody Map<String, Object> request) {
+        try {
+            long userId = Long.parseLong(request.get("userId").toString());
+            Attendance attendance = attendanceService.checkIn(userId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking in");
+        }
     }
 
     @PutMapping("/checkout")
-    public ResponseEntity<Attendance> checkOut(@RequestBody Map<String, Object> request) {
-        long userId = Long.parseLong(request.get("userId").toString());
-        Attendance attendance = attendanceService.checkOut(userId);
-        return ResponseEntity.ok(attendance);
+    public ResponseEntity<?> checkOut(@RequestBody Map<String, Object> request) {
+        try {
+            long userId = Long.parseLong(request.get("userId").toString());
+            Attendance attendance = attendanceService.checkOut(userId);
+            return ResponseEntity.ok(attendance);
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid user ID format");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking out");
+        }
     }
+
+
+//    @PostMapping("/checkin")
+//    public ResponseEntity<Attendance> checkIn(@RequestBody Map<String, Object> request) {
+//        long userId = Long.parseLong(request.get("userId").toString());
+//        Attendance attendance = attendanceService.checkIn(userId);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
+//    }
+//
+//    @PutMapping("/checkout")
+//    public ResponseEntity<Attendance> checkOut(@RequestBody Map<String, Object> request) {
+//        long userId = Long.parseLong(request.get("userId").toString());
+//        Attendance attendance = attendanceService.checkOut(userId);
+//        return ResponseEntity.ok(attendance);
+//    }
 
 
     @GetMapping("/find/{id}")

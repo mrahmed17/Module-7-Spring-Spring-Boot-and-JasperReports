@@ -22,6 +22,59 @@ public class SalaryRestController {
     @Autowired
     private SalaryService salaryService;
 
+
+    /**
+     * Create a new salary record.
+     *
+     * @param salary Salary entity
+     * @return Created Salary entity
+     */
+    @PostMapping("/create")
+    public ResponseEntity<Salary> createSalary(@RequestBody Salary salary) {
+        Salary createdSalary = salaryService.saveSalary(salary);
+        return ResponseEntity.ok(createdSalary);
+    }
+
+    /**
+     * Update an existing salary record.
+     *
+     * @param salaryId Salary ID
+     * @param salary   Updated Salary entity
+     * @return Updated Salary entity
+     */
+    @PutMapping("/update/{salaryId}")
+    public ResponseEntity<Salary> updateSalary(@PathVariable Long salaryId,
+                                               @RequestBody Salary salary) {
+        Salary updatedSalary = salaryService.updateSalary(salaryId, salary);
+        return ResponseEntity.ok(updatedSalary);
+    }
+
+    /**
+     * Delete a salary record by ID.
+     *
+     * @param salaryId Salary ID
+     * @return Response status
+     */
+    @DeleteMapping("/delete/{salaryId}")
+    public ResponseEntity<Void> deleteSalary(@PathVariable Long salaryId) {
+        salaryService.deleteSalary(salaryId);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Get a salary record by ID.
+     *
+     * @param salaryId Salary ID
+     * @return Salary entity
+     */
+    @GetMapping("/find/{salaryId}")
+    public ResponseEntity<Salary> getSalaryById(@PathVariable Long salaryId) {
+        Salary salary = salaryService.getSalaryById(salaryId);
+        return ResponseEntity.ok(salary);
+    }
+
+
+
     /**
      * Get all salaries for a user by year.
      *

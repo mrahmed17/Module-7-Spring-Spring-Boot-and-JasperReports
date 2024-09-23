@@ -29,11 +29,11 @@ public class LeaveRestController {
         return ResponseEntity.ok(savedLeave);
     }
 
-    // update a leave request
+    // Update a leave request
     @PutMapping("/update/{id}")
-    public ResponseEntity<Leave> updateLeaveRequest(@PathVariable("id") Long id ,@RequestBody Leave leave) {
-        leaveService.updateLeaveRequest(leave, id);
-        return new ResponseEntity<>(leave, HttpStatus.OK);
+    public ResponseEntity<Leave> updateLeaveRequest(@PathVariable("id") Long id, @RequestBody Leave leave) {
+        Leave updatedLeave = leaveService.updateLeaveRequest(id, leave);
+        return ResponseEntity.ok(updatedLeave);
     }
 
     // Delete a leave by ID
@@ -47,8 +47,7 @@ public class LeaveRestController {
     @GetMapping("/find/{leaveId}")
     public ResponseEntity<Leave> getLeaveById(@PathVariable Long leaveId) {
         Optional<Leave> leave = leaveService.getLeaveById(leaveId);
-        return leave.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return leave.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     // Approve a leave request
@@ -112,7 +111,8 @@ public class LeaveRestController {
 
     // Calculate remaining leaves for a user in a specific year
     @GetMapping("/user/{userId}/remaining/year/{year}")
-    public ResponseEntity<Integer> calculateRemainingLeavesByUserAndYear(@PathVariable Long userId, @PathVariable int year) {
+    public ResponseEntity<Integer> calculateRemainingLeavesByUserAndYear(
+            @PathVariable Long userId, @PathVariable int year) {
         Integer remainingLeaves = leaveService.calculateRemainingLeavesByUserAndYear(userId, year);
         return ResponseEntity.ok(remainingLeaves);
     }
@@ -133,8 +133,6 @@ public class LeaveRestController {
         List<Leave> leaves = leaveService.getCurrentYearLeaves(userId);
         return ResponseEntity.ok(leaves);
     }
-
-
 
 }
 

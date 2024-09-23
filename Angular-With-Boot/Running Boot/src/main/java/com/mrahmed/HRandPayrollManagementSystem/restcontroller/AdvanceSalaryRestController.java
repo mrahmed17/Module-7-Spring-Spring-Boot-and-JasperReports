@@ -20,23 +20,37 @@ public class AdvanceSalaryRestController {
     @Autowired
     private AdvanceSalaryService advanceSalaryService;
 
-    // Create or update an advance salary record
-    @PostMapping
-    public ResponseEntity
-            <AdvanceSalary> createOrUpdateAdvanceSalary(@RequestBody AdvanceSalary advanceSalary) {
+    // Create a new advance salary record
+    @PostMapping("/create")
+    public ResponseEntity<AdvanceSalary> createAdvanceSalary(@RequestBody AdvanceSalary advanceSalary) {
         AdvanceSalary savedAdvanceSalary = advanceSalaryService.saveAdvanceSalary(advanceSalary);
         return ResponseEntity.ok(savedAdvanceSalary);
     }
 
+    // Update an existing advance salary record
+    @PutMapping("/update/{id}")
+    public ResponseEntity<AdvanceSalary> updateAdvanceSalary(@RequestBody AdvanceSalary advanceSalary) {
+        try {
+            AdvanceSalary updatedAdvanceSalary = advanceSalaryService.updateAdvanceSalary(advanceSalary);
+            return ResponseEntity.ok(updatedAdvanceSalary);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // Delete an advance salary record by ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAdvanceSalary(@PathVariable Long id) {
-        advanceSalaryService.deleteAdvanceSalary(id);
-        return ResponseEntity.noContent().build();
+        try {
+            advanceSalaryService.deleteAdvanceSalary(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // Get an advance salary record by ID
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<AdvanceSalary> getAdvanceSalaryById(@PathVariable Long id) {
         Optional<AdvanceSalary> advanceSalary = advanceSalaryService.getAdvanceSalaryById(id);
         return advanceSalary.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

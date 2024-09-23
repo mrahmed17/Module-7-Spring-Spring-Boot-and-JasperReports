@@ -41,29 +41,61 @@ public class AttendanceService {
         return hours > 8; // Assuming a workday is 8 hours
     }
 
-
     public Attendance checkIn(long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
-        if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
-            throw new RuntimeException("User has already checked in today.");
+        try {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+            if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
+                throw new RuntimeException("User has already checked in today.");
+            }
+            Attendance attendance = new Attendance();
+            attendance.setDate(LocalDate.now());
+            attendance.setClockInTime(LocalDateTime.now());
+            attendance.setUser(user);
+            return attendanceRepository.save(attendance);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while checking in: " + e.getMessage(), e);
         }
-        Attendance attendance = new Attendance();
-        attendance.setDate(LocalDate.now());
-        attendance.setClockInTime(LocalDateTime.now());
-        attendance.setUser(user);
-        return attendanceRepository.save(attendance);
     }
 
     public Attendance checkOut(long userId) {
-        Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
-                .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
-        if (attendance.getClockOutTime() != null) {
-            throw new RuntimeException("User has already checked out today.");
+        try {
+            Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
+                    .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
+            if (attendance.getClockOutTime() != null) {
+                throw new RuntimeException("User has already checked out today.");
+            }
+            attendance.setClockOutTime(LocalDateTime.now());
+            return attendanceRepository.save(attendance);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while checking out: " + e.getMessage(), e);
         }
-        attendance.setClockOutTime(LocalDateTime.now());
-        return attendanceRepository.save(attendance);
     }
+
+
+
+//    public Attendance checkIn(long userId) {
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+//        if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
+//            throw new RuntimeException("User has already checked in today.");
+//        }
+//        Attendance attendance = new Attendance();
+//        attendance.setDate(LocalDate.now());
+//        attendance.setClockInTime(LocalDateTime.now());
+//        attendance.setUser(user);
+//        return attendanceRepository.save(attendance);
+//    }
+//
+//    public Attendance checkOut(long userId) {
+//        Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
+//                .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
+//        if (attendance.getClockOutTime() != null) {
+//            throw new RuntimeException("User has already checked out today.");
+//        }
+//        attendance.setClockOutTime(LocalDateTime.now());
+//        return attendanceRepository.save(attendance);
+//    }
 
     public List<Attendance> getTodayAttendances() {
         LocalDate today = LocalDate.now(); // Get the current date

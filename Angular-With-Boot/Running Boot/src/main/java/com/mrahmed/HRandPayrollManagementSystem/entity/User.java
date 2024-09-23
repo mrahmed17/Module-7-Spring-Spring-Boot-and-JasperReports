@@ -43,7 +43,7 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Attendance> attendances;
 

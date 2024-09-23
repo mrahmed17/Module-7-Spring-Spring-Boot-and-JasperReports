@@ -16,7 +16,9 @@ export class ApplyLeaveComponent implements OnInit {
   leaveForm!: FormGroup;
   leaveTypes = Object.keys(LeaveTypeEnum).filter((key) => isNaN(Number(key)));
   months = Object.keys(MonthEnum).filter((key) => isNaN(Number(key)));
-  requestStatuses = Object.values(RequestStatusEnum);
+  requestStatuses = Object.values(RequestStatusEnum).filter((key) =>
+    isNaN(Number(key))
+  );
   user!: UserModel;
   leaveModel!: LeaveModel;
 
@@ -24,6 +26,7 @@ export class ApplyLeaveComponent implements OnInit {
 
   ngOnInit(): void {
     this.initLeaveForm();
+    // this.user = this.authService.getLoggedInUser();
   }
 
   initLeaveForm() {
@@ -38,13 +41,16 @@ export class ApplyLeaveComponent implements OnInit {
 
   applyLeave() {
     if (this.leaveForm.valid) {
+      // Placeholder user object. Replace with actual user data once login is implemented
+      const placeholderUser: UserModel = { id: 1, fullName: 'Md. Raju Ahmed',email: 'raju@mail.com', password:'123456' };
+
       this.leaveModel = {
         ...this.leaveForm.value,
         year: new Date().getFullYear(),
         requestDate: new Date(),
         remainingLeave: 0, // This will likely be calculated on the backend
         requestStatus: RequestStatusEnum.PENDING,
-        user: this.user, // Replace with the actual logged-in user
+        user: placeholderUser, // Replace with the actual logged-in user
       };
 
       this.leaveService.applyLeave(this.leaveModel).subscribe({
@@ -61,4 +67,30 @@ export class ApplyLeaveComponent implements OnInit {
       alert('Please fill out all required fields.');
     }
   }
+
+  // applyLeave() {
+  //   if (this.leaveForm.valid) {
+  //     this.leaveModel = {
+  //       ...this.leaveForm.value,
+  //       year: new Date().getFullYear(),
+  //       requestDate: new Date(),
+  //       remainingLeave: 0, // This will likely be calculated on the backend
+  //       requestStatus: RequestStatusEnum.PENDING,
+  //       user: this.user, // Replace with the actual logged-in user
+  //     };
+
+  //     this.leaveService.applyLeave(this.leaveModel).subscribe({
+  //       next: (response) => {
+  //         alert('Leave request submitted successfully!');
+  //         this.leaveForm.reset();
+  //       },
+  //       error: (error) => {
+  //         console.error(error);
+  //         alert('Error while submitting the leave request.');
+  //       },
+  //     });
+  //   } else {
+  //     alert('Please fill out all required fields.');
+  //   }
+  // }
 }

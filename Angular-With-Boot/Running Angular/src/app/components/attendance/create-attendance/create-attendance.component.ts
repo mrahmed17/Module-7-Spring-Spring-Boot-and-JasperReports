@@ -3,6 +3,7 @@ import { AttendanceService } from '../../../services/attendance.service';
 import { NotificationService } from '../../../services/notification.service';
 import { faCalendarAlt, faClock, faIdBadge, faList, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AttendanceModel } from '../../../models/attendance.model';
+import { UserModel } from '../../../models/user.model';
 
 
 @Component({
@@ -11,11 +12,17 @@ import { AttendanceModel } from '../../../models/attendance.model';
   styleUrl: './create-attendance.component.css',
 })
 export class CreateAttendanceComponent implements OnInit {
-  users: any[] = [];
-  attendances: any[] = [];
+  users: UserModel[] = [];
+  attendances: AttendanceModel[] = [];
   selectedUserId: number | null = null;
   todaysAttendance: AttendanceModel[] = [];
   errorMessage: string = '';
+
+  // users: any[] = [];
+  // attendances: any[] = [];
+  // selectedUserId: number | null = null;
+  // todaysAttendance: AttendanceModel[] = [];
+  // errorMessage: string = '';
 
   faUser = faUser;
   faSignIn = faSignInAlt;
@@ -64,18 +71,58 @@ export class CreateAttendanceComponent implements OnInit {
     this.attendanceService.getAllAttendances().subscribe({
       next: (data) => {
         this.attendances = data;
-        console.log('Attendance Data:', data);
+        console.log('Received Attendances:', this.attendances);
       },
       error: (error) => {
         console.error('Error loading attendances:', error);
+        // Log raw response for debugging
+        if (error.error) {
+          console.error('Raw error response:', error.error);
+        }
       },
     });
   }
 
+  // checkIn(): void {
+  //   if (this.selectedUserId) {
+  //     this.attendanceService.checkIn(this.selectedUserId).subscribe({
+  //       next: () => {
+  //         this.loadTodaysAttendance();
+  //         // alert('Check in created successfully.');
+  //         this.notificationService.showNotify(
+  //           'Check in created successfully.',
+  //           'success'
+  //         );
+  //       },
+  //       error: (error) => {
+  //         this.handleError('Error during check-in', error);
+  //       },
+  //     });
+  //   }
+  // }
+
+  // checkOut(): void {
+  //   if (this.selectedUserId) {
+  //     this.attendanceService.checkOut(this.selectedUserId).subscribe({
+  //       next: (data) => {
+  //         this.loadTodaysAttendance();
+  //         // alert('Check out created successfully.');
+  //         this.notificationService.showNotify(
+  //           'Check out created successfully.',
+  //           'success'
+  //         );
+  //       },
+  //       error: (error) => {
+  //         this.handleError('Error during check-out', error);
+  //       },
+  //     });
+  //   }
+  // }
+
   checkIn(): void {
     if (this.selectedUserId) {
       this.attendanceService.checkIn(this.selectedUserId).subscribe({
-        next: (data) => {
+        next: () => {
           this.loadAttendances();
           // alert('Check in created successfully.');
           this.notificationService.showNotify(
@@ -84,7 +131,7 @@ export class CreateAttendanceComponent implements OnInit {
           );
         },
         error: (error) => {
-          console.error('Error during check-in:', error);
+          this.handleError('Error during check-in', error);
         },
       });
     }
@@ -102,9 +149,15 @@ export class CreateAttendanceComponent implements OnInit {
           );
         },
         error: (error) => {
-          console.error('Error during check-in:', error);
+          this.handleError('Error during check-out', error);
         },
       });
     }
+  }
+
+  private handleError(message: string, error: any): void {
+    this.errorMessage = message;
+    console.error(message, error);
+    this.notificationService.showNotify(message, 'error');
   }
 }

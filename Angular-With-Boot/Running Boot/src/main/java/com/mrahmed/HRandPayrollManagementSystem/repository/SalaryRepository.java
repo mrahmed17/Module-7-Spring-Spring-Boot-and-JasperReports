@@ -40,18 +40,20 @@ public interface SalaryRepository extends JpaRepository<Salary, Long> {
     List<Salary> findSalariesByMonthAndYear(@Param("payrollMonth") Month payrollMonth, @Param("year") int year);
 
     // Get total overtime hours for a user in a specific period
-    @Query("SELECT SUM(FUNCTION('TIMESTAMPDIFF', 'HOUR', a.clockInTime, a.clockOutTime) - 8) " +
-            "FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate " +
-            "AND FUNCTION('TIMESTAMPDIFF', 'HOUR', a.clockInTime, a.clockOutTime) > 8")
+    @Query(value = "SELECT SUM(TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) - 8) " +
+            "FROM Attendance a WHERE a.user_id = :userId AND a.date BETWEEN :startDate AND :endDate " +
+            "AND TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) > 8",
+            nativeQuery = true)
     BigDecimal getTotalOvertimeHoursByUserAndDateRange(@Param("userId") Long userId,
                                                        @Param("startDate") LocalDateTime startDate,
                                                        @Param("endDate") LocalDateTime endDate);
 
     // Get total overtime salary for a user in a specific period
-    @Query("SELECT SUM((s.netSalary / 4 / 5 / 8) * (FUNCTION('TIMESTAMPDIFF', 'HOUR', a.clockInTime, a.clockOutTime) - 8)) " +
-            "FROM Salary s JOIN s.user u JOIN u.attendances a WHERE u.id = :userId " +
-            "AND a.date BETWEEN :startDate AND :endDate " +
-            "AND FUNCTION('TIMESTAMPDIFF', 'HOUR', a.clockInTime, a.clockOutTime) > 8")
+    @Query(value = "SELECT SUM((s.netSalary / 4 / 5 / 8) * (TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) - 8)) " +
+            "FROM Salary s JOIN User u ON s.user_id = u.id JOIN Attendance a ON u.id = a.user_id " +
+            "WHERE u.id = :userId AND a.date BETWEEN :startDate AND :endDate " +
+            "AND TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) > 8",
+            nativeQuery = true)
     BigDecimal getTotalOvertimeSalaryByUserAndDateRange(@Param("userId") Long userId,
                                                         @Param("startDate") LocalDateTime startDate,
                                                         @Param("endDate") LocalDateTime endDate);

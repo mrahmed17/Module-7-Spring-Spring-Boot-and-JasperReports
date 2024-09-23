@@ -21,6 +21,20 @@ public class BonusService {
     @Autowired
     private LeaveRepository leaveRepository;
 
+    public Bonus saveBonus(Bonus bonus) {
+        return bonusRepository.save(bonus);
+    }
+
+
+    public Bonus updateBonus(Long id, Bonus updatedBonus) {
+        if (bonusRepository.existsById(id)) {
+            updatedBonus.setId(id); // Ensure the ID is set for the update
+            return bonusRepository.save(updatedBonus);
+        } else {
+            throw new RuntimeException("Bonus not found with id " + id);
+        }
+    }
+
 
     // Calculate bonus for a user in a specific year considering unpaid leaves
     public BigDecimal calculateBonus(Long userId, int year) {
@@ -97,30 +111,6 @@ public class BonusService {
     public BigDecimal getTotalBonusForMonthAndYear(Month month, int year) {
         return bonusRepository.getTotalBonusForMonthAndYear(month, year);
     }
-
-
-
-//    public BigDecimal calculateBonus(Long userId, int year) {
-//        // Fetch total unpaid leave days for the user
-//        int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(
-//                userId,
-//                Arrays.asList(LeaveType.SICK_UNPAID, LeaveType.RESERVE_UNPAID),
-//                year
-//        );
-//        // Fetch base bonus from BonusRepository
-//        BigDecimal baseBonus = bonusRepository.getBonusForUserAndYear(userId, year);
-//        // Calculate deduction based on unpaid leave days
-//        BigDecimal deduction = calculateLeaveBonusDeduction(totalUnpaidLeaveDays);
-//        // Final bonus after deduction
-//        return baseBonus.subtract(deduction);
-//    }
-//
-//    // Define deduction logic for unpaid leave days
-//    private BigDecimal calculateLeaveBonusDeduction(int totalUnpaidLeaveDays) {
-//        BigDecimal deductionPerDay = new BigDecimal("50"); // Example: Deduct $50 per unpaid leave day
-//        return deductionPerDay.multiply(BigDecimal.valueOf(totalUnpaidLeaveDays));
-//    }
-
 
 
 }

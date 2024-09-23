@@ -19,6 +19,22 @@ public class BonusRestController {
     @Autowired
     private BonusService bonusService;
 
+    @PostMapping("/create")
+    public ResponseEntity<Bonus> createBonus(@RequestBody Bonus bonus) {
+        Bonus savedBonus = bonusService.saveBonus(bonus);
+        return ResponseEntity.ok(savedBonus);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Bonus> updateBonus(
+            @PathVariable Long id,
+            @RequestBody Bonus updatedBonus
+    ) {
+        Bonus bonus = bonusService.updateBonus(id, updatedBonus);
+        return ResponseEntity.ok(bonus);
+    }
+
+
     // Calculate the bonus for a user in a specific year
     @GetMapping("/calculate/{userId}/{year}")
     public ResponseEntity<BigDecimal> calculateBonus(

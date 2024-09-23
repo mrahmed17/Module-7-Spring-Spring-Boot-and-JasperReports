@@ -20,6 +20,8 @@ public class LeaveService {
 
     // Save leave request
     public Leave saveLeaveRequest(Leave leave) {
+        int remainingDays = calculateRemainingLeaveDays(leave.getStartDate(), leave.getEndDate());
+        leave.setRemainingLeave(remainingDays);
         return leaveRepository.save(leave);
     }
 
@@ -28,7 +30,6 @@ public class LeaveService {
         Optional<Leave> existingLeaveOpt = leaveRepository.findById(id);
         if (existingLeaveOpt.isPresent()) {
             Leave existingLeave = existingLeaveOpt.get();
-            // Update fields as needed
             existingLeave.setStartDate(updatedLeave.getStartDate());
             existingLeave.setEndDate(updatedLeave.getEndDate());
             existingLeave.setRequestDate(updatedLeave.getRequestDate());

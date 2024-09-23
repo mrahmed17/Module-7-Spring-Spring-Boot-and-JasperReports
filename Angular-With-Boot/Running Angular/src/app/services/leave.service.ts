@@ -17,10 +17,13 @@ export class LeaveService {
   applyLeave(leave: LeaveModel): Observable<LeaveModel> {
     return this.http.post<LeaveModel>(`${this.baseUrl}/save`, leave);
   }
-  
-  // update a leave request
+
+  // Update a leave request
   updateLeave(leave: LeaveModel): Observable<LeaveModel> {
-    return this.http.post<LeaveModel>(`${this.baseUrl}/update/{id}`, leave);
+    return this.http.put<LeaveModel>(
+      `${this.baseUrl}/update/${leave.id}`,
+      leave
+    );
   }
 
   // Delete a leave request by ID
@@ -35,15 +38,12 @@ export class LeaveService {
 
   // Approve a leave request by ID
   approveLeave(leaveId: number): Observable<LeaveModel> {
-    return this.http.post<LeaveModel>(
-      `${this.baseUrl}/approve/${leaveId}`,
-      null
-    );
+    return this.http.post<LeaveModel>(`${this.baseUrl}/approve/${leaveId}`, {});
   }
 
   // Reject a leave request by ID
   rejectLeave(leaveId: number): Observable<LeaveModel> {
-    return this.http.post<LeaveModel>(`${this.baseUrl}/reject/${leaveId}`, null);
+    return this.http.post<LeaveModel>(`${this.baseUrl}/reject/${leaveId}`, {});
   }
 
   // Get all leaves for a specific user in a year
@@ -111,7 +111,7 @@ export class LeaveService {
     year: number
   ): Observable<number> {
     const params = new HttpParams()
-      .set('leaveTypes', leaveTypes.join(','))
+      .set('leaveTypes', JSON.stringify(leaveTypes))
       .set('year', year.toString());
     return this.http.get<number>(
       `${this.baseUrl}/user/${userId}/unpaid/year/${year}`,
@@ -121,6 +121,8 @@ export class LeaveService {
 
   // Get current year leaves for a specific user
   getCurrentYearLeaves(userId: number): Observable<LeaveModel[]> {
-    return this.http.get<LeaveModel[]>(`${this.baseUrl}/user/${userId}/current`);
+    return this.http.get<LeaveModel[]>(
+      `${this.baseUrl}/user/${userId}/current`
+    );
   }
 }

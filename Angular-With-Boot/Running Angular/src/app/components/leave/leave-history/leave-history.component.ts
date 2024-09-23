@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaveService } from '../../../services/leave.service';
 import { LeaveModel } from '../../../models/leave.model';
 import { UserModel } from '../../../models/user.model';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-leave-history',
@@ -12,10 +13,13 @@ export class LeaveHistoryComponent implements OnInit {
   leaveHistory: LeaveModel[] = [];
   user!: UserModel; // Replace with actual logged-in user info
 
-  constructor(private leaveService: LeaveService) {}
+  constructor(
+    private leaveService: LeaveService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.getLeaveHistory();
+    this.loadUserAndHistory();
   }
 
   // getLeaveHistory() {
@@ -35,6 +39,19 @@ export class LeaveHistoryComponent implements OnInit {
   //     console.error('User ID is undefined. Cannot fetch leave history.');
   //   }
   // }
+
+  // Load user data and fetch leave history
+  loadUserAndHistory() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (userData: UserModel) => {
+        this.user = userData;
+        this.getLeaveHistory();
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+      },
+    });
+  }
 
   getLeaveHistory() {
     const userId = this.user?.id ?? 0; // Default to 0 if userId is undefined

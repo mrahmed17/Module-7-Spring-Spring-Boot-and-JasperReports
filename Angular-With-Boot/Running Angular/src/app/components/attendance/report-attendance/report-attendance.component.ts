@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../../models/user.model';
 import { AttendanceService } from '../../../services/attendance.service';
-import { faCalendarAlt, faCalendarDay, faExclamationTriangle, faListUl, faSearch, faTable, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faCalendarDay, faClock, faExclamationTriangle, faIdBadge, faListUl, faSearch, faTable, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AttendanceModel } from '../../../models/attendance.model';
 
 
@@ -18,6 +18,9 @@ export class ReportAttendanceComponent implements OnInit {
   faUser = faUser;
   faListUl = faListUl;
   faExclamationTriangle = faExclamationTriangle;
+  faIdBadge = faIdBadge;
+  faClock = faClock;
+  
 
   startDate!: string;
   endDate!: string;

@@ -4,7 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="" />
+    <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Emran_Sir_b1492d25-b022-46cd-ae52-7563482f8421.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Md__Raju_Ahmed_b9e13100-dd43-4ada-9d69-ce3c232acb26.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Moshaidul_Sir_78ce9a0e-fa5d-4f9a-86c4-ab116111da80.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Tamim_Ahmed_Raju_13b81571-2b98-4906-b231-f16cf901dd3c.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/apply-leave/apply-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/apply-leave/apply-leave.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-approval/leave-approval.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-approval/leave-approval.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-history/leave-history.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-history/leave-history.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/list-leave/list-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/list-leave/list-leave.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/leave.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/leave.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +79,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -123,10 +158,14 @@
       <workItem from="1727072870089" duration="445000" />
       <workItem from="1727073500043" duration="2438000" />
       <workItem from="1727082246978" duration="9491000" />
+      <workItem from="1727108010459" duration="10438000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

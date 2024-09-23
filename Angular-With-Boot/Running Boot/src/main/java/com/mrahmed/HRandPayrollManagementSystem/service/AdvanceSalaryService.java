@@ -18,14 +18,26 @@ public class AdvanceSalaryService {
     @Autowired
     private AdvanceSalaryRepository advanceSalaryRepository;
 
-    // Save or update advance salary record
+    // Save new advance salary record
     public AdvanceSalary saveAdvanceSalary(AdvanceSalary advanceSalary) {
         return advanceSalaryRepository.save(advanceSalary);
     }
 
+    // Update existing advance salary record
+    public AdvanceSalary updateAdvanceSalary(AdvanceSalary advanceSalary) {
+        if (advanceSalary.getId() != 0 && advanceSalaryRepository.existsById(advanceSalary.getId())) {
+            return advanceSalaryRepository.save(advanceSalary);
+        }
+        throw new IllegalArgumentException("AdvanceSalary with ID " + advanceSalary.getId() + " does not exist.");
+    }
+
     // Delete advance salary record by ID
     public void deleteAdvanceSalary(Long id) {
-        advanceSalaryRepository.deleteById(id);
+        if (advanceSalaryRepository.existsById(id)) {
+            advanceSalaryRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("AdvanceSalary with ID " + id + " does not exist.");
+        }
     }
 
     // Find advance salary record by ID
