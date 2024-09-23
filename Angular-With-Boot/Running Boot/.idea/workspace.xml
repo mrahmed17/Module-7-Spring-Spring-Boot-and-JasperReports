@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Kutub_Uddin_0ec2858f-2f59-4d9b-a09b-20eabe704911.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Mostafa_Aminur_Rashid_aa0d20f2-36cd-4a69-9d3d-ea63912a07d2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Najmul_05367bcc-d1eb-4373-b252-ed4f198bc915.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Neyamul_32a6b55d-d7fb-4ed6-bda8-a0d4b434f77c.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Neyamul_6a7a3bfb-6423-48a7-b7ea-df719e53cbab.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Nusrat_Jahan_733feba8-ab3a-49e4-8b62-d1220cbeef4e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Raju_b77d957c-6c9e-45d9-8f3c-e46765a6b077.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Shamima_9c4d276e-eccf-4c48-8cc5-e5005fd29d55.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Tamim_880d98cb-8a95-41a2-b29d-4db387c7042f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/adfasdfas_42439194-7d80-4ab3-b604-bfd778af804b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +120,7 @@
       <workItem from="1726995344399" duration="307000" />
       <workItem from="1726996743405" duration="7950000" />
       <workItem from="1727009469973" duration="604000" />
+      <workItem from="1727019035692" duration="1041000" />
     </task>
     <servers />
   </component>

@@ -54,23 +54,18 @@ public class UserService {
                 : "";
         String filename = fullName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
         Path filePath = uploadPath.resolve(filename);
-
-        // Save the file
         Files.copy(file.getInputStream(), filePath);
-
         return filename;
     }
-
 
 //    private String saveImage(MultipartFile file, User user) throws IOException {
 //        Path uploadPath = Paths.get(uploadDir + "/static/images/user");
 //        if (!Files.exists(uploadPath)) {
 //            Files.createDirectories(uploadPath);
 //        }
-//        // Extract the file extension from the original filename
 //        String originalFilename = file.getOriginalFilename();
 //        String fileExtension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf(".")) : "";
-//        // Create a unique filename for the image
+
 //        String filename = user.getFullName() + "_" + UUID.randomUUID().toString() + fileExtension;
 //        Path filePath = uploadPath.resolve(filename);
 //        Files.copy(file.getInputStream(), filePath);
