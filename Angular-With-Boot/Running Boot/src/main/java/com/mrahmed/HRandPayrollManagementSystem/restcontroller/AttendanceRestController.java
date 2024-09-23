@@ -5,6 +5,7 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.service.AttendanceService;
 import com.mrahmed.HRandPayrollManagementSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,21 @@ public class AttendanceRestController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/overtime/{userId}")
+    public ResponseEntity<List<Attendance>> getOvertimeByUser(
+            @PathVariable Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+
+        List<Attendance> overtimeRecords = attendanceService.getOvertimeForUser(userId, startDate, endDate);
+
+        if (overtimeRecords.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Return 204 if no overtime found
+        }
+
+        return ResponseEntity.ok(overtimeRecords); // Return the list of overtime records
+    }
 
     @GetMapping("/today")
     public ResponseEntity<List<Attendance>> getTodayAttendance() {

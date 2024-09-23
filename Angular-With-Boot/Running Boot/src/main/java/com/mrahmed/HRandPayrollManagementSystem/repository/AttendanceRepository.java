@@ -15,6 +15,12 @@ import java.util.Optional;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
+    @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate")
+    List<Attendance> findAttendancesByUserIdAndDateRange(
+            @Param("userId") long userId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate);
+
     long countByUserIdAndDate(long userId, LocalDate date);
 
     // Custom query to fetch attendance records for the current day

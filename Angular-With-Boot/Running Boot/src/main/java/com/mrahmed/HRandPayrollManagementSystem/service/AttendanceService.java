@@ -7,6 +7,7 @@ import com.mrahmed.HRandPayrollManagementSystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,24 @@ public class AttendanceService {
 
     @Autowired
     private  UserRepository userRepository;
+
+    // Get overtime for a user in a date range
+    public List<Attendance> getOvertimeForUser(Long userId, LocalDate startDate, LocalDate endDate) {
+        List<Attendance> attendances = attendanceRepository.findAttendancesByUserIdAndDateRange(userId, startDate, endDate);
+        return attendances.stream()
+                .filter(this::isOvertime)
+                .collect(Collectors.toList());
+    }
+
+    // Check if the attendance record contains overtime
+    private boolean isOvertime(Attendance attendance) {
+        if (attendance.getClockInTime() == null || attendance.getClockOutTime() == null) {
+            return false; // Skip records with missing times
+        }
+        Duration duration = Duration.between(attendance.getClockInTime(), attendance.getClockOutTime());
+        long hours = duration.toHours();
+        return hours > 8; // Assuming a workday is 8 hours
+    }
 
 
     public Attendance checkIn(long userId) {
