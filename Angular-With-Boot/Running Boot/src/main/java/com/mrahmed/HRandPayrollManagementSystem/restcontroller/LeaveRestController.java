@@ -18,7 +18,6 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class LeaveRestController {
 
-
     @Autowired
     private LeaveService leaveService;
 
@@ -26,7 +25,7 @@ public class LeaveRestController {
     @PostMapping("/save")
     public ResponseEntity<Leave> saveLeaveRequest(@RequestBody Leave leave) {
         Leave savedLeave = leaveService.saveLeaveRequest(leave);
-        return ResponseEntity.ok(savedLeave);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedLeave);
     }
 
     // Update a leave request
@@ -134,5 +133,20 @@ public class LeaveRestController {
         return ResponseEntity.ok(leaves);
     }
 
+    // Get all leaves by reason
+    @GetMapping("/reason")
+    public ResponseEntity<List<Leave>> getLeavesByReason(@RequestParam("reason") String reason) {
+        List<Leave> leaves = leaveService.getLeavesByReason(reason);
+        return ResponseEntity.ok(leaves);
+    }
+
+    // Get leaves within a date range
+    @GetMapping("/range")
+    public ResponseEntity<List<Leave>> getLeavesByDateRange(
+            @RequestParam("startDate") LocalDate startDate,
+            @RequestParam("endDate") LocalDate endDate) {
+        List<Leave> leaves = leaveService.getLeavesByDateRange(startDate, endDate);
+        return ResponseEntity.ok(leaves);
+    }
 }
 

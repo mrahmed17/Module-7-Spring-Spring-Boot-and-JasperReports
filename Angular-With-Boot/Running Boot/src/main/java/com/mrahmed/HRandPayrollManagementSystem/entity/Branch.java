@@ -1,6 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 //import jakarta.persistence.*;
 //import lombok.*;
 //
@@ -16,7 +16,7 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private long id;
-//    private String name;
+//    private String branchName;
 //    private String address;
 //    private String city;
 //    private String zipCode;
@@ -26,11 +26,15 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 //    private String photo;
 //
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "companyId")
+//    @JoinColumn(name = "company_id")
 //    private Company company;
 //
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "department_id")
+//    private Department department;
+//
 //    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY)
-//    @JsonIgnore
+//    @JsonManagedReference
 //    private List<User> users;
 //
 //}

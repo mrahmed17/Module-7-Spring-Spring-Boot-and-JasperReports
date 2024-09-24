@@ -8,20 +8,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/salaries")
 @CrossOrigin("*")
 public class SalaryRestController {
 
-
     @Autowired
     private SalaryService salaryService;
-
 
     /**
      * Create a new salary record.
@@ -73,8 +69,6 @@ public class SalaryRestController {
         return ResponseEntity.ok(salary);
     }
 
-
-
     /**
      * Get all salaries for a user by year.
      *
@@ -105,6 +99,29 @@ public class SalaryRestController {
         return ResponseEntity.ok(salaries);
     }
 
+    // Endpoint to get salaries by month and year
+    @GetMapping("/month/{payrollMonth}/year/{year}")
+    public List<Salary> getSalariesByMonthAndYear(@PathVariable Month payrollMonth, @PathVariable int year) {
+        return salaryService.getSalariesByMonthAndYear(payrollMonth, year);
+    }
+
+    // Endpoint to get total overtime salary for a user in a date range
+//    @GetMapping("/overtime/{userId}/start/{startDate}/end/{endDate}")
+//    public double getTotalOvertimeSalary(@PathVariable Long userId,
+//                                         @PathVariable LocalDateTime startDate,
+//                                         @PathVariable LocalDateTime endDate) {
+//        return salaryService.getTotalOvertimeSalary(userId, startDate, endDate);
+//    }
+
+    @GetMapping("/total-overtime-salary")
+    public ResponseEntity<Double> getTotalOvertimeSalary(
+            @RequestParam("userId") Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        double totalOvertimeSalary = salaryService.getTotalOvertimeSalary(userId, startDate, endDate);
+        return ResponseEntity.ok(totalOvertimeSalary);
+    }
+
     /**
      * Get the latest salary record for a user.
      *
@@ -113,85 +130,80 @@ public class SalaryRestController {
      */
     @GetMapping("/user/{userId}/latest")
     public ResponseEntity<List<Salary>> getLatestSalaryByUser(@PathVariable Long userId) {
-        List<Salary> latestSalary = salaryService.getSalariesByUserAndYear(userId, LocalDateTime.now().getYear());
-        return ResponseEntity.ok(latestSalary);
+        List<Salary> latestSalaries = salaryService.getSalariesByUserAndYear(userId, LocalDateTime.now().getYear());
+        return ResponseEntity.ok(latestSalaries);
+    }
+
+    @GetMapping("/total-overtime-hours")
+    public ResponseEntity<Double> getTotalOvertimeHours(
+            @RequestParam("userId") Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        double totalOvertimeHours = salaryService.getTotalOvertimeHours(userId, startDate, endDate);
+        return ResponseEntity.ok(totalOvertimeHours);
     }
 
     /**
-     * Get total salary for a user in a year.
+     * Get salary records within a specific date range.
      *
-     * @param userId User ID
-     * @param year   Year
-     * @return Total salary
-     */
-    @GetMapping("/user/{userId}/year/{year}/total")
-    public ResponseEntity<BigDecimal> getTotalSalaryByUserAndYear(@PathVariable Long userId,
-                                                                  @PathVariable int year) {
-        BigDecimal totalSalary = salaryService.getTotalSalaryByUserAndYear(userId, year);
-        return ResponseEntity.ok(totalSalary);
-    }
-
-    /**
-     * Get salaries within a date range.
-     *
-     * @param startDate Start date
-     * @param endDate   End date
-     * @return List of salaries
+     * @param startDate Start date of the range
+     * @param endDate   End date of the range
+     * @return List of salary records within the date range
      */
     @GetMapping("/range")
     public ResponseEntity<List<Salary>> getSalariesByDateRange(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
         List<Salary> salaries = salaryService.getSalariesByDateRange(startDate, endDate);
         return ResponseEntity.ok(salaries);
     }
 
     /**
-     * Calculate total salary for a user in a given period.
+     * Calculate overtime salary for a user within a date range.
      *
      * @param userId    User ID
-     * @param startDate Start date
-     * @param endDate   End date
-     * @return Total salary
+     * @param startDate Start date of the range
+     * @param endDate   End date of the range
+     * @return Overtime salary for the given period
      */
-    @GetMapping("/user/{userId}/calculate")
-    public ResponseEntity<BigDecimal> calculateTotalSalary(@PathVariable Long userId,
-                                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-                                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
-        BigDecimal totalSalary = salaryService.calculateTotalSalary(userId, startDate, endDate);
-        return ResponseEntity.ok(totalSalary);
-    }
-
-    /**
-     * Get total overtime salary for a user within a specific date range.
-     *
-     * @param userId    User ID
-     * @param startDate Start date
-     * @param endDate   End date
-     * @return Total overtime salary
-     */
-    @GetMapping("/user/{userId}/overtime")
-    public ResponseEntity<BigDecimal> getOvertimeSalary(@PathVariable Long userId,
-                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-                                                        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
-        BigDecimal overtimeSalary = salaryService.calculateOvertimeSalary(userId, startDate, endDate);
+    @GetMapping("/overtime-salary")
+    public ResponseEntity<Double> calculateOvertimeSalary(
+            @RequestParam("userId") Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        double overtimeSalary = salaryService.calculateOvertimeSalary(userId, startDate, endDate);
         return ResponseEntity.ok(overtimeSalary);
     }
 
     /**
-     * Get total overtime hours for a user in a specific period.
+     * Get total salary payments for a user in a specific year.
+     *
+     * @param userId User ID
+     * @param year   Year
+     * @return Total salary for the user in that year
+     */
+    @GetMapping("/total-salary/user/{userId}/year/{year}")
+    public ResponseEntity<Double> getTotalSalaryByUserAndYear(@PathVariable Long userId,
+                                                              @PathVariable int year) {
+        double totalSalary = salaryService.getTotalSalaryByUserAndYear(userId, year);
+        return ResponseEntity.ok(totalSalary);
+    }
+
+    /**
+     * Calculate total salary for a user within a date range.
      *
      * @param userId    User ID
-     * @param startDate Start date
-     * @param endDate   End date
-     * @return Total overtime hours
+     * @param startDate Start date of the range
+     * @param endDate   End date of the range
+     * @return Total salary for the given period
      */
-    @GetMapping("/user/{userId}/overtime-hours")
-    public ResponseEntity<BigDecimal> getTotalOvertimeHours(@PathVariable Long userId,
-                                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-                                                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
-        BigDecimal totalOvertimeHours = salaryService.getTotalOvertimeHours(userId, startDate, endDate);
-        return ResponseEntity.ok(totalOvertimeHours);
+    @GetMapping("/calculate-total-salary")
+    public ResponseEntity<Double> calculateTotalSalary(
+            @RequestParam("userId") Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        double totalSalary = salaryService.calculateTotalSalary(userId, startDate, endDate);
+        return ResponseEntity.ok(totalSalary);
     }
 
 

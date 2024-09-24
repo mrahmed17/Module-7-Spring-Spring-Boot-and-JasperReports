@@ -10,7 +10,7 @@ export class BonusModel{
   bonusDate!: Date;
   year!: number;
 
-  advanceMonth!: MonthEnum;
+  bonusMonth!: MonthEnum;
 
   user!: UserModel;
 }

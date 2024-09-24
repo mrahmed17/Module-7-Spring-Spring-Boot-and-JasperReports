@@ -1,5 +1,4 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
-
 //
 //import jakarta.persistence.*;
 //import lombok.*;
@@ -22,8 +21,8 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 //    @Enumerated(EnumType.STRING)
 //    private Month feedbackMonth;
 //
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "userId")
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_id")
 //    private User user;
 //
 //

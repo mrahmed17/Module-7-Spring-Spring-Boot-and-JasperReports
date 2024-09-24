@@ -1,12 +1,12 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class User {
     private LocalDate dateOfBirth;
     private String nationalId;
     private String contact;
-    private BigDecimal basicSalary;
+    private double basicSalary;
     private LocalDate joinedDate;
     private String profilePhoto;
 
@@ -43,9 +43,13 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Attendance> attendances;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonBackReference
+//    private Branch branches;
 
 
 }

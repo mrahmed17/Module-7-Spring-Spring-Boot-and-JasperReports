@@ -18,7 +18,6 @@ import java.util.Map;
 @RequestMapping("/api/attendance")
 @CrossOrigin("*")
 public class AttendanceRestController {
-
     @Autowired
     private AttendanceService attendanceService;
 
@@ -30,33 +29,44 @@ public class AttendanceRestController {
             @PathVariable Long userId,
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-
         List<Attendance> overtimeRecords = attendanceService.getOvertimeForUser(userId, startDate, endDate);
-
         if (overtimeRecords.isEmpty()) {
-            return ResponseEntity.noContent().build(); // Return 204 if no overtime found
+            return ResponseEntity.noContent().build();
         }
+        return ResponseEntity.ok(overtimeRecords);
+    }
 
-        return ResponseEntity.ok(overtimeRecords); // Return the list of overtime records
+    // New endpoint for fetching overtime in a date range
+    @GetMapping("/overtime")
+    public List<Attendance> getOvertimeInRange(
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate) {
+        // Convert the string parameters to LocalDate
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+
+        // Call the service method to get overtime attendances
+        return attendanceService.getOvertimeInRange(start, end);
     }
 
     @GetMapping("/today")
     public ResponseEntity<List<Attendance>> getTodayAttendance() {
         List<Attendance> attendances = attendanceService.getTodayAttendances();
-        if (attendances.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(attendances);
+        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
+    }
+
+    // New endpoint to get users without attendance today
+    @GetMapping("/absent-today")
+    public List<User> getUsersWithoutAttendanceToday() {
+        return attendanceService.findUsersWithoutAttendanceToday();
     }
 
     @GetMapping("/")
     public ResponseEntity<List<Attendance>> getAllAttendances() {
         List<Attendance> attendances = attendanceService.getAllAttendances();
-        if (attendances.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(attendances);
+        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
+
 
     @GetMapping("/allUsers")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -65,11 +75,11 @@ public class AttendanceRestController {
     }
 
     @PostMapping("/checkin")
-    public ResponseEntity<?> checkIn(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<String> checkIn(@RequestBody Map<String, Object> request) {
         try {
             long userId = Long.parseLong(request.get("userId").toString());
             Attendance attendance = attendanceService.checkIn(userId);
-            return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Check-in successful for user ID: " + userId);
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().body("Invalid user ID format");
         } catch (Exception e) {
@@ -78,33 +88,17 @@ public class AttendanceRestController {
     }
 
     @PutMapping("/checkout")
-    public ResponseEntity<?> checkOut(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<String> checkOut(@RequestBody Map<String, Object> request) {
         try {
             long userId = Long.parseLong(request.get("userId").toString());
             Attendance attendance = attendanceService.checkOut(userId);
-            return ResponseEntity.ok(attendance);
+            return ResponseEntity.ok("Check-out successful for user ID: " + userId);
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().body("Invalid user ID format");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking out");
         }
     }
-
-
-//    @PostMapping("/checkin")
-//    public ResponseEntity<Attendance> checkIn(@RequestBody Map<String, Object> request) {
-//        long userId = Long.parseLong(request.get("userId").toString());
-//        Attendance attendance = attendanceService.checkIn(userId);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
-//    }
-//
-//    @PutMapping("/checkout")
-//    public ResponseEntity<Attendance> checkOut(@RequestBody Map<String, Object> request) {
-//        long userId = Long.parseLong(request.get("userId").toString());
-//        Attendance attendance = attendanceService.checkOut(userId);
-//        return ResponseEntity.ok(attendance);
-//    }
-
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Attendance> findAttendanceById(@PathVariable("id") long id) {
@@ -120,116 +114,73 @@ public class AttendanceRestController {
 
     @GetMapping("/attendanceRange")
     public ResponseEntity<Map<User, Long>> getUsersWithAttendanceInRange(
-            @RequestParam("startDate") LocalDate startDate,
-            @RequestParam("endDate") LocalDate endDate) {
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         Map<User, Long> userAttendance = attendanceService.getUsersAttendanceInRange(startDate, endDate);
-        if (userAttendance == null || userAttendance.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(userAttendance);
+        return userAttendance.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(userAttendance);
     }
-
-
-//    @GetMapping("/attendanceRange")
-//    public ResponseEntity<Map<User, Long>> getUsersWithAttendanceInRange(
-//            @RequestParam("startDate") LocalDate startDate,
-//            @RequestParam("endDate") LocalDate endDate) {
-//        Map<User, Long> userAttendance = attendanceService.getUsersAttendanceInRange(startDate, endDate);
-//        return ResponseEntity.ok(userAttendance);
-//    }
 
     @GetMapping("/peakAttendanceDay")
     public ResponseEntity<List<Object[]>> getPeakAttendanceDay() {
         List<Object[]> peakAttendanceDay = attendanceService.getPeakAttendanceDay();
-        if (peakAttendanceDay.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(peakAttendanceDay);
+        return peakAttendanceDay.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(peakAttendanceDay);
     }
-
 
     @GetMapping("/peakAttendanceMonth")
     public ResponseEntity<List<Object[]>> getPeakAttendanceMonth() {
         List<Object[]> peakAttendanceMonth = attendanceService.getPeakAttendanceMonth();
-        if (peakAttendanceMonth.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(peakAttendanceMonth);
+        return peakAttendanceMonth.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(peakAttendanceMonth);
     }
 
     @GetMapping("/peakAttendanceYear")
     public ResponseEntity<List<Object[]>> getPeakAttendanceYear() {
         List<Object[]> peakAttendanceYear = attendanceService.getPeakAttendanceYear();
-        if (peakAttendanceYear.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(peakAttendanceYear);
+        return peakAttendanceYear.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(peakAttendanceYear);
     }
-
 
     @PostMapping("/holidayAttendance")
     public ResponseEntity<List<Object[]>> getHolidayAttendance(@RequestBody List<LocalDate> holidayDates) {
         List<Object[]> holidayAttendance = attendanceService.getHolidayAttendance(holidayDates);
-        if (holidayAttendance.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(holidayAttendance);
+        return holidayAttendance.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(holidayAttendance);
     }
 
     @GetMapping("/lateCheckIns")
     public ResponseEntity<List<Attendance>> getLateCheckIns(
             @RequestParam("lateTime") String lateTime,
-            @RequestParam("startDate") LocalDate startDate,
-            @RequestParam("endDate") LocalDate endDate) {
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         List<Attendance> lateCheckIns = attendanceService.getLateCheckIns(lateTime, startDate, endDate);
-        if (lateCheckIns.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(lateCheckIns);
+        return lateCheckIns.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(lateCheckIns);
     }
 
     @GetMapping("/shiftPlanning")
     public ResponseEntity<List<Object[]>> getRegularEmployeesForShiftPlanning(
-            @RequestParam("startDate") LocalDate startDate,
-            @RequestParam("endDate") LocalDate endDate) {
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         List<Object[]> regularEmployees = attendanceService.getRegularEmployeesForShiftPlanning(startDate, endDate);
-        if (regularEmployees.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(regularEmployees);
+        return regularEmployees.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(regularEmployees);
     }
 
     @GetMapping("/searchByName")
     public ResponseEntity<List<Attendance>> getAttendancesByUserNamePart(@RequestParam("name") String name) {
         List<Attendance> attendances = attendanceService.getAttendancesByUserNamePart(name);
-        if (attendances.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(attendances);
+        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
 
     @GetMapping("/roleAttendance")
     public ResponseEntity<List<Attendance>> getAttendanceByRoleAndDateRange(
             @RequestParam("role") String role,
-            @RequestParam("startDate") LocalDate startDate,
-            @RequestParam("endDate") LocalDate endDate) {
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         List<Attendance> attendances = attendanceService.getAttendanceByRoleAndDateRange(role, startDate, endDate);
-        if (attendances.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(attendances);
+        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
-
 
     @GetMapping("/todayAttendance/{userId}")
     public ResponseEntity<List<Attendance>> getTodayAttendanceByUserId(@PathVariable("userId") long userId) {
         List<Attendance> todayAttendance = attendanceService.getTodayAttendanceByUserId(userId);
-        if (todayAttendance.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(todayAttendance);
+        return todayAttendance.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(todayAttendance);
     }
-
 
 
 }

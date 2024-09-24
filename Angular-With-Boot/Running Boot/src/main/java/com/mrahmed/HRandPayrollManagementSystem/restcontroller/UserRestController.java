@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -31,20 +30,11 @@ public class UserRestController {
     ) {
         try {
             userService.saveUser(user, profilePhoto);
-            return new ResponseEntity<>("User created successfully with profile photo.", HttpStatus.CREATED);
+            return new ResponseEntity<>("User created successfully.", HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>("Failed to upload profile photo: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-//    @PostMapping("/create")
-//    public ResponseEntity<String> createUser(
-//            @RequestPart("user") User user,
-//            @RequestPart("profilePhoto") MultipartFile profilePhoto
-//    ) throws IOException {
-//        userService.saveUser(user, profilePhoto);
-//        return new ResponseEntity<>("User created successfully with profile photo.", HttpStatus.CREATED);
-//    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateUser(
@@ -53,23 +43,12 @@ public class UserRestController {
             @RequestPart(value = "profilePhoto", required = false) MultipartFile profilePhoto
     ) {
         try {
-            userService.updateuser(id, user, profilePhoto);
+            userService.updateUser(id, user, profilePhoto);
             return new ResponseEntity<>("User updated successfully.", HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>("Failed to update user: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<String> updateUser(
-//            @PathVariable Long id,
-//            @RequestPart("user") User user,
-//            @RequestParam("profilePhoto") MultipartFile profilePhoto
-//    ) throws IOException {
-//        userService.updateUser(id, user, profilePhoto);
-//
-//        return new ResponseEntity<>("User updated successfully.", HttpStatus.OK);
-//    }
 
     @GetMapping("/")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -87,9 +66,8 @@ public class UserRestController {
         }
     }
 
-
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         try {
             userService.deleteUserById(id);
             return new ResponseEntity<>("User deleted successfully.", HttpStatus.OK);
@@ -99,61 +77,54 @@ public class UserRestController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
         Optional<User> userOptional = userService.getUserByEmail(email);
         return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-//    @GetMapping("/email/{email}")
-//    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
-//        Optional<User> userOptional = userService.getUserByEmail(email);
-//        return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
-
     @GetMapping("/salary/greaterThanOrEqual/{salary}")
-    public ResponseEntity<List<User>> getUsersWithSalaryGreaterThanOrEqual(@PathVariable("salary") BigDecimal salary) {
+    public ResponseEntity<List<User>> getUsersWithSalaryGreaterThanOrEqual(@PathVariable double salary) {
         List<User> users = userService.getUsersWithSalaryGreaterThanOrEqual(salary);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/salary/lessThanOrEqual/{salary}")
-    public ResponseEntity<List<User>> getUsersWithSalaryLessThanOrEqual(@PathVariable("salary") BigDecimal salary) {
+    public ResponseEntity<List<User>> getUsersWithSalaryLessThanOrEqual(@PathVariable double salary) {
         List<User> users = userService.getUsersWithSalaryLessThanOrEqual(salary);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/role/{role}")
     public ResponseEntity<List<User>> getUsersByRole(@PathVariable String role) {
         try {
-            // Convert the incoming role string to uppercase and match with the Role enum
             Role userRole = Role.valueOf(role.toUpperCase());
             List<User> users = userService.getUsersByRole(userRole);
             return ResponseEntity.ok(users);
         } catch (IllegalArgumentException e) {
-            // Handle the case where the role string doesn't match any enum values
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            // Return an empty list with a BAD_REQUEST status for invalid role
+            return new ResponseEntity<>(List.of(), HttpStatus.BAD_REQUEST);
         }
     }
 
-
     @GetMapping("/search/name/{name}")
-    public ResponseEntity<List<User>> getUsersByFullNamePart(@PathVariable("name") String name) {
+    public ResponseEntity<List<User>> getUsersByFullNamePart(@PathVariable String name) {
         List<User> users = userService.getUsersByFullNamePart(name);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/gender/{gender}")
-    public ResponseEntity<List<User>> getUsersByGender(@PathVariable("gender") String gender) {
+    public ResponseEntity<List<User>> getUsersByGender(@PathVariable String gender) {
         List<User> users = userService.getUsersByGender(gender);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/joinedDate/{joinedDate}")
-    public ResponseEntity<List<User>> getUsersByJoinedDate(@PathVariable("joinedDate") LocalDate joinedDate) {
+    public ResponseEntity<List<User>> getUsersByJoinedDate(@PathVariable LocalDate joinedDate) {
         List<User> users = userService.getUsersByJoinedDate(joinedDate);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
+
+
 }
 

@@ -8,24 +8,26 @@ import com.mrahmed.HRandPayrollManagementSystem.repository.LeaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BonusService {
+
     @Autowired
     private BonusRepository bonusRepository;
 
     @Autowired
     private LeaveRepository leaveRepository;
 
+    // Save a bonus
     public Bonus saveBonus(Bonus bonus) {
         return bonusRepository.save(bonus);
     }
 
-
+    // Update a bonus by ID
     public Bonus updateBonus(Long id, Bonus updatedBonus) {
         if (bonusRepository.existsById(id)) {
             updatedBonus.setId(id); // Ensure the ID is set for the update
@@ -35,9 +37,8 @@ public class BonusService {
         }
     }
 
-
     // Calculate bonus for a user in a specific year considering unpaid leaves
-    public BigDecimal calculateBonus(Long userId, int year) {
+    public double calculateBonus(Long userId, int year) {
         // Fetch total unpaid leave days for the user
         int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(
                 userId,
@@ -46,30 +47,30 @@ public class BonusService {
         );
 
         // Fetch base bonus for the user and year
-        BigDecimal baseBonus = bonusRepository.getBonusForUserAndYear(userId, year);
+        Double baseBonus = bonusRepository.getBonusForUserAndYear(userId, year);
 
         // If no base bonus is found, return zero
         if (baseBonus == null) {
-            baseBonus = BigDecimal.ZERO;
+            baseBonus = 0.0;
         }
 
         // Calculate deduction based on unpaid leave days
-        BigDecimal deduction = calculateLeaveBonusDeduction(totalUnpaidLeaveDays);
+        double deduction = calculateLeaveBonusDeduction(totalUnpaidLeaveDays);
 
         // Return the final bonus after deduction
-        return baseBonus.subtract(deduction);
+        return baseBonus - deduction;
     }
 
     // Deduction logic for unpaid leave days
-    private BigDecimal calculateLeaveBonusDeduction(int totalUnpaidLeaveDays) {
-        BigDecimal deductionPerDay = new BigDecimal("50"); // Example: Deduct $50 per unpaid leave day
-        return deductionPerDay.multiply(BigDecimal.valueOf(totalUnpaidLeaveDays));
+    private double calculateLeaveBonusDeduction(int totalUnpaidLeaveDays) {
+        double deductionPerDay = 1000.0; // Example: Deduct $1000 per unpaid leave day
+        return deductionPerDay * totalUnpaidLeaveDays;
     }
 
     // Get total bonus for a user for a specific year
-    public BigDecimal getTotalBonusForUser(Long userId, int year) {
-        BigDecimal totalBonus = bonusRepository.getTotalBonusForUserAndYear(userId, year);
-        return totalBonus != null ? totalBonus : BigDecimal.ZERO;
+    public double getTotalBonusForUser(Long userId, int year) {
+        Double totalBonus = bonusRepository.getTotalBonusForUserAndYear(userId, year);
+        return totalBonus != null ? totalBonus : 0.0;
     }
 
     // Get all bonuses for a specific month and year
@@ -78,13 +79,14 @@ public class BonusService {
     }
 
     // Get the total bonus paid in a specific year
-    public BigDecimal getTotalBonusPaidInYear(int year) {
+    public double getTotalBonusPaidInYear(int year) {
         return bonusRepository.getTotalBonusPaidInYear(year);
     }
 
-    // Get bonuses for a user for a specific month and year
+    // Get bonuses for a user for a specific month and year (handling Optional)
     public Bonus getBonusForUserByMonthAndYear(Long userId, Month month, int year) {
-        return bonusRepository.getBonusForUserByMonthAndYear(userId, month, year);
+        Optional<Bonus> bonus = bonusRepository.getBonusForUserByMonthAndYear(userId, month, year);
+        return bonus.orElseThrow(() -> new RuntimeException("Bonus not found for user " + userId + " for the given month and year"));
     }
 
     // Get bonuses between a date range
@@ -97,9 +99,13 @@ public class BonusService {
         return bonusRepository.getUsersWhoReceivedBonusInYear(year);
     }
 
-    // Get the latest bonus for a user
+    // Get the latest bonus for a user (handling List)
     public Bonus getLatestBonusForUser(Long userId) {
-        return bonusRepository.getLatestBonusForUser(userId);
+        List<Bonus> bonuses = bonusRepository.getLatestBonusForUser(userId);
+        if (bonuses.isEmpty()) {
+            throw new RuntimeException("No bonuses found for user " + userId);
+        }
+        return bonuses.get(0); // Return the first (latest) bonus
     }
 
     // Count the number of bonuses for a user in a specific year
@@ -108,9 +114,7 @@ public class BonusService {
     }
 
     // Get total bonus for a specific month and year
-    public BigDecimal getTotalBonusForMonthAndYear(Month month, int year) {
+    public double getTotalBonusForMonthAndYear(Month month, int year) {
         return bonusRepository.getTotalBonusForMonthAndYear(month, year);
     }
-
-
 }

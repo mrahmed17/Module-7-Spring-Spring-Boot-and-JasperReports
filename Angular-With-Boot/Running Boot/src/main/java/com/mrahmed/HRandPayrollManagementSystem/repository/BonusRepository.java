@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BonusRepository extends JpaRepository<Bonus, Long> {
@@ -24,7 +25,7 @@ public interface BonusRepository extends JpaRepository<Bonus, Long> {
     List<Bonus> getBonusesByMonthAndYear(@Param("bonusMonth") Month bonusMonth, @Param("year") int year);
 
     @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId AND b.bonusMonth = :bonusMonth AND b.year = :year")
-    Bonus getBonusForUserByMonthAndYear(@Param("userId") Long userId, @Param("bonusMonth") Month bonusMonth, @Param("year") int year);
+    Optional<Bonus> getBonusForUserByMonthAndYear(@Param("userId") Long userId, @Param("bonusMonth") Month bonusMonth, @Param("year") int year);
 
     @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.year = :year")
     double getTotalBonusPaidInYear(@Param("year") int year);
@@ -35,8 +36,8 @@ public interface BonusRepository extends JpaRepository<Bonus, Long> {
     @Query("SELECT DISTINCT b.user.id FROM Bonus b WHERE b.year = :year")
     List<Long> getUsersWhoReceivedBonusInYear(@Param("year") int year);
 
-    @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId ORDER BY b.bonusDate DESC LIMIT 1")
-    Bonus getLatestBonusForUser(@Param("userId") Long userId);
+    @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId ORDER BY b.bonusDate DESC")
+    List<Bonus> getLatestBonusForUser(@Param("userId") Long userId);
 
     @Query("SELECT COUNT(b) FROM Bonus b WHERE b.user.id = :userId AND b.year = :year")
     int countBonusesForUserInYear(@Param("userId") Long userId, @Param("year") int year);

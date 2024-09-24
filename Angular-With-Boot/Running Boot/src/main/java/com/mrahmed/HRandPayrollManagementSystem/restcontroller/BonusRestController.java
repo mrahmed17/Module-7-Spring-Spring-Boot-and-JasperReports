@@ -4,10 +4,11 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.Bonus;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.BonusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/bonuses")
 @CrossOrigin("*")
 public class BonusRestController {
+
 
     @Autowired
     private BonusService bonusService;
@@ -34,24 +36,23 @@ public class BonusRestController {
         return ResponseEntity.ok(bonus);
     }
 
-
     // Calculate the bonus for a user in a specific year
     @GetMapping("/calculate/{userId}/{year}")
-    public ResponseEntity<BigDecimal> calculateBonus(
+    public ResponseEntity<Double> calculateBonus(
             @PathVariable Long userId,
             @PathVariable int year
     ) {
-        BigDecimal bonus = bonusService.calculateBonus(userId, year);
+        double bonus = bonusService.calculateBonus(userId, year);
         return ResponseEntity.ok(bonus);
     }
 
     // Get total bonus for a user in a specific year
     @GetMapping("/total/{userId}/{year}")
-    public ResponseEntity<BigDecimal> getTotalBonusForUser(
+    public ResponseEntity<Double> getTotalBonusForUser(
             @PathVariable Long userId,
             @PathVariable int year
     ) {
-        BigDecimal totalBonus = bonusService.getTotalBonusForUser(userId, year);
+        double totalBonus = bonusService.getTotalBonusForUser(userId, year);
         return ResponseEntity.ok(totalBonus);
     }
 
@@ -67,8 +68,8 @@ public class BonusRestController {
 
     // Get the total bonus paid in a specific year
     @GetMapping("/total/year/{year}")
-    public ResponseEntity<BigDecimal> getTotalBonusPaidInYear(@PathVariable int year) {
-        BigDecimal totalBonus = bonusService.getTotalBonusPaidInYear(year);
+    public ResponseEntity<Double> getTotalBonusPaidInYear(@PathVariable int year) {
+        double totalBonus = bonusService.getTotalBonusPaidInYear(year);
         return ResponseEntity.ok(totalBonus);
     }
 
@@ -86,8 +87,8 @@ public class BonusRestController {
     // Get all bonuses between two dates
     @GetMapping("/between")
     public ResponseEntity<List<Bonus>> getBonusesBetweenDates(
-            @RequestParam("startDate") LocalDateTime startDate,
-            @RequestParam("endDate") LocalDateTime endDate
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate
     ) {
         List<Bonus> bonuses = bonusService.getBonusesBetweenDates(startDate, endDate);
         return ResponseEntity.ok(bonuses);
@@ -119,13 +120,12 @@ public class BonusRestController {
 
     // Get total bonus for a specific month and year
     @GetMapping("/total/month/{month}/{year}")
-    public ResponseEntity<BigDecimal> getTotalBonusForMonthAndYear(
+    public ResponseEntity<Double> getTotalBonusForMonthAndYear(
             @PathVariable Month month,
             @PathVariable int year
     ) {
-        BigDecimal totalBonus = bonusService.getTotalBonusForMonthAndYear(month, year);
+        double totalBonus = bonusService.getTotalBonusForMonthAndYear(month, year);
         return ResponseEntity.ok(totalBonus);
     }
-
 
 }

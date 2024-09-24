@@ -51,6 +51,13 @@ public class GlobalExceptionHandler {
 
     }
 
+    public class SalaryNotFoundException extends RuntimeException {
+        public SalaryNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+
 
 
 }

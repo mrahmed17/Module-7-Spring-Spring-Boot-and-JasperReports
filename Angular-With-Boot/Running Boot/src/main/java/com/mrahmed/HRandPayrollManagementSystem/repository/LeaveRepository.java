@@ -41,5 +41,8 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
     @Query("SELECT l FROM Leave l WHERE l.reason = :reason")
     List<Leave> findLeavesByReason(@Param("reason") String reason);
 
+    @Query("SELECT l FROM Leave l WHERE l.startDate BETWEEN :startDate AND :endDate")
+    List<Leave> findLeavesByDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
 
 }
