@@ -77,25 +77,24 @@ public class SalaryService {
      * @param endDate    End Date
      * @return Overtime salary for the given period
      */
-    public BigDecimal calculateOvertimeSalary(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
-        // Retrieve total overtime hours for the user in the given range
-        BigDecimal totalOvertimeHours = salaryRepository.getTotalOvertimeHoursByUserAndDateRange(userId, startDate, endDate);
-        if (totalOvertimeHours == null) {
-            totalOvertimeHours = BigDecimal.ZERO;
+    public double calculateOvertimeSalary(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
+        double totalOvertimeHours = salaryRepository.getTotalOvertimeHoursByUserAndDateRange(userId, startDate, endDate);
+        if (totalOvertimeHours == 0) {
+            totalOvertimeHours = 0;
         }
 
-        // Get user and their basic salary
         User user = userService.findUserById(userId);
-        BigDecimal basicSalary = user.getBasicSalary();
+        double basicSalary = user.getBasicSalary();
 
         // Calculate overtime rate: basic salary / (4 weeks * 5 days * 8 hours)
-        BigDecimal hourlyRate = basicSalary.divide(BigDecimal.valueOf(4 * 5 * 8), BigDecimal.ROUND_HALF_UP);
+        double hourlyRate = basicSalary / (4 * 5 * 8);
 
         // Calculate overtime salary = overtime hours * hourly rate
-        BigDecimal overtimeSalary = totalOvertimeHours.multiply(hourlyRate);
+        double overtimeSalary = totalOvertimeHours * hourlyRate;
 
         return overtimeSalary;
     }
+
 
     /**
      * Calculate the total salary for a user for a specific period.
@@ -106,8 +105,7 @@ public class SalaryService {
      * @return Total salary, including bonuses, allowances, overtime, and deductions.
      */
     @Transactional
-    public BigDecimal calculateTotalSalary(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
-        // Retrieve the user's latest salary record
+    public double calculateTotalSalary(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
         List<Salary> latestSalaries = salaryRepository.findLatestSalaryByUser(userId);
         if (latestSalaries.isEmpty()) {
             throw new RuntimeException("No salary record found for the user.");
@@ -115,33 +113,29 @@ public class SalaryService {
 
         Salary latestSalary = latestSalaries.get(0);
 
-        // Get overtime salary for the user in the date range
-        BigDecimal overtimeSalary = calculateOvertimeSalary(userId, startDate, endDate);
+        double overtimeSalary = calculateOvertimeSalary(userId, startDate, endDate);
 
-        // Calculate total bonuses
-        BigDecimal totalBonuses = latestSalary.getBonuses().stream()
-                .map(Bonus::getBonusAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        // Total bonuses
+        double totalBonuses = latestSalary.getBonuses();
 
-        // Calculate allowances
-        BigDecimal totalAllowances = latestSalary.getTransportAllowance()
-                .add(latestSalary.getTelephoneSubsidy())
-                .add(latestSalary.getUtilityAllowance())
-                .add(latestSalary.getDomesticAllowance())
-                .add(latestSalary.getLunchAllowance());
+        // Total allowances
+        double totalAllowances = latestSalary.getTransportAllowance()
+                + latestSalary.getTelephoneSubsidy()
+                + latestSalary.getUtilityAllowance()
+                + latestSalary.getDomesticAllowance()
+                + latestSalary.getLunchAllowance();
 
-        // Deductions
-        BigDecimal totalDeductions = latestSalary.getMedicare()
-                .add(latestSalary.getProvidentFund())
-                .add(latestSalary.getInsurance())
-                .add(latestSalary.getTax());
+        // Total deductions
+        double totalDeductions = latestSalary.getMedicare()
+                + latestSalary.getProvidentFund()
+                + latestSalary.getInsurance()
+                + latestSalary.getTax();
 
-        // Calculate total net salary
-        BigDecimal totalSalary = latestSalary.getNetSalary()
-                .add(overtimeSalary)
-                .add(totalBonuses)
-                .add(totalAllowances)
-                .subtract(totalDeductions);
+        double totalSalary = latestSalary.getNetSalary()
+                + overtimeSalary
+                + totalBonuses
+                + totalAllowances
+                - totalDeductions;
 
         return totalSalary;
     }

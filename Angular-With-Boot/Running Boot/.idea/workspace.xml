@@ -5,39 +5,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Emran_Sir_b1492d25-b022-46cd-ae52-7563482f8421.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Md__Raju_Ahmed_b9e13100-dd43-4ada-9d69-ce3c232acb26.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Moshaidul_Sir_78ce9a0e-fa5d-4f9a-86c4-ab116111da80.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Tamim_Ahmed_Raju_13b81571-2b98-4906-b231-f16cf901dd3c.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/create-attendance/create-attendance.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/apply-leave/apply-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/apply-leave/apply-leave.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/details-leave/details-leave.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-approval/leave-approval.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-approval/leave-approval.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-history/leave-history.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/leave-history/leave-history.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/list-leave/list-leave.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/leave/list-leave/list-leave.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/leave.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/leave.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/header/header.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Mostafa_27e14906-13c7-4dbd-b358-f887c800c43a.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Nusrat_fcc30a1c-073a-4bf7-9d78-f0526047a1fd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Shamima_ab079e66-845d-4605-a575-a4bdb6fc0cf4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Towhid_1df0bccc-b325-4cb8-8a36-8296f92d3296.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Advance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Mostafa_Aminur_Rashid_7f588fe8-7d4f-4d6c-89a9-d4c04698e2e2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Mostafa_Aminur_Rashid_aa0d20f2-36cd-4a69-9d3d-ea63912a07d2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Neyamul_32a6b55d-d7fb-4ed6-bda8-a0d4b434f77c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Neyamul_6a7a3bfb-6423-48a7-b7ea-df719e53cbab.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Nusrat_Jahan_733feba8-ab3a-49e4-8b62-d1220cbeef4e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Raju_b77d957c-6c9e-45d9-8f3c-e46765a6b077.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/profilePhotos/Shamima_9c4d276e-eccf-4c48-8cc5-e5005fd29d55.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/main/resources/static/images/static/images/user/Raju_3ad99289-7e39-427d-86eb-2ee756b2c8d1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot v1/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/LeaveType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/RequestStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/resources/static/images/profilePhotos/Md__Raju_Ahmed_ccde574f-3fed-4484-b63d-fdfc0b877877.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/main/resources/static/images/profilePhotos/Neyamul_ed1fb17e-1070-4782-8966-4964483bd20c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Boot Backup/Running Boot/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-create/bonus-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-create/bonus-create.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-create/bonus-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-create/bonus-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-summary/bonus-summary.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-summary/bonus-summary.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-summary/bonus-summary.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/bonus/bonus-summary/bonus-summary.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/advancesalary.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/advancesalary.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/bonus.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/bonus.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/template/sidebar/sidebar.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/exceptionhandle/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Md__Raju_Ahmed_ccde574f-3fed-4484-b63d-fdfc0b877877.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Neyamul_ed1fb17e-1070-4782-8966-4964483bd20c.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,36 +158,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.HRandPayrollManagementSystemApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/M. R. Ahmed/Desktop/tongyi-jetbrains-1.4.0.zip",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.HRandPayrollManagementSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/M. R. Ahmed/Desktop/tongyi-jetbrains-1.4.0.zip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="HRandPayrollManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -158,7 +239,8 @@
       <workItem from="1727072870089" duration="445000" />
       <workItem from="1727073500043" duration="2438000" />
       <workItem from="1727082246978" duration="9491000" />
-      <workItem from="1727108010459" duration="10438000" />
+      <workItem from="1727108010459" duration="15263000" />
+      <workItem from="1727142540185" duration="3277000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,6 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,17 +16,17 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime paymentDate;
-    private BigDecimal medicare;
-    private BigDecimal providentFund; // baseSalary * (2% = 0.02)
-    private BigDecimal insurance;
-    private BigDecimal transportAllowance;
-    private BigDecimal telephoneSubsidy;
-    private BigDecimal utilityAllowance;
-    private BigDecimal domesticAllowance;
-    private BigDecimal lunchAllowance;
-    private BigDecimal netSalary;
+    private double medicare;
+    private double providentFund; // baseSalary * (2% = 0.02)
+    private double insurance;
+    private double transportAllowance;
+    private double telephoneSubsidy;
+    private double utilityAllowance;
+    private double domesticAllowance;
+    private double lunchAllowance;
+    private double tax;
+    private double netSalary;
     private int year;
-    private BigDecimal tax;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "overTime")

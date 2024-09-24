@@ -24,7 +24,7 @@ public interface AdvanceSalaryRepository extends JpaRepository<AdvanceSalary, Lo
 
     // Calculate total advance salary for a specific user and year
     @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.user.id = :userId AND a.year = :year")
-    BigDecimal getTotalAdvanceSalaryByUserAndYear(@Param("userId") Long userId, @Param("year") int year);
+    double getTotalAdvanceSalaryByUserAndYear(@Param("userId") Long userId, @Param("year") int year);
 
     // Find advance salaries within a specific date range
     @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceDate BETWEEN :startDate AND :endDate")

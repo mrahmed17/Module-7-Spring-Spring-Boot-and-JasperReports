@@ -4,7 +4,6 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +15,7 @@ public class AdvanceSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private BigDecimal advanceSalary;
+    private double advanceSalary;
     private String reason;
     private LocalDateTime advanceDate;
     private int year;

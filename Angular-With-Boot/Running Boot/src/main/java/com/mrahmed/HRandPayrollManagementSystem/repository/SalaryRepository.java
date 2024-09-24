@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public interface SalaryRepository extends JpaRepository<Salary, Long> {
 
     // Get total salary payments for a specific user in a year
     @Query("SELECT SUM(s.netSalary) FROM Salary s WHERE s.user.id = :userId AND s.year = :year")
-    BigDecimal getTotalSalaryByUserAndYear(@Param("userId") Long userId, @Param("year") int year);
+    double getTotalSalaryByUserAndYear(@Param("userId") Long userId, @Param("year") int year);
 
     // Get salaries within a specific date range
     @Query("SELECT s FROM Salary s WHERE s.paymentDate BETWEEN :startDate AND :endDate")
@@ -44,9 +43,10 @@ public interface SalaryRepository extends JpaRepository<Salary, Long> {
             "FROM Attendance a WHERE a.user_id = :userId AND a.date BETWEEN :startDate AND :endDate " +
             "AND TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) > 8",
             nativeQuery = true)
-    BigDecimal getTotalOvertimeHoursByUserAndDateRange(@Param("userId") Long userId,
-                                                       @Param("startDate") LocalDateTime startDate,
-                                                       @Param("endDate") LocalDateTime endDate);
+    double getTotalOvertimeHoursByUserAndDateRange(@Param("userId") Long userId,
+                                                   @Param("startDate") LocalDateTime startDate,
+                                                   @Param("endDate") LocalDateTime endDate);
+
 
     // Get total overtime salary for a user in a specific period
     @Query(value = "SELECT SUM((s.netSalary / 4 / 5 / 8) * (TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) - 8)) " +
@@ -54,7 +54,7 @@ public interface SalaryRepository extends JpaRepository<Salary, Long> {
             "WHERE u.id = :userId AND a.date BETWEEN :startDate AND :endDate " +
             "AND TIMESTAMPDIFF(HOUR, a.clockInTime, a.clockOutTime) > 8",
             nativeQuery = true)
-    BigDecimal getTotalOvertimeSalaryByUserAndDateRange(@Param("userId") Long userId,
+    double getTotalOvertimeSalaryByUserAndDateRange(@Param("userId") Long userId,
                                                         @Param("startDate") LocalDateTime startDate,
                                                         @Param("endDate") LocalDateTime endDate);
 
