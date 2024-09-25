@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,6 +129,7 @@
       <workItem from="1727163684437" duration="9503000" />
       <workItem from="1727174905099" duration="5597000" />
       <workItem from="1727194988378" duration="1672000" />
+      <workItem from="1727259802934" duration="1201000" />
     </task>
     <servers />
   </component>
