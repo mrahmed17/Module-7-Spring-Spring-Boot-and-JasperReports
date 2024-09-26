@@ -3,7 +3,6 @@ package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Role;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
-import com.mrahmed.HRandPayrollManagementSystem.repository.UserRepository;
 import com.mrahmed.HRandPayrollManagementSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +51,6 @@ public class UserRestController {
             return new ResponseEntity<>("User not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
 
 
 

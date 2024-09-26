@@ -18,18 +18,17 @@ import java.util.Optional;
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
 
-//    List<Attendance> findAllByUserId(Long id);
-
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendancesByUserIdAndDateRange(
             @Param("userId") long userId,
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate);
 
+
     long countByUserIdAndDate(long userId, LocalDate date);
 
     @Query("SELECT a FROM Attendance a WHERE a.date = :currentDate")
-    List<Attendance> findAttendancesForToday(LocalDate currentDate);
+    List<Attendance> findAttendancesForToday(@Param("currentDate") LocalDate currentDate);
 
     @Query("SELECT a FROM Attendance a WHERE a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendancesInRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
@@ -37,8 +36,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = :today ORDER BY a.clockInTime DESC")
     Optional<Attendance> findLastAttendanceForUser(@Param("userId") long userId, @Param("today") LocalDate today);
 
-    @Query("SELECT u FROM User u WHERE u.id NOT IN " +
-            "(SELECT a.user.id FROM Attendance a WHERE a.date = :today)")
+    @Query("SELECT u FROM User u WHERE u.id NOT IN (SELECT a.user.id FROM Attendance a WHERE a.date = :today)")
     List<User> findUsersWithoutAttendanceForToday(@Param("today") LocalDate today);
 
 
@@ -54,10 +52,10 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a.date, COUNT(a) FROM Attendance a WHERE a.date IN (:holidayDates) GROUP BY a.date ORDER BY COUNT(a) ASC")
     List<Object[]> findHolidayAttendance(@Param("holidayDates") List<LocalDate> holidayDates);
 
+    @Query("SELECT a FROM Attendance a WHERE a.clockInTime > :lateTime AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findLateCheckIns(@Param("lateTime") LocalTime lateTime,
                                       @Param("startDate") LocalDate startDate,
                                       @Param("endDate") LocalDate endDate);
-
 
     @Query("SELECT u.id, COUNT(a) FROM Attendance a JOIN a.user u WHERE a.date BETWEEN :startDate AND :endDate GROUP BY u.id ORDER BY COUNT(a) DESC")
     List<Object[]> findRegularEmployeesForShiftPlanning(@Param("startDate") LocalDate startDate,
@@ -90,8 +88,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     void deleteByUserId(@Param("userId") Long userId);
 
 
-
-
     // 10. Department-wise attendance trends (which department had the most attendance)
 //    @Query("SELECT d.name, COUNT(a) FROM Attendance a JOIN a.user u JOIN u.department d GROUP BY d.name ORDER BY COUNT(a) DESC")
 //    List<Object[]> findAttendanceByDepartment();
@@ -116,7 +112,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 //    @Query("SELECT a FROM Attendance a WHERE a.leaveType IS NOT NULL AND a.date BETWEEN :startDate AND :endDate")
 //    List<Attendance> findAbsencesWithReasonInRange(@Param("startDate") LocalDate startDate,
 //                                                   @Param("endDate") LocalDate endDate);
-
 
 
 }

@@ -6,9 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Emran_Sir_b1492d25-b022-46cd-ae52-7563482f8421.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Md__Raju_Ahmed_b9e13100-dd43-4ada-9d69-ce3c232acb26.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Moshaidul_Sir_78ce9a0e-fa5d-4f9a-86c4-ab116111da80.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Mostafa_27e14906-13c7-4dbd-b358-f887c800c43a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Nusrat_fcc30a1c-073a-4bf7-9d78-f0526047a1fd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Shamima_ab079e66-845d-4605-a575-a4bdb6fc0cf4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Tamim_Ahmed_Raju_13b81571-2b98-4906-b231-f16cf901dd3c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Towhid_1df0bccc-b325-4cb8-8a36-8296f92d3296.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +80,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -138,6 +149,8 @@
       <workItem from="1727291033841" duration="1215000" />
       <workItem from="1727327243506" duration="6308000" />
       <workItem from="1727334179869" duration="729000" />
+      <workItem from="1727342165699" duration="736000" />
+      <workItem from="1727343041074" duration="5658000" />
     </task>
     <servers />
   </component>

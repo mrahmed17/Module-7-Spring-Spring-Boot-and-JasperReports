@@ -111,16 +111,13 @@ public class UserService {
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-
         String originalFilename = file.getOriginalFilename();
         String fileExtension = (originalFilename != null && originalFilename.contains("."))
                 ? originalFilename.substring(originalFilename.lastIndexOf("."))
                 : "";
-
         String filename = createUniqueFilename(fullName, fileExtension);
         Path filePath = uploadPath.resolve(filename);
         Files.copy(file.getInputStream(), filePath);
-
         return filename;
     }
 

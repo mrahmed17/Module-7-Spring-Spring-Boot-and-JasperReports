@@ -11,11 +11,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-//    @Value("${upload.directory}")
-//    private String uploadDirectory;
-
     @Value("${upload.directory}")
     private String uploadDirectory;
+
+//    @Value("${upload.directory}")
+//    private String uploadDirectory;
 
     @PostConstruct
     public void init() {
@@ -27,7 +27,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:" + uploadDirectory + "/");
-
 
 //        registry.addResourceHandler("/uploadDirectory/**")
 //                .addResourceLocations("file:" + uploadDirectory + "/");
