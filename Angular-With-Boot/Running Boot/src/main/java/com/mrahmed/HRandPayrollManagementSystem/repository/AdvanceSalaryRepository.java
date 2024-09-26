@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.repository;
 
+import org.springframework.data.domain.Pageable;
 import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface AdvanceSalaryRepository extends JpaRepository<AdvanceSalary, Long> {
@@ -31,7 +31,7 @@ public interface AdvanceSalaryRepository extends JpaRepository<AdvanceSalary, Lo
     List<AdvanceSalary> findByMonthAndYear(@Param("month") Month month, @Param("year") int year);
 
     @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId ORDER BY a.advanceDate DESC")
-    Optional<AdvanceSalary> findLatestAdvanceSalaryByUser(@Param("userId") Long userId);
+    List<AdvanceSalary> findLatestAdvanceSalaryByUser(@Param("userId") Long userId, Pageable pageable);
 
 
 }

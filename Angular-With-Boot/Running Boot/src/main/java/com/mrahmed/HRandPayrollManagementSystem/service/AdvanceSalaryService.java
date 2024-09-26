@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +36,12 @@ public class AdvanceSalaryService {
      * @return Updated AdvanceSalary entity
      */
     public AdvanceSalary updateAdvanceSalary(AdvanceSalary advanceSalary) {
-        if (advanceSalary.getId() != 0 && advanceSalaryRepository.existsById(advanceSalary.getId())) {
-            return advanceSalaryRepository.save(advanceSalary);
+        if (advanceSalary.getId() == 0 || !advanceSalaryRepository.existsById(advanceSalary.getId())) {
+            throw new IllegalArgumentException("AdvanceSalary with ID " + advanceSalary.getId() + " does not exist.");
         }
-        throw new IllegalArgumentException("AdvanceSalary with ID " + advanceSalary.getId() + " does not exist.");
+        return advanceSalaryRepository.save(advanceSalary);
     }
+
 
     /**
      * Delete an advance salary record by ID.
@@ -126,8 +129,11 @@ public class AdvanceSalaryService {
      * @return Optional containing the latest AdvanceSalary record for the user
      */
     public Optional<AdvanceSalary> getLatestAdvanceSalaryByUser(Long userId) {
-        return advanceSalaryRepository.findLatestAdvanceSalaryByUser(userId);
+        Pageable pageable = PageRequest.of(0, 1);
+        List<AdvanceSalary> salaries = advanceSalaryRepository.findLatestAdvanceSalaryByUser(userId, pageable);
+        return salaries.isEmpty() ? Optional.empty() : Optional.of(salaries.get(0));
     }
+
 
     /**
      * Calculate the total advance salary for a user within a specific date range.

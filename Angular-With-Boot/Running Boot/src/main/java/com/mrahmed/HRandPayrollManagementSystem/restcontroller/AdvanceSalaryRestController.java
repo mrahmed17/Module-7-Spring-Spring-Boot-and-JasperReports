@@ -4,12 +4,14 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.AdvanceSalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,10 +122,11 @@ public class AdvanceSalaryRestController {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body(advanceSalaries);
             }
             return ResponseEntity.ok(advanceSalaries);
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             return ResponseEntity.badRequest().body("Invalid date format. Use 'yyyy-MM-ddTHH:mm:ss'");
         }
     }
+
 
     // Get advance salaries for a specific month and year
     @GetMapping("/month/{month}/year/{year}")
@@ -146,5 +149,25 @@ public class AdvanceSalaryRestController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NO_CONTENT).build());
     }
 
+    /**
+     * Calculate the total advance salary for a user within a specific date range.
+     *
+     * @param userId    User ID
+     * @param startDate Start date in 'yyyy-MM-ddTHH:mm:ss' format
+     * @param endDate   End date in 'yyyy-MM-ddTHH:mm:ss' format
+     * @return Total advance salary amount within the specified date range
+     */
+    @GetMapping("/user/{userId}/total")
+    public ResponseEntity<?> calculateTotalAdvanceSalary(
+            @PathVariable Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        try {
+            double totalAdvanceSalary = advanceSalaryService.calculateTotalAdvanceSalary(userId, startDate, endDate);
+            return ResponseEntity.ok(totalAdvanceSalary);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while calculating total advance salary");
+        }
+    }
 
 }

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +136,8 @@
       <workItem from="1727194988378" duration="1672000" />
       <workItem from="1727259802934" duration="1201000" />
       <workItem from="1727291033841" duration="1215000" />
-      <workItem from="1727327243506" duration="5200000" />
+      <workItem from="1727327243506" duration="6308000" />
+      <workItem from="1727334179869" duration="729000" />
     </task>
     <servers />
   </component>
