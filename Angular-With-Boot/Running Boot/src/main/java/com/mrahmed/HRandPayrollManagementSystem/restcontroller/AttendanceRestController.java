@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -106,11 +107,11 @@ public class AttendanceRestController {
         return ResponseEntity.ok(attendance);
     }
 
-    @GetMapping("/user/{id}/attendances")
-    public ResponseEntity<List<Attendance>> getAttendancesByUserId(@PathVariable Long id) {
-        List<Attendance> attendances = attendanceService.getAttendanceByUserId(id);
-        return ResponseEntity.ok(attendances);
-    }
+//    @GetMapping("/user/{id}/attendances")
+//    public ResponseEntity<List<Attendance>> getAttendancesByUserId(@PathVariable Long id) {
+//        List<Attendance> attendances = attendanceService.getAttendanceByUserId(id);
+//        return ResponseEntity.ok(attendances);
+//    }
 
     @GetMapping("/attendanceRange")
     public ResponseEntity<Map<User, Long>> getUsersWithAttendanceInRange(
@@ -146,7 +147,7 @@ public class AttendanceRestController {
 
     @GetMapping("/lateCheckIns")
     public ResponseEntity<List<Attendance>> getLateCheckIns(
-            @RequestParam("lateTime") String lateTime,
+            @RequestParam("lateTime") LocalTime lateTime,
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
         List<Attendance> lateCheckIns = attendanceService.getLateCheckIns(lateTime, startDate, endDate);

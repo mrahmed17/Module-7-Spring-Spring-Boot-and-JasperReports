@@ -125,7 +125,13 @@ public class LeaveService {
 
     // Calculate remaining leaves based on start and end dates (helper method)
     private int calculateRemainingLeaveDays(LocalDate startDate, LocalDate endDate) {
-        return (int) (endDate.toEpochDay() - startDate.toEpochDay());
+        if (startDate == null || endDate == null) {
+            throw new IllegalArgumentException("Start date and end date must not be null");
+        }
+        if (startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("End date must be after start date");
+        }
+        return (int) (endDate.toEpochDay() - startDate.toEpochDay()) + 1; // +1 to include the end date
     }
 
     // Get leaves within a date range

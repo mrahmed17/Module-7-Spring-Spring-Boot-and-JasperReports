@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,6 +16,9 @@ import java.util.Optional;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
+
+
+//    List<Attendance> findAllByUserId(Long id);
 
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendancesByUserIdAndDateRange(
@@ -37,7 +41,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
             "(SELECT a.user.id FROM Attendance a WHERE a.date = :today)")
     List<User> findUsersWithoutAttendanceForToday(@Param("today") LocalDate today);
 
-    List<Attendance> findAllByUserId(Long id);
 
     @Query("SELECT a.date, COUNT(a) FROM Attendance a GROUP BY a.date ORDER BY COUNT(a) DESC")
     List<Object[]> findPeakAttendanceDay();
@@ -51,10 +54,10 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a.date, COUNT(a) FROM Attendance a WHERE a.date IN (:holidayDates) GROUP BY a.date ORDER BY COUNT(a) ASC")
     List<Object[]> findHolidayAttendance(@Param("holidayDates") List<LocalDate> holidayDates);
 
-    @Query("SELECT a FROM Attendance a WHERE a.clockInTime > :lateTime AND a.date BETWEEN :startDate AND :endDate ORDER BY a.clockInTime DESC")
-    List<Attendance> findLateCheckIns(@Param("lateTime") String lateTime,
+    List<Attendance> findLateCheckIns(@Param("lateTime") LocalTime lateTime,
                                       @Param("startDate") LocalDate startDate,
                                       @Param("endDate") LocalDate endDate);
+
 
     @Query("SELECT u.id, COUNT(a) FROM Attendance a JOIN a.user u WHERE a.date BETWEEN :startDate AND :endDate GROUP BY u.id ORDER BY COUNT(a) DESC")
     List<Object[]> findRegularEmployeesForShiftPlanning(@Param("startDate") LocalDate startDate,
@@ -66,8 +69,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     @Query("SELECT a FROM Attendance a WHERE a.user.role = :role AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendanceByRoleAndDateRange(@Param("role") String role,
-                                                      @Param("startDate") LocalDate startDate,
-                                                      @Param("endDate") LocalDate endDate);
+                                                      @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
     List<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
@@ -83,8 +85,10 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
                                          @Param("dayShiftEnd") LocalTime dayShiftEnd);
 
     @Modifying
+    @Transactional
     @Query("DELETE FROM Attendance a WHERE a.user.id = :userId")
     void deleteByUserId(@Param("userId") Long userId);
+
 
 
 

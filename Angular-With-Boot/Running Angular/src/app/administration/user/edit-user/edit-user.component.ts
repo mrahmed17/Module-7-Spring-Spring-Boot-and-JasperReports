@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { NotificationService } from '../../../services/notification.service';
 import { UserModel } from '../../../models/user.model';
-import { RoleEnum } from '../../../models/role.enum';
 import {
   faCalendarAlt,
   faCalendarDay,
@@ -66,7 +65,7 @@ export class EditUserComponent implements OnInit {
       basicSalary: ['', Validators.required],
       joinedDate: ['', Validators.required],
       role: ['', Validators.required],
-      profilePhoto: [null], // Optional for file
+      profilePhoto: [null],
     });
   }
 
@@ -103,15 +102,17 @@ export class EditUserComponent implements OnInit {
 
       const fileToSend: File | undefined = this.selectedFile || undefined;
 
-      this.userService.updateUser(this.userId, user, fileToSend).subscribe(
-        (response) => {
+      this.userService.updateUser(this.userId, user, fileToSend).subscribe({
+        next:(response) => {
           this.successMessage = 'User updated successfully!';
           this.errorMessage = '';
         },
-        (error) => {
+        error:(error) => {
           this.errorMessage = 'Failed to update user';
           this.successMessage = '';
         }
+
+      }        
       );
     } else {
       this.errorMessage = 'Please fill in all required fields';

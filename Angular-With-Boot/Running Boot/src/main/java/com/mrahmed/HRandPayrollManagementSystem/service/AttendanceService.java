@@ -132,9 +132,9 @@ public class AttendanceService {
                 .collect(Collectors.groupingBy(Attendance::getUser, Collectors.counting()));
     }
 
-    public List<Attendance> getAttendanceByUserId(Long id) {
-        return attendanceRepository.findAllByUserId(id);
-    }
+//    public List<Attendance> getAttendanceByUserId(Long id) {
+//        return attendanceRepository.findAllByUserId(id);
+//    }
 
     public List<User> findUsersWithoutAttendanceToday() {
         return attendanceRepository.findUsersWithoutAttendanceForToday(LocalDate.now());
@@ -156,7 +156,7 @@ public class AttendanceService {
         return attendanceRepository.findHolidayAttendance(holidayDates);
     }
 
-    public List<Attendance> getLateCheckIns(String lateTime, LocalDate startDate, LocalDate endDate) {
+    public List<Attendance> getLateCheckIns(LocalTime lateTime, LocalDate startDate, LocalDate endDate) {
         return attendanceRepository.findLateCheckIns(lateTime, startDate, endDate);
     }
 
