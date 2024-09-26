@@ -17,13 +17,11 @@ import java.util.Optional;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
-
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendancesByUserIdAndDateRange(
             @Param("userId") long userId,
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate);
-
 
     long countByUserIdAndDate(long userId, LocalDate date);
 
@@ -64,13 +62,12 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a FROM Attendance a WHERE LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Attendance> findAttendancesByUserNamePart(@Param("name") String name);
 
-
     @Query("SELECT a FROM Attendance a WHERE a.user.role = :role AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendanceByRoleAndDateRange(@Param("role") String role,
                                                       @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
-    List<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
+    Optional<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
 
     @Query("SELECT a FROM Attendance a WHERE a.date BETWEEN :startDate AND :endDate AND (" +
             "(a.clockInTime BETWEEN :morningShiftStart AND :morningShiftEnd AND a.clockOutTime > :morningShiftEnd) OR " +
@@ -86,6 +83,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Transactional
     @Query("DELETE FROM Attendance a WHERE a.user.id = :userId")
     void deleteByUserId(@Param("userId") Long userId);
+
+    List<Attendance> findByUserIdAndDate(long userId, LocalDate date);
 
 
     // 10. Department-wise attendance trends (which department had the most attendance)

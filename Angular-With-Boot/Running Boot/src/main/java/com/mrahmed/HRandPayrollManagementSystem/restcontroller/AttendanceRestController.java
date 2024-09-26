@@ -25,6 +25,35 @@ public class AttendanceRestController {
     @Autowired
     private UserService userService;
 
+
+    @PostMapping("/checkin")
+    public ResponseEntity<String> checkIn(@RequestBody Map<String, Object> request) {
+        try {
+            long userId = Long.parseLong(request.get("userId").toString());
+            attendanceService.checkIn(userId);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Check-in successful for user ID: " + userId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking in");
+        }
+    }
+
+    @PutMapping("/checkout")
+    public ResponseEntity<String> checkOut(@RequestBody Map<String, Object> request) {
+        try {
+            long userId = Long.parseLong(request.get("userId").toString());
+            attendanceService.checkOut(userId);
+            return ResponseEntity.ok("Check-out successful for user ID: " + userId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking out");
+        }
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Attendance>> getAllAttendances() {
+        List<Attendance> attendances = attendanceService.getAllAttendances();
+        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
+    }
+
     @GetMapping("/overtime/{userId}")
     public ResponseEntity<List<Attendance>> getOvertimeByUser(
             @PathVariable Long userId,
@@ -37,18 +66,17 @@ public class AttendanceRestController {
         return ResponseEntity.ok(overtimeRecords);
     }
 
+
     // New endpoint for fetching overtime in a date range
     @GetMapping("/overtime")
     public List<Attendance> getOvertimeInRange(
             @RequestParam("startDate") String startDate,
             @RequestParam("endDate") String endDate) {
-        // Convert the string parameters to LocalDate
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
-
-        // Call the service method to get overtime attendances
         return attendanceService.getOvertimeInRange(start, end);
     }
+
 
     @GetMapping("/today")
     public ResponseEntity<List<Attendance>> getTodayAttendance() {
@@ -56,16 +84,12 @@ public class AttendanceRestController {
         return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
 
+
     // New endpoint to get users without attendance today
     @GetMapping("/absent-today")
-    public List<User> getUsersWithoutAttendanceToday() {
-        return attendanceService.findUsersWithoutAttendanceToday();
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<List<Attendance>> getAllAttendances() {
-        List<Attendance> attendances = attendanceService.getAllAttendances();
-        return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
+    public ResponseEntity<List<User>> getUsersWithoutAttendanceToday() {
+        List<User> absentUsers = attendanceService.findUsersWithoutAttendanceToday();
+        return absentUsers.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(absentUsers);
     }
 
 
@@ -75,31 +99,6 @@ public class AttendanceRestController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/checkin")
-    public ResponseEntity<String> checkIn(@RequestBody Map<String, Object> request) {
-        try {
-            long userId = Long.parseLong(request.get("userId").toString());
-            Attendance attendance = attendanceService.checkIn(userId);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Check-in successful for user ID: " + userId);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body("Invalid user ID format");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking in");
-        }
-    }
-
-    @PutMapping("/checkout")
-    public ResponseEntity<String> checkOut(@RequestBody Map<String, Object> request) {
-        try {
-            long userId = Long.parseLong(request.get("userId").toString());
-            Attendance attendance = attendanceService.checkOut(userId);
-            return ResponseEntity.ok("Check-out successful for user ID: " + userId);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body("Invalid user ID format");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking out");
-        }
-    }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Attendance> findAttendanceById(@PathVariable("id") long id) {
@@ -120,6 +119,26 @@ public class AttendanceRestController {
         Map<User, Long> userAttendance = attendanceService.getUsersAttendanceInRange(startDate, endDate);
         return userAttendance.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(userAttendance);
     }
+
+    @GetMapping("/isWithinMorningShift/{userId}")
+    public ResponseEntity<Boolean> isWithinMorningShift(@PathVariable Long userId) {
+        boolean isMorningShift = attendanceService.isWithinMorningShift(userId);
+        return ResponseEntity.ok(isMorningShift);
+    }
+
+    @GetMapping("/isWithinDayShift/{userId}")
+    public ResponseEntity<Boolean> isWithinDayShift(@PathVariable Long userId) {
+        boolean isDayShift = attendanceService.isWithinDayShift(userId);
+        return ResponseEntity.ok(isDayShift);
+    }
+
+
+    @GetMapping("/isLate/{userId}")
+    public ResponseEntity<Boolean> isLate(@PathVariable Long userId) {
+        boolean isLate = attendanceService.isLate(userId);
+        return ResponseEntity.ok(isLate);
+    }
+
 
     @GetMapping("/peakAttendanceDay")
     public ResponseEntity<List<Object[]>> getPeakAttendanceDay() {
@@ -154,6 +173,7 @@ public class AttendanceRestController {
         return lateCheckIns.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(lateCheckIns);
     }
 
+
     @GetMapping("/shiftPlanning")
     public ResponseEntity<List<Object[]>> getRegularEmployeesForShiftPlanning(
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
@@ -162,11 +182,13 @@ public class AttendanceRestController {
         return regularEmployees.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(regularEmployees);
     }
 
+
     @GetMapping("/searchByName")
     public ResponseEntity<List<Attendance>> getAttendancesByUserNamePart(@RequestParam("name") String name) {
         List<Attendance> attendances = attendanceService.getAttendancesByUserNamePart(name);
         return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
+
 
     @GetMapping("/roleAttendance")
     public ResponseEntity<List<Attendance>> getAttendanceByRoleAndDateRange(
@@ -177,11 +199,14 @@ public class AttendanceRestController {
         return attendances.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(attendances);
     }
 
+
     @GetMapping("/todayAttendance/{userId}")
     public ResponseEntity<List<Attendance>> getTodayAttendanceByUserId(@PathVariable("userId") long userId) {
         List<Attendance> todayAttendance = attendanceService.getTodayAttendanceByUserId(userId);
         return todayAttendance.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(todayAttendance);
     }
+
+
 
 
 }

@@ -1,13 +1,123 @@
+/* Container styling */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form heading */
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Mandatory icon styling */
+.mandatory-icon {
+  color: #d9534f;
+}
+
+/* Form Control styling */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Invalid Input Styling */
+.is-invalid {
+  border-color: #dc3545;
+  background-color: #f8d7da;
+}
+
+/* Invalid Feedback Styling */
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+/* Buttons */
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button[type="submit"] {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+/* Icon Styling */
+.fa-icon {
+  margin-right: 5px;
+}
+
+/* Alerts */
+.alert {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .row {
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+  }
+}
+
+/* Success and Error Messages */
+.alert-success, .alert-danger {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 
 .create-user-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* create-user.component.css */
 .mandatory-icon {
-  color: red; /* or any color you prefer */
-  margin-right: 5px; /* spacing between icon and text */
+  color: red; 
+  margin-right: 5px;
 }
 
 
@@ -40,4 +150,4 @@ button:disabled {
   background-color: #b3aaaa;
   cursor: not-allowed;
 }
-
+ */

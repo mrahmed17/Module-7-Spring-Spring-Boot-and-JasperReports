@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "attendances")
@@ -19,8 +20,8 @@ public class Attendance {
     private long id;
 
     private LocalDate date;
-    private LocalDateTime clockInTime;
-    private LocalDateTime clockOutTime;
+    private LocalTime clockInTime;
+    private LocalTime clockOutTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
