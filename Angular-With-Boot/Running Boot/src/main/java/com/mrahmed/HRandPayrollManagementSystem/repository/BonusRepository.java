@@ -16,21 +16,21 @@ import java.util.Optional;
 public interface BonusRepository extends JpaRepository<Bonus, Long> {
 
     @Query("SELECT b.bonusAmount FROM Bonus b WHERE b.user.id = :userId AND b.year = :year")
-    double getBonusForUserAndYear(@Param("userId") Long userId, @Param("year") int year);
+    Optional<Double> getBonusForUserAndYear(@Param("userId") Long userId, @Param("year") int year);
 
-    @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.user.id = :userId AND b.year = :year")
+    @Query("SELECT COALESCE(SUM(b.bonusAmount), 0.0) FROM Bonus b WHERE b.user.id = :userId AND b.year = :year")
     double getTotalBonusForUserAndYear(@Param("userId") Long userId, @Param("year") int year);
 
-    @Query("SELECT b FROM Bonus b WHERE b.bonusMonth = :bonusMonth AND b.year = :year")
+    @Query("SELECT b FROM Bonus b WHERE b.bonusMonth = :bonusMonth AND b.year = :year ORDER BY b.bonusDate DESC")
     List<Bonus> getBonusesByMonthAndYear(@Param("bonusMonth") Month bonusMonth, @Param("year") int year);
 
     @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId AND b.bonusMonth = :bonusMonth AND b.year = :year")
     Optional<Bonus> getBonusForUserByMonthAndYear(@Param("userId") Long userId, @Param("bonusMonth") Month bonusMonth, @Param("year") int year);
 
-    @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.year = :year")
+    @Query("SELECT COALESCE(SUM(b.bonusAmount), 0.0) FROM Bonus b WHERE b.year = :year")
     double getTotalBonusPaidInYear(@Param("year") int year);
 
-    @Query("SELECT b FROM Bonus b WHERE b.bonusDate BETWEEN :startDate AND :endDate")
+    @Query("SELECT b FROM Bonus b WHERE b.bonusDate BETWEEN :startDate AND :endDate ORDER BY b.bonusDate ASC")
     List<Bonus> getBonusesBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     @Query("SELECT DISTINCT b.user.id FROM Bonus b WHERE b.year = :year")
@@ -42,7 +42,7 @@ public interface BonusRepository extends JpaRepository<Bonus, Long> {
     @Query("SELECT COUNT(b) FROM Bonus b WHERE b.user.id = :userId AND b.year = :year")
     int countBonusesForUserInYear(@Param("userId") Long userId, @Param("year") int year);
 
-    @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.bonusMonth = :bonusMonth AND b.year = :year")
+    @Query("SELECT COALESCE(SUM(b.bonusAmount), 0.0) FROM Bonus b WHERE b.bonusMonth = :bonusMonth AND b.year = :year")
     double getTotalBonusForMonthAndYear(@Param("bonusMonth") Month bonusMonth, @Param("year") int year);
 
 

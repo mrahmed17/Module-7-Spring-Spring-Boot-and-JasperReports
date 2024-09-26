@@ -22,12 +22,10 @@ public class BonusService {
     @Autowired
     private LeaveRepository leaveRepository;
 
-    // Save a bonus
     public Bonus saveBonus(Bonus bonus) {
         return bonusRepository.save(bonus);
     }
 
-    // Update a bonus by ID
     public Bonus updateBonus(Long id, Bonus updatedBonus) {
         if (bonusRepository.existsById(id)) {
             updatedBonus.setId(id); // Ensure the ID is set for the update
@@ -39,25 +37,16 @@ public class BonusService {
 
     // Calculate bonus for a user in a specific year considering unpaid leaves
     public double calculateBonus(Long userId, int year) {
-        // Fetch total unpaid leave days for the user
         int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(
                 userId,
                 Arrays.asList(LeaveType.SICK_UNPAID, LeaveType.RESERVE_UNPAID),
                 year
         );
 
-        // Fetch base bonus for the user and year
-        Double baseBonus = bonusRepository.getBonusForUserAndYear(userId, year);
+        Double baseBonus = bonusRepository.getBonusForUserAndYear(userId, year).orElse(0.0);
 
-        // If no base bonus is found, return zero
-        if (baseBonus == null) {
-            baseBonus = 0.0;
-        }
-
-        // Calculate deduction based on unpaid leave days
         double deduction = calculateLeaveBonusDeduction(totalUnpaidLeaveDays);
 
-        // Return the final bonus after deduction
         return baseBonus - deduction;
     }
 
@@ -85,8 +74,8 @@ public class BonusService {
 
     // Get bonuses for a user for a specific month and year (handling Optional)
     public Bonus getBonusForUserByMonthAndYear(Long userId, Month month, int year) {
-        Optional<Bonus> bonus = bonusRepository.getBonusForUserByMonthAndYear(userId, month, year);
-        return bonus.orElseThrow(() -> new RuntimeException("Bonus not found for user " + userId + " for the given month and year"));
+        return bonusRepository.getBonusForUserByMonthAndYear(userId, month, year)
+                .orElseThrow(() -> new RuntimeException("Bonus not found for user " + userId + " for the given month and year"));
     }
 
     // Get bonuses between a date range
