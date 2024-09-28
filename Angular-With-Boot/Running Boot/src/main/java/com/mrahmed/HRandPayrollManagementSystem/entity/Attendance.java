@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "attendances")
@@ -20,14 +19,16 @@ public class Attendance {
     private long id;
 
     private LocalDate date;
-    private LocalTime clockInTime;
-    private LocalTime clockOutTime;
+    private LocalDateTime clockInTime;
+    private LocalDateTime clockOutTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     @JsonBackReference
     private User user;
 
+    @Column(name = "isLate", nullable = false)
     private boolean late;
+
 
 }

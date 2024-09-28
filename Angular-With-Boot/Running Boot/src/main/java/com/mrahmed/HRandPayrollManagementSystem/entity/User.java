@@ -33,8 +33,8 @@ public class User {
     private LocalDate joinedDate;
     private String profilePhoto;
 
-    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
-    private boolean active;
+    @Column(name = "isActive", nullable = false)
+    private boolean active = true;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -47,9 +47,10 @@ public class User {
     @JsonManagedReference
     private List<Attendance> attendances;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JsonBackReference
-//    private Branch branches;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "departmentId", nullable = false)
+    @JsonBackReference
+    private Department departments;
 
 
 }

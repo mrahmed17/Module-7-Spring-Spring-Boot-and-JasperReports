@@ -6,6 +6,7 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.repository.BonusRepository;
 import com.mrahmed.HRandPayrollManagementSystem.repository.LeaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,38 +16,61 @@ import java.util.Optional;
 
 @Service
 public class BonusService {
-
     @Autowired
     private BonusRepository bonusRepository;
 
     @Autowired
     private LeaveRepository leaveRepository;
 
-    public Bonus saveBonus(Bonus bonus) {
+
+    // Create a new Bonus
+    public Bonus createBonus(Bonus bonus) {
         return bonusRepository.save(bonus);
     }
 
+    // Read/Get a Bonus by ID
+    public Optional<Bonus> getBonusById(Long id) {
+        return bonusRepository.findById(id);
+    }
+
+    // Update an existing Bonus
     public Bonus updateBonus(Long id, Bonus updatedBonus) {
-        if (bonusRepository.existsById(id)) {
-            updatedBonus.setId(id); // Ensure the ID is set for the update
-            return bonusRepository.save(updatedBonus);
+        Optional<Bonus> bonusOptional = bonusRepository.findById(id);
+        if (bonusOptional.isPresent()) {
+            Bonus existingBonus = bonusOptional.get();
+            existingBonus.setBonusAmount(updatedBonus.getBonusAmount());
+            existingBonus.setBonusMonth(updatedBonus.getBonusMonth());
+            existingBonus.setYear(updatedBonus.getYear());
+            existingBonus.setBonusDate(updatedBonus.getBonusDate());
+            existingBonus.setUser(updatedBonus.getUser());
+            return bonusRepository.save(existingBonus);
         } else {
-            throw new RuntimeException("Bonus not found with id " + id);
+            return null;
         }
     }
 
+
+    // Delete a Bonus by ID
+    public void deleteBonus(Long id) {
+        bonusRepository.deleteById(id);
+    }
+
+
     // Calculate bonus for a user in a specific year considering unpaid leaves
-    public double calculateBonus(Long userId, int year) {
-        int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(
-                userId,
-                Arrays.asList(LeaveType.SICK_UNPAID, LeaveType.RESERVE_UNPAID),
-                year
-        );
+    public double calculateBonus(Long userId) {
+        // Define the list of unpaid leave types
+        List<LeaveType> unpaidLeaveTypes = Arrays.asList(LeaveType.SICK_UNPAID, LeaveType.RESERVE_UNPAID);
 
-        Double baseBonus = bonusRepository.getBonusForUserAndYear(userId, year).orElse(0.0);
+        // Fetch total unpaid leave days for the user
+        int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(userId, unpaidLeaveTypes);
 
+        // Fetch the user's base bonus for the year
+        double baseBonus = bonusRepository.getTotalBonusByUserId(userId);
+
+        // Calculate the deduction based on unpaid leave days
         double deduction = calculateLeaveBonusDeduction(totalUnpaidLeaveDays);
 
+        // Return the final calculated bonus after applying the deduction
         return baseBonus - deduction;
     }
 
@@ -56,54 +80,70 @@ public class BonusService {
         return deductionPerDay * totalUnpaidLeaveDays;
     }
 
-    // Get total bonus for a user for a specific year
-    public double getTotalBonusForUser(Long userId, int year) {
-        Double totalBonus = bonusRepository.getTotalBonusForUserAndYear(userId, year);
-        return totalBonus != null ? totalBonus : 0.0;
+
+    // Find bonuses by user's email
+    public List<Bonus> findBonusesByEmail(String email) {
+        return bonusRepository.findBonusesByEmail(email);
     }
 
-    // Get all bonuses for a specific month and year
-    public List<Bonus> getBonusesByMonthAndYear(Month month, int year) {
-        return bonusRepository.getBonusesByMonthAndYear(month, year);
+    // Find bonuses by user's full name (partial match, case-insensitive)
+    public List<Bonus> findBonusesByName(String name) {
+        return bonusRepository.findBonusesByName(name);
     }
 
-    // Get the total bonus paid in a specific year
-    public double getTotalBonusPaidInYear(int year) {
-        return bonusRepository.getTotalBonusPaidInYear(year);
+    // Calculate total bonuses for a user by name
+    public double getTotalBonusByName(Long userId) {
+        return bonusRepository.getTotalBonusByName(userId);
     }
 
-    // Get bonuses for a user for a specific month and year (handling Optional)
-    public Bonus getBonusForUserByMonthAndYear(Long userId, Month month, int year) {
-        return bonusRepository.getBonusForUserByMonthAndYear(userId, month, year)
-                .orElseThrow(() -> new RuntimeException("Bonus not found for user " + userId + " for the given month and year"));
+    // Find bonuses by user ID
+    public List<Bonus> findBonusesByUserId(Long userId) {
+        return bonusRepository.findBonusesByUserId(userId);
     }
 
-    // Get bonuses between a date range
-    public List<Bonus> getBonusesBetweenDates(LocalDateTime startDate, LocalDateTime endDate) {
-        return bonusRepository.getBonusesBetweenDates(startDate, endDate);
+    // Calculate total bonuses for a specific user by user ID
+    public double getTotalBonusByUserId(Long userId) {
+        return bonusRepository.getTotalBonusByUserId(userId);
     }
 
-    // Get users who received a bonus in a specific year
+    // Find bonuses by specific month
+    public List<Bonus> findBonusesByMonth(Month month) {
+        return bonusRepository.findBonusesByMonth(month);
+    }
+
+    // Calculate total bonuses for a specific month
+    public double getTotalBonusByMonth(Month month) {
+        return bonusRepository.getTotalBonusByMonth(month);
+    }
+
+    // Find bonuses by specific year
+    public List<Bonus> findBonusesByYear(int year) {
+        return bonusRepository.findBonusesByYear(year);
+    }
+
+    // Calculate total bonuses for a specific year
+    public double getTotalBonusByYear(int year) {
+        return bonusRepository.getTotalBonusByYear(year);
+    }
+
+    // Find bonuses within a specific date range
+    public List<Bonus> findBonusesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        return bonusRepository.findBonusesByDateRange(startDate, endDate);
+    }
+
+    // Find the latest bonus for a user
+    public List<Bonus> findLatestBonusByUserId(Long userId) {
+        return bonusRepository.findLatestBonusByUserId(userId);
+    }
+
+    // Find distinct users who received bonuses in a specific year
     public List<Long> getUsersWhoReceivedBonusInYear(int year) {
         return bonusRepository.getUsersWhoReceivedBonusInYear(year);
     }
 
-    // Get the latest bonus for a user (handling List)
-    public Bonus getLatestBonusForUser(Long userId) {
-        List<Bonus> bonuses = bonusRepository.getLatestBonusForUser(userId);
-        if (bonuses.isEmpty()) {
-            throw new RuntimeException("No bonuses found for user " + userId);
-        }
-        return bonuses.get(0); // Return the first (latest) bonus
-    }
-
-    // Count the number of bonuses for a user in a specific year
+    // Count the number of bonuses for a specific user in a given year
     public int countBonusesForUserInYear(Long userId, int year) {
         return bonusRepository.countBonusesForUserInYear(userId, year);
     }
 
-    // Get total bonus for a specific month and year
-    public double getTotalBonusForMonthAndYear(Month month, int year) {
-        return bonusRepository.getTotalBonusForMonthAndYear(month, year);
-    }
 }

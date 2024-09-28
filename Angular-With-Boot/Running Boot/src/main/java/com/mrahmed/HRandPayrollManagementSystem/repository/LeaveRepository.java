@@ -44,5 +44,19 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
     @Query("SELECT l FROM Leave l WHERE l.startDate BETWEEN :startDate AND :endDate")
     List<Leave> findLeavesByDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+    // Get total unpaid leave days for a specific user and leave types
+    @Query("SELECT COUNT(l) FROM Leave l WHERE l.user.id = :userId AND l.isUnpaid = true AND l.leaveType IN :leaveTypes")
+    int getTotalUnpaidLeaveDays(@Param("userId") Long userId, @Param("leaveTypes") List<LeaveType> leaveTypes);
 
+    // Find leaves by user ID
+    @Query("SELECT l FROM Leave l WHERE l.user.id = :userId")
+    List<Leave> findLeavesByUserId(@Param("userId") Long userId);
+
+    // Find unpaid leaves for a user
+    @Query("SELECT l FROM Leave l WHERE l.user.id = :userId AND l.isUnpaid = true")
+    List<Leave> findUnpaidLeavesByUserId(@Param("userId") Long userId);
+
+    // Count all leaves for a specific user
+    @Query("SELECT COUNT(l) FROM Leave l WHERE l.user.id = :userId")
+    int countLeavesByUserId(@Param("userId") Long userId);
 }

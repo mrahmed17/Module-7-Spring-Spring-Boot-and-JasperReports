@@ -1,279 +1,150 @@
 <div class="container">
   <h2>Create User</h2>
-
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="fullName">
-            <fa-icon [icon]="faUser" class="mandatory-icon"></fa-icon> Full Name:
-          </label>
-          <input type="text" id="fullName" formControlName="fullName" class="form-control"
-            [class.is-invalid]="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" />
-          <div *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" class="invalid-feedback">
-            Full Name is required.
-          </div>
+    <!-- Step 1: Personal Information -->
+    <div *ngIf="currentStep === 1">
+      <h4>Step 1: Personal Information</h4>
+      <div class="form-group">
+        <label for="fullName">
+          <fa-icon [icon]="faUser" class="mandatory-icon"></fa-icon> Full Name:
+        </label>
+        <input type="text" id="fullName" formControlName="fullName" class="form-control"
+          [class.is-invalid]="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" />
+        <div *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" class="invalid-feedback">
+          Full Name is required.
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">
-            <fa-icon [icon]="faEnvelope" class="mandatory-icon"></fa-icon> Email:
-          </label>
-          <input type="email" id="email" formControlName="email" class="form-control"
-            [class.is-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
-          <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">
-            Please enter a valid email.
-          </div>
+      <div class="form-group">
+        <label for="email">
+          <fa-icon [icon]="faEnvelope" class="mandatory-icon"></fa-icon> Email:
+        </label>
+        <input type="email" id="email" formControlName="email" class="form-control"
+          [class.is-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">
+          Please enter a valid email.
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="password">
-            <fa-icon [icon]="faKey" class="mandatory-icon"></fa-icon> Password:
-          </label>
-          <input type="password" id="password" formControlName="password" class="form-control"
-            [class.is-invalid]="userForm.get('password')?.invalid && userForm.get('password')?.touched" />
-          <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">
-            Password is required.
-          </div>
+      <div class="form-group">
+        <label for="password">
+          <fa-icon [icon]="faKey" class="mandatory-icon"></fa-icon> Password:
+        </label>
+        <input type="password" id="password" formControlName="password" class="form-control"
+          [class.is-invalid]="userForm.get('password')?.invalid && userForm.get('password')?.touched" />
+        <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">
+          Password is required.
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="address">
-            <fa-icon [icon]="faHome"></fa-icon> Address:
-          </label>
-          <input type="text" id="address" formControlName="address" class="form-control" />
-        </div>
+      <div class="button-container">
+        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="gender">
-            <fa-icon [icon]="faVenusMars"></fa-icon> Gender:
+    <!-- Step 2: Additional Information -->
+    <div *ngIf="currentStep === 2">
+      <h4>Step 2: Additional Information</h4>
+      <div class="form-group">
+        <label for="address">
+          <fa-icon [icon]="faHome"></fa-icon> Address:
+        </label>
+        <input type="text" id="address" formControlName="address" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <div>
+          <label>
+            <input type="radio" formControlName="gender" value="Male" /> Male
           </label>
-          <select id="gender" formControlName="gender" class="form-control">
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
+          <label>
+            <input type="radio" formControlName="gender" value="Female" /> Female
+          </label>
+          <label>
+            <input type="radio" formControlName="gender" value="Other" /> Other
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">
+          <fa-icon [icon]="faCalendarDay"></fa-icon> Date of Birth:
+        </label>
+        <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="nationalId">
+          <fa-icon [icon]="faIdCard"></fa-icon> National ID:
+        </label>
+        <input type="text" id="nationalId" formControlName="nationalId" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="contact">
+          <fa-icon [icon]="faPhone"></fa-icon> Contact:
+        </label>
+        <input type="text" id="contact" formControlName="contact" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="basicSalary">
+          <fa-icon [icon]="faDollarSign"></fa-icon> Basic Salary:
+        </label>
+        <input type="text" id="basicSalary" formControlName="basicSalary" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="joinedDate">
+          <fa-icon [icon]="faCalendarAlt"></fa-icon> Joined Date:
+        </label>
+        <input type="date" id="joinedDate" formControlName="joinedDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <div>
+          <label *ngFor="let role of roleOptions">
+            <input type="radio" formControlName="role" [value]="role" /> {{ role }}
+          </label>
         </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="dateOfBirth">
-            <fa-icon [icon]="faCalendarAlt"></fa-icon> Date of Birth:
-          </label>
-          <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" />
+      <div class="form-group">
+        <label for="profilePhoto">
+          <fa-icon [icon]="faImage"></fa-icon> Profile Photo:
+        </label>
+        <input type="file" id="profilePhoto" (change)="onFileChange($event)" class="form-control-file" />
+        <div *ngIf="profilePhotoPreview">
+          <img [src]="profilePhotoPreview" alt="Profile Preview" class="img-preview" />
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
         </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="nationalId">
-            <fa-icon [icon]="faIdCard"></fa-icon> National ID:
-          </label>
-          <input type="text" id="nationalId" formControlName="nationalId" class="form-control" />
-        </div>
-      </div>
-
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="contact">
-            <fa-icon [icon]="faPhone"></fa-icon> Contact:
-          </label>
-          <input type="text" id="contact" formControlName="contact" class="form-control" />
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="basicSalary">
-            <fa-icon [icon]="faDollarSign"></fa-icon> Basic Salary:
-          </label>
-          <input type="number" id="basicSalary" formControlName="basicSalary" class="form-control" />
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="joinedDate">
-            <fa-icon [icon]="faCalendarDay"></fa-icon> Joined Date:
-          </label>
-          <input type="date" id="joinedDate" formControlName="joinedDate" class="form-control" />
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="role">
-            <fa-icon [icon]="faUserTag"></fa-icon> Role:
-          </label>
-          <select id="role" formControlName="role" class="form-control">
-            <option value="">Select Role</option>
-            <option value="ADMIN">Admin</option>
-            <option value="COMPANY">Company</option>
-            <option value="MANAGER">Manager</option>
-            <option value="PAYROLL">Payroll</option>
-            <option value="EMPLOYEE">Employee</option>
-          </select>
-        </div>
-      </div>
-
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="profilePhoto">
-            <fa-icon [icon]="faImage"></fa-icon> Profile Photo:
-          </label>
-          <input type="file" id="profilePhoto" (change)="onFileChange($event)" class="form-control" />
-        </div>
+      <div class="button-container">
+        <button type="button" class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
       </div>
     </div>
 
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-    <div class="button-container">
-      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
-        <fa-icon [icon]="faUserPlus"></fa-icon> Create User
-      </button>
+    <!-- Step 3: Confirmation -->
+    <div *ngIf="currentStep === 3">
+      <h4>Step 3: Confirm Information</h4>
+      <div class="confirmation">
+        <p><strong>Full Name:</strong> {{ userForm.get('fullName')?.value }}</p>
+        <p><strong>Email:</strong> {{ userForm.get('email')?.value }}</p>
+        <p><strong>Address:</strong> {{ userForm.get('address')?.value }}</p>
+        <p><strong>Gender:</strong> {{ userForm.get('gender')?.value }}</p>
+        <p><strong>Date of Birth:</strong> {{ userForm.get('dateOfBirth')?.value }}</p>
+        <p><strong>National ID:</strong> {{ userForm.get('nationalId')?.value }}</p>
+        <p><strong>Contact:</strong> {{ userForm.get('contact')?.value }}</p>
+        <p><strong>Basic Salary:</strong> {{ userForm.get('basicSalary')?.value }}</p>
+        <p><strong>Joined Date:</strong> {{ userForm.get('joinedDate')?.value }}</p>
+        <p><strong>Role:</strong> {{ userForm.get('role')?.value }}</p>
+        <div *ngIf="profilePhotoPreview">
+          <p><strong>Profile Photo:</strong></p>
+          <img [src]="profilePhotoPreview" alt="Profile Preview" class="img-preview" />
+        </div>
+      </div>
+      <div class="button-container">
+        <button type="button" class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
     </div>
   </form>
+
+  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+  <div *ngIf="errorMessage && !successMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
 </div>
-
-
-<!-- <div class="container">
-  <h2>Create User</h2>
-
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="fullName">Full Name:</label>
-      <input
-        type="text"
-        id="fullName"
-        formControlName="fullName"
-        class="form-control"
-        [class.is-invalid]="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched"
-      />
-      <div *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" class="invalid-feedback">
-        Full Name is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form-control"
-        [class.is-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched"
-      />
-      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">
-        Please enter a valid email.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        class="form-control"
-        [class.is-invalid]="userForm.get('password')?.invalid && userForm.get('password')?.touched"
-      />
-      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">
-        Password is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="address">Address:</label>
-      <input type="text" id="address" formControlName="address" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="gender">Gender:</label>
-      <select id="gender" formControlName="gender" class="form-control">
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="dateOfBirth">Date of Birth:</label>
-      <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="nationalId">National ID:</label>
-      <input type="text" id="nationalId" formControlName="nationalId" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="contact">Contact:</label>
-      <input type="text" id="contact" formControlName="contact" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="basicSalary">Basic Salary:</label>
-      <input type="number" id="basicSalary" formControlName="basicSalary" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="joinedDate">Joined Date:</label>
-      <input type="date" id="joinedDate" formControlName="joinedDate" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="role">Role:</label>
-      <select id="role" formControlName="role" class="form-control">
-        <option value="">Select Role</option>
-        <option value="ADMIN">Admin</option>
-        <option value="COMPANY">Company</option>
-        <option value="MANAGER">Manager</option>
-        <option value="PAYROLL">Payroll</option>
-        <option value="EMPLOYEE">Employee</option>
-      
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="profilePhoto">Profile Photo:</label>
-      <input type="file" id="profilePhoto" (change)="onFileChange($event)" class="form-control" />
-    </div>
-
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Create User</button>
-  </form>
-</div> -->

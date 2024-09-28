@@ -25,7 +25,7 @@ public class LeaveService {
         return leaveRepository.save(leave);
     }
 
-    // Update leave request
+    //  update leave request
     public Leave updateLeaveRequest(Long id, Leave updatedLeave) {
         Optional<Leave> existingLeaveOpt = leaveRepository.findById(id);
         if (existingLeaveOpt.isPresent()) {
@@ -34,7 +34,7 @@ public class LeaveService {
             existingLeave.setEndDate(updatedLeave.getEndDate());
             existingLeave.setRequestDate(updatedLeave.getRequestDate());
             existingLeave.setReason(updatedLeave.getReason());
-            existingLeave.setRemainingLeave(calculateRemainingLeaveDays(updatedLeave.getStartDate(), updatedLeave.getEndDate()));
+            existingLeave.setRemainingLeave(updatedLeave.getRemainingLeave());
             existingLeave.setYear(updatedLeave.getYear());
             existingLeave.setLeaveMonth(updatedLeave.getLeaveMonth());
             existingLeave.setLeaveType(updatedLeave.getLeaveType());
@@ -44,6 +44,7 @@ public class LeaveService {
         }
         throw new RuntimeException("Leave request not found with ID: " + id);
     }
+
 
     // Delete leave by ID
     public void deleteLeave(Long leaveId) {
@@ -76,6 +77,7 @@ public class LeaveService {
         }
         throw new RuntimeException("Leave request not found with ID: " + leaveId);
     }
+
 
     // Get leaves for a specific user in a given year
     public List<Leave> getLeavesByUserAndYear(Long userId, int year) {
@@ -124,25 +126,8 @@ public class LeaveService {
     }
 
     // Calculate remaining leaves based on start and end dates (helper method)
-    private int calculateRemainingLeaveDays(LocalDate startDate, LocalDate endDate) {
-        if (startDate == null || endDate == null) {
-            throw new IllegalArgumentException("Start date and end date must not be null");
-        }
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("End date must be after start date");
-        }
-        return (int) (endDate.toEpochDay() - startDate.toEpochDay()) + 1; // +1 to include the end date
+    public int calculateRemainingLeaveDays(LocalDate startDate, LocalDate endDate) {
+        return (int) (endDate.toEpochDay() - startDate.toEpochDay());
     }
-
-    // Get leaves within a date range
-    public List<Leave> getLeavesByDateRange(LocalDate startDate, LocalDate endDate) {
-        return leaveRepository.findLeavesByDateRange(startDate, endDate);
-    }
-
-    // Get leaves By Reason
-    public List<Leave> getLeavesByReason(String reason) {
-        return leaveRepository.findLeavesByReason(reason);
-    }
-
 
 }

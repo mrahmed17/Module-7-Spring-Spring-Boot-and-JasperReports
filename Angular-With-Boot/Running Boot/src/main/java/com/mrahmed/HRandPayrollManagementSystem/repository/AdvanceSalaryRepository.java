@@ -1,6 +1,5 @@
 package com.mrahmed.HRandPayrollManagementSystem.repository;
 
-import org.springframework.data.domain.Pageable;
 import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,27 +10,56 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AdvanceSalaryRepository extends JpaRepository<AdvanceSalary, Long> {
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId AND a.year = :year")
-    List<AdvanceSalary> findByUserIdAndYear(@Param("userId") Long userId, @Param("year") int year);
+    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.email = :userEmail")
+    Optional<AdvanceSalary> findAdvanceSalariesByEmail(@Param("userEmail") String userEmail);
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId AND a.year = :year AND a.advanceMonth = :month")
-    List<AdvanceSalary> findByUserIdYearAndMonth(@Param("userId") Long userId, @Param("year") int year, @Param("month") Month month);
+    @Query("SELECT a FROM AdvanceSalary a WHERE LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<AdvanceSalary> findAdvanceSalariesByName(@Param("name") String name);
 
-    @Query("SELECT COALESCE(SUM(a.advanceSalary), 0.0) FROM AdvanceSalary a WHERE a.user.id = :userId AND a.year = :year")
-    double getTotalAdvanceSalaryByUserAndYear(@Param("userId") Long userId, @Param("year") int year);
+    // Calculate total advance salary for a specific user
+    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.user.id = :userId AND LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
+    double getTotalAdvanceSalaryByName(@Param("userId") Long userId);
 
+    // Find advance salaries by user
+    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId")
+    List<AdvanceSalary> findAdvanceSalariesByUserId(@Param("userId") Long userId);
+
+    // Calculate total advance salary for a specific user
+    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.user.id = :userId")
+    double getTotalAdvanceSalaryByUserId(@Param("userId") Long userId);
+
+    // Find advance salaries for a specific month
+    @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceMonth = :month")
+    List<AdvanceSalary> findAdvanceSalariesByMonth(@Param("month") Month month);
+
+    // Calculate total advance salary for a specific month
+    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.advanceMonth = :month")
+    double getTotalAdvanceSalaryByMonth(@Param("month") String month);
+
+    // Get advance salaries by  year
+    @Query("SELECT a FROM AdvanceSalary a WHERE  a.year = :year")
+    List<AdvanceSalary> findAdvanceSalariesByYear(@Param("year") int year);
+
+    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.year = :year")
+    double getTotalAdvanceSalaryByYear(@Param("year") int year);
+
+    // Find advance salaries within a specific date range
     @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceDate BETWEEN :startDate AND :endDate")
-    List<AdvanceSalary> findByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    List<AdvanceSalary> findAdvanceSalariesByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceMonth = :month AND a.year = :year")
-    List<AdvanceSalary> findByMonthAndYear(@Param("month") Month month, @Param("year") int year);
-
+    // Find latest advance salary record for a user
     @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId ORDER BY a.advanceDate DESC")
-    List<AdvanceSalary> findLatestAdvanceSalaryByUser(@Param("userId") Long userId, Pageable pageable);
+    List<AdvanceSalary> findLatestAdvanceSalaryByUserId(@Param("userId") Long userId);
 
+    @Query("SELECT DISTINCT a.user.id FROM AdvanceSalary a WHERE a.year = :year")
+    List<Long> getUsersWhoReceivedAdvanceSalaryInYear(@Param("year") int year);
+
+    @Query("SELECT COUNT(a) FROM AdvanceSalary a WHERE a.user.id = :userId AND a.year = :year")
+    int countAdvanceSalariesForUserInYear(@Param("userId") Long userId, @Param("year") int year);
 
 }

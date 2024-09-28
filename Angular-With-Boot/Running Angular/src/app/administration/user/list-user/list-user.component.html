@@ -72,7 +72,8 @@
         <td class="user-photo">
           <img
             [src]="user.profilePhoto ? 'http://localhost:8080/images/profilePhotos/' + user.profilePhoto : 'static/images/**'"
-            alt="Profile Photo" class="img-thumbnail"  *ngIf="user.id !== undefined" class="btn btn-info" (click)="viewUser(user.id)" title="View" />
+            alt="Profile Photo" class="img-thumbnail" *ngIf="user.id !== undefined" class="btn btn-info"
+            (click)="viewUser(user.id)" title="View" />
         </td>
         <td>{{ user.fullName }}</td>
         <td>{{ user.email }}</td>

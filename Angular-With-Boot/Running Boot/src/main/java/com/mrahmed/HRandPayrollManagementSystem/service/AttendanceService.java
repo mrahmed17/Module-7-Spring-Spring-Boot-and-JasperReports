@@ -19,127 +19,87 @@ import java.util.stream.Collectors;
 @Service
 public class AttendanceService {
 
-    private static final LocalTime MORNING_SHIFT_START = LocalTime.of(9, 0);
-    private static final LocalTime MORNING_SHIFT_END = LocalTime.of(17, 0);
-    private static final LocalTime DAY_SHIFT_START = LocalTime.of(13, 0);
-    private static final LocalTime DAY_SHIFT_END = LocalTime.of(21, 0);
-    private static final Duration SHIFT_DURATION = Duration.ofHours(8);
+    @Autowired
+    private  AttendanceRepository attendanceRepository;
 
     @Autowired
-    private AttendanceRepository attendanceRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    private boolean isOvertime(Attendance attendance) {
-        if (attendance.getClockInTime() == null || attendance.getClockOutTime() == null) {
-            return false;
-        }
-        Duration duration = Duration.between(attendance.getClockInTime(), attendance.getClockOutTime());
-        return duration.compareTo(SHIFT_DURATION) > 0;
-    }
+    private  UserRepository userRepository;
 
     public Attendance checkIn(long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
-
-        if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
-            throw new RuntimeException("User has already checked in today.");
+        try {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+            if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
+                throw new RuntimeException("User has already checked in today.");
+            }
+            Attendance attendance = new Attendance();
+            attendance.setDate(LocalDate.now());
+            attendance.setClockInTime(LocalDateTime.now());
+            attendance.setUser(user);
+            return attendanceRepository.save(attendance);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while checking in: " + e.getMessage(), e);
         }
-        Attendance attendance = new Attendance();
-        attendance.setDate(LocalDate.now());
-        attendance.setClockInTime(LocalTime.now());
-        attendance.setUser(user);
-        return attendanceRepository.save(attendance);
     }
 
     public Attendance checkOut(long userId) {
-        Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
-                .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
-
-        if (attendance.getClockOutTime() != null) {
-            throw new RuntimeException("User has already checked out today.");
+        try {
+            Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
+                    .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
+            if (attendance.getClockOutTime() != null) {
+                throw new RuntimeException("User has already checked out today.");
+            }
+            attendance.setClockOutTime(LocalDateTime.now());
+            return attendanceRepository.save(attendance);
+        } catch (Exception e) {
+            throw new RuntimeException("Error occurred while checking out: " + e.getMessage(), e);
         }
-
-        attendance.setClockOutTime(LocalTime.now());
-        LocalTime clockInTime = attendance.getClockInTime();
-        LocalTime clockOutTime = attendance.getClockOutTime();
-
-        if (isWithinShiftTimeRange(clockInTime, MORNING_SHIFT_START, MORNING_SHIFT_END)) {
-            attendance.setLate(clockOutTime.isAfter(MORNING_SHIFT_END));
-        } else if (isWithinShiftTimeRange(clockInTime, DAY_SHIFT_START, DAY_SHIFT_END)) {
-            attendance.setLate(clockOutTime.isAfter(DAY_SHIFT_END));
-        }
-
-        return attendanceRepository.save(attendance);
-    }
-
-    public List<Attendance> getTodayAttendances() {
-        return attendanceRepository.findAttendancesForToday(LocalDate.now());
-    }
-
-    public List<Attendance> getOvertimeInRange(LocalDate startDate, LocalDate endDate) {
-        return attendanceRepository.findOvertimeInRange(
-                startDate, endDate, MORNING_SHIFT_START, MORNING_SHIFT_END, DAY_SHIFT_START, DAY_SHIFT_END);
-    }
-
-    public boolean isWithinMorningShift(Long userId) {
-        Attendance attendance = getTodayAttendanceByUser(userId);
-        if (attendance == null) {
-            return false;
-        }
-        // Morning shift time range
-        LocalTime shiftStart = LocalTime.of(9, 0);
-        LocalTime shiftEnd = LocalTime.of(17, 0);
-        return isWithinShift(attendance, shiftStart, shiftEnd);
     }
 
 
-    public boolean isWithinDayShift(Long userId) {
-        Attendance attendance = getTodayAttendanceByUser(userId);
-        if (attendance == null) {
-            return false;
-        }
-        // Day shift time range
-        LocalTime shiftStart = LocalTime.of(13, 0);
-        LocalTime shiftEnd = LocalTime.of(21, 0);
-        return isWithinShift(attendance, shiftStart, shiftEnd);
-    }
+//    public Attendance checkIn(long userId) {
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+//        if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
+//            throw new RuntimeException("User has already checked in today.");
+//        }
+//        Attendance attendance = new Attendance();
+//        attendance.setDate(LocalDate.now());
+//        attendance.setClockInTime(LocalDateTime.now());
+//        attendance.setUser(user);
+//        return attendanceRepository.save(attendance);
+//    }
+//
+//    public Attendance checkOut(long userId) {
+//        Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
+//                .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
+//        if (attendance.getClockOutTime() != null) {
+//            throw new RuntimeException("User has already checked out today.");
+//        }
+//        attendance.setClockOutTime(LocalDateTime.now());
+//        return attendanceRepository.save(attendance);
+//    }
 
-    public boolean isLate(Long userId) {
-        Attendance attendance = getTodayAttendanceByUser(userId);
-        if (attendance == null) {
-            return false;
-        }
-        // Morning shift starts at 9 AM
-        LocalTime shiftStart = LocalTime.of(9, 0);
-        return attendance.getClockInTime().isAfter(shiftStart);
-    }
 
-    public Attendance getTodayAttendanceByUser(Long userId) {
-        LocalDate today = LocalDate.now();
-        Optional<Attendance> attendance = attendanceRepository.findTodayAttendanceByUserId(userId);
-        return attendance.orElse(null);
-    }
-
-    private boolean isWithinShift(Attendance attendance, LocalTime shiftStart, LocalTime shiftEnd) {
-        return !attendance.getClockInTime().isBefore(shiftStart) &&
-                !attendance.getClockOutTime().isAfter(shiftEnd);
-    }
-
+    // Get overtime for a user in a date range
     public List<Attendance> getOvertimeForUser(Long userId, LocalDate startDate, LocalDate endDate) {
-        return attendanceRepository.findAttendancesByUserIdAndDateRange(userId, startDate, endDate).stream()
+        List<Attendance> attendances = attendanceRepository.findAttendancesByUserIdAndDateRange(userId, startDate, endDate);
+        return attendances.stream()
                 .filter(this::isOvertime)
                 .collect(Collectors.toList());
     }
 
-    public List<User> findUsersWithoutAttendanceToday() {
-        return attendanceRepository.findUsersWithoutAttendanceForToday(LocalDate.now());
+
+    // Check if the attendance record contains overtime
+    private boolean isOvertime(Attendance attendance) {
+        if (attendance.getClockInTime() == null || attendance.getClockOutTime() == null) {
+            return false; // Skip records with missing times
+        }
+        Duration duration = Duration.between(attendance.getClockInTime(), attendance.getClockOutTime());
+        long hours = duration.toHours();
+        return hours > 8; // Assuming a workday is 8 hours
     }
 
-    private boolean isWithinShiftTimeRange(LocalTime clockInTime, LocalTime shiftStart, LocalTime shiftEnd) {
-        return !clockInTime.isBefore(shiftStart) && !clockInTime.isAfter(shiftEnd);
-    }
 
     public List<Attendance> getAllAttendances() {
         return attendanceRepository.findAll();
@@ -151,8 +111,27 @@ public class AttendanceService {
     }
 
     public Map<User, Long> getUsersAttendanceInRange(LocalDate startDate, LocalDate endDate) {
-        return attendanceRepository.findAttendancesInRange(startDate, endDate).stream()
+        List<Attendance> attendances = attendanceRepository.findAttendancesInRange(startDate, endDate);
+        return attendances.stream()
                 .collect(Collectors.groupingBy(Attendance::getUser, Collectors.counting()));
+    }
+
+    public List<Attendance> getAttendanceByUserId(Long id) {
+        return attendanceRepository.findAllByUserId(id);
+    }
+
+    // findOvertimeInRange
+    public List<Attendance> findOvertimeInRange(LocalDate startDate, LocalDate endDate, LocalTime morningShiftStart, LocalTime morningShiftEnd, LocalTime dayShiftStart, LocalTime dayShiftEnd) {
+        return attendanceRepository.findOvertimeInRange(startDate, endDate, morningShiftStart, morningShiftEnd, dayShiftStart, dayShiftEnd);
+    }
+
+    //findAttendanceHistoryForUser
+    public List<Attendance> getAttendanceHistoryForUser(long userId, LocalDate startDate, LocalDate endDate) {
+        return attendanceRepository.findAttendanceHistoryForUser(userId, startDate, endDate);
+    }
+
+    public List<User> findUsersWithoutAttendanceToday() {
+        return attendanceRepository.findUsersWithoutAttendanceForToday(LocalDate.now());
     }
 
     public List<Object[]> getPeakAttendanceDay() {
@@ -183,37 +162,19 @@ public class AttendanceService {
         return attendanceRepository.findAttendancesByUserNamePart(name);
     }
 
-    public List<Attendance> getAttendanceByRoleAndDateRange(String role, LocalDate startDate, LocalDate endDate) {
-        return attendanceRepository.findAttendanceByRoleAndDateRange(role, startDate, endDate);
+    public Optional<Attendance> getTodayAttendanceByUserId(long userId) {
+        return attendanceRepository.findTodayAttendanceByUserId(userId);
     }
 
-    public List<Attendance> getTodayAttendanceByUserId(long userId) {
-        return attendanceRepository.findByUserIdAndDate(userId, LocalDate.now());
+    // Get department-wise attendance trends
+    public List<Object[]> getAttendanceByDepartment() {
+        return attendanceRepository.findAttendanceByDepartment();
     }
 
-
-//    public Attendance checkIn(long userId) {
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
-//        if (attendanceRepository.countByUserIdAndDate(userId, LocalDate.now()) > 0) {
-//            throw new RuntimeException("User has already checked in today.");
-//        }
-//        Attendance attendance = new Attendance();
-//        attendance.setDate(LocalDate.now());
-//        attendance.setClockInTime(LocalDateTime.now());
-//        attendance.setUser(user);
-//        return attendanceRepository.save(attendance);
-//    }
-//
-//    public Attendance checkOut(long userId) {
-//        Attendance attendance = attendanceRepository.findLastAttendanceForUser(userId, LocalDate.now())
-//                .orElseThrow(() -> new RuntimeException("No check-in found for today's check-out"));
-//        if (attendance.getClockOutTime() != null) {
-//            throw new RuntimeException("User has already checked out today.");
-//        }
-//        attendance.setClockOutTime(LocalDateTime.now());
-//        return attendanceRepository.save(attendance);
-//    }
+    // Get employees with a high leave rate
+    public List<User> getEmployeesWithHighLeaveRate(long threshold) {
+        return attendanceRepository.findEmployeesWithHighLeaveRate(threshold);
+    }
 
 
 }

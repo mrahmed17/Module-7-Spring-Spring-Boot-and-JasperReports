@@ -3,7 +3,6 @@ package com.mrahmed.HRandPayrollManagementSystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,7 +22,7 @@ public class Bonus {
     private Month bonusMonth;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
 

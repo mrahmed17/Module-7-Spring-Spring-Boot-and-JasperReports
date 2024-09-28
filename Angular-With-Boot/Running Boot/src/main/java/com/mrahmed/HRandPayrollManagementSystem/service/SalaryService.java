@@ -19,6 +19,7 @@ public class SalaryService {
     @Autowired
     private UserService userService;
 
+
     /**
      * Save a new salary record.
      */
@@ -35,6 +36,7 @@ public class SalaryService {
             return salaryRepository.save(salary);
         }).orElseThrow(() -> new RuntimeException("Salary record not found."));
     }
+
 
     /**
      * Delete a salary record by ID.
@@ -96,6 +98,7 @@ public class SalaryService {
         return latestSalary.getNetSalary() + overtimeSalary + totalBonuses + totalAllowances - totalDeductions;
     }
 
+
     private double calculateTotalAllowances(Salary salary) {
         return Optional.ofNullable(salary.getTransportAllowance()).orElse(0.0) +
                 Optional.ofNullable(salary.getTelephoneSubsidy()).orElse(0.0) +
@@ -111,36 +114,63 @@ public class SalaryService {
                 Optional.ofNullable(salary.getTax()).orElse(0.0);
     }
 
-    // Other methods for fetching salaries by different criteria...
-
-    public List<Salary> getSalariesByMonthAndYear(Month payrollMonth, int year) {
-        return salaryRepository.findSalariesByMonthAndYear(payrollMonth, year);
-    }
-
-    public double getTotalOvertimeSalary(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
-        return salaryRepository.getTotalOvertimeSalaryByUserAndDateRange(userId, startDate, endDate);
-    }
-
-
+    /**
+     * Get salary records by user and year
+     *
+     * @param userId User ID
+     * @param year   Year
+     * @return List of Salary records for the user
+     */
     public List<Salary> getSalariesByUserAndYear(Long userId, int year) {
         return salaryRepository.findSalariesByUserAndYear(userId, year);
     }
 
+    /**
+     * Get total overtime hours for a user within a date range.
+     *
+     * @param userId    User ID
+     * @param startDate Start Date
+     * @param endDate   End Date
+     * @return Total overtime hours
+     */
     public double getTotalOvertimeHours(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
         return salaryRepository.getTotalOvertimeHoursByUserAndDateRange(userId, startDate, endDate);
     }
 
+    /**
+     * Get salary records by user, year, and month
+     *
+     * @param userId       User ID
+     * @param year         Year
+     * @param payrollMonth Month
+     * @return List of salary records for the user in the specific month and year
+     */
     public List<Salary> getSalariesByUserYearAndMonth(Long userId, int year, Month payrollMonth) {
         return salaryRepository.findSalariesByUserYearAndMonth(userId, year, payrollMonth);
     }
 
+    /**
+     * Get salaries within a specific date range
+     *
+     * @param startDate Start date
+     * @param endDate   End date
+     * @return List of salary records in the specified date range
+     */
     public List<Salary> getSalariesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         return salaryRepository.findSalariesByDateRange(startDate, endDate);
     }
 
+    /**
+     * Get total salary payments for a user in a specific year
+     *
+     * @param userId User ID
+     * @param year   Year
+     * @return Total salary for the user in that year
+     */
     public double getTotalSalaryByUserAndYear(Long userId, int year) {
         return salaryRepository.getTotalSalaryByUserAndYear(userId, year);
     }
+
 
 
 

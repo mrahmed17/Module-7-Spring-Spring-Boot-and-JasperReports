@@ -37,19 +37,19 @@ public class Salary {
     private Month payrollMonth;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "advanceSalary_id")
+    @JoinColumn(name = "advanceSalaryId")
     private AdvanceSalary advanceSalary;
 
     @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "bonus_id")
+    @JoinColumn(name = "bonusId")
     private List<Bonus> bonuses;
 
     @OneToMany (fetch = FetchType.LAZY)
-    @JoinColumn(name = "leave_id")
+    @JoinColumn(name = "leaveId")
     private List<Leave> leaves;
 
 

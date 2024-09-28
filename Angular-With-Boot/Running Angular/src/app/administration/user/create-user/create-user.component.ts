@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { UserModel } from '../../../models/user.model';
-
+import { Router } from '@angular/router';
 import {
   faArrowLeft,
   faCalendarAlt,
@@ -20,7 +20,7 @@ import {
   faUserTag,
   faVenusMars,
 } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { RoleEnum } from '../../../models/role.enum';
 
 @Component({
   selector: 'app-create-user',
@@ -46,8 +46,15 @@ export class CreateUserComponent {
 
   userForm: FormGroup;
   profilePhoto: File | null = null;
+  profilePhotoPreview: string | null = null;
   successMessage: string | null = null;
   errorMessage: string | null = null;
+  currentStep = 1;
+
+  genderOptions = ['Male', 'Female', 'Other'];
+  roleOptions = Object.values(RoleEnum).filter((values) =>
+    isNaN(Number(values))
+  );
 
   constructor(
     private fb: FormBuilder,
@@ -59,13 +66,13 @@ export class CreateUserComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       address: [''],
-      gender: [''],
+      gender: ['', Validators.required],
       dateOfBirth: [''],
       nationalId: [''],
       contact: [''],
       basicSalary: [''],
       joinedDate: [''],
-      role: [''],
+      role: ['', Validators.required],
     });
   }
 
@@ -77,10 +84,27 @@ export class CreateUserComponent {
 
       if (allowedTypes.includes(file.type) && file.size <= maxSize) {
         this.profilePhoto = file;
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.profilePhotoPreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
       } else {
         this.errorMessage =
           'Invalid file type or size. Please upload a .jpg or .png image below 5MB.';
       }
+    }
+  }
+
+  nextStep() {
+    if (this.currentStep < 3) {
+      this.currentStep++;
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
     }
   }
 
@@ -89,7 +113,6 @@ export class CreateUserComponent {
       this.errorMessage = 'Please fill out the form correctly.';
       return;
     }
-
     const user: UserModel = {
       fullName: this.userForm.get('fullName')?.value,
       email: this.userForm.get('email')?.value,
@@ -103,9 +126,7 @@ export class CreateUserComponent {
       joinedDate: this.userForm.get('joinedDate')?.value,
       role: this.userForm.get('role')?.value,
     };
-
     const formData = new FormData();
-
     formData.append(
       'user',
       new Blob([JSON.stringify(user)], { type: 'application/json' })
@@ -114,7 +135,6 @@ export class CreateUserComponent {
     if (this.profilePhoto) {
       formData.append('profilePhoto', this.profilePhoto);
     }
-
     this.userService.createUser(formData).subscribe({
       next: (message) => {
         this.successMessage = message;

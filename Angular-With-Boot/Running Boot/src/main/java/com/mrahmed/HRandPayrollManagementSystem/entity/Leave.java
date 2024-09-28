@@ -33,7 +33,12 @@ public class Leave {
     private RequestStatus requestStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
+
+    @Column(name = "isUnpaid", nullable = false)
+    private boolean isUnpaid;
+
+
 }
 

@@ -25,44 +25,6 @@ public class AttendanceRestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/overtime/{userId}")
-    public ResponseEntity<List<Attendance>> getOvertimeByUser(
-            @PathVariable Long userId,
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-
-        List<Attendance> overtimeRecords = attendanceService.getOvertimeForUser(userId, startDate, endDate);
-
-        if (overtimeRecords.isEmpty()) {
-            return ResponseEntity.noContent().build(); // Return 204 if no overtime found
-        }
-
-        return ResponseEntity.ok(overtimeRecords); // Return the list of overtime records
-    }
-
-    @GetMapping("/today")
-    public ResponseEntity<List<Attendance>> getTodayAttendance() {
-        List<Attendance> attendances = attendanceService.getTodayAttendances();
-        if (attendances.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(attendances);
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<List<Attendance>> getAllAttendances() {
-        List<Attendance> attendances = attendanceService.getAllAttendances();
-        if (attendances.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.ok(attendances);
-    }
-
-    @GetMapping("/allUsers")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
 
     @PostMapping("/checkin")
     public ResponseEntity<?> checkIn(@RequestBody Map<String, Object> request) {
@@ -104,6 +66,47 @@ public class AttendanceRestController {
 //        Attendance attendance = attendanceService.checkOut(userId);
 //        return ResponseEntity.ok(attendance);
 //    }
+
+
+
+    @GetMapping("/overtime/{userId}")
+    public ResponseEntity<List<Attendance>> getOvertimeByUser(
+            @PathVariable Long userId,
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+
+        List<Attendance> overtimeRecords = attendanceService.getOvertimeForUser(userId, startDate, endDate);
+
+        if (overtimeRecords.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Return 204 if no overtime found
+        }
+
+        return ResponseEntity.ok(overtimeRecords); // Return the list of overtime records
+    }
+
+    @GetMapping("/today")
+    public ResponseEntity<List<Attendance>> getTodayAttendance() {
+        List<Attendance> attendances = attendanceService.getTodayAttendances();
+        if (attendances.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(attendances);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Attendance>> getAllAttendances() {
+        List<Attendance> attendances = attendanceService.getAllAttendances();
+        if (attendances.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.ok(attendances);
+    }
+
+    @GetMapping("/allUsers")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 
 
     @GetMapping("/find/{id}")
