@@ -50,7 +50,7 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departmentId", nullable = false)
     @JsonBackReference
-    private Department departments;
+    private Department department;
 
 
 }

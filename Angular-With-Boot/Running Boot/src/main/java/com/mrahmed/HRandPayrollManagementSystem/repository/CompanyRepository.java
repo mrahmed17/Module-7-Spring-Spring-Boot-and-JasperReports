@@ -14,33 +14,26 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository <Company, Long> {
 
-    // Find a company by its name
     @Query("SELECT c FROM Company c WHERE LOWER(c.companyName) LIKE LOWER(CONCAT('%', :companyName, '%'))")
-    Company findByCompanyName (@Param("companyName")String companyName);
+    Company findByCompanyName (@Param("companyName") String companyName);
 
-    // Find all branches by their company
     @Query("SELECT b FROM Branch b WHERE b.company.id = :companyId")
-    List<Branch> findAllByCompanyId(Long companyId);
+    List<Branch> findAllByCompanyId(@Param("companyId") Long companyId);
 
-    // Find all departments by their branches
     @Query("SELECT d FROM Department d WHERE d.branch.id = :branchId")
-    List<Department> findAllDepartmentsByBranchId(Long branchId);
+    List<Department> findAllDepartmentsByBranchId(@Param("branchId") Long branchId);
 
-    // Find all departments by their company
     @Query("SELECT d FROM Department d WHERE d.branch.company.id = :companyId")
-    List<Department> findAllDepartmentsByCompanyId(Long companyId);
+    List<Department> findAllDepartmentsByCompanyId(@Param("companyId") Long companyId);
 
-    // Find all employees by their department
-    @Query("SELECT u FROM User u WHERE u.departments.id = :departmentId")
-    List<User> findAllEmployeesByDepartmentId(Long departmentId);
+    @Query("SELECT u FROM User u WHERE u.department.id = :departmentId")
+    List<User> findAllEmployeesByDepartmentId(@Param("departmentId") Long departmentId);
 
-    // Count total employees by their company
-    @Query("SELECT COUNT(u) FROM User u WHERE u.departments.branch.company.id = :companyId")
-    long countTotalEmployeesByCompanyId(Long companyId);
+    @Query("SELECT COUNT(u) FROM User u WHERE u.department.branch.company.id = :companyId")
+    long countTotalEmployeesByCompanyId(@Param("companyId") Long companyId);
 
-    // Count total employees by their branch
-    @Query("SELECT COUNT(u) FROM User u WHERE u.departments.branch.id = :branchId")
-    long countTotalEmployeesByBranchId(Long branchId);
+    @Query("SELECT COUNT(u) FROM User u WHERE u.department.branch.id = :branchId")
+    long countTotalEmployeesByBranchId(@Param("branchId") Long branchId);
 
 
 }

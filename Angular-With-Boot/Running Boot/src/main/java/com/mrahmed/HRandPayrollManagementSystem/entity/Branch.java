@@ -32,8 +32,8 @@ public class Branch {
     @JsonBackReference
     private Company company;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Department> department;
+    private List<Department> departments;
 
 }

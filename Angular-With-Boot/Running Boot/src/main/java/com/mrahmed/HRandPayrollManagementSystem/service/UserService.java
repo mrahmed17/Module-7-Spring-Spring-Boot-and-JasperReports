@@ -59,21 +59,6 @@ public class UserService {
         return filename;
     }
 
-//    private String saveImage(MultipartFile file, User user) throws IOException {
-//        Path uploadPath = Paths.get(uploadDir + "/static/images/user");
-//        if (!Files.exists(uploadPath)) {
-//            Files.createDirectories(uploadPath);
-//        }
-//        String originalFilename = file.getOriginalFilename();
-//        String fileExtension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf(".")) : "";
-
-//        String filename = user.getFullName() + "_" + UUID.randomUUID().toString() + fileExtension;
-//        Path filePath = uploadPath.resolve(filename);
-//        Files.copy(file.getInputStream(), filePath);
-//        return filename;
-//    }
-
-
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

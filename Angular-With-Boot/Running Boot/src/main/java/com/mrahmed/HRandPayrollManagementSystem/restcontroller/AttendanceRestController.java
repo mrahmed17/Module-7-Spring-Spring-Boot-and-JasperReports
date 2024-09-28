@@ -55,22 +55,6 @@ public class AttendanceRestController {
     }
 
 
-//    @PostMapping("/checkin")
-//    public ResponseEntity<Attendance> checkIn(@RequestBody Map<String, Object> request) {
-//        long userId = Long.parseLong(request.get("userId").toString());
-//        Attendance attendance = attendanceService.checkIn(userId);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(attendance);
-//    }
-//
-//    @PutMapping("/checkout")
-//    public ResponseEntity<Attendance> checkOut(@RequestBody Map<String, Object> request) {
-//        long userId = Long.parseLong(request.get("userId").toString());
-//        Attendance attendance = attendanceService.checkOut(userId);
-//        return ResponseEntity.ok(attendance);
-//    }
-
-
-
     @GetMapping("/overtime/{userId}")
     public ResponseEntity<List<Attendance>> getOvertimeByUser(
             @PathVariable Long userId,
@@ -87,7 +71,7 @@ public class AttendanceRestController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<Attendance>> getAllAttendances() {
         List<Attendance> attendances = attendanceService.getAllAttendances();
         if (attendances.isEmpty()) {
@@ -126,14 +110,6 @@ public class AttendanceRestController {
         return ResponseEntity.ok(userAttendance);
     }
 
-
-//    @GetMapping("/attendanceRange")
-//    public ResponseEntity<Map<User, Long>> getUsersWithAttendanceInRange(
-//            @RequestParam("startDate") LocalDate startDate,
-//            @RequestParam("endDate") LocalDate endDate) {
-//        Map<User, Long> userAttendance = attendanceService.getUsersAttendanceInRange(startDate, endDate);
-//        return ResponseEntity.ok(userAttendance);
-//    }
 
     @GetMapping("/peakAttendanceDay")
     public ResponseEntity<List<Object[]>> getPeakAttendanceDay() {
@@ -206,7 +182,6 @@ public class AttendanceRestController {
     }
 
 
-
     @GetMapping("/todayAttendance/{userId}")
     public ResponseEntity<Optional<Attendance>> getTodayAttendanceByUserId(@PathVariable("userId") long userId) {
         Optional<Attendance> todayAttendance = attendanceService.getTodayAttendanceByUserId(userId);
@@ -216,22 +191,19 @@ public class AttendanceRestController {
         return ResponseEntity.ok(todayAttendance);
     }
 
-    // Endpoint to get department-wise attendance trends
-    @GetMapping("/attendance-by-department")
+      @GetMapping("/attendance-by-department")
     public ResponseEntity<List<Object[]>> getAttendanceByDepartment() {
         List<Object[]> attendanceTrends = attendanceService.getAttendanceByDepartment();
         return ResponseEntity.ok(attendanceTrends);
     }
 
-    // Endpoint to get employees with a high leave rate
     @GetMapping("/high-leave-rate")
     public ResponseEntity<List<User>> getEmployeesWithHighLeaveRate(@RequestParam long threshold) {
         List<User> employees = attendanceService.getEmployeesWithHighLeaveRate(threshold);
         return ResponseEntity.ok(employees);
     }
 
-    // Endpoint to find overtime records in a specific date range
-    @GetMapping("/overtime")
+     @GetMapping("/overtime")
     public ResponseEntity<List<Attendance>> findOvertimeInRange(
             @RequestParam LocalDate startDate,
             @RequestParam LocalDate endDate,
@@ -243,7 +215,6 @@ public class AttendanceRestController {
         return ResponseEntity.ok(overtimeRecords);
     }
 
-    // Endpoint to get attendance history for a user
     @GetMapping("/attendance-history")
     public ResponseEntity<List<Attendance>> getAttendanceHistoryForUser(
             @RequestParam long userId,
@@ -253,8 +224,7 @@ public class AttendanceRestController {
         return ResponseEntity.ok(attendanceHistory);
     }
 
-    // Endpoint to find users without attendance today
-    @GetMapping("/users-without-attendance")
+     @GetMapping("/users-without-attendance")
     public ResponseEntity<List<User>> findUsersWithoutAttendanceToday() {
         List<User> usersWithoutAttendance = attendanceService.findUsersWithoutAttendanceToday();
         return ResponseEntity.ok(usersWithoutAttendance);

@@ -1,3 +1,4 @@
+/*
 package com.mrahmed.HRandPayrollManagementSystem.exceptionhandle;
 
 import org.springframework.http.HttpStatus;
@@ -116,3 +117,4 @@ public class GlobalExceptionHandler {
 
 
 }
+*/

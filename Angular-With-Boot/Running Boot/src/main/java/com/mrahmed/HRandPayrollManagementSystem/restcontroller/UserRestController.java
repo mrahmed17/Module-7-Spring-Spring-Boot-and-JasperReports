@@ -36,14 +36,6 @@ public class UserRestController {
         }
     }
 
-//    @PostMapping("/create")
-//    public ResponseEntity<String> createUser(
-//            @RequestPart("user") User user,
-//            @RequestPart("profilePhoto") MultipartFile profilePhoto
-//    ) throws IOException {
-//        userService.saveUser(user, profilePhoto);
-//        return new ResponseEntity<>("User created successfully with profile photo.", HttpStatus.CREATED);
-//    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateUser(
@@ -59,18 +51,8 @@ public class UserRestController {
         }
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<String> updateUser(
-//            @PathVariable Long id,
-//            @RequestPart("user") User user,
-//            @RequestParam("profilePhoto") MultipartFile profilePhoto
-//    ) throws IOException {
-//        userService.updateUser(id, user, profilePhoto);
-//
-//        return new ResponseEntity<>("User updated successfully.", HttpStatus.OK);
-//    }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
@@ -104,12 +86,6 @@ public class UserRestController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-//    @GetMapping("/email/{email}")
-//    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
-//        Optional<User> userOptional = userService.getUserByEmail(email);
-//        return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
 
     @GetMapping("/salary/greaterThanOrEqual/{salary}")
     public ResponseEntity<List<User>> getUsersWithSalaryGreaterThanOrEqual(@PathVariable("salary") double salary) {
