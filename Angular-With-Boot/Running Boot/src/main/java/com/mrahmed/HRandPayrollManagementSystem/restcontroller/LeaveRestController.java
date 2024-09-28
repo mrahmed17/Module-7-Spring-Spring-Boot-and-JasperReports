@@ -22,7 +22,7 @@ public class LeaveRestController {
     @Autowired
     private LeaveService leaveService;
 
-    @PostMapping("/save")
+    @PostMapping("/create")
     public ResponseEntity<Leave> saveLeaveRequest(@RequestBody Leave leave) {
         Leave savedLeave = leaveService.saveLeaveRequest(leave);
         return ResponseEntity.ok(savedLeave);
