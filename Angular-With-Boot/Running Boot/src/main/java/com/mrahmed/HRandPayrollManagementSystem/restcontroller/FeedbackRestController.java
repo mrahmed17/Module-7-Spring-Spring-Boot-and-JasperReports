@@ -20,13 +20,13 @@ public class FeedbackRestController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback feedback) {
         Feedback savedFeedback = feedbackService.saveFeedback(feedback);
         return new ResponseEntity<>(savedFeedback, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Feedback> updateFeedback(@PathVariable Long id, @RequestBody Feedback updatedFeedback) {
         Feedback feedback = feedbackService.updateFeedback(id, updatedFeedback);
         if (feedback != null) {
@@ -36,7 +36,7 @@ public class FeedbackRestController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteFeedback(@PathVariable Long id) {
         Optional<Feedback> feedback = feedbackService.getFeedbackById(id);
         if (feedback.isPresent()) {
@@ -47,13 +47,13 @@ public class FeedbackRestController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Feedback>> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Feedback> getFeedbackById(@PathVariable Long id) {
         Optional<Feedback> feedback = feedbackService.getFeedbackById(id);
         return feedback.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
