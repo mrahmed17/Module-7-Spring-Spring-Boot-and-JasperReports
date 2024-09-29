@@ -52,7 +52,22 @@ import { CreateAdvanceSalaryComponent } from './components/advance-salary/create
 import { ListAdvanceSalaryComponent } from './components/advance-salary/list-advance-salary/list-advance-salary.component';
 import { EditAdvanceSalaryComponent } from './components/advance-salary/edit-advance-salary/edit-advance-salary.component';
 import { ViewAdvanceSalaryComponent } from './components/advance-salary/view-advance-salary/view-advance-salary.component';
-import { FilterAdvanceSalaryComponent } from './components/advance-salary/filter-advance-salary/filter-advance-salary.component';
+import { CreateCompanyComponent } from './components/company/create-company/create-company.component';
+import { EditCompanyComponent } from './components/company/edit-company/edit-company.component';
+import { ViewCompanyComponent } from './components/company/view-company/view-company.component';
+import { ListCompanyComponent } from './components/company/list-company/list-company.component';
+import { ListBranchComponent } from './components/branch/list-branch/list-branch.component';
+import { CreateBranchComponent } from './components/branch/create-branch/create-branch.component';
+import { EditBranchComponent } from './components/branch/edit-branch/edit-branch.component';
+import { ViewBranchComponent } from './components/branch/view-branch/view-branch.component';
+import { ViewDepartmentComponent } from './components/department/view-department/view-department.component';
+import { CreateDepartmentComponent } from './components/department/create-department/create-department.component';
+import { ListDepartmentComponent } from './components/department/list-department/list-department.component';
+import { EditDepartmentComponent } from './components/department/edit-department/edit-department.component';
+import { CreateSalaryComponent } from './components/salary/create-salary/create-salary.component';
+import { ListSalaryComponent } from './components/salary/list-salary/list-salary.component';
+import { EditSalaryComponent } from './components/salary/edit-salary/edit-salary.component';
+import { ReportAdvanceSalaryComponent } from './components/advance-salary/report-advance-salary/report-advance-salary.component';
 
 
 @NgModule({
@@ -93,7 +108,22 @@ import { FilterAdvanceSalaryComponent } from './components/advance-salary/filter
     ListAdvanceSalaryComponent,
     EditAdvanceSalaryComponent,
     ViewAdvanceSalaryComponent,
-    FilterAdvanceSalaryComponent,
+    CreateCompanyComponent,
+    EditCompanyComponent,
+    ViewCompanyComponent,
+    ListCompanyComponent,
+    ListBranchComponent,
+    CreateBranchComponent,
+    EditBranchComponent,
+    ViewBranchComponent,
+    ViewDepartmentComponent,
+    CreateDepartmentComponent,
+    ListDepartmentComponent,
+    EditDepartmentComponent,
+    CreateSalaryComponent,
+    ListSalaryComponent,
+    EditSalaryComponent,
+    ReportAdvanceSalaryComponent,
   ],
   imports: [
     BrowserModule,

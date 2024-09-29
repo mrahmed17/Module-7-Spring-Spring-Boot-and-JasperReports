@@ -11,16 +11,14 @@ import { environment } from '../../environments/environment';
 export class AttendanceService {
   private baseUrl: string = `${environment.apiUrl}/attendance`;
 
-  // private baseUrl = 'http://localhost:8080/api/attendance';
-
   constructor(private http: HttpClient) {}
 
   getTodaysAttendance(): Observable<AttendanceModel[]> {
-    return this.http.get<AttendanceModel[]>(`${this.baseUrl}/today`);
+    return this.http.get<AttendanceModel[]>(`${this.baseUrl}/todayAttendance`);
   }
 
   getAllAttendances(): Observable<AttendanceModel[]> {
-    return this.http.get<AttendanceModel[]>(`${this.baseUrl}/`);
+    return this.http.get<AttendanceModel[]>(`${this.baseUrl}/all`);
   }
 
   getAllUsers(): Observable<UserModel[]> {
@@ -55,7 +53,7 @@ export class AttendanceService {
       .set('startDate', startDate)
       .set('endDate', endDate);
     return this.http.get<Map<UserModel, number>>(
-      `${this.baseUrl}/attendancerange`,
+      `${this.baseUrl}/attendanceRange`,
       { params }
     );
   }
@@ -110,23 +108,49 @@ export class AttendanceService {
     });
   }
 
-  getAttendanceByRoleAndDateRange(
-    role: string,
+  getTodayAttendanceByUserId(userId: number): Observable<AttendanceModel[]> {
+    return this.http.get<AttendanceModel[]>(
+      `${this.baseUrl}/todayAttendance/${userId}`
+    );
+  }
+
+  getAttendanceHistoryForUser(
+    userId: number,
     startDate: string,
     endDate: string
   ): Observable<AttendanceModel[]> {
     const params = new HttpParams()
-      .set('role', role)
       .set('startDate', startDate)
       .set('endDate', endDate);
-    return this.http.get<AttendanceModel[]>(`${this.baseUrl}/roleAttendance`, {
+    return this.http.get<AttendanceModel[]>(
+      `${this.baseUrl}/attendance-history`,
+      { params }
+    );
+  }
+
+  getUsersWithAttendanceInRange(
+    startDate: string,
+    endDate: string
+  ): Observable<Map<UserModel, number>> {
+    const params = new HttpParams()
+      .set('startDate', startDate)
+      .set('endDate', endDate);
+    return this.http.get<Map<UserModel, number>>(
+      `${this.baseUrl}/attendance-by-department`,
+      { params }
+    );
+  }
+
+  getEmployeesWithHighLeaveRate(threshold: number): Observable<UserModel[]> {
+    const params = new HttpParams().set('threshold', threshold.toString());
+    return this.http.get<UserModel[]>(`${this.baseUrl}/high-leave-rate`, {
       params,
     });
   }
 
-  getTodayAttendanceByUserId(userId: number): Observable<AttendanceModel[]> {
-    return this.http.get<AttendanceModel[]>(
-      `${this.baseUrl}/todayAttendance/${userId}`
+  findUsersWithoutAttendanceToday(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(
+      `${this.baseUrl}/users-without-attendance`
     );
   }
 }

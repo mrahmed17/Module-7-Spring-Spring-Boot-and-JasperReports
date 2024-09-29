@@ -54,6 +54,13 @@ public class LeaveRestController {
         return ResponseEntity.ok(approvedLeave);
     }
 
+    //getAllLeaves
+    @GetMapping("/all")
+    public ResponseEntity<List<Leave>> getAllLeaves() {
+        List<Leave> leaves = leaveService.getAllLeaves();
+        return ResponseEntity.ok(leaves);
+    }
+
     // Reject a leave request
     @PutMapping("/reject/{id}")
     public ResponseEntity<Leave> rejectLeaveRequest(@PathVariable Long id) {

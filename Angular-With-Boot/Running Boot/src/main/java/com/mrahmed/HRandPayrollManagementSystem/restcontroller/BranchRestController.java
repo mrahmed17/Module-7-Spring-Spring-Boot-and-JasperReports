@@ -6,7 +6,9 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -18,13 +20,18 @@ public class BranchRestController {
     private BranchService branchService;
 
     @PostMapping("/create")
-    public Branch createBranch(@RequestBody Branch branch) {
-        return branchService.createBranch(branch);
+    public Branch createBranch(
+            @RequestPart("branch") Branch branch,
+            @RequestPart(value = "branchPhoto", required = false) MultipartFile branchPhoto) throws IOException {
+        return branchService.createBranch(branch, branchPhoto);
     }
 
     @PutMapping("/update/{id}")
-    public Branch updateBranch(@PathVariable Long id, @RequestBody Branch updatedBranch) {
-        return branchService.updateBranch(id, updatedBranch);
+    public Branch updateBranch(
+            @PathVariable Long id,
+            @RequestPart("branch") Branch updatedBranch,
+            @RequestPart(value = "branchPhoto", required = false) MultipartFile branchPhoto) throws IOException {
+        return branchService.updateBranch(id, updatedBranch, branchPhoto);
     }
 
     @DeleteMapping("/delete/{id}")

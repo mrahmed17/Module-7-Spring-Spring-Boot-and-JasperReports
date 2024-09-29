@@ -33,15 +33,15 @@ public class UserService {
 
 
     @Transactional
-    public User saveUser(User user, MultipartFile profilePhoto) throws IOException {
+    public void  saveUser(User user, MultipartFile profilePhoto) throws IOException {
         if (profilePhoto != null && !profilePhoto.isEmpty()) {
             String profilePhotoFilename = saveImage(profilePhoto, user.getFullName());
             user.setProfilePhoto(profilePhotoFilename);
         }
-        if (user.isActive()==false) {
+        if (!user.isActive()) {
             user.setActive(true);
         }
-        return userRepository.save(user);
+         userRepository.save(user);
     }
 
     private String saveImage(MultipartFile file, String fullName) throws IOException {

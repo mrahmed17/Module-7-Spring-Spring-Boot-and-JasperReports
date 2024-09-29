@@ -33,4 +33,8 @@ export class SalaryModel {
   bonuses!: BonusModel;
 
   leaves!: LeaveModel;
+
+
 }
+
+

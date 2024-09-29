@@ -43,9 +43,9 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Attendance> attendances;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    private List<Attendance> attendances;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departmentId", nullable = false)

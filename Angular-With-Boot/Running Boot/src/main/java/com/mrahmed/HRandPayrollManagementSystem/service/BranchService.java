@@ -5,10 +5,18 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.repository.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BranchService {
@@ -16,14 +24,40 @@ public class BranchService {
     @Autowired
     private BranchRepository branchRepository;
 
-    public Branch createBranch(Branch branch) {
-        branch.setCreatedAt(java.time.LocalDateTime.now());
-        branch.setUpdateAt(java.time.LocalDateTime.now());
+    @Value("${upload.directory}")
+    private String uploadDir;
+
+    public Branch createBranch(Branch branch, MultipartFile branchPhoto) throws IOException {
+        branch.setCreatedAt(LocalDateTime.now());
+        branch.setUpdateAt(LocalDateTime.now());
+
+        if (branchPhoto != null && !branchPhoto.isEmpty()) {
+            String filename = saveImage(branchPhoto, branch.getBranchName());
+            branch.setPhoto(filename);
+        }
+
         return branchRepository.save(branch);
     }
 
+    // Method to save the image file and return the filename
+    private String saveImage(MultipartFile file, String branchName) throws IOException {
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
 
-    public Branch updateBranch(Long id, Branch updatedBranch) {
+        String originalFilename = file.getOriginalFilename();
+        String fileExtension = (originalFilename != null && originalFilename.contains("."))
+                ? originalFilename.substring(originalFilename.lastIndexOf("."))
+                : "";
+        String filename = branchName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
+        Path filePath = uploadPath.resolve(filename);
+        Files.copy(file.getInputStream(), filePath);
+        return filename;
+    }
+
+
+    public Branch updateBranch(Long id, Branch updatedBranch, MultipartFile branchPhoto) throws IOException {
         Optional<Branch> existingBranchOpt = branchRepository.findById(id);
         if (existingBranchOpt.isPresent()) {
             Branch existingBranch = existingBranchOpt.get();
@@ -32,8 +66,13 @@ public class BranchService {
             existingBranch.setCity(updatedBranch.getCity());
             existingBranch.setZipCode(updatedBranch.getZipCode());
             existingBranch.setCountry(updatedBranch.getCountry());
-            existingBranch.setPhoto(updatedBranch.getPhoto());
-            existingBranch.setUpdateAt(java.time.LocalDateTime.now());
+            existingBranch.setUpdateAt(LocalDateTime.now());
+
+            if (branchPhoto != null && !branchPhoto.isEmpty()) {
+                String filename = saveImage(branchPhoto, updatedBranch.getBranchName());
+                existingBranch.setPhoto(filename);
+            }
+
             return branchRepository.save(existingBranch);
         }
         return null;  // Handle the case where the branch is not found

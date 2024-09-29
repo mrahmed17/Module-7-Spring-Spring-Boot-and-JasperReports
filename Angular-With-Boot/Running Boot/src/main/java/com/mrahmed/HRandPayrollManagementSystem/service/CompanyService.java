@@ -6,11 +6,18 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CompanyService {
@@ -18,23 +25,86 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    // Create a new company
-    public Company createCompany(Company company) {
-        return companyRepository.save(company);
+
+    @Value("${upload.directory}")
+    private String uploadDir;
+
+
+    public Company createCompany(Company company, MultipartFile companyPhoto) {
+        try {
+            // Check if a company photo is provided and save it
+            if (companyPhoto != null && !companyPhoto.isEmpty()) {
+                String companyPhotoFilename = saveImage(companyPhoto, company.getCompanyName());
+                company.setPhoto(companyPhotoFilename);
+            }
+            // Save the company entity in the database
+            return companyRepository.save(company);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error saving company photo: " + e.getMessage(), e);
+        }
     }
 
-    // Update an existing company
-    public Company updateCompany(Long id, Company updatedCompany) {
+
+    private String saveImage(MultipartFile file, String fullName) throws IOException {
+        // Ensure upload directory exists
+        Path uploadPath = Paths.get(uploadDir, "companyPhoto");
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        // Extract the original file name and extension
+        String originalFilename = file.getOriginalFilename();
+        String fileExtension = (originalFilename != null && originalFilename.contains("."))
+                ? originalFilename.substring(originalFilename.lastIndexOf("."))
+                : "";
+        // Generate a unique filename
+        String filename = fullName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
+
+        // Resolve the file path and save the file
+        Path filePath = uploadPath.resolve(filename);
+        Files.copy(file.getInputStream(), filePath);
+
+        // Return the saved filename
+        return filename;
+    }
+
+
+
+    public Company updateCompany(Long id, Company updatedCompany, MultipartFile companyPhoto) {
         Optional<Company> existingCompanyOpt = companyRepository.findById(id);
+
+        // Check if the company exists
         if (existingCompanyOpt.isPresent()) {
             Company existingCompany = existingCompanyOpt.get();
+
+            // Update the company name
             existingCompany.setCompanyName(updatedCompany.getCompanyName());
-            existingCompany.setPhoto(updatedCompany.getPhoto());
-            existingCompany.setBranches(updatedCompany.getBranches());
-            return companyRepository.save(existingCompany);
+
+            try {
+                // If a new photo is provided, handle the update of the photo
+                if (companyPhoto != null && !companyPhoto.isEmpty()) {
+                    String companyPhotoFilename = saveImage(companyPhoto, updatedCompany.getCompanyName());
+                    existingCompany.setPhoto(companyPhotoFilename);
+                }
+
+                // Update branches if needed
+                if (updatedCompany.getBranches() != null) {
+                    existingCompany.setBranches(updatedCompany.getBranches());
+                }
+
+                // Save the updated company entity in the database
+                return companyRepository.save(existingCompany);
+
+            } catch (IOException e) {
+                throw new RuntimeException("Error updating company photo: " + e.getMessage(), e);
+            }
+
+        } else {
+            throw new RuntimeException("Company not found with ID: " + id);
         }
-        return null;  // Handle the case where the company is not found
     }
+
+
 
     public Company getCompanyById(Long id) {
         Optional<Company> optionalCompany = companyRepository.findById(id);
@@ -46,12 +116,10 @@ public class CompanyService {
     }
 
     @Transactional
-    public boolean deleteCompany(Long id) {
+    public void deleteCompany(Long id) {
         if (companyRepository.existsById(id)) {
             companyRepository.deleteById(id);
-            return true;
         }
-        return false;  // Company not found
     }
 
     public List<Company> getAllCompanies() {

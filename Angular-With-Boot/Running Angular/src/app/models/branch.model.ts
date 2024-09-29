@@ -17,5 +17,6 @@ export class BranchModel {
 
   department!: DepartmentModel;
 
-  users!: UserModel;
+  // users!: UserModel;
+  
 }

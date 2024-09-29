@@ -1,4 +1,4 @@
-
+import { DepartmentModel } from './department.model';
 import { RoleEnum } from './role.enum';
 
 export class UserModel {
@@ -18,5 +18,6 @@ export class UserModel {
   updatedAt?: Date;
 
   role?: RoleEnum;
-}
 
+  department?: DepartmentModel;
+}

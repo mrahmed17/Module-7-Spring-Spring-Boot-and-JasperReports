@@ -8,10 +8,12 @@ export class DepartmentModel {
   numOfEmployees!: number;
   photo!: string;
 
-  branches!: BranchModel;
+  branch!: BranchModel;
 
-  companies!: CompanyModel;
+  // companies!: CompanyModel;
 
   users!: UserModel;
+
+  
 }
 

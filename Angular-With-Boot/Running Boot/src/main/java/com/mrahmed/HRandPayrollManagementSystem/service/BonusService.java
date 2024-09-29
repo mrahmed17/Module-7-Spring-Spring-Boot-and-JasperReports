@@ -6,7 +6,6 @@ import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.repository.BonusRepository;
 import com.mrahmed.HRandPayrollManagementSystem.repository.LeaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -55,11 +54,15 @@ public class BonusService {
         bonusRepository.deleteById(id);
     }
 
+    // getAllBonuses
+    public List<Bonus> getAllBonuses() {
+        return bonusRepository.findAll();
+    }
 
     // Calculate bonus for a user in a specific year considering unpaid leaves
     public double calculateBonus(Long userId) {
         // Define the list of unpaid leave types
-        List<LeaveType> unpaidLeaveTypes = Arrays.asList(LeaveType.SICK_UNPAID, LeaveType.RESERVE_UNPAID);
+        List<LeaveType> unpaidLeaveTypes = Arrays.asList(LeaveType.UNPAID, LeaveType.RESERVE);
 
         // Fetch total unpaid leave days for the user
         int totalUnpaidLeaveDays = leaveRepository.getTotalUnpaidLeaveDays(userId, unpaidLeaveTypes);

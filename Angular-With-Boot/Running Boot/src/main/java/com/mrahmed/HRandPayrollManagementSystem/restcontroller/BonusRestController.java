@@ -19,7 +19,6 @@ public class BonusRestController {
     @Autowired
     private BonusService bonusService;
 
-
     @PostMapping("/create")
     public ResponseEntity<Bonus> createBonus(@RequestBody Bonus bonus) {
         Bonus createdBonus = bonusService.createBonus(bonus);
@@ -39,11 +38,16 @@ public class BonusRestController {
         return bonus != null ? new ResponseEntity<>(bonus, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteBonus(@PathVariable Long id) {
         bonusService.deleteBonus(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Bonus>> getAllBonuses() {
+        List<Bonus> bonuses = bonusService.getAllBonuses();
+        return new ResponseEntity<>(bonuses, HttpStatus.OK);
     }
 
     @GetMapping("/calculate/{userId}")
@@ -106,7 +110,6 @@ public class BonusRestController {
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 
-
     @GetMapping("/byName/{userId}")
     public ResponseEntity<Double> getTotalBonusByName(@PathVariable Long userId) {
         double totalBonus = bonusService.getTotalBonusByName(userId);
@@ -131,4 +134,6 @@ public class BonusRestController {
         return new ResponseEntity<>(totalBonus, HttpStatus.OK);
     }
 
+
 }
+

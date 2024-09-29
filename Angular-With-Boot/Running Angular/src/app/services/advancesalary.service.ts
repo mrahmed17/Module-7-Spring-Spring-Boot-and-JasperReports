@@ -8,11 +8,10 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class AdvanceSalaryService {
-  private baseUrl = `${environment.apiUrl}/advanceSalaries`;
+  private baseUrl: string = `${environment.apiUrl}/advance-salary`;
 
   constructor(private http: HttpClient) {}
 
-  // Create a new advance salary
   createAdvanceSalary(
     advanceSalary: AdvanceSalaryModel
   ): Observable<AdvanceSalaryModel> {
@@ -22,7 +21,6 @@ export class AdvanceSalaryService {
     );
   }
 
-  // Update an existing advance salary
   updateAdvanceSalary(
     id: number,
     advanceSalary: AdvanceSalaryModel
@@ -33,48 +31,30 @@ export class AdvanceSalaryService {
     );
   }
 
-  // Delete an advance salary by ID
   deleteAdvanceSalary(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
   }
 
-  // Get an advance salary by ID
   getAdvanceSalaryById(id: number): Observable<AdvanceSalaryModel> {
     return this.http.get<AdvanceSalaryModel>(`${this.baseUrl}/find/${id}`);
   }
 
-  // Get advance salaries by user and year
-  getAdvanceSalariesByUserAndYear(
-    userId: number,
-    year: number
-  ): Observable<AdvanceSalaryModel[]> {
+  getAdvanceSalariesByUser(userId: number): Observable<AdvanceSalaryModel[]> {
     return this.http.get<AdvanceSalaryModel[]>(
-      `${this.baseUrl}/user/${userId}/year/${year}`
+      `${this.baseUrl}/user/${userId}`
     );
   }
 
-  // Get advance salaries by user, year, and month
-  getAdvanceSalariesByUserYearAndMonth(
-    userId: number,
-    year: number,
-    month: string
-  ): Observable<AdvanceSalaryModel[]> {
+  getAdvanceSalariesByMonth(month: string): Observable<AdvanceSalaryModel[]> {
     return this.http.get<AdvanceSalaryModel[]>(
-      `${this.baseUrl}/user/${userId}/year/${year}/month/${month}`
+      `${this.baseUrl}/month/${month}`
     );
   }
 
-  // Get total advance salary for a user in a specific year
-  getTotalAdvanceSalaryByUserAndYear(
-    userId: number,
-    year: number
-  ): Observable<number> {
-    return this.http.get<number>(
-      `${this.baseUrl}/user/${userId}/total-year/${year}`
-    );
+  getTotalAdvanceSalaryByUserId(userId: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/user-total/${userId}`);
   }
 
-  // Get advance salaries within a specific date range
   getAdvanceSalariesByDateRange(
     startDate: Date,
     endDate: Date
@@ -87,22 +67,13 @@ export class AdvanceSalaryService {
     });
   }
 
-  // Get advance salaries for a specific month and year
-  getAdvanceSalariesByMonthAndYear(
-    month: string,
-    year: number
-  ): Observable<AdvanceSalaryModel[]> {
-    return this.http.get<AdvanceSalaryModel[]>(
-      `${this.baseUrl}/month/${month}/year/${year}`
-    );
+  getAdvanceSalariesByYear(year: number): Observable<AdvanceSalaryModel[]> {
+    return this.http.get<AdvanceSalaryModel[]>(`${this.baseUrl}/year/${year}`);
   }
 
-  // Get the latest advance salary record for a user
-  getLatestAdvanceSalaryByUser(
-    userId: number
-  ): Observable<AdvanceSalaryModel[]> {
-    return this.http.get<AdvanceSalaryModel[]>(
-      `${this.baseUrl}/latest/user/${userId}`
+  getLatestAdvanceSalaryByUser(userId: number): Observable<AdvanceSalaryModel> {
+    return this.http.get<AdvanceSalaryModel>(
+      `${this.baseUrl}/latest/${userId}`
     );
   }
 }

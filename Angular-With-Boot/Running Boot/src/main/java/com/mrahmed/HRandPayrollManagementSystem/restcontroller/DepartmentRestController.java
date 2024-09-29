@@ -6,7 +6,9 @@ import com.mrahmed.HRandPayrollManagementSystem.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -18,15 +20,18 @@ public class DepartmentRestController {
     private DepartmentService departmentService;
 
     @PostMapping("/create")
-    public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
-        Department createdDepartment = departmentService.createDepartment(department);
-        return ResponseEntity.ok(createdDepartment);
+    public Department createDepartment(
+            @RequestPart("department") Department department,
+            @RequestPart(value = "departmentPhoto", required = false) MultipartFile departmentPhoto) throws IOException {
+        return departmentService.createDepartment(department, departmentPhoto);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department department) {
-        Department updatedDepartment = departmentService.updateDepartment(id, department);
-        return ResponseEntity.ok(updatedDepartment);
+    public Department updateDepartment(
+            @PathVariable Long id,
+            @RequestPart("department") Department updatedDepartment,
+            @RequestPart(value = "departmentPhoto", required = false) MultipartFile departmentPhoto) throws IOException {
+        return departmentService.updateDepartment(id, updatedDepartment, departmentPhoto);
     }
 
     @DeleteMapping("/delete/{id}")

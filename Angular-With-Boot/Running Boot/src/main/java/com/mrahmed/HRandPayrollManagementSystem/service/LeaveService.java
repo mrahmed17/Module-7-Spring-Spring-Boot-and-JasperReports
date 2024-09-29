@@ -57,6 +57,12 @@ public class LeaveService {
         throw new RuntimeException("Leave request not found with ID: " + leaveId);
     }
 
+    //getAllLeaves
+    public List<Leave> getAllLeaves() {
+        return leaveRepository.findAll();
+    }
+
+
     public Leave rejectLeaveRequest(Long leaveId) {
         Optional<Leave> leaveOpt = leaveRepository.findById(leaveId);
         if (leaveOpt.isPresent()) {

@@ -21,4 +21,7 @@ export class LeaveModel {
   requestStatus!: RequestStatusEnum;
 
   user!: UserModel;
+
+  isUnpaid!: boolean;
+
 }

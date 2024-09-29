@@ -28,7 +28,8 @@ import { CreateAdvanceSalaryComponent } from './components/advance-salary/create
 import { ListAdvanceSalaryComponent } from './components/advance-salary/list-advance-salary/list-advance-salary.component';
 import { EditAdvanceSalaryComponent } from './components/advance-salary/edit-advance-salary/edit-advance-salary.component';
 import { ViewAdvanceSalaryComponent } from './components/advance-salary/view-advance-salary/view-advance-salary.component';
-import { FilterAdvanceSalaryComponent } from './components/advance-salary/filter-advance-salary/filter-advance-salary.component';
+import { ReportAdvanceSalaryComponent } from './components/advance-salary/report-advance-salary/report-advance-salary.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -82,7 +83,7 @@ const routes: Routes = [
       { path: 'list', component: ListAdvanceSalaryComponent },
       { path: 'edit/:id', component: EditAdvanceSalaryComponent },
       { path: 'view/:id', component: ViewAdvanceSalaryComponent },
-      { path: 'filter', component: FilterAdvanceSalaryComponent },
+      { path: 'report', component: ReportAdvanceSalaryComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },

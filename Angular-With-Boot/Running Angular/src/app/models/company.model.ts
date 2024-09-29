@@ -9,7 +9,9 @@ export class CompanyModel {
 
   branches!: BranchModel;
 
-  departments!: DepartmentModel;
+  // departments!: DepartmentModel;
 
-  users!: UserModel;
+  // users!: UserModel;
+
+  
 }

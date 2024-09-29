@@ -31,7 +31,6 @@ public class AdvanceSalaryRestController {
         }
     }
 
-
     @GetMapping("/find/{id}")
     public ResponseEntity<AdvanceSalary> getAdvanceSalaryById(@PathVariable Long id) {
         Optional<AdvanceSalary> advanceSalary = advanceSalaryService.getAdvanceSalaryById(id);
