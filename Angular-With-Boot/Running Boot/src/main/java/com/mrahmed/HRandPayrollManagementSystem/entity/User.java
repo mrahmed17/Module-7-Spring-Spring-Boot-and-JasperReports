@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +19,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String fullName;
     private String email;
     private String password;
@@ -33,7 +31,7 @@ public class User {
     private LocalDate joinedDate;
     private String profilePhoto;
 
-    @Column(name = "isActive", nullable = false)
+    @Column(name = "isActive")
     private boolean active = true;
 
     @Enumerated(EnumType.STRING)
@@ -43,15 +41,38 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JsonManagedReference
-//    private List<Attendance> attendances;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "departmentId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departmentId")
     @JsonBackReference
     private Department department;
 
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<AdvanceSalary> advanceSalaries;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Attendance> attendances;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Bonus> bonuses;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Leave> leaves;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Salary> salaries;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<PaymentReceipt> paymentReceipts;
 
 }
 

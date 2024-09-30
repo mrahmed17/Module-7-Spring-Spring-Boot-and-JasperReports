@@ -1,1 +1,71 @@
-<p>report-advance-salary works!</p>
+<div class="container mt-4">
+ <h2 class="text-center">Advance Salary Report</h2>
+
+ <!-- Summary Section -->
+ <div class="summary">
+  <h3>Summary</h3>
+  <p>Total Entries: {{ totalEntries }}</p>
+  <p>Total Advance Paid: {{ totalAdvancePaid | currency }}</p>
+ </div>
+
+ <div class="filters">
+  <h3>Filters</h3>
+
+  <div class="filter-by-name">
+   <label for="userName">Filter by Name:</label>
+   <input type="text" id="userName" [(ngModel)]="fullName" placeholder="Enter full name" />
+   <button (click)="filteredSalaryByName = getTotalSalaryByName(userName)">
+    Get Total Salary
+   </button>
+   <p *ngIf="filteredSalaryByName !== undefined">
+    Total Salary for {{ fullName }}: {{ filteredSalaryByName | currency }}
+   </p>
+  </div>
+
+  <div class="filter-by-date">
+   <label for="startDate">Start Date:</label>
+   <input type="date" id="startDate" [(ngModel)]="startDate" />
+
+   <label for="endDate">End Date:</label>
+   <input type="date" id="endDate" [(ngModel)]="endDate" />
+   <button (click)="filteredSalaryByDateRange = getTotalSalaryByDateRange(startDate, endDate)">
+    Get Total Salary by Date Range
+   </button>
+   <p *ngIf="filteredSalaryByDateRange !== undefined">
+    Total Salary from {{ startDate | date }} to {{ endDate | date }}:
+    {{ filteredSalaryByDateRange | currency }}
+   </p>
+  </div>
+ </div>
+
+ <button (click)="generateReport()">Generate Report</button>
+
+ <!-- Advance Salary List -->
+ <div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped">
+   <thead class="thead-dark">
+    <tr>
+     <th>User</th>
+     <th>Advance Salary</th>
+     <th>Reason</th>
+     <th>Advance Date</th>
+     <th>Year</th>
+     <th>Month</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr *ngFor="let salary of advanceSalaries">
+     <td>{{ salary.user.fullName }}</td>
+     <td>{{ salary.advanceSalary | currency: 'USD' }}</td>
+     <td>{{ salary.reason }}</td>
+     <td>{{ salary.advanceDate | date: 'yyyy-MM-dd' }}</td>
+     <td>{{ salary.year }}</td>
+     <td>{{ salary.advanceMonth }}</td>
+    </tr>
+    <tr *ngIf="!advanceSalaries.length">
+     <td colspan="6" class="text-center">No advance salaries found.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</div>

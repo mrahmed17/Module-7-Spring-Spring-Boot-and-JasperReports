@@ -6,7 +6,7 @@ import { RequestStatusEnum } from './request-status.enum';
 import { UserModel } from './user.model';
 
 export class LeaveModel {
-  id?: number;
+  id!: number;
   startDate!: Date;
   endDate!: Date;
   requestDate!: Date;

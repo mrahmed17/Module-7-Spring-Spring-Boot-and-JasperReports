@@ -1,6 +1,7 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,10 +34,11 @@ public class Leave {
     private RequestStatus requestStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
+    @JsonBackReference
     private User user;
 
-    @Column(name = "isUnpaid", nullable = false)
+    @Column(name = "isUnpaid")
     private boolean isUnpaid;
 
 

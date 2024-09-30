@@ -114,17 +114,22 @@ export class CreateUserComponent {
       return;
     }
     const user: UserModel = {
+      id: 0, 
       fullName: this.userForm.get('fullName')?.value,
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
       address: this.userForm.get('address')?.value,
       gender: this.userForm.get('gender')?.value,
       dateOfBirth: this.userForm.get('dateOfBirth')?.value,
-      nationalId: this.userForm.get('nationalId')?.value,
+      nationalid: this.userForm.get('nationalId')?.value,
       contact: this.userForm.get('contact')?.value,
       basicSalary: this.userForm.get('basicSalary')?.value,
       joinedDate: this.userForm.get('joinedDate')?.value,
       role: this.userForm.get('role')?.value,
+      isActive: this.userForm.get('isActive')?.value,
+      profilePhoto: this.userForm.get('profilePhoto')?.value,
+      updatedAt: this.userForm.get('updatedAt')?.value,
+      department: this.userForm.get('depdegree')?.value,
     };
     const formData = new FormData();
     formData.append(

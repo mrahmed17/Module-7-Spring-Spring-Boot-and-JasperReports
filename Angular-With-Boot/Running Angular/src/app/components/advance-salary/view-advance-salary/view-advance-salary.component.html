@@ -1,1 +1,38 @@
-<p>view-advance-salary works!</p>
+<div class="container">
+ <h2>View Advance Salary</h2>
+
+ <div *ngIf="advanceSalary">
+  <div class="form-group">
+   <label for="user">User:</label>
+   <input type="text" id="user" class="form-control" [value]="advanceSalary.user.fullName" disabled />
+  </div>
+
+  <div class="form-group">
+   <label for="advanceSalary">Advance Salary:</label>
+   <input type="number" id="advanceSalary" class="form-control" [value]="advanceSalary.advanceSalary" disabled />
+  </div>
+
+  <div class="form-group">
+   <label for="reason">Reason:</label>
+   <input type="text" id="reason" class="form-control" [value]="advanceSalary.reason" disabled />
+  </div>
+
+  <div class="form-group">
+   <label for="advanceDate">Advance Date:</label>
+   <input type="date" id="advanceDate" class="form-control" [value]="advanceSalary.advanceDate | date: 'yyyy-MM-dd'"
+    disabled />
+  </div>
+
+  <div class="form-group">
+   <label for="year">Year:</label>
+   <input type="number" id="year" class="form-control" [value]="advanceSalary.year" disabled />
+  </div>
+
+  <div class="form-group">
+   <label for="advanceMonth">Advance Month:</label>
+   <input type="text" id="advanceMonth" class="form-control" [value]="advanceSalary.advanceMonth" disabled />
+  </div>
+
+  <button class="btn btn-primary" (click)="backToList()">Back to List</button>
+ </div>
+</div>

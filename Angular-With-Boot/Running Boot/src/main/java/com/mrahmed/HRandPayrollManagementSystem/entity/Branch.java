@@ -27,12 +27,12 @@ public class Branch {
     private LocalDateTime updateAt;
     private String photo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companyId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "companyId")
     @JsonBackReference
     private Company company;
 
-    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "branch")
     @JsonManagedReference
     private List<Department> departments;
 

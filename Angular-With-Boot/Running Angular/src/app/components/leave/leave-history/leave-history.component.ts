@@ -19,7 +19,7 @@ export class LeaveHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadUserAndHistory();
+    // this.loadUserAndHistory();
   }
 
   // getLeaveHistory() {
@@ -41,17 +41,17 @@ export class LeaveHistoryComponent implements OnInit {
   // }
 
   // Load user data and fetch leave history
-  loadUserAndHistory() {
-    this.authService.getLoggedInUser().subscribe({
-      next: (userData: UserModel) => {
-        this.user = userData;
-        this.getLeaveHistory();
-      },
-      error: (error) => {
-        console.error('Error fetching user data', error);
-      },
-    });
-  }
+  // loadUserAndHistory() {
+  //   this.authService.getLoggedInUser().subscribe({
+  //     next: (userData: UserModel) => {
+  //       this.user = userData;
+  //       this.getLeaveHistory();
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching user data', error);
+  //     },
+  //   });
+  // }
 
   getLeaveHistory() {
     const userId = this.user?.id ?? 0; // Default to 0 if userId is undefined

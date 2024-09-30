@@ -21,12 +21,12 @@ public class Department {
     private int numOfEmployees;
     private String photo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "branchId", nullable = false)
     @JsonBackReference
     private Branch branch;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "department")
     @JsonManagedReference
     private List<User> users;
 

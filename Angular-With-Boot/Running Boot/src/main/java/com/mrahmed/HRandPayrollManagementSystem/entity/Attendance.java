@@ -22,11 +22,11 @@ public class Attendance {
     private LocalDateTime clockInTime;
     private LocalDateTime clockOutTime;
 
-    @Column(name = "isLate", nullable = false)
+    @Column(name = "isLate")
     private boolean late;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId")
     @JsonBackReference
     private User user;
 

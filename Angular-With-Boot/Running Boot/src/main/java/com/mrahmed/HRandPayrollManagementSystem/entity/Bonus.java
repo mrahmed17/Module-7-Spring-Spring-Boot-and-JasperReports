@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Bonus {
     private Month bonusMonth;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "userId")
     private User user;
 

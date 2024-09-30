@@ -1,1 +1,47 @@
-<p>list-advance-salary works!</p>
+<div class="container">
+  <h2>Advance Salary List</h2>
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search by user, reason, month, or year"
+      [(ngModel)]="searchTerm" (input)="filterAdvanceSalaries()" />
+  </div>
+
+  <div class="summary">
+    <h4>Total Salary: {{ totalSalary | currency }}</h4>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>SL No.</th>
+        <th>User</th>
+        <th>Advance Salary</th>
+        <th>Reason</th>
+        <th>Advance Month</th>
+        <th>Year</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let advanceSalary of filteredAdvanceSalaries">
+        <td>{{ advanceSalary.id }}</td>
+        <td>{{ advanceSalary.user.fullName }}</td>
+        <td>{{ advanceSalary.advanceSalary | currency }}</td>
+        <td>{{ advanceSalary.reason }}</td>
+        <td>{{ advanceSalary.advanceMonth }}</td>
+        <td>{{ advanceSalary.year }}</td>
+        <td>
+          <button class="btn btn-info" (click)="viewAdvanceSalary(advanceSalary.id)">
+            View
+          </button>
+          <button class="btn btn-primary" (click)="editAdvanceSalary(advanceSalary.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteAdvanceSalary(advanceSalary.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

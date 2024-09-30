@@ -3,7 +3,7 @@ import { DepartmentModel } from './department.model';
 import { UserModel } from './user.model';
 
 export class CompanyModel {
-  id?: number;
+  id!: number;
   companyName!: string;
   photo!: string;
 
@@ -12,6 +12,4 @@ export class CompanyModel {
   // departments!: DepartmentModel;
 
   // users!: UserModel;
-
-  
 }

@@ -9,15 +9,14 @@ export class AuthService {
   
   constructor() { }
   
-  getLoggedInUser(): Observable<UserModel> {
-    const user: UserModel = {
-      // id: 1,
-      fullName: 'Raju',
-      email: 'raju@mail.com',
-      password:'raju123',
-    };
+  // getLoggedInUser(): Observable<UserModel> {
+  //   const user: UserModel = {
+  //     id: 1,
+  //     fullName: 'Raju',
+  //     email: 'raju@mail.com',
+  //     password:'raju123',
+  //   };
 
-    // Simulating an observable for now
-    return of(user);
-  }
+  //   return of(user);
+  // }
 }

@@ -3,7 +3,7 @@ import { DepartmentModel } from './department.model';
 import { UserModel } from './user.model';
 
 export class BranchModel {
-  id?: number;
+  id!: number;
   branchName!: string;
   address!: string;
   city!: string;

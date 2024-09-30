@@ -41,7 +41,7 @@ export class UserService {
 
   getAllUsers(): Observable<UserModel[]> {
     return this.httpClient
-      .get<UserModel[]>(this.baseUrl + '/')
+      .get<UserModel[]>(`${this.baseUrl}/all`)
       .pipe(catchError(this.handleError<UserModel[]>('getAllUsers', [])));
   }
 

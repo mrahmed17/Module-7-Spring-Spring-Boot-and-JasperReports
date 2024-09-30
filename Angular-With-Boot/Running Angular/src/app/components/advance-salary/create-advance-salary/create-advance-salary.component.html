@@ -1,37 +1,49 @@
-<form (ngSubmit)="createAdvanceSalary()">
- <div class="form-group">
-  <label for="advanceSalary">Advance Salary</label>
-  <input type="number" id="advanceSalary" [(ngModel)]="advanceSalary.advanceSalary" name="advanceSalary"
-   class="form-control" required />
- </div>
+<div class="container">
+  <h2>Create Advance Salary</h2>
 
- <div class="form-group">
-  <label for="reason">Reason</label>
-  <input type="text" id="reason" [(ngModel)]="advanceSalary.reason" name="reason" class="form-control" required />
- </div>
+  <form #advanceSalaryForm="ngForm" (ngSubmit)="createAdvanceSalary()">
+    <div class="form-group">
+      <label for="user">User</label>
+      <select class="form-control" id="user" [(ngModel)]="advanceSalary.user" name="user" required>
+        <option *ngFor="let user of users" [ngValue]="user">{{ user.fullName }}</option>
+      </select>
+    </div>
 
- <div class="form-group">
-  <label for="advanceDate">Advance Date</label>
-  <input type="date" id="advanceDate" [(ngModel)]="advanceSalary.advanceDate" name="advanceDate" class="form-control"
-   required />
- </div>
+    <div class="form-group">
+      <label for="advanceSalary">Advance Salary</label>
+      <input type="number" id="advanceSalary" class="form-control" [(ngModel)]="advanceSalary.advanceSalary"
+        name="advanceSalary" required />
+    </div>
 
- <div class="form-group">
-  <label for="year">Year</label>
-  <input type="number" id="year" [(ngModel)]="advanceSalary.year" name="year" class="form-control" required />
- </div>
+    <div class="form-group">
+      <label for="reason">Reason</label>
+      <input type="text" id="reason" class="form-control" [(ngModel)]="advanceSalary.reason" name="reason" required />
+    </div>
 
- <div class="form-group">
-  <label for="advanceMonth">Advance Month</label>
-  <select id="advanceMonth" [(ngModel)]="advanceSalary.advanceMonth" name="advanceMonth" class="form-control" required>
-   <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-  </select>
- </div>
+    <div class="form-group">
+      <label for="advanceDate">Advance Date</label>
+      <input type="date" id="advanceDate" class="form-control" [(ngModel)]="advanceSalary.advanceDate"
+        name="advanceDate" required />
+    </div>
 
- <div class="form-group">
-  <label for="user">User</label>
-  <input type="number" id="user" [(ngModel)]="advanceSalary.user.id" name="user" class="form-control" required />
- </div>
+    <div class="form-group">
+      <label for="year">Year</label>
+      <input type="number" id="year" class="form-control" [(ngModel)]="advanceSalary.year" name="year" required />
+    </div>
 
- <button type="submit" class="btn btn-primary">Create Advance Salary</button>
-</form>
+    <div class="form-group">
+      <label for="advanceMonth">Advance Month</label>
+      <select class="form-control" id="advanceMonth" [(ngModel)]="advanceSalary.advanceMonth" name="advanceMonth"
+        required>
+        <option *ngFor="let month of months" [ngValue]="month">
+          {{ month }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">
+      Cancel
+    </button>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,7 +29,8 @@ public class Salary {
     private double netSalary;
     private int year;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "overTime")
     private List<Attendance> overTime; //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
     //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)
@@ -37,18 +39,22 @@ public class Salary {
     private Month payrollMonth;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advanceSalaryId")
+    @JsonBackReference
     private AdvanceSalary advanceSalary;
 
-    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany (fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "bonusId")
     private List<Bonus> bonuses;
 
-    @OneToMany (fetch = FetchType.LAZY)
+    @OneToMany (fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "leaveId")
     private List<Leave> leaves;
 

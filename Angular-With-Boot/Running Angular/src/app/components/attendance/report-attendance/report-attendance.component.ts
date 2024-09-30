@@ -143,6 +143,16 @@ export class ReportAttendanceComponent implements OnInit {
         contact: match[4],
         role: match[5] as any,
         password: match[6] as any,
+        address: 'unknown' as any,
+        gender: 'unknown' as any,
+        dateOfBirth: 'unknown' as any,
+        nationalid: 'unknown' as any,
+        basicSalary: 'unknown' as any,
+        joinedDate: 'unknown' as any,
+        isActive: 'unknown' as any,
+        profilePhoto: 'unknown' as any,
+        updatedAt: 'unknown' as any,
+        department: 'unknown' as any,
       };
     } else {
       console.error('Failed to parse user from key:', key);
@@ -153,6 +163,16 @@ export class ReportAttendanceComponent implements OnInit {
         contact: 'unknown',
         role: 'UNKNOWN' as any,
         password: 'UNKNOWN' as any,
+        address: 'unknown' as any,
+        gender: 'unknown' as any,
+        dateOfBirth: 'unknown' as any,
+        nationalid: 'unknown' as any,
+        basicSalary: 'unknown' as any,
+        joinedDate: 'unknown' as any,
+        isActive: 'unknown' as any,
+        profilePhoto: 'unknown' as any,
+        updatedAt: 'unknown' as any,
+        department: 'unknown' as any,
       };
     }
   }
@@ -273,32 +293,32 @@ export class ReportAttendanceComponent implements OnInit {
   }
 
   // Fetch attendance by role and date range
-  searchAttendanceByRoleAndDateRange(): void {
-    if (!this.role || !this.startDate || !this.endDate) {
-      this.errorMessage = 'Please provide role and date range.';
-      return;
-    }
+  // searchAttendanceByRoleAndDateRange(): void {
+  //   if (!this.role || !this.startDate || !this.endDate) {
+  //     this.errorMessage = 'Please provide role and date range.';
+  //     return;
+  //   }
 
-    this.attendanceService
-      .getAttendanceByRoleAndDateRange(this.role, this.startDate, this.endDate)
-      .subscribe({
-        next: (data: AttendanceModel[]) => {
-          const map = new Map<UserModel, number>();
+  //   this.attendanceService
+  //     .getAttendanceInRange(this.startDate, this.endDate)
+  //     .subscribe({
+  //       next: (data: AttendanceModel[]) => {
+  //         const map = new Map<UserModel, number>();
 
-          data.forEach((attendance) => {
-            const user: UserModel = attendance.user;
-            const count: number = map.get(user) || 0;
-            map.set(user, count + 1); // Aggregate attendance count
-          });
+  //         data.forEach((attendance) => {
+  //           const user: UserModel = attendance.user;
+  //           const count: number = map.get(user) || 0;
+  //           map.set(user, count + 1); // Aggregate attendance count
+  //         });
 
-          this.userAttendance = map;
-          this.errorMessage = '';
-        },
-        error: (err) => {
-          this.errorMessage =
-            'Failed to search attendance by role and date range. Please try again.';
-          console.error(err);
-        },
-      });
-  }
+  //         this.userAttendance = map;
+  //         this.errorMessage = '';
+  //       },
+  //       error: (err) => {
+  //         this.errorMessage =
+  //           'Failed to search attendance by role and date range. Please try again.';
+  //         console.error(err);
+  //       },
+  //     });
+  // }
 }
