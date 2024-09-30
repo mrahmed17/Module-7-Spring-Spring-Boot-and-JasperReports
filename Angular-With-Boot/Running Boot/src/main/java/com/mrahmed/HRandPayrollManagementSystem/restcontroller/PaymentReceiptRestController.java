@@ -33,14 +33,14 @@ public class PaymentReceiptRestController {
     private UserService userService;
 
     // Create a new payment receipt
-    @PostMapping
+    @PostMapping ("/create")
     public ResponseEntity<PaymentReceipt> createPaymentReceipt(@RequestBody PaymentReceipt paymentReceipt) {
         PaymentReceipt createdReceipt = paymentReceiptService.createPaymentReceipt(paymentReceipt);
         return ResponseEntity.ok(createdReceipt);
     }
 
     // Update an existing payment receipt
-    @PutMapping("/{receiptId}")
+    @PutMapping("/update/{receiptId}")
     public ResponseEntity<PaymentReceipt> updatePaymentReceipt(@PathVariable Long receiptId, @RequestBody PaymentReceipt updatedReceipt) {
         PaymentReceipt updated = paymentReceiptService.updatePaymentReceipt(receiptId, updatedReceipt);
         if (updated != null) {
@@ -50,7 +50,7 @@ public class PaymentReceiptRestController {
     }
 
     // Delete a payment receipt
-    @DeleteMapping("/{receiptId}")
+    @DeleteMapping("/delete/{receiptId}")
     public ResponseEntity<Void> deletePaymentReceipt(@PathVariable Long receiptId) {
         paymentReceiptService.deletePaymentReceipt(receiptId);
         return ResponseEntity.noContent().build();
