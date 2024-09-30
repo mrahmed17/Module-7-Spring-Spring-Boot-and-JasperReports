@@ -49,6 +49,22 @@
 
    <div class="col-md-6">
     <div class="form-group">
+     <label for="confirmPassword">
+      <fa-icon [icon]="faKey"></fa-icon> Confirm Password:
+     </label>
+     <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
+      [class.is-invalid]="editUserForm.controls['confirmPassword'].invalid && editUserForm.controls['confirmPassword'].touched" />
+     <div *ngIf="editUserForm.controls['confirmPassword'].invalid && editUserForm.controls['confirmPassword'].touched"
+      class="invalid-feedback">
+      Password confirmation is required and must match the password.
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <div class="form-group">
      <label for="address">
       <fa-icon [icon]="faHome"></fa-icon> Address:
      </label>
@@ -60,9 +76,7 @@
      </div>
     </div>
    </div>
-  </div>
 
-  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="gender">
@@ -76,7 +90,9 @@
      </select>
     </div>
    </div>
+  </div>
 
+  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="dateOfBirth">
@@ -90,9 +106,7 @@
      </div>
     </div>
    </div>
-  </div>
 
-  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="nationalId">
@@ -106,13 +120,15 @@
      </div>
     </div>
    </div>
+  </div>
 
+  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="contact">
       <fa-icon [icon]="faPhone"></fa-icon> Contact:
      </label>
-     <input type="text" id="contact" formControlName="contact" class="form-control"
+     <input type="tel" id="contact" formControlName="contact" class="form-control"
       [class.is-invalid]="editUserForm.controls['contact'].invalid && editUserForm.controls['contact'].touched" />
      <div *ngIf="editUserForm.controls['contact'].invalid && editUserForm.controls['contact'].touched"
       class="invalid-feedback">
@@ -120,9 +136,7 @@
      </div>
     </div>
    </div>
-  </div>
 
-  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="basicSalary">
@@ -136,7 +150,9 @@
      </div>
     </div>
    </div>
+  </div>
 
+  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="joinedDate">
@@ -150,9 +166,7 @@
      </div>
     </div>
    </div>
-  </div>
 
-  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="role">
@@ -160,15 +174,13 @@
      </label>
      <select id="role" formControlName="role" class="form-control">
       <option value="">Select Role</option>
-      <option value="ADMIN">Admin</option>
-      <option value="COMPANY">Company</option>
-      <option value="MANAGER">Manager</option>
-      <option value="PAYROLL">Payroll</option>
-      <option value="EMPLOYEE">Employee</option>
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
      </select>
     </div>
    </div>
+  </div>
 
+  <div class="row">
    <div class="col-md-6">
     <div class="form-group">
      <label for="profilePhoto">
@@ -186,9 +198,7 @@
    {{ successMessage }}
   </div>
   <div class="button-container">
-   <button type="submit" class="btn btn-primary" [disabled]="editUserForm.invalid">
-    <fa-icon [icon]="faUserEdit"></fa-icon> Edit User
-   </button>
+   <button type="submit" class="btn btn-primary" [disabled]="editUserForm.invalid">Save Changes</button>
   </div>
  </form>
 </div>

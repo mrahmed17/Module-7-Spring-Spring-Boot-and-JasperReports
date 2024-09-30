@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.AdvanceSalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,37 +104,6 @@ public class AdvanceSalaryRestController {
         return new ResponseEntity<>(totalSalary, HttpStatus.OK);
     }
 
-      @GetMapping("/month/{month}")
-    public ResponseEntity<List<AdvanceSalary>> getAdvanceSalariesByMonth(@PathVariable Month month) {
-        List<AdvanceSalary> salaries = advanceSalaryService.getAdvanceSalariesByMonth(month);
-        return new ResponseEntity<>(salaries, HttpStatus.OK);
-    }
-
-     @GetMapping("/total-by-month/{month}")
-    public ResponseEntity<Double> getTotalAdvanceSalaryByMonth(@PathVariable Month month) {
-        try {
-            double totalSalary = advanceSalaryService.getTotalAdvanceSalaryByMonth(month);
-            return new ResponseEntity<>(totalSalary, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<AdvanceSalary>> getAdvanceSalariesByYear(@PathVariable int year) {
-        List<AdvanceSalary> salaries = advanceSalaryService.getAdvanceSalariesByYear(year);
-        return new ResponseEntity<>(salaries, HttpStatus.OK);
-    }
-
-     @GetMapping("/total-by-year/{year}")
-    public ResponseEntity<Double> getTotalAdvanceSalaryByYear(@PathVariable int year) {
-        try {
-            double totalSalary = advanceSalaryService.getTotalAdvanceSalaryByYear(year);
-            return new ResponseEntity<>(totalSalary, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
      @GetMapping("/date-range")
     public ResponseEntity<List<AdvanceSalary>> getAdvanceSalariesByDateRange(@RequestParam LocalDateTime startDate,
@@ -151,20 +119,6 @@ public class AdvanceSalaryRestController {
                 .map(salary -> new ResponseEntity<>(salary, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
-    @GetMapping("/users/year/{year}")
-    public ResponseEntity<List<Long>> getUsersWhoReceivedAdvanceSalaryInYear(@PathVariable int year) {
-        List<Long> userIds = advanceSalaryService.getUsersWhoReceivedAdvanceSalaryInYear(year);
-        return ResponseEntity.ok(userIds);
-    }
-
-     @GetMapping("/count/user/{userId}/year/{year}")
-    public ResponseEntity<Integer> countAdvanceSalariesForUserInYear(@PathVariable Long userId, @PathVariable int year) {
-        int count = advanceSalaryService.countAdvanceSalariesForUserInYear(userId, year);
-        return ResponseEntity.ok(count);
-    }
-
-
 
 
 }

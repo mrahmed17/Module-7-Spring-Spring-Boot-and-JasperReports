@@ -1,6 +1,5 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Salary;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.service.SalaryService;
@@ -55,65 +54,11 @@ public class SalaryRestController {
     }
 
 
-    // Get total salary by year
-    @GetMapping("/total/year/{year}")
-    public ResponseEntity<Double> getTotalSalaryByYear(@PathVariable int year) {
-        double totalSalary = salaryService.getTotalSalaryByYear(year);
-        return ResponseEntity.ok(totalSalary);
-    }
-
-    @GetMapping("/highest/month/{month}")
-    public ResponseEntity<User> getUserWithHighestMonthlySalary(@PathVariable String month) {
-        User user = salaryService.getUserWithHighestMonthlySalary(Month.valueOf(month.toUpperCase()))
-                .orElse(null);
-        return ResponseEntity.ok(user);
-    }
-
-
-    @GetMapping("/highest/year/{year}")
-    public ResponseEntity<User> getUserWithHighestYearlySalary(@PathVariable int year) {
-        User user = salaryService.getUserWithHighestYearlySalary(year).orElse(null);
-        return ResponseEntity.ok(user);
-    }
-
-
-    // Get total salary by month
-    @GetMapping("/total/month/{month}")
-    public ResponseEntity<Double> getTotalSalaryByMonth(@PathVariable String month) {
-        double totalSalary = salaryService.getTotalSalaryByMonth(Month.valueOf(month.toUpperCase()));
-        return ResponseEntity.ok(totalSalary);
-    }
-
-
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Salary>> getSalariesByUserId(@PathVariable Long userId) {
         List<Salary> salaries = salaryService.getSalariesByUserId(userId);
         return ResponseEntity.ok(salaries);
-    }
-
-
-    @GetMapping("/user/{userId}/year/{year}")
-    public ResponseEntity<List<Salary>> getSalariesByUserAndYear(@PathVariable Long userId,
-                                                                 @PathVariable int year) {
-        List<Salary> salaries = salaryService.getSalariesByUserAndYear(userId, year);
-        return ResponseEntity.ok(salaries);
-    }
-
-
-
-    @GetMapping("/user/{userId}/latest")
-    public ResponseEntity<List<Salary>> getLatestSalaryByUser(@PathVariable Long userId) {
-        List<Salary> latestSalary = salaryService.getSalariesByUserAndYear(userId, LocalDateTime.now().getYear());
-        return ResponseEntity.ok(latestSalary);
-    }
-
-
-    @GetMapping("/user/{userId}/year/{year}/total")
-    public ResponseEntity<Double> getTotalSalaryByUserAndYear(@PathVariable Long userId,
-                                                                  @PathVariable int year) {
-        double totalSalary = salaryService.getTotalSalaryByUserAndYear(userId, year);
-        return ResponseEntity.ok(totalSalary);
     }
 
 
@@ -166,13 +111,6 @@ public class SalaryRestController {
         Optional<Salary> salary = salaryService.findByEmail(email);
         return salary.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
-    // Endpoint to filter salaries by payroll month
-    @GetMapping("/filter/month")
-    public ResponseEntity<List<Salary>> getSalariesByPayrollMonth(@RequestParam Month month) {
-        List<Salary> salaries = salaryService.findByPayrollMonth(month);
-        return new ResponseEntity<>(salaries, HttpStatus.OK);
     }
 
 

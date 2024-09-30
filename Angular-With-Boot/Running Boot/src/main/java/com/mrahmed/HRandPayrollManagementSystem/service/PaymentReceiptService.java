@@ -35,11 +35,8 @@ public class PaymentReceiptService {
             receipt.setDeductions(updatedReceipt.getDeductions());
             receipt.setNetPaidAmount(updatedReceipt.getNetPaidAmount());
             receipt.setStatus(updatedReceipt.isStatus());
-            receipt.setPaymentPayer(updatedReceipt.getPaymentPayer());
             receipt.setPaymentReceiver(updatedReceipt.getPaymentReceiver());
             receipt.setSalary(updatedReceipt.getSalary());
-            receipt.setAdvanceSalary(updatedReceipt.getAdvanceSalary());
-            receipt.setBonuses(updatedReceipt.getBonuses());
             return paymentReceiptRepository.save(receipt);
         }
         return null;
@@ -51,10 +48,6 @@ public class PaymentReceiptService {
 
     public List<PaymentReceipt> getPaymentReceiptsByPaymentReceiver(User paymentReceiver) {
         return paymentReceiptRepository.findByPaymentReceiver(paymentReceiver);
-    }
-
-    public List<PaymentReceipt> getPaymentReceiptsByPaymentPayer(User paymentPayer) {
-        return paymentReceiptRepository.findByPaymentPayer(paymentPayer);
     }
 
     public List<PaymentReceipt> getPaymentReceiptsByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
@@ -86,8 +79,5 @@ public class PaymentReceiptService {
         return paymentReceiptRepository.findTotalPaymentsByUserId(userId);
     }
 
-    public List<PaymentReceipt> getPaymentsByPaymentPayer(Long paymentPayerId) {
-        return paymentReceiptRepository.findPaymentsByPaymentPayer(paymentPayerId);
-    }
 
 }

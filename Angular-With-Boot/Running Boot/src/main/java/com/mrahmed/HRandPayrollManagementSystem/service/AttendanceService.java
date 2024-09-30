@@ -167,10 +167,10 @@ public class AttendanceService {
         return attendanceRepository.findTodayAttendanceByUserId(userId);
     }
 
-    // Get department-wise attendance trends
-    public List<Attendance> getAttendanceByDepartment() {
-        return attendanceRepository.findAttendanceByDepartment();
-    }
+//    // Get department-wise attendance trends
+//    public List<Attendance> getAttendanceByDepartment() {
+//        return attendanceRepository.findAttendanceByDepartment();
+//    }
 
     // Get employees with a high leave rate
     public List<User> getEmployeesWithHighLeaveRate(long threshold) {

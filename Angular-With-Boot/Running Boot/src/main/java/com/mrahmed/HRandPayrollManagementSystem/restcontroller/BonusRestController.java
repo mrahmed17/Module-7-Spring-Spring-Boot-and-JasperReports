@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Bonus;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.BonusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,18 +73,6 @@ public class BonusRestController {
         return new ResponseEntity<>(bonuses, HttpStatus.OK);
     }
 
-    @GetMapping("/month/{month}")
-    public ResponseEntity<List<Bonus>> findBonusesByMonth(@PathVariable Month month) {
-        List<Bonus> bonuses = bonusService.findBonusesByMonth(month);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
-    }
-
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<Bonus>> findBonusesByYear(@PathVariable int year) {
-        List<Bonus> bonuses = bonusService.findBonusesByYear(year);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
-    }
-
     @GetMapping("/dateRange")
     public ResponseEntity<List<Bonus>> findBonusesByDateRange(@RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
         List<Bonus> bonuses = bonusService.findBonusesByDateRange(startDate, endDate);
@@ -98,17 +85,6 @@ public class BonusRestController {
         return new ResponseEntity<>(bonuses, HttpStatus.OK);
     }
 
-    @GetMapping("/users/receivedBonusInYear/{year}")
-    public ResponseEntity<List<Long>> getUsersWhoReceivedBonusInYear(@PathVariable int year) {
-        List<Long> userIds = bonusService.getUsersWhoReceivedBonusInYear(year);
-        return new ResponseEntity<>(userIds, HttpStatus.OK);
-    }
-
-    @GetMapping("/count/user/{userId}/year/{year}")
-    public ResponseEntity<Integer> countBonusesForUserInYear(@PathVariable Long userId, @PathVariable int year) {
-        int count = bonusService.countBonusesForUserInYear(userId, year);
-        return new ResponseEntity<>(count, HttpStatus.OK);
-    }
 
     @GetMapping("/byName/{userId}")
     public ResponseEntity<Double> getTotalBonusByName(@PathVariable Long userId) {
@@ -119,18 +95,6 @@ public class BonusRestController {
     @GetMapping("/byUserId/{userId}")
     public ResponseEntity<Double> getTotalBonusByUserId(@PathVariable Long userId) {
         double totalBonus = bonusService.getTotalBonusByUserId(userId);
-        return new ResponseEntity<>(totalBonus, HttpStatus.OK);
-    }
-
-    @GetMapping("/byMonth/{month}")
-    public ResponseEntity<Double> getTotalBonusByMonth(@PathVariable Month month) {
-        double totalBonus = bonusService.getTotalBonusByMonth(month);
-        return new ResponseEntity<>(totalBonus, HttpStatus.OK);
-    }
-
-    @GetMapping("/byYear/{year}")
-    public ResponseEntity<Double> getTotalBonusByYear(@PathVariable int year) {
-        double totalBonus = bonusService.getTotalBonusByYear(year);
         return new ResponseEntity<>(totalBonus, HttpStatus.OK);
     }
 

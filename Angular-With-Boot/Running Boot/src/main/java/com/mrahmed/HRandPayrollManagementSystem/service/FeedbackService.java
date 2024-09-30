@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Feedback;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.repository.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,6 @@ public class FeedbackService {
             feedback.setDate(updatedFeedback.getDate());
             feedback.setRating(updatedFeedback.getRating());
             feedback.setComment(updatedFeedback.getComment());
-            feedback.setFeedbackMonth(updatedFeedback.getFeedbackMonth());
             feedback.setUser(updatedFeedback.getUser());
             return feedbackRepository.save(feedback);
         }
@@ -56,10 +54,6 @@ public class FeedbackService {
 
     public List<Feedback> getFeedbacksByUserId(Long userId) {
         return feedbackRepository.findFeedbacksByUserId(userId);
-    }
-
-    public List<Feedback> getFeedbacksByMonth(Month month) {
-        return feedbackRepository.findFeedbacksByMonth(month);
     }
 
     public List<Feedback> getFeedbacksByDateRange(LocalDateTime startDate, LocalDateTime endDate) {

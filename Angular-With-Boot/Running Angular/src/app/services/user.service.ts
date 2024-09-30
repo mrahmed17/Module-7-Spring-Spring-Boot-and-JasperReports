@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { UserModel } from '../models/user.model';
 import { environment } from '../../environments/environment';
 
@@ -10,8 +10,6 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
   private baseUrl: string = `${environment.apiUrl}/users`;
-
-  // private baseUrl: string = 'http://localhost:8080/api/users';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -22,18 +20,7 @@ export class UserService {
       })
       .pipe(catchError(this.handleError<string>('createUser')));
   }
-
-  updateUser(
-    id: number,
-    user: UserModel,
-    profilePhoto?: File
-  ): Observable<any> {
-    const formData = new FormData();
-    formData.append('user', JSON.stringify(user));
-    if (profilePhoto) {
-      formData.append('profilePhoto', profilePhoto);
-    }
-
+  updateUser(id: number, formData: FormData): Observable<any> {
     return this.httpClient
       .put(`${this.baseUrl}/update/${id}`, formData)
       .pipe(catchError(this.handleError<any>('updateUser')));

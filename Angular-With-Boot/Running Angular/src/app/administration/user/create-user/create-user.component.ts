@@ -21,6 +21,7 @@ import {
   faVenusMars,
 } from '@fortawesome/free-solid-svg-icons';
 import { RoleEnum } from '../../../models/role.enum';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-create-user',
@@ -59,7 +60,8 @@ export class CreateUserComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     this.userForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -82,17 +84,20 @@ export class CreateUserComponent {
       const maxSize = 5 * 1024 * 1024; // 5MB
       const allowedTypes = ['image/jpeg', 'image/png'];
 
-      if (allowedTypes.includes(file.type) && file.size <= maxSize) {
-        this.profilePhoto = file;
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.profilePhotoPreview = reader.result as string;
-        };
-        reader.readAsDataURL(file);
-      } else {
+      if (!allowedTypes.includes(file.type) || file.size > maxSize) {
         this.errorMessage =
           'Invalid file type or size. Please upload a .jpg or .png image below 5MB.';
+        this.profilePhoto = null;
+        this.profilePhotoPreview = null;
+        return;
       }
+
+      this.profilePhoto = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profilePhotoPreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -113,24 +118,25 @@ export class CreateUserComponent {
       this.errorMessage = 'Please fill out the form correctly.';
       return;
     }
+
     const user: UserModel = {
-      id: 0, 
+      id: 0,
       fullName: this.userForm.get('fullName')?.value,
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
-      address: this.userForm.get('address')?.value,
+      address: this.userForm.get('address')?.value || '',
       gender: this.userForm.get('gender')?.value,
-      dateOfBirth: this.userForm.get('dateOfBirth')?.value,
-      nationalid: this.userForm.get('nationalId')?.value,
-      contact: this.userForm.get('contact')?.value,
-      basicSalary: this.userForm.get('basicSalary')?.value,
-      joinedDate: this.userForm.get('joinedDate')?.value,
+      dateOfBirth: this.userForm.get('dateOfBirth')?.value || '',
+      nationalId: this.userForm.get('nationalId')?.value || '',
+      contact: this.userForm.get('contact')?.value || '',
+      basicSalary: this.userForm.get('basicSalary')?.value || 0,
+      joinedDate: this.userForm.get('joinedDate')?.value || '',
       role: this.userForm.get('role')?.value,
-      isActive: this.userForm.get('isActive')?.value,
-      profilePhoto: this.userForm.get('profilePhoto')?.value,
-      updatedAt: this.userForm.get('updatedAt')?.value,
-      department: this.userForm.get('depdegree')?.value,
+      isActive: true,
+      profilePhoto: '',
+      updatedAt: new Date(),
     };
+
     const formData = new FormData();
     formData.append(
       'user',
@@ -140,12 +146,16 @@ export class CreateUserComponent {
     if (this.profilePhoto) {
       formData.append('profilePhoto', this.profilePhoto);
     }
+
     this.userService.createUser(formData).subscribe({
       next: (message) => {
         this.successMessage = message;
         this.errorMessage = null;
-        this.userForm.reset();
-        this.profilePhoto = null;
+        this.resetForm();
+        this.notificationService.showNotify(
+          'User created successfully.',
+          'success'
+        );
         this.router.navigate(['/user/list']);
       },
       error: (err) => {
@@ -155,5 +165,13 @@ export class CreateUserComponent {
         console.error(err);
       },
     });
+  }
+
+  resetForm() {
+    this.userForm.reset();
+    this.userForm.markAsPristine(); // Ensure form state is clean
+    this.profilePhoto = null;
+    this.profilePhotoPreview = null;
+    this.currentStep = 1; // Reset to the first step
   }
 }

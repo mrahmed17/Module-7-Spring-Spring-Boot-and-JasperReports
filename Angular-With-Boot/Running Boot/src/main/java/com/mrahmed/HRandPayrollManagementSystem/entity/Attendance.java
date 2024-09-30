@@ -1,6 +1,5 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,7 +26,11 @@ public class Attendance {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
-    @JsonBackReference
     private User user;
+
+
+    //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
+    //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)
+
 
 }

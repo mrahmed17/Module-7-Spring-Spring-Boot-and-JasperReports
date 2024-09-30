@@ -63,13 +63,6 @@ public class PaymentReceiptRestController {
         return ResponseEntity.ok(paymentReceiptService.getPaymentReceiptsByPaymentReceiver(paymentReceiver));
     }
 
-    // Get payment receipts by payment payer
-    @GetMapping("/payment-payer/{userId}")
-    public ResponseEntity<List<PaymentReceipt>> getPaymentReceiptsByPayer(@PathVariable Long userId) {
-        User paymentPayer = userService.findUserById(userId);
-        return ResponseEntity.ok(paymentReceiptService.getPaymentReceiptsByPaymentPayer(paymentPayer));
-    }
-
     // Get payment receipts by date range
     @GetMapping("/date-range")
     public ResponseEntity<List<PaymentReceipt>> getPaymentReceiptsByDateRange(
@@ -125,11 +118,6 @@ public class PaymentReceiptRestController {
         return ResponseEntity.ok(totalPayments);
     }
 
-    // Get payments by payment payer
-    @GetMapping("/payments-by-payer/{paymentPayerId}")
-    public ResponseEntity<List<PaymentReceipt>> getPaymentsByPaymentPayer(@PathVariable Long paymentPayerId) {
-        List<PaymentReceipt> payments = paymentReceiptService.getPaymentsByPaymentPayer(paymentPayerId);
-        return ResponseEntity.ok(payments);
-    }
+
 
 }

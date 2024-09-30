@@ -26,8 +26,7 @@ public class Department {
     @JsonBackReference
     private Branch branch;
 
-    @OneToMany(mappedBy = "department")
-    @JsonManagedReference
-    private List<User> users;
+
 
 }
+

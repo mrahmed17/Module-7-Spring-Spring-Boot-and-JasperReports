@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.repository.AdvanceSalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,23 +64,6 @@ public class AdvanceSalaryService {
         return advanceSalaryRepository.getTotalAdvanceSalaryByUserId(userId);
     }
 
-    public List<AdvanceSalary> getAdvanceSalariesByMonth(Month month) {
-        return advanceSalaryRepository.findAdvanceSalariesByMonth(month);
-    }
-
-
-    public double getTotalAdvanceSalaryByMonth(Month month) {
-        return advanceSalaryRepository.getTotalAdvanceSalaryByMonth(month.name());  // Assuming month.name() is passed as string
-    }
-
-    public List<AdvanceSalary> getAdvanceSalariesByYear(int year) {
-        return advanceSalaryRepository.findAdvanceSalariesByYear(year);
-    }
-
-
-    public double getTotalAdvanceSalaryByYear(int year) {
-        return advanceSalaryRepository.getTotalAdvanceSalaryByYear(year);
-    }
 
     public List<AdvanceSalary> getAdvanceSalariesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         return advanceSalaryRepository.findAdvanceSalariesByDateRange(startDate, endDate);
@@ -93,15 +75,6 @@ public class AdvanceSalaryService {
         return salaries.isEmpty() ? Optional.empty() : Optional.of(salaries.get(0));
     }
 
-
-    public List<Long> getUsersWhoReceivedAdvanceSalaryInYear(int year) {
-        return advanceSalaryRepository.getUsersWhoReceivedAdvanceSalaryInYear(year);
-    }
-
-
-    public int countAdvanceSalariesForUserInYear(Long userId, int year) {
-        return advanceSalaryRepository.countAdvanceSalariesForUserInYear(userId, year);
-    }
 
 
 }

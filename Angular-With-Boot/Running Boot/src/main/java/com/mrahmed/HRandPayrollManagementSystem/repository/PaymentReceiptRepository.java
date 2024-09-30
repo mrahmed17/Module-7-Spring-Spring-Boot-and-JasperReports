@@ -17,8 +17,6 @@ public interface PaymentReceiptRepository extends JpaRepository <PaymentReceipt,
 
     List<PaymentReceipt> findByPaymentReceiver(User paymentReceiver);
 
-    List<PaymentReceipt> findByPaymentPayer(User paymentPayer);
-
     @Query("SELECT pr FROM PaymentReceipt pr WHERE pr.paymentDate BETWEEN :startDate AND :endDate")
     List<PaymentReceipt> findByPaymentDateBetween(@Param("startDate") LocalDateTime startDate,
                                                   @Param("endDate") LocalDateTime endDate);
@@ -40,9 +38,6 @@ public interface PaymentReceiptRepository extends JpaRepository <PaymentReceipt,
 
     @Query("SELECT SUM(pr.netPaidAmount) FROM PaymentReceipt pr WHERE pr.paymentReceiver.id = :userId")
     Double findTotalPaymentsByUserId(@Param("userId") Long userId);
-
-    @Query("SELECT pr FROM PaymentReceipt pr WHERE pr.paymentPayer.id = :paymentPayerId")
-    List<PaymentReceipt> findPaymentsByPaymentPayer(@Param("paymentPayerId") Long paymentPayerId);
 
 
 }

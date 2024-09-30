@@ -6,6 +6,7 @@ import { MonthEnum } from './month.enum';
 import { UserModel } from './user.model';
 
 export class SalaryModel {
+  
   id!: number;
   paymentDate!: Date;
   medicare!: number;
@@ -31,4 +32,5 @@ export class SalaryModel {
   bonuses!: BonusModel;
 
   leaves!: LeaveModel;
+
 }

@@ -89,12 +89,6 @@ public class LeaveRestController {
         return ResponseEntity.ok(leaves);
     }
 
-    // Get leaves by year
-    @GetMapping("/year/{year}")
-    public ResponseEntity<List<Leave>> getLeavesByYear(@PathVariable int year) {
-        List<Leave> leaves = leaveService.getLeavesByYear(year);
-        return ResponseEntity.ok(leaves);
-    }
 
     // Get unpaid leaves
     @GetMapping("/unpaid")
@@ -110,12 +104,7 @@ public class LeaveRestController {
         return ResponseEntity.ok(count);
     }
 
-    // Get leaves by month
-    @GetMapping("/month/{month}")
-    public ResponseEntity<List<Leave>> getLeavesByMonth(@PathVariable Month month) {
-        List<Leave> leaves = leaveService.getLeavesByMonth(month);
-        return ResponseEntity.ok(leaves);
-    }
+
 
     // Get pending leave requests
     @GetMapping("/pending")
@@ -214,17 +203,6 @@ public class LeaveRestController {
         int totalLeaves = leaveService.countTotalLeaves(userId);
         return ResponseEntity.ok(totalLeaves);
     }
-
-    // Get total unpaid leave days for a user for a given year
-    @GetMapping("/unpaidLeaveDays")
-    public ResponseEntity<Integer> getTotalUnpaidLeaveDays(
-            @RequestParam Long userId,
-            @RequestParam List<LeaveType> leaveTypes,
-            @RequestParam int year) {
-        int unpaidLeaveDays = leaveService.getTotalUnpaidLeaveDays(userId, leaveTypes, year);
-        return ResponseEntity.ok(unpaidLeaveDays);
-    }
-
 
 
 }

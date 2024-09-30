@@ -146,13 +146,12 @@ export class ReportAttendanceComponent implements OnInit {
         address: 'unknown' as any,
         gender: 'unknown' as any,
         dateOfBirth: 'unknown' as any,
-        nationalid: 'unknown' as any,
+        nationalId: 'unknown' as any,
         basicSalary: 'unknown' as any,
         joinedDate: 'unknown' as any,
         isActive: 'unknown' as any,
         profilePhoto: 'unknown' as any,
         updatedAt: 'unknown' as any,
-        department: 'unknown' as any,
       };
     } else {
       console.error('Failed to parse user from key:', key);
@@ -166,13 +165,12 @@ export class ReportAttendanceComponent implements OnInit {
         address: 'unknown' as any,
         gender: 'unknown' as any,
         dateOfBirth: 'unknown' as any,
-        nationalid: 'unknown' as any,
+        nationalId: 'unknown' as any,
         basicSalary: 'unknown' as any,
         joinedDate: 'unknown' as any,
         isActive: 'unknown' as any,
         profilePhoto: 'unknown' as any,
         updatedAt: 'unknown' as any,
-        department: 'unknown' as any,
       };
     }
   }

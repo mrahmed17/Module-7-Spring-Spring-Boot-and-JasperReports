@@ -5,20 +5,20 @@ import { UserService } from '../../../services/user.service';
 import { NotificationService } from '../../../services/notification.service';
 import { UserModel } from '../../../models/user.model';
 import {
-  faCalendarAlt,
-  faCalendarDay,
-  faDollarSign,
-  faEnvelope,
-  faHome,
-  faIdCard,
-  faImage,
-  faKey,
-  faPhone,
   faUser,
-  faUserEdit,
-  faUserTag,
+  faEnvelope,
+  faKey,
+  faHome,
   faVenusMars,
+  faCalendarAlt,
+  faIdCard,
+  faPhone,
+  faDollarSign,
+  faCalendarDay,
+  faUserTag,
+  faImage,
 } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-edit-user',
@@ -38,11 +38,10 @@ export class EditUserComponent implements OnInit {
   faCalendarDay = faCalendarDay;
   faUserTag = faUserTag;
   faImage = faImage;
-  faUserEdit = faUserEdit;
 
   editUserForm!: FormGroup;
-  errorMessage: string = '';
-  successMessage: string = '';
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
   selectedFile: File | null = null;
   userId!: number;
 
@@ -55,12 +54,17 @@ export class EditUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.loadUser();
+  }
+
+  initializeForm() {
     this.editUserForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       address: [''],
-      gender: [''],
+      gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       nationalId: ['', Validators.required],
       contact: ['', Validators.required],
@@ -69,37 +73,31 @@ export class EditUserComponent implements OnInit {
       role: ['', Validators.required],
       profilePhoto: [null],
     });
+  }
 
-    // Extract userId from route params and load user details
+  loadUser(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.userId = +id;
-      this.loadUser(this.userId);
+      this.userService.getUserById(this.userId).subscribe({
+        next: (user) => {
+          const userFormData = {
+            ...user,
+            dateOfBirth: user.dateOfBirth
+              ? new Date(user.dateOfBirth).toISOString().split('T')[0]
+              : '',
+            joinedDate: user.joinedDate
+              ? new Date(user.joinedDate).toISOString().split('T')[0]
+              : '',
+          };
+          this.editUserForm.patchValue(userFormData as any);
+        },
+        error: (err) => {
+          this.errorMessage = 'Error loading user details';
+          console.error(err);
+        },
+      });
     }
-  }
-
-  loadUser(id: number): void {
-    this.userService.getUserById(id).subscribe({
-      next: (user) => {
-        // Convert the date fields to strings (YYYY-MM-DD) for the form
-        const userFormData = {
-          ...user,
-          dateOfBirth: user.dateOfBirth
-            ? new Date(user.dateOfBirth).toISOString().split('T')[0]
-            : '',
-          joinedDate: user.joinedDate
-            ? new Date(user.joinedDate).toISOString().split('T')[0]
-            : '',
-        };
-
-        // Patch form value
-        this.editUserForm.patchValue(userFormData as any); // Cast to 'any' to avoid type error
-      },
-      error: (err) => {
-        this.errorMessage = 'Error loading user details';
-        console.error(err);
-      },
-    });
   }
 
   onFileChange(event: any): void {
@@ -118,47 +116,54 @@ export class EditUserComponent implements OnInit {
       } else {
         this.selectedFile = file;
         this.editUserForm.patchValue({ profilePhoto: this.selectedFile });
+        this.errorMessage = null;
       }
     }
   }
 
   onSubmit(): void {
-    if (this.editUserForm.valid) {
-      const formValues = this.editUserForm.value;
-
-      // Convert string dates from the form back to Date objects
-      const user: UserModel = {
-        ...formValues,
-        dateOfBirth: formValues.dateOfBirth
-          ? new Date(formValues.dateOfBirth)
-          : undefined,
-        joinedDate: formValues.joinedDate
-          ? new Date(formValues.joinedDate)
-          : undefined,
-      };
-
-      const fileToSend: File | undefined = this.selectedFile || undefined;
-
-      this.userService.updateUser(this.userId, user, fileToSend).subscribe({
-        next: () => {
-          this.successMessage = 'User updated successfully!';
-          this.errorMessage = '';
-          this.notificationService.showNotify(
-            'User updated successfully!',
-            'success'
-          );
-          this.router.navigate(['/user/list']);
-        },
-        error: (error) => {
-          this.errorMessage = 'Failed to update user';
-          this.successMessage = '';
-          console.error(error);
-        },
-      });
-    } else {
+    if (this.editUserForm.invalid) {
       this.errorMessage = 'Please fill in all required fields correctly.';
-      this.successMessage = '';
+      return;
     }
+
+    const formValues = this.editUserForm.value;
+    const user: UserModel = {
+      ...formValues,
+      dateOfBirth: formValues.dateOfBirth
+        ? new Date(formValues.dateOfBirth)
+        : undefined,
+      joinedDate: formValues.joinedDate
+        ? new Date(formValues.joinedDate)
+        : undefined,
+    };
+
+    const formData = new FormData();
+    formData.append(
+      'user',
+      new Blob([JSON.stringify(user)], { type: 'application/json' })
+    );
+
+    if (this.selectedFile) {
+      formData.append('profilePhoto', this.selectedFile);
+    }
+
+    this.userService.updateUser(this.userId, formData).subscribe({
+      next: () => {
+        this.successMessage = 'User updated successfully!';
+        this.errorMessage = null;
+        this.notificationService.showNotify(
+          'User updated successfully!',
+          'success'
+        );
+        this.router.navigate(['/user/list']);
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to update user';
+        this.successMessage = null;
+        console.error(err);
+      },
+    });
   }
 
   cancel(): void {

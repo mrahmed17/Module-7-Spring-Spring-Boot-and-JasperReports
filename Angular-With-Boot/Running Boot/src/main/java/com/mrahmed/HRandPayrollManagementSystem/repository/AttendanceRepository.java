@@ -92,12 +92,12 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findAllByUserId(Long userId);
 
-    @Query("SELECT d.departmentName, COUNT(a) FROM Attendance a " +
-            "JOIN a.user u " +
-            "JOIN u.department d " +
-            "GROUP BY d.departmentName " +
-            "ORDER BY COUNT(a) DESC")
-    List<Attendance> findAttendanceByDepartment();
+//    @Query("SELECT d.departmentName, COUNT(a) FROM Attendance a " +
+//            "JOIN a.user u " +
+//            "JOIN u.department d " +
+//            "GROUP BY d.departmentName " +
+//            "ORDER BY COUNT(a) DESC")
+//    List<Attendance> findAttendanceByDepartment();
 
     @Query("SELECT u FROM User u " +
             "JOIN Attendance a ON a.user.id = u.id " +

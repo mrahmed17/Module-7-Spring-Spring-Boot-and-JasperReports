@@ -29,8 +29,6 @@ public class LeaveService {
             existingLeave.setRequestDate(updatedLeave.getRequestDate());
             existingLeave.setReason(updatedLeave.getReason());
             existingLeave.setRemainingLeave(updatedLeave.getRemainingLeave());
-            existingLeave.setYear(updatedLeave.getYear());
-            existingLeave.setLeaveMonth(updatedLeave.getLeaveMonth());
             existingLeave.setLeaveType(updatedLeave.getLeaveType());
             existingLeave.setRequestStatus(updatedLeave.getRequestStatus());
             existingLeave.setUser(updatedLeave.getUser());
@@ -85,20 +83,12 @@ public class LeaveService {
         return leaveRepository.findLeaveByRequestStatus(status);
     }
 
-    public List<Leave> getLeavesByYear(int year) {
-        return leaveRepository.findAllLeaveByYear(year);
-    }
-
     public List<Leave> getUnpaidLeaves() {
         return leaveRepository.findUnpaidLeaves();
     }
 
     public long countLeavesByUserAndStatus(Long userId, RequestStatus status) {
         return leaveRepository.countLeavesByUserAndStatus(userId, status);
-    }
-
-    public List<Leave> getLeavesByMonth(Month month) {
-        return leaveRepository.findLeavesByMonth(month);
     }
 
     public List<Leave> getPendingLeaveRequests() {
@@ -162,8 +152,5 @@ public class LeaveService {
         return leaveRepository.countLeavesByUserId(userId);
     }
 
-    public int getTotalUnpaidLeaveDays(Long userId, List<LeaveType> leaveTypes, int year) {
-        return leaveRepository.getTotalUnpaidLeaveDays(userId, leaveTypes, year);
-    }
 
 }

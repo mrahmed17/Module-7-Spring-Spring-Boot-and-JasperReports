@@ -1,13 +1,11 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "branches")
@@ -32,8 +30,6 @@ public class Branch {
     @JsonBackReference
     private Company company;
 
-    @OneToMany(mappedBy = "branch")
-    @JsonManagedReference
-    private List<Department> departments;
+
 
 }

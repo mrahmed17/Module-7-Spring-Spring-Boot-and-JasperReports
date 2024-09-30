@@ -204,11 +204,11 @@ public class AttendanceRestController {
         return ResponseEntity.ok(todayAttendance);
     }
 
-      @GetMapping("/attendance-by-department")
-    public ResponseEntity<List<Attendance>> getAttendanceByDepartment() {
-        List<Attendance> attendanceTrends = attendanceService.getAttendanceByDepartment();
-        return ResponseEntity.ok(attendanceTrends);
-    }
+//      @GetMapping("/attendance-by-department")
+//    public ResponseEntity<List<Attendance>> getAttendanceByDepartment() {
+//        List<Attendance> attendanceTrends = attendanceService.getAttendanceByDepartment();
+//        return ResponseEntity.ok(attendanceTrends);
+//    }
 
     @GetMapping("/high-leave-rate")
     public ResponseEntity<List<User>> getEmployeesWithHighLeaveRate(@RequestParam long threshold) {

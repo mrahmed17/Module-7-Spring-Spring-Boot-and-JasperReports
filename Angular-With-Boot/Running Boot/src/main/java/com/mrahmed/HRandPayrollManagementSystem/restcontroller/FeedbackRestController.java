@@ -1,7 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Feedback;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,12 +74,6 @@ public class FeedbackRestController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Feedback>> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
-        return new ResponseEntity<>(feedbacks, HttpStatus.OK);
-    }
-
-    @GetMapping("/month/{month}")
-    public ResponseEntity<List<Feedback>> getFeedbacksByMonth(@PathVariable Month month) {
-        List<Feedback> feedbacks = feedbackService.getFeedbacksByMonth(month);
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
     }
 

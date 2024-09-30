@@ -31,17 +31,11 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
     @Query("SELECT l FROM Leave l WHERE l.requestStatus = :status")
     List<Leave> findLeaveByRequestStatus(@Param("status") RequestStatus status);
 
-    @Query("SELECT l FROM Leave l WHERE l.year = :year")
-    List<Leave> findAllLeaveByYear(@Param("year") int year);
-
     @Query("SELECT l FROM Leave l WHERE l.isUnpaid = true")
     List<Leave> findUnpaidLeaves();
 
     @Query("SELECT COUNT(l) FROM Leave l WHERE l.user.id = :userId AND l.requestStatus = :status")
     long countLeavesByUserAndStatus(@Param("userId") Long userId, @Param("status") RequestStatus status);
-
-    @Query("SELECT l FROM Leave l WHERE l.leaveMonth = :month")
-    List<Leave> findLeavesByMonth(@Param("month") Month month);
 
     @Query("SELECT l FROM Leave l WHERE l.requestStatus = 'PENDING'")
     List<Leave> findPendingLeaveRequests();
@@ -67,10 +61,6 @@ public interface LeaveRepository extends JpaRepository<Leave, Long> {
 
     @Query("SELECT SUM(l.remainingLeave) FROM Leave l WHERE l.user.id = :userId")
     Integer calculateRemainingLeavesByUser(@Param("userId") Long userId);
-
-    @Query("SELECT COUNT(l) FROM Leave l WHERE l.user.id = :userId AND l.leaveType IN (:leaveTypes) AND l.year = :year")
-    int getTotalUnpaidLeaveDays(@Param("userId") Long userId, @Param("leaveTypes") List<LeaveType> leaveTypes, @Param("year") int year);
-
 
     @Query("SELECT l FROM Leave l WHERE l.reason = :reason")
     List<Leave> findLeavesByReason(@Param("reason") String reason);
