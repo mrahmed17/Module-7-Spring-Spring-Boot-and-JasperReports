@@ -25,6 +25,45 @@
           </a>
         </li>
 
+        <!-- Company Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-dollar-sign"></i> Company
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+            <li><a class="dropdown-item" routerLink="/company/create">Create Company</a></li>
+            <li><a class="dropdown-item" routerLink="/company/list">Company List</a></li>
+            <li><a class="dropdown-item" routerLink="/company/report">Company Report</a></li>
+          </ul>
+        </li>
+
+        <!-- Branch Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="branchDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-dollar-sign"></i> Branch
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="branchDropdown">
+            <li><a class="dropdown-item" routerLink="/branch/create">Create Branch</a></li>
+            <li><a class="dropdown-item" routerLink="/branch/list">Branch List</a></li>
+            <li><a class="dropdown-item" routerLink="/branch/report">Branch Report</a></li>
+          </ul>
+        </li>
+
+        <!-- Department Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="departmentDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-dollar-sign"></i> Department
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
+            <li><a class="dropdown-item" routerLink="/department/create">Create Department</a></li>
+            <li><a class="dropdown-item" routerLink="/department/list">Department List</a></li>
+            <li><a class="dropdown-item" routerLink="/department/report">Department Report</a></li>
+          </ul>
+        </li>
+
         <!-- User Dropdown -->
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
@@ -44,18 +83,6 @@
                 User List
               </a>
             </li>
-            <!-- <li>
-              <a class="nav-link" routerLink="/user/view/:id">
-                <fa-icon [icon]="faUser"></fa-icon>
-                User Detail
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/user/edit/:id">
-                <fa-icon [icon]="faEdit"></fa-icon>
-                Edit User
-              </a>
-            </li> -->
           </ul>
         </li>
 
@@ -137,17 +164,10 @@
             <span data-feather="calendar" class="icon">Leaves</span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="leavesDropdown">
-            <li>
-              <a class="nav-link" routerLink="/leave/apply">
-                <fa-icon [icon]="faCalendarPlus"></fa-icon>
-                Apply Leave
+            <li> <a class="nav-link" routerLink="/leave/apply"> <fa-icon [icon]="faCalendarPlus"></fa-icon> Apply Leave
               </a>
             </li>
-            <li>
-              <a class="nav-link" routerLink="/leave/list">
-                <fa-icon [icon]="faList"></fa-icon>
-                Leaves List
-              </a>
+            <li> <a class="nav-link" routerLink="/leave/list"> <fa-icon [icon]="faList"></fa-icon> Leaves List </a>
             </li>
             <li>
               <a class="nav-link" routerLink="/leave/details/:id">
@@ -177,7 +197,7 @@
         </li>
 
         <!-- Payrolls Dropdown -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="payrollsDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <span data-feather="dollar-sign" class="icon">Payrolls</span>
@@ -196,7 +216,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <!-- Logout -->
         <li class="nav-item">

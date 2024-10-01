@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvanceSalaryModel } from '../../../models/advance-salary.model';
 import { AdvanceSalaryService } from '../../../services/advancesalary.service';
-import { MonthEnum } from '../../../models/month.enum';
 import { NotificationService } from '../../../services/notification.service';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-advance-salary',
@@ -13,9 +13,9 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./create-advance-salary.component.css'],
 })
 export class CreateAdvanceSalaryComponent implements OnInit {
-  advanceSalary: AdvanceSalaryModel = new AdvanceSalaryModel();
-  months: string[] = [];
   users: UserModel[] = [];
+  advanceSalary: AdvanceSalaryModel = new AdvanceSalaryModel();
+  errorMessage: string | null = null;
 
   constructor(
     private advanceSalaryService: AdvanceSalaryService,
@@ -25,14 +25,25 @@ export class CreateAdvanceSalaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.months = Object.keys(MonthEnum).filter((key) => isNaN(Number(key)));
+    this.loadUsers();
+  }
 
-    this.userService.getAllUsers().subscribe((data) => {
-      this.users = data;
+  loadUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (users: UserModel[]) => {
+        this.users = users;
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to load users.';
+      },
     });
   }
 
-  createAdvanceSalary(): void {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
     this.advanceSalaryService
       .createAdvanceSalary(this.advanceSalary)
       .subscribe({
@@ -42,10 +53,8 @@ export class CreateAdvanceSalaryComponent implements OnInit {
             'success'
           );
           this.router.navigate(['/advance-salary/list']);
-          console.log('Advance salary created successfully:', response);
         },
         error: (err) => {
-          console.error('Error creating advance salary:', err);
           this.notificationService.showNotify(
             'Error creating advance salary!',
             'error'

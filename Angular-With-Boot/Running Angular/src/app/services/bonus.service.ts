@@ -13,42 +13,37 @@ export class BonusService {
 
   constructor(private http: HttpClient) {}
 
-  // Create a new bonus
+
   createBonus(bonus: BonusModel): Observable<BonusModel> {
     return this.http
       .post<BonusModel>(`${this.baseUrl}/create`, bonus)
       .pipe(catchError(this.handleError<BonusModel>('createBonus')));
   }
 
-  // Update an existing bonus
   updateBonus(id: number, bonus: BonusModel): Observable<BonusModel> {
     return this.http
       .put<BonusModel>(`${this.baseUrl}/update/${id}`, bonus)
       .pipe(catchError(this.handleError<BonusModel>('updateBonus')));
   }
 
-  // Get all bonuses
   getAllBonuses(): Observable<BonusModel[]> {
     return this.http
       .get<BonusModel[]>(`${this.baseUrl}/all`)
       .pipe(catchError(this.handleError<BonusModel[]>('getAllBonuses', [])));
   }
 
-  // Calculate the bonus for a user in a specific year
   calculateBonus(userId: number, year: number): Observable<number> {
     return this.http
       .get<number>(`${this.baseUrl}/calculate/${userId}/${year}`)
       .pipe(catchError(this.handleError<number>('calculateBonus')));
   }
 
-  // Get total bonus for a user in a specific year
   getTotalBonusForUser(userId: number, year: number): Observable<number> {
     return this.http
       .get<number>(`${this.baseUrl}/byUserId/${userId}`)
       .pipe(catchError(this.handleError<number>('getTotalBonusForUser')));
   }
 
-  // Get all bonuses for a specific month and year
   getBonusesByMonthAndYear(
     month: MonthEnum,
     year: number
@@ -62,14 +57,12 @@ export class BonusService {
       );
   }
 
-  // Get the total bonus paid in a specific year
   getTotalBonusPaidInYear(year: number): Observable<number> {
     return this.http
       .get<number>(`${this.baseUrl}/byYear/${year}`)
       .pipe(catchError(this.handleError<number>('getTotalBonusPaidInYear')));
   }
 
-  // Get all bonuses between two dates
   getBonusesBetweenDates(
     startDate: Date,
     endDate: Date
@@ -84,7 +77,6 @@ export class BonusService {
       );
   }
 
-  // Error handling function
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);

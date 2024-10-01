@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
+import com.mrahmed.HRandPayrollManagementSystem.entity.Branch;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.repository.DepartmentRepository;
@@ -82,6 +83,10 @@ public class DepartmentService {
 
     public Department findByDepartmentName(String departmentName) {
         return departmentRepository.findByDepartmentName(departmentName);
+    }
+
+    public List<Branch> getBranchesByCompanyId(Long companyId) {
+        return departmentRepository.getBranchesByCompanyId(companyId);
     }
 
     public List<User> getEmployeesByDepartmentId(Long departmentId) {

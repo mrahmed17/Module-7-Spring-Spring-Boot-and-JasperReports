@@ -18,9 +18,9 @@ export class UserModel {
   isActive!: boolean;
   updatedAt!: Date;
 
-  role!: RoleEnum[];
+  role!: RoleEnum;
 
-  department!: DepartmentModel[];
+  department!: DepartmentModel;
   
 
 }

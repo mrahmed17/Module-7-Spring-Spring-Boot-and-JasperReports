@@ -28,12 +28,12 @@
      <td>{{ branch.city }}</td>
      <td>
       <ng-container *ngIf="branch.id as branchId">
-       {{ (branchService.countEmployeesByBranchId(branchId) | async) || 0 }}
+       {{ (getEmployeeCount(branchId) | async) || 0 }}
       </ng-container>
      </td>
      <td>
       <ng-container *ngIf="branch.id as branchId">
-       {{ (branchService.countDepartmentsByBranchId(branchId) | async) || 0 }}
+       {{ (getDepartmentCount(branchId) | async) || 0 }}
       </ng-container>
      </td>
     </tr>

@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdvanceSalaryModel } from '../../../models/advance-salary.model';
 import { AdvanceSalaryService } from '../../../services/advancesalary.service';
-import { MonthEnum } from '../../../models/month.enum';
 import { NotificationService } from '../../../services/notification.service';
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-advance-salary',
@@ -15,9 +14,9 @@ import { UserService } from '../../../services/user.service';
 })
 export class EditAdvanceSalaryComponent implements OnInit {
   advanceSalary: AdvanceSalaryModel = new AdvanceSalaryModel();
-  months: string[] = [];
   users: UserModel[] = [];
-  id!: number;
+  errorMessage: string | null = null; 
+  private advanceSalaryId!: number;
 
   constructor(
     private advanceSalaryService: AdvanceSalaryService,
@@ -28,42 +27,53 @@ export class EditAdvanceSalaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-
-    this.months = Object.keys(MonthEnum).filter((key) => isNaN(Number(key)));
-
-    this.advanceSalaryService.getAdvanceSalaryById(this.id).subscribe({
-      next: (data) => {
-        this.advanceSalary = data;
-      },
-      error: (err) => {
-        console.error('Error fetching advance salary:', err);
-        this.notificationService.showNotify(
-          'Error fetching advance salary details!',
-          'error'
-        );
-      },
-    });
-
-    this.userService.getAllUsers().subscribe((data) => {
-      this.users = data;
+    this.route.params.subscribe((params) => {
+      this.advanceSalaryId = +params['id'];
+      this.loadAdvanceSalary();
+      this.loadUsers(); 
     });
   }
 
-  updateAdvanceSalary(): void {
+  loadAdvanceSalary(): void {
     this.advanceSalaryService
-      .updateAdvanceSalary(this.id, this.advanceSalary)
+      .getAdvanceSalaryById(this.advanceSalaryId)
+      .subscribe({
+        next: (salary) => {
+          this.advanceSalary = salary;
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to load advance salary record.';
+        },
+      });
+  }
+
+  loadUsers(): void {
+    this.userService.getAllUsers().subscribe({
+      next: (users: UserModel[]) => {
+        this.users = users;
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to load users.';
+      },
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return; 
+    }
+
+    this.advanceSalaryService
+      .updateAdvanceSalary(this.advanceSalaryId, this.advanceSalary)
       .subscribe({
         next: (response) => {
           this.notificationService.showNotify(
             'Advance Salary updated successfully!',
             'success'
           );
-          this.router.navigate(['/advance-salary/list']);
-          console.log('Advance salary updated successfully:', response);
+          this.router.navigate(['/advance-salary/list']); 
         },
         error: (err) => {
-          console.error('Error updating advance salary:', err);
           this.notificationService.showNotify(
             'Error updating advance salary!',
             'error'
@@ -73,6 +83,6 @@ export class EditAdvanceSalaryComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/advance-salary/list']);
+    this.router.navigate(['/advance-salary/list']); 
   }
 }

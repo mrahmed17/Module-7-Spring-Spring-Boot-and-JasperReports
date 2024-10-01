@@ -44,14 +44,14 @@
  <div *ngIf="departments.length > 0">
   <h3>Departments</h3>
   <ul>
-   <li *ngFor="let department of departments">{{ department.name }}</li>
+<li *ngFor="let department of departments">{{ department.departmentName }}</li>
   </ul>
  </div>
 
  <div *ngIf="employees.length > 0">
   <h3>Employees</h3>
   <ul>
-   <li *ngFor="let employee of employees">{{ employee.name }}</li>
+<li *ngFor="let employee of employees">{{ employee.fullName }}</li>
   </ul>
  </div>
 </div>

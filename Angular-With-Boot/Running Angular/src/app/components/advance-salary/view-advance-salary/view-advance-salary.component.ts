@@ -10,32 +10,37 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./view-advance-salary.component.css'],
 })
 export class ViewAdvanceSalaryComponent implements OnInit {
-  advanceSalary: AdvanceSalaryModel = new AdvanceSalaryModel();
-  advanceSalaryId!: number;
+  advanceSalary: AdvanceSalaryModel | null = null;
+  errorMessage: string | null = null;
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private advanceSalaryService: AdvanceSalaryService,
-    private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.advanceSalaryId = +this.route.snapshot.paramMap.get('id')!;
-    this.advanceSalaryService
-      .getAdvanceSalaryById(this.advanceSalaryId)
-      .subscribe({
-        next: (response: AdvanceSalaryModel) => {
-          this.advanceSalary = response;
+    this.getAdvanceSalaryDetails();
+  }
+
+  getAdvanceSalaryDetails(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.isLoading = true;
+      this.advanceSalaryService.getAdvanceSalaryById(+id).subscribe({
+        next: (salary) => {
+          this.advanceSalary = salary;
+          this.isLoading = false;
         },
         error: (err) => {
-          console.error('Error fetching advance salary:', err);
-          this.notificationService.showNotify(
-            'Error fetching advance salary!',
-            'error'
-          );
+          this.errorMessage = 'Failed to load advance salary details.';
+          this.isLoading = false;
+          this.notificationService.showNotify(this.errorMessage, 'error');
         },
       });
+    }
   }
 
   backToList(): void {

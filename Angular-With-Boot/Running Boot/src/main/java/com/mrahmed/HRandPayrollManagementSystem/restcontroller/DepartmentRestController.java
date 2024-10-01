@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
+import com.mrahmed.HRandPayrollManagementSystem.entity.Branch;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.service.DepartmentService;
@@ -56,6 +57,12 @@ public class DepartmentRestController {
     public ResponseEntity<Department> findByDepartmentName(@RequestParam String departmentName) {
         Department department = departmentService.findByDepartmentName(departmentName);
         return ResponseEntity.ok(department);
+    }
+
+    @GetMapping("/branch/{companyId}")
+    public ResponseEntity<List<Branch>> getBranchesByCompanyId(@PathVariable Long companyId) {
+        List<Branch> branches = departmentService.getBranchesByCompanyId(companyId);
+        return ResponseEntity.ok(branches);
     }
 
     @GetMapping("/{id}/employees")

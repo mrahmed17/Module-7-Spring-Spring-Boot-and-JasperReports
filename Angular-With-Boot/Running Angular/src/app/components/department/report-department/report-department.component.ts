@@ -3,6 +3,7 @@ import { DepartmentService } from '../../../services/department.service';
 import { DepartmentModel } from '../../../models/department.model';
 import { UserModel } from '../../../models/user.model';
 import { NotificationService } from '../../../services/notification.service';
+import { BranchModel } from '../../../models/branch.model';
 
 @Component({
   selector: 'app-report-department',
@@ -12,6 +13,8 @@ import { NotificationService } from '../../../services/notification.service';
 export class ReportDepartmentComponent implements OnInit {
   departments: DepartmentModel[] = [];
   employeesCount: number = 0;
+  branches: BranchModel[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private departmentService: DepartmentService,
@@ -19,17 +22,42 @@ export class ReportDepartmentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadBranches();
     this.loadDepartments();
   }
 
+  onBranchChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement; // Cast the event target
+    const branchId = selectElement.value; // Get the selected branch ID as a string
+    this.getDepartmentsByBranchId(branchId); // Call the method with the selected value
+  }
+
+  loadBranches(): void {
+    this.isLoading = true;
+    this.departmentService.getBranchesByCompanyId(1).subscribe({
+      next: (data) => {
+        this.branches = data;
+        this.isLoading = false; // Reset loading state
+      },
+      error: (error) => {
+        console.error('Error fetching branches', error);
+        this.notification.showNotify('Error fetching branches', 'error');
+        this.isLoading = false; // Reset loading state
+      },
+    });
+  }
+
   loadDepartments(): void {
+    this.isLoading = true; // Set loading state
     this.departmentService.getDepartmentsByCompanyId(1).subscribe({
       next: (data) => {
         this.departments = data;
+        this.isLoading = false; // Reset loading state
       },
       error: (error) => {
         console.error('Error fetching departments', error);
         this.notification.showNotify('Error fetching departments', 'error');
+        this.isLoading = false; // Reset loading state
       },
     });
   }
@@ -60,17 +88,14 @@ export class ReportDepartmentComponent implements OnInit {
       });
   }
 
-  getDepartmentsByBranchId(branchId: number): void {
-    this.departmentService.getDepartmentsByBranchId(branchId).subscribe({
-      next: (data) => {
-        this.departments = data;
+  getDepartmentsByBranchId(branchId: string): void {
+    const id = parseInt(branchId, 10);
+    this.departmentService.getDepartmentsByBranchId(id).subscribe({
+      next: (departments) => {
+        this.departments = departments;
       },
-      error: (error) => {
-        console.error('Error fetching departments by branch', error);
-        this.notification.showNotify(
-          'Error fetching departments by branch',
-          'error'
-        );
+      error: (err) => {
+        console.error('Error fetching departments:', err);
       },
     });
   }

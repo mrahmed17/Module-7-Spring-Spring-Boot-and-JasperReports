@@ -60,8 +60,19 @@ export class UpdateDepartmentComponent implements OnInit {
       id: this.departmentId,
       departmentName: this.departmentForm.value.departmentName,
       numOfEmployees: this.departmentForm.value.numOfEmployees,
-      photo: '',
-      branch: [],
+      photo: '', // Assign the photo as per your requirement
+      branch: {
+        id: this.department.branch.id, // Existing branch ID
+        branchName: this.department.branch.branchName,
+        address: this.department.branch.address,
+        city: this.department.branch.city,
+        zipCode: this.department.branch.zipCode,
+        country: this.department.branch.country,
+        createdAt: this.department.branch.createdAt,
+        updateAt: this.department.branch.updateAt,
+        photo: this.department.branch.photo,
+        company: this.department.branch.company, // Ensure to include the company property
+      },
     };
 
     this.departmentService

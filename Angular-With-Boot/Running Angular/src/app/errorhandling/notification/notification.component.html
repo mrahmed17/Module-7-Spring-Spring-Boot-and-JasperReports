@@ -1,9 +1,6 @@
-<div *ngIf="message" [ngClass]="{'alert-success': type === 'success', 'alert-danger': type === 'error'}" class="alert"
- role="alert">
- <fa-icon [icon]="type === 'success' ? faCheckCircle : faExclamationCircle"></fa-icon> {{ message }}
+<div *ngIf="message"
+ [ngClass]="{'alert-success': type === 'success', 'alert-danger': type === 'error', 'notification': true}"
+ class="alert notification" role="alert">
+ <fa-icon [icon]="type === 'success' ? faCheckCircle : faExclamationCircle"></fa-icon>
+ {{ message }}
 </div>
-
-
-<!-- <div *ngIf="message" class="alert alert-success" role="alert">
- <fa-icon [icon]="faCheckCircle"></fa-icon> {{ message }}
-</div> -->

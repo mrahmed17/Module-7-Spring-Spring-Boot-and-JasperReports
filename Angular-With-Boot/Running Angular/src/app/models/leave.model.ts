@@ -13,11 +13,11 @@ export class LeaveModel {
   remainingLeave!: number;
   isUnpaid!: boolean;
 
-  leaveType!: LeaveTypeEnum[];
+  leaveType!: LeaveTypeEnum;
 
-  requestStatus!: RequestStatusEnum[];
+  requestStatus!: RequestStatusEnum;
 
-  user!: UserModel[];
+  user!: UserModel;
 
 
 }

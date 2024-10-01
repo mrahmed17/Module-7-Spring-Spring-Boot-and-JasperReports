@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BranchService } from '../../../services/branch.service';
 import { NotificationService } from '../../../services/notification.service';
 import { BranchModel } from '../../../models/branch.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-report-branch',
@@ -16,7 +17,7 @@ export class ReportBranchComponent implements OnInit {
   companyId: number = 0;
 
   constructor(
-    private branchService: BranchService,
+    public branchService: BranchService,
     private notification: NotificationService
   ) {}
 
@@ -43,6 +44,14 @@ export class ReportBranchComponent implements OnInit {
     this.branchService.getAllBranches().subscribe((data) => {
       this.totalBranches = data.length;
     });
+  }
+
+  getEmployeeCount(branchId: number): Observable<number> {
+    return this.branchService.countEmployeesByBranchId(branchId);
+  }
+
+  getDepartmentCount(branchId: number): Observable<number> {
+    return this.branchService.countDepartmentsByBranchId(branchId);
   }
 
   countDepartmentsByCompanyId(companyId: number) {

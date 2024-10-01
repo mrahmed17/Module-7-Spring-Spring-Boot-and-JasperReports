@@ -1,48 +1,44 @@
 <div class="container">
- <h2>Company Reporting</h2>
+  <h2>Create Advance Salary</h2>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="mb-3">
+      <label for="user" class="form-label">User:</label>
+      <select id="user" [(ngModel)]="advanceSalary.user" name="user" required #userId="ngModel">
+        <option *ngFor="let user of users" [ngValue]="user">{{ user.fullName }}</option>
+      </select>
+      <div *ngIf="userId.invalid && (userId.dirty || userId.touched)" class="text-danger">
+        User is required.
+      </div>
+    </div>
 
- <div class="mb-3">
-  <label for="companySelect" class="form-label">Select Company:</label>
-  <select id="companySelect" class="form-select" (change)="loadBranches($event.target.value)">
-   <option value="" disabled selected>Select a company</option>
-   <option *ngFor="let company of companies" [value]="company.id">{{ company.companyName }}</option>
-  </select>
- </div>
+    <div class="mb-3">
+      <label for="amount" class="form-label">Advance Amount:</label>
+      <input type="number" id="amount" [(ngModel)]="advanceSalary.advanceSalary" name="advanceSalary" required min="1"
+        #advanceAmount="ngModel" class="form-control" />
+      <div *ngIf="advanceAmount.invalid && (advanceAmount.dirty || advanceAmount.touched)" class="text-danger">
+        Amount is required.
+      </div>
+    </div>
 
- <div *ngIf="branches.length > 0">
-  <h4>Branches</h4>
-  <ul class="list-group">
-   <li *ngFor="let branch of branches" class="list-group-item">
-    {{ branch.name }}
-    <button class="btn btn-info btn-sm" (click)="countEmployeesInBranch(branch.id)">Count Employees</button>
-    <span *ngIf="employeeCountInBranch" class="badge bg-primary">{{ employeeCountInBranch }} employees</span>
-   </li>
-  </ul>
- </div>
+    <div class="mb-3">
+      <label for="reason" class="form-label">Reason:</label>
+      <input type="text" id="reason" [(ngModel)]="advanceSalary.reason" name="reason" required #reason="ngModel"
+        class="form-control" />
+      <div *ngIf="reason.invalid && (reason.dirty || reason.touched)" class="text-danger">
+        Reason is required.
+      </div>
+    </div>
 
- <div *ngIf="selectedBranchId">
-  <h4>Departments in Selected Branch</h4>
-  <button class="btn btn-secondary" (click)="loadDepartmentsByBranch(selectedBranchId)">Load Departments</button>
-  <ul class="list-group">
-   <li *ngFor="let department of departments" class="list-group-item">
-    {{ department.name }}
-    <button class="btn btn-info btn-sm" (click)="loadEmployeesByDepartment(department.id)">View Employees</button>
-   </li>
-  </ul>
- </div>
+    <div class="mb-3">
+      <label for="advanceDate" class="form-label">Advance Date:</label>
+      <input type="date" id="advanceDate" [(ngModel)]="advanceSalary.advanceDate" name="advanceDate" required
+        #advanceDate="ngModel" class="form-control" />
+      <div *ngIf="advanceDate.invalid && (advanceDate.dirty || advanceDate.touched)" class="text-danger">
+        Advance date is required.
+      </div>
+    </div>
 
- <div *ngIf="employees.length > 0">
-  <h4>Employees in Selected Department</h4>
-  <ul class="list-group">
-   <li *ngFor="let employee of employees" class="list-group-item">
-    {{ employee.name }} ({{ employee.position }})
-   </li>
-  </ul>
- </div>
-
- <div *ngIf="employeeCountInCompany">
-  <h4>Total Employees in Company</h4>
-  <button class="btn btn-secondary" (click)="countEmployeesInCompany(selectedCompanyId)">Count Employees</button>
-  <span class="badge bg-primary">{{ employeeCountInCompany }} employees</span>
- </div>
+    <button type="submit" class="btn btn-primary">Create Advance Salary</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
 </div>

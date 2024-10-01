@@ -6,17 +6,17 @@
   <div class="form-group">
    <label for="fullName">Full Name:</label>
    <input type="text" id="fullName" name="fullName" [(ngModel)]="user.fullName" required class="form-control" />
-   <div *ngIf="userForm.controls.fullName?.invalid && userForm.controls.fullName?.touched" class="text-danger">
-    Full Name is required.
-   </div>
+<div *ngIf="userForm.controls['fullName']?.invalid && userForm.controls['fullName']?.touched" class="text-danger">
+ Full Name is required.
+</div>
   </div>
 
   <div class="form-group">
    <label for="email">Email:</label>
    <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" />
-   <div *ngIf="userForm.controls.email?.invalid && userForm.controls.email?.touched" class="text-danger">
-    Valid Email is required.
-   </div>
+<div *ngIf="userForm.controls['email']?.invalid && userForm.controls['email']?.touched" class="text-danger">
+ Valid Email is required.
+</div>
   </div>
 
   <div class="form-group">
@@ -32,9 +32,9 @@
     <option value="Female">Female</option>
     <option value="Other">Other</option>
    </select>
-   <div *ngIf="userForm.controls.gender?.invalid && userForm.controls.gender?.touched" class="text-danger">
-    Gender is required.
-   </div>
+  <div *ngIf="userForm.controls['gender']?.invalid && userForm.controls['gender']?.touched" class="text-danger">
+   Gender is required.
+  </div>
   </div>
 
   <div class="form-group">
@@ -56,9 +56,9 @@
    <label for="basicSalary">Basic Salary:</label>
    <input type="number" id="basicSalary" name="basicSalary" [(ngModel)]="user.basicSalary" required class="form-control"
     min="0" />
-   <div *ngIf="userForm.controls.basicSalary?.invalid && userForm.controls.basicSalary?.touched" class="text-danger">
-    Basic Salary is required and must be positive.
-   </div>
+ <div *ngIf="userForm.controls['basicSalary']?.invalid && userForm.controls['basicSalary']?.touched" class="text-danger">
+  Basic Salary is required and must be positive.
+ </div>
   </div>
 
   <div class="form-group">
@@ -69,9 +69,9 @@
   <div class="form-group">
    <label for="role">Role:</label>
    <input type="text" id="role" name="role" [(ngModel)]="user.role" required class="form-control" />
-   <div *ngIf="userForm.controls.role?.invalid && userForm.controls.role?.touched" class="text-danger">
-    Role is required.
-   </div>
+<div *ngIf="userForm.controls['role']?.invalid && userForm.controls['role']?.touched" class="text-danger">
+ Role is required.
+</div>
   </div>
 
 

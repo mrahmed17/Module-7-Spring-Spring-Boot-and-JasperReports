@@ -1,9 +1,24 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px; 
+  z-index: 1050;
+  width: 300px; 
+  transition: opacity 0.5s ease;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 15px; 
+  border-radius: 5px;
+  color: #fff; 
+}
+
 .alert-success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #28a745; 
 }
 
 .alert-danger {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #dc3545;
 }

@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.repository;
 
+import com.mrahmed.HRandPayrollManagementSystem.entity.Branch;
 import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
 import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,10 @@ public interface DepartmentRepository extends JpaRepository <Department, Long> {
 
     @Query("SELECT d FROM Department d WHERE LOWER(d.departmentName) LIKE LOWER(CONCAT('%', :departmentName, '%'))")
     Department findByDepartmentName(@Param("departmentName") String departmentName);
+
+
+     @Query("SELECT b FROM Branch b WHERE b.company.id = :companyId")
+     List<Branch> getBranchesByCompanyId(@Param("companyId") Long companyId);
 
 
     @Query("SELECT u FROM User u WHERE u.department.id = :departmentId")

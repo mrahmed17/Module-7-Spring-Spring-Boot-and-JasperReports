@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { DepartmentModel } from '../models/department.model';
 import { UserModel } from '../models/user.model';
+import { BranchModel } from '../models/branch.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,16 @@ export class DepartmentService {
     return this.http
       .put<DepartmentModel>(`${this.baseUrl}/update/${id}`, formData)
       .pipe(catchError(this.handleError<DepartmentModel>('updateDepartment')));
+  }
+
+  getBranchesByCompanyId(companyId: number): Observable<BranchModel[]> {
+    return this.http
+      .get<BranchModel[]>(`${this.baseUrl}/branch/${companyId}`)
+      .pipe(
+        catchError(
+          this.handleError<BranchModel[]>('getBranchesByDepartmentId', [])
+        )
+      );
   }
 
   deleteDepartment(id: number): Observable<void> {

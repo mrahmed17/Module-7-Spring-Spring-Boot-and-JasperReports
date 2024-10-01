@@ -1,71 +1,78 @@
 <div class="container mt-4">
  <h2 class="text-center">Advance Salary Report</h2>
 
- <!-- Summary Section -->
- <div class="summary">
-  <h3>Summary</h3>
-  <p>Total Entries: {{ totalEntries }}</p>
-  <p>Total Advance Paid: {{ totalAdvancePaid | currency }}</p>
- </div>
-
- <div class="filters">
-  <h3>Filters</h3>
-
-  <div class="filter-by-name">
-   <label for="userName">Filter by Name:</label>
-   <input type="text" id="userName" [(ngModel)]="fullName" placeholder="Enter full name" />
-   <button (click)="filteredSalaryByName = getTotalSalaryByName(userName)">
-    Get Total Salary
-   </button>
-   <p *ngIf="filteredSalaryByName !== undefined">
-    Total Salary for {{ fullName }}: {{ filteredSalaryByName | currency }}
-   </p>
+ <!-- Filters Section -->
+ <div class="row mb-3">
+  <!-- User Filter -->
+  <div class="col-md-4">
+   <label for="userFilter" class="form-label">Filter by User</label>
+   <select id="userFilter" class="form-select" [(ngModel)]="selectedUserId" (change)="onFilterByUser()">
+    <option value="" selected>All Users</option>
+    <option *ngFor="let user of users" [value]="user.id">
+     {{ user.fullName }}
+    </option>
+   </select>
   </div>
 
-  <div class="filter-by-date">
-   <label for="startDate">Start Date:</label>
-   <input type="date" id="startDate" [(ngModel)]="startDate" />
-
-   <label for="endDate">End Date:</label>
-   <input type="date" id="endDate" [(ngModel)]="endDate" />
-   <button (click)="filteredSalaryByDateRange = getTotalSalaryByDateRange(startDate, endDate)">
-    Get Total Salary by Date Range
+  <!-- Date Range Filter -->
+  <div class="col-md-4">
+   <label for="startDate" class="form-label">Start Date</label>
+   <input id="startDate" type="date" class="form-control" [(ngModel)]="selectedDateRange.startDate" />
+  </div>
+  <div class="col-md-4">
+   <label for="endDate" class="form-label">End Date</label>
+   <input id="endDate" type="date" class="form-control" [(ngModel)]="selectedDateRange.endDate" />
+   <button class="btn btn-primary mt-2" (click)="onFilterByDateRange()">
+    Filter by Date Range
    </button>
-   <p *ngIf="filteredSalaryByDateRange !== undefined">
-    Total Salary from {{ startDate | date }} to {{ endDate | date }}:
-    {{ filteredSalaryByDateRange | currency }}
-   </p>
   </div>
  </div>
 
- <button (click)="generateReport()">Generate Report</button>
+ <!-- Search Section -->
+ <div class="row mb-3">
+  <div class="col-md-8">
+   <label for="searchName" class="form-label">Search by Name</label>
+   <input id="searchName" type="text" class="form-control" placeholder="Enter user name" [(ngModel)]="searchName"
+    (input)="onSearchByName()" />
+  </div>
 
- <!-- Advance Salary List -->
- <div class="table-responsive">
-  <table class="table table-bordered table-hover table-striped">
+  <!-- Export Button -->
+  <div class="col-md-4 d-flex align-items-end">
+   <button class="btn btn-success w-100" (click)="exportToCSV()">
+    Export to CSV
+   </button>
+  </div>
+ </div>
+
+ <!-- Report Table -->
+ <div class="table-responsive mt-3">
+  <table class="table table-bordered table-striped">
    <thead class="thead-dark">
     <tr>
      <th>User</th>
      <th>Advance Salary</th>
      <th>Reason</th>
      <th>Advance Date</th>
-     <th>Year</th>
-     <th>Month</th>
     </tr>
    </thead>
    <tbody>
-    <tr *ngFor="let salary of advanceSalaries">
+    <tr *ngFor="let salary of filteredAdvanceSalaries">
      <td>{{ salary.user.fullName }}</td>
-     <td>{{ salary.advanceSalary | currency: 'USD' }}</td>
+     <td>{{ salary.advanceSalary | currency }}</td>
      <td>{{ salary.reason }}</td>
-     <td>{{ salary.advanceDate | date: 'yyyy-MM-dd' }}</td>
-     <td>{{ salary.year }}</td>
-     <td>{{ salary.advanceMonth }}</td>
+     <td>{{ salary.advanceDate | date: 'shortDate' }}</td>
     </tr>
-    <tr *ngIf="!advanceSalaries.length">
-     <td colspan="6" class="text-center">No advance salaries found.</td>
+    <tr *ngIf="filteredAdvanceSalaries.length === 0">
+     <td colspan="4" class="text-center">No advance salaries found.</td>
     </tr>
    </tbody>
   </table>
  </div>
+
+ <!-- Total Amount Section -->
+ <div class="text-end mt-3">
+  <h5>Total Advance Salary: {{ totalAdvanceSalary | currency }}</h5>
+ </div>
 </div>
+
+<button class="btn btn-success" (click)="exportToCSV()">Export to CSV</button>

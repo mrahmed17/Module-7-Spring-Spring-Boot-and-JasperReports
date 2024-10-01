@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DepartmentService } from '../../../services/department.service';
 import { NotificationService } from '../../../services/notification.service';
 import { DepartmentModel } from '../../../models/department.model';
+import { BranchModel } from '../../../models/branch.model';
 
 @Component({
   selector: 'app-create-department',
@@ -12,7 +13,7 @@ import { DepartmentModel } from '../../../models/department.model';
 })
 export class CreateDepartmentComponent {
   departmentForm: FormGroup;
-  departmentPhoto?: File;
+  departmentPhoto: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,11 +25,12 @@ export class CreateDepartmentComponent {
       departmentName: ['', Validators.required],
       numOfEmployees: [0, Validators.required],
       photo: [null],
+      branchId: ['', Validators.required],
     });
   }
 
   onPhotoSelected(event: any): void {
-    this.departmentPhoto = event.target.files[0];
+    this.departmentPhoto = event.target.files[0] || null;
   }
 
   onSubmit(): void {
@@ -37,11 +39,11 @@ export class CreateDepartmentComponent {
       departmentName: this.departmentForm.value.departmentName,
       numOfEmployees: this.departmentForm.value.numOfEmployees,
       photo: '',
-      branch: [],
+      branch: { id: this.departmentForm.value.branchId } as BranchModel, 
     };
 
     this.departmentService
-      .createDepartment(department, this.departmentPhoto)
+      .createDepartment(department, this.departmentPhoto || undefined)
       .subscribe({
         next: () => {
           this.notification.showNotify(

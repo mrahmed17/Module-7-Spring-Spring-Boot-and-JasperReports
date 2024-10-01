@@ -1,38 +1,48 @@
-<div class="container">
- <h2>View Advance Salary</h2>
-
- <div *ngIf="advanceSalary">
-  <div class="form-group">
-   <label for="user">User:</label>
-   <input type="text" id="user" class="form-control" [value]="advanceSalary.user.fullName" disabled />
+<div class="container mt-5">
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
 
-  <div class="form-group">
-   <label for="advanceSalary">Advance Salary:</label>
-   <input type="number" id="advanceSalary" class="form-control" [value]="advanceSalary.advanceSalary" disabled />
+  <div *ngIf="!isLoading && advanceSalary" class="card">
+    <div class="card-header">
+      <h3>Advance Salary Details</h3>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>User:</strong> {{ advanceSalary.user.fullName }}
+        </div>
+        <div class="col-md-6">
+          <strong>Email:</strong> {{ advanceSalary.user.email }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Advance Salary:</strong> {{ advanceSalary.advanceSalary | currency }}
+        </div>
+        <div class="col-md-6">
+          <strong>Advance Date:</strong> {{ advanceSalary.advanceDate | date:'mediumDate' }}
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <strong>Reason:</strong> {{ advanceSalary.reason }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button (click)="backToList()" class="btn btn-primary">Back to List</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-   <label for="reason">Reason:</label>
-   <input type="text" id="reason" class="form-control" [value]="advanceSalary.reason" disabled />
+  <div *ngIf="!isLoading && !advanceSalary" class="alert alert-danger">
+    <strong>Error:</strong> {{ errorMessage }}
   </div>
-
-  <div class="form-group">
-   <label for="advanceDate">Advance Date:</label>
-   <input type="date" id="advanceDate" class="form-control" [value]="advanceSalary.advanceDate | date: 'yyyy-MM-dd'"
-    disabled />
-  </div>
-
-  <div class="form-group">
-   <label for="year">Year:</label>
-   <input type="number" id="year" class="form-control" [value]="advanceSalary.year" disabled />
-  </div>
-
-  <div class="form-group">
-   <label for="advanceMonth">Advance Month:</label>
-   <input type="text" id="advanceMonth" class="form-control" [value]="advanceSalary.advanceMonth" disabled />
-  </div>
-
-  <button class="btn btn-primary" (click)="backToList()">Back to List</button>
- </div>
 </div>

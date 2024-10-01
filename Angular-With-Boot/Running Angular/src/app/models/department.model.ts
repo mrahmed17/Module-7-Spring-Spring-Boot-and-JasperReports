@@ -6,7 +6,7 @@ export class DepartmentModel {
   numOfEmployees!: number;
   photo!: string;
 
-  branch!: BranchModel[];
+  branch!: BranchModel;
 
 
 }

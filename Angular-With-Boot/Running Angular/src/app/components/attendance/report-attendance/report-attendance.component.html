@@ -4,7 +4,10 @@
   <h2>Today's Attendance</h2>
   <ul>
     <li *ngFor="let attendance of todayAttendance">
-      User ID: {{ attendance.userId }}, Status: {{ attendance.status }}, Clock In: {{ attendance.clockInTime }}
+      User ID: {{ attendance.user.id }}, Full Name: {{ attendance.user.fullName }},
+      Status: {{ attendance.status }},
+      Clock In: {{ attendance.clockInTime | date:'shortTime' }},
+      Clock Out: {{ attendance.clockOutTime ? (attendance.clockOutTime | date:'shortTime') : 'Not Checked Out' }}
     </li>
   </ul>
 

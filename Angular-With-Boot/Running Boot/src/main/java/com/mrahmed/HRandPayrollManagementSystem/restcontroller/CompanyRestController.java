@@ -36,7 +36,7 @@ public class CompanyRestController {
     public ResponseEntity<Company> getCompanyById(@PathVariable Long id) {
         try {
             Company company = companyService.getCompanyById(id);
-            return (ResponseEntity<Company>) ResponseEntity.ok();
+            return ResponseEntity.ok(company);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

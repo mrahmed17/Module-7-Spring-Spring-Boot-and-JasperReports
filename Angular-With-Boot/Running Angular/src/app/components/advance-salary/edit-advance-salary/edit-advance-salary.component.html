@@ -1,48 +1,60 @@
-<div class="container">
- <h2>Edit Advance Salary</h2>
+<div class="container mt-5">
+  <h2 class="text-center">Edit Advance Salary</h2>
 
- <form #advanceSalaryForm="ngForm" (ngSubmit)="updateAdvanceSalary()">
-  <div class="form-group">
-   <label for="user">User</label>
-   <select class="form-control" id="user" [(ngModel)]="advanceSalary.user" name="user" required>
-    <option *ngFor="let user of users" [ngValue]="user">{{ user.fullName }}</option>
-   </select>
+  <form #advanceSalaryForm="ngForm" (ngSubmit)="onSubmit(advanceSalaryForm)">
+   
+    <div class="form-group">
+      <label for="user">User</label>
+      <select id="user" class="form-control" name="user" [(ngModel)]="advanceSalary.user" required>
+        <option value="" disabled>Select User</option>
+        <option *ngFor="let user of users" [ngValue]="user">
+          {{ user.fullName }}
+        </option>
+      </select>
+      <div *ngIf="advanceSalaryForm.submitted && !advanceSalary.user" class="text-danger">
+        User is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="advanceSalary">Advance Salary Amount</label>
+      <input type="number" class="form-control" id="advanceSalary" name="advanceSalary"
+        [(ngModel)]="advanceSalary.advanceSalary" required min="0" step="0.01"
+        placeholder="Enter advance salary amount" />
+      <div *ngIf="advanceSalaryForm.submitted && !advanceSalary.advanceSalary" class="text-danger">
+        Advance salary amount is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="advanceDate">Advance Date</label>
+      <input type="date" class="form-control" id="advanceDate" name="advanceDate"
+        [(ngModel)]="advanceSalary.advanceDate" required />
+      <div *ngIf="advanceSalaryForm.submitted && !advanceSalary.advanceDate" class="text-danger">
+        Advance date is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="reason">Reason for Advance</label>
+      <textarea class="form-control" id="reason" name="reason" rows="3" [(ngModel)]="advanceSalary.reason"
+        placeholder="Enter the reason for the advance salary" required></textarea>
+      <div *ngIf="advanceSalaryForm.submitted && !advanceSalary.reason" class="text-danger">
+        Reason for advance salary is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-4 text-center">
+      <button type="submit" class="btn btn-primary">
+        Save
+      </button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+    {{ errorMessage }}
   </div>
-
-  <div class="form-group">
-   <label for="advanceSalary">Advance Salary</label>
-   <input type="number" id="advanceSalary" class="form-control" [(ngModel)]="advanceSalary.advanceSalary"
-    name="advanceSalary" required />
-  </div>
-
-  <div class="form-group">
-   <label for="reason">Reason</label>
-   <input type="text" id="reason" class="form-control" [(ngModel)]="advanceSalary.reason" name="reason" required />
-  </div>
-
-  <div class="form-group">
-   <label for="advanceDate">Advance Date</label>
-   <input type="date" id="advanceDate" class="form-control" [(ngModel)]="advanceSalary.advanceDate" name="advanceDate"
-    required />
-  </div>
-
-  <div class="form-group">
-   <label for="year">Year</label>
-   <input type="number" id="year" class="form-control" [(ngModel)]="advanceSalary.year" name="year" required />
-  </div>
-
-  <div class="form-group">
-   <label for="advanceMonth">Advance Month</label>
-   <select class="form-control" id="advanceMonth" [(ngModel)]="advanceSalary.advanceMonth" name="advanceMonth" required>
-    <option *ngFor="let month of months" [ngValue]="month">
-     {{ month }}
-    </option>
-   </select>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Update</button>
-  <button type="button" class="btn btn-secondary" (click)="cancel()">
-   Cancel
-  </button>
- </form>
 </div>

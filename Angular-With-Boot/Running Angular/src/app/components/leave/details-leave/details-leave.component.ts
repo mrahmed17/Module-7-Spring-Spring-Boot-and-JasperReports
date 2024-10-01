@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LeaveModel } from '../../../models/leave.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LeaveService } from '../../../services/leave.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MonthEnum } from '../../../models/month.enum';
+import { LeaveModel } from '../../../models/leave.model';
 import { LeaveTypeEnum } from '../../../models/leave-type.enum';
+import { RequestStatusEnum } from '../../../models/request-status.enum';
 
 @Component({
   selector: 'app-details-leave',
@@ -11,48 +11,54 @@ import { LeaveTypeEnum } from '../../../models/leave-type.enum';
   styleUrls: ['./details-leave.component.css'],
 })
 export class DetailsLeaveComponent implements OnInit {
-  leaveDetails!: LeaveModel | null; // Allow null for error or loading state
-
-  // To display enums as strings
-  leaveTypes = LeaveTypeEnum;
-  months = MonthEnum;
+  leaveDetails!: LeaveModel;
 
   constructor(
     private leaveService: LeaveService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const leaveId = this.route.snapshot.paramMap.get('leaveId');
-    if (leaveId) {
-      this.getLeaveDetails(Number(leaveId));
-    } else {
-      alert('Invalid leave ID provided.');
-      this.router.navigate(['/leaves']);
-    }
+    const leaveId = Number(this.route.snapshot.paramMap.get('id'));
+    this.getLeaveDetails(leaveId);
   }
 
-  getLeaveDetails(leaveId: number) {
-    this.leaveService.getLeaveById(leaveId).subscribe({
-      next: (data) => {
-        this.leaveDetails = data;
+  getLeaveDetails(leaveId: number): void {
+    this.leaveService.getLeaveById(leaveId).subscribe(
+      (leave: LeaveModel) => {
+        this.leaveDetails = leave;
       },
-      error: (error) => {
+      (error) => {
         console.error('Error fetching leave details', error);
-        alert('Failed to load leave details.');
-        this.leaveDetails = null; // Handle the case where no data is available
-        this.router.navigate(['/leaves']); 
-      },
-    });
-  }
-
-  // Convert enum value to readable string
-  getMonthName(month: MonthEnum): string {
-    return MonthEnum[month];
+      }
+    );
   }
 
   getLeaveTypeName(leaveType: LeaveTypeEnum): string {
-    return LeaveTypeEnum[leaveType];
+    switch (leaveType) {
+      case LeaveTypeEnum.UNPAID:
+        return 'Unpaid Leave';
+      case LeaveTypeEnum.RESERVE:
+        return 'Reserve Leave';
+      default:
+        return 'Unknown Leave Type';
+    }
+  }
+
+  getRequestStatusName(requestStatus: RequestStatusEnum): string {
+    switch (requestStatus) {
+      case RequestStatusEnum.PENDING:
+        return 'Pending';
+      case RequestStatusEnum.APPROVED:
+        return 'Approved';
+      case RequestStatusEnum.REJECTED:
+        return 'Rejected';
+      default:
+        return 'Unknown Status';
+    }
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 }

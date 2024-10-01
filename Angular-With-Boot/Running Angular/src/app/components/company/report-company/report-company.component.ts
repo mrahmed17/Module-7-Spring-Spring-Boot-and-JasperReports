@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AdvanceSalaryModel } from '../../../models/advance-salary.model';
 import { CompanyService } from '../../../services/company.service';
 import { NotificationService } from '../../../services/notification.service';
+import { CompanyModel } from '../../../models/company.model';
+import { UserModel } from '../../../models/user.model';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+import { AdvanceSalaryService } from '../../../services/advancesalary.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-report-company',
@@ -8,109 +15,78 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./report-company.component.css'],
 })
 export class ReportCompanyComponent implements OnInit {
-  selectedCompanyId!: number;
+  advanceSalary: AdvanceSalaryModel = new AdvanceSalaryModel();
+  users: UserModel[] = [];
+  selectedCompanyId: number | null = null;
   selectedBranchId!: number;
   employeeCountInCompany!: number;
   employeeCountInBranch!: number;
   branches: any[] = [];
   departments: any[] = [];
   employees: any[] = [];
+  companies: CompanyModel[] = [];
 
   constructor(
     private companyService: CompanyService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private userService: UserService,
+    private router: Router,
+    private advanceSalaryService: AdvanceSalaryService
   ) {}
 
   ngOnInit(): void {
+    this.loadCompanies();
+    this.loadUsers();
   }
 
-  loadBranches(companyId: number) {
-    this.companyService.getBranchesByCompanyId(companyId).subscribe({
-      next: (branches) => {
-        this.branches = branches;
-        console.log('Branches: ', branches);
+  loadCompanies() {
+    this.companyService.getAllCompanies().subscribe({
+      next: (companies) => {
+        this.companies = companies;
       },
       error: (error) => {
-        console.error('Error fetching branches', error);
-        this.notification.showNotify('Error fetching branches', 'error');
+        console.error('Error fetching companies', error);
+        this.notification.showNotify('Error fetching companies', 'error');
       },
     });
   }
 
-  loadDepartments(companyId: number) {
-    this.companyService.getDepartmentsByCompanyId(companyId).subscribe({
-      next: (departments) => {
-        this.departments = departments;
-        console.log('Departments: ', departments);
+  loadUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (users: UserModel[]) => {
+        this.users = users;
       },
-      error: (error) => {
-        console.error('Error fetching departments', error);
-        this.notification.showNotify('Error fetching departments', 'error');
+      error: (err) => {
+        this.notification.showNotify('Failed to load users.', 'error');
       },
     });
   }
 
-  loadDepartmentsByBranch(branchId: number) {
-    this.companyService.getDepartmentsByBranchId(branchId).subscribe({
-      next: (departments) => {
-        this.departments = departments;
-        console.log('Departments by branch: ', departments);
-      },
-      error: (error) => {
-        console.error('Error fetching departments by branch', error);
-        this.notification.showNotify(
-          'Error fetching departments by branch',
-          'error'
-        );
-      },
-    });
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return; 
+    }
+
+    this.advanceSalaryService
+      .createAdvanceSalary(this.advanceSalary)
+      .subscribe({
+        next: (response) => {
+          this.notification.showNotify(
+            'Advance Salary Created successfully!',
+            'success'
+          );
+          // Optionally navigate to another route
+        },
+        error: (err) => {
+          this.notification.showNotify(
+            'Error creating advance salary!',
+            'error'
+          );
+        },
+      });
   }
 
-  loadEmployeesByDepartment(departmentId: number) {
-    this.companyService.getEmployeesByDepartmentId(departmentId).subscribe({
-      next: (employees) => {
-        this.employees = employees;
-        console.log('Employees in department: ', employees);
-      },
-      error: (error) => {
-        console.error('Error fetching employees in department', error);
-        this.notification.showNotify(
-          'Error fetching employees in department',
-          'error'
-        );
-      },
-    });
-  }
-
-  countEmployeesInCompany(companyId: number) {
-    this.companyService.countEmployeesByCompanyId(companyId).subscribe({
-      next: (count) => {
-        this.employeeCountInCompany = count;
-        console.log('Employees in company: ', count);
-      },
-      error: (error) => {
-        console.error('Error counting employees in company', error);
-        this.notification.showNotify(
-          'Error counting employees in company',
-          'error'
-        );
-      },
-    });
-  }
-
-  countEmployeesInBranch(branchId: number) {
-    this.companyService.countEmployeesByBranchId(branchId).subscribe({
-      next: (count) => {
-        this.employeeCountInBranch = count;
-        console.log('Employees in branch: ', count);
-      },
-      error: (error) => {
-        console.error('Error counting employees in branch', error);
-        this.notification.showNotify(
-          'Error counting employees in branch',
-          'error'
-        );
-      },
-    });
+  cancel(): void {
+    this.router.navigate(['/company/list']);
   }
 }

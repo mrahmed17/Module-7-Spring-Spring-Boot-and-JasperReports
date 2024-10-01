@@ -8,17 +8,9 @@ import { CompanyModel } from '../models/company.model';
   providedIn: 'root',
 })
 export class CompanyService {
-  private baseUrl: string = `${environment.apiUrl}companies`;
+  private baseUrl: string = `${environment.apiUrl}/companies`;
 
   constructor(private http: HttpClient) {}
-
-  getAllCompanies(): Observable<CompanyModel[]> {
-    return this.http.get<CompanyModel[]>(`${this.baseUrl}/all`);
-  }
-
-  getCompanyById(id: number): Observable<CompanyModel> {
-    return this.http.get<CompanyModel>(`${this.baseUrl}/find/${id}`);
-  }
 
   createCompany(company: CompanyModel, companyPhoto?: File): Observable<any> {
     const formData = new FormData();
@@ -34,6 +26,14 @@ export class CompanyService {
     return this.http.post(`${this.baseUrl}/create`, formData, {
       headers: new HttpHeaders({}),
     });
+  }
+
+  getAllCompanies(): Observable<CompanyModel[]> {
+    return this.http.get<CompanyModel[]>(`${this.baseUrl}/all`);
+  }
+
+  getCompanyById(id: number): Observable<CompanyModel> {
+    return this.http.get<CompanyModel>(`${this.baseUrl}/find/${id}`);
   }
 
   updateCompany(

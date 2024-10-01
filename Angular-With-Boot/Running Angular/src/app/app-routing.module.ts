@@ -29,6 +29,21 @@ import { ListAdvanceSalaryComponent } from './components/advance-salary/list-adv
 import { EditAdvanceSalaryComponent } from './components/advance-salary/edit-advance-salary/edit-advance-salary.component';
 import { ViewAdvanceSalaryComponent } from './components/advance-salary/view-advance-salary/view-advance-salary.component';
 import { ReportAdvanceSalaryComponent } from './components/advance-salary/report-advance-salary/report-advance-salary.component';
+import { CreateCompanyComponent } from './components/company/create-company/create-company.component';
+import { ListCompanyComponent } from './components/company/list-company/list-company.component';
+import { UpdateCompanyComponent } from './components/company/update-company/update-company.component';
+import { ViewCompanyComponent } from './components/company/view-company/view-company.component';
+import { ReportCompanyComponent } from './components/company/report-company/report-company.component';
+import { CreateBranchComponent } from './components/branch/create-branch/create-branch.component';
+import { ListBranchComponent } from './components/branch/list-branch/list-branch.component';
+import { UpdateBranchComponent } from './components/branch/update-branch/update-branch.component';
+import { ViewBranchComponent } from './components/branch/view-branch/view-branch.component';
+import { ReportBranchComponent } from './components/branch/report-branch/report-branch.component';
+import { CreateDepartmentComponent } from './components/department/create-department/create-department.component';
+import { ListDepartmentComponent } from './components/department/list-department/list-department.component';
+import { UpdateDepartmentComponent } from './components/department/update-department/update-department.component';
+import { ViewDepartmentComponent } from './components/department/view-department/view-department.component';
+import { ReportDepartmentComponent } from './components/department/report-department/report-department.component';
 
 
 const routes: Routes = [
@@ -76,7 +91,7 @@ const routes: Routes = [
       { path: 'summary', component: BonusSummaryComponent },
     ],
   },
-   {
+  {
     path: 'advance-salary',
     children: [
       { path: 'create', component: CreateAdvanceSalaryComponent },
@@ -84,6 +99,36 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditAdvanceSalaryComponent },
       { path: 'view/:id', component: ViewAdvanceSalaryComponent },
       { path: 'report', component: ReportAdvanceSalaryComponent },
+    ],
+  },
+  {
+    path: 'company',
+    children: [
+      { path: 'create', component: CreateCompanyComponent },
+      { path: 'list', component: ListCompanyComponent },
+      { path: 'edit/:id', component: UpdateCompanyComponent },
+      { path: 'view/:id', component: ViewCompanyComponent },
+      { path: 'report', component: ReportCompanyComponent },
+    ],
+  },
+  {
+    path: 'branch',
+    children: [
+      { path: 'create', component: CreateBranchComponent },
+      { path: 'list', component: ListBranchComponent },
+      { path: 'edit/:id', component:  UpdateBranchComponent }, 
+      { path: 'view/:id', component: ViewBranchComponent },
+      { path: 'report', component: ReportBranchComponent },
+    ],
+  },
+  {
+    path: 'department',
+    children: [
+      { path: 'create', component: CreateDepartmentComponent },
+      { path: 'list', component: ListDepartmentComponent },
+      { path: 'edit/:id', component:  UpdateDepartmentComponent }, 
+      { path: 'view/:id', component: ViewDepartmentComponent },
+      { path: 'report', component: ReportDepartmentComponent },
     ],
   },
   { path: '**', component: NotfoundComponent },

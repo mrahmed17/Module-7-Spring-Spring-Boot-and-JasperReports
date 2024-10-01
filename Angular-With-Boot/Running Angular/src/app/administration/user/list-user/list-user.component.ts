@@ -81,7 +81,10 @@ export class ListUserComponent implements OnInit {
   filterByRole(): void {
     this.filteredUsers = this.users.filter(
       (user) =>
-        this.selectedRole === null || user.role.includes(this.selectedRole) 
+        this.selectedRole === null ||
+        (user.role &&
+          Array.isArray(user.role) &&
+          user.role.includes(this.selectedRole))
     );
   }
 
@@ -118,7 +121,7 @@ export class ListUserComponent implements OnInit {
             'User deleted successfully',
             'success'
           );
-          this.loadUsers(); 
+          this.loadUsers();
         },
         error: (err) => {
           this.errorMessage = 'An error occurred while deleting the user.';
