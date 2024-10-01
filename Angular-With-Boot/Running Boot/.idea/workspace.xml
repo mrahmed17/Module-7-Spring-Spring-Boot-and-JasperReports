@@ -5,109 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/create-user/create-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/attendance/report-attendance/report-attendance.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/create-branch/create-branch.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/create-branch/create-branch.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/create-branch/create-branch.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/create-branch/create-branch.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/edit-branch/edit-branch.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/edit-branch/edit-branch.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/edit-branch/edit-branch.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/edit-branch/edit-branch.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/list-branch/list-branch.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/list-branch/list-branch.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/list-branch/list-branch.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/list-branch/list-branch.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/edit-company/edit-company.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/edit-company/edit-company.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/edit-company/edit-company.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/edit-company/edit-company.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/list-company/list-company.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/list-company/list-company.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/list-company/list-company.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/list-company/list-company.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/edit-department/edit-department.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/edit-department/edit-department.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/edit-department/edit-department.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/edit-department/edit-department.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/view-department/view-department.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/view-department/view-department.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/view-department/view-department.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/view-department/view-department.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/salary.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/salary.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/user.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/ApprovalStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/BonusType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/LeaveStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/LeaveType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/WorkSchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/companyPhoto/BD_Tech_Solutions_Ltd__1dda8ea1-67b5-427c-8a6f-d3b5a92ac9e7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/companyPhoto/Tech_Solutions_Ltd__031955fc-037c-4596-a08e-0db3681ac373.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/departmentPhoto/dfdsaf_a5535276-fbc6-4b07-8c99-d4737e269ed7.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Month.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BranchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BranchRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/CompanyRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/DepartmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/FeedbackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/FeedbackRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/PaymentReceiptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/PaymentReceiptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AdvanceSalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BonusRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BranchRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BranchRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/CompanyRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/CompanyRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/DepartmentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/DepartmentRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/FeedbackRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/FeedbackRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/LeaveRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/PaymentReceiptRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/PaymentReceiptRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/SalaryRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AdvanceSalaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BonusService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BranchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BranchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/CompanyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/DepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/FeedbackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/FeedbackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/LeaveService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/PaymentReceiptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/PaymentReceiptService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/SalaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +94,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -256,6 +178,9 @@
       <workItem from="1727645272282" duration="70000" />
       <workItem from="1727667379499" duration="6980000" />
       <workItem from="1727685284011" duration="11080000" />
+      <workItem from="1727723108928" duration="2159000" />
+      <workItem from="1727755310797" duration="95000" />
+      <workItem from="1727755425839" duration="8367000" />
     </task>
     <servers />
   </component>

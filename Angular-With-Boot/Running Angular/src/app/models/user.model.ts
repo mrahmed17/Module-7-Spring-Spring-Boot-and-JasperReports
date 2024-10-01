@@ -1,10 +1,6 @@
-import { AdvanceSalaryModel } from './advance-salary.model';
-import { BonusModel } from './bonus.model';
-import { FeedbackModel } from './feedback.model';
-import { LeaveModel } from './leave.model';
-import { PaymentReceiptModel } from './payment-receipt.model';
+
+import { DepartmentModel } from './department.model';
 import { RoleEnum } from './role.enum';
-import { SalaryModel } from './salary.model';
 
 export class UserModel {
   id!: number;
@@ -22,12 +18,11 @@ export class UserModel {
   isActive!: boolean;
   updatedAt!: Date;
 
-  role!: RoleEnum;
-  advanceSalaries?: AdvanceSalaryModel[];
-  bonuses?: BonusModel[];
-  feedbacks?: FeedbackModel[];
-  leaves?: LeaveModel[];
-  salaries?: SalaryModel[];
-  paymentReceivers?: PaymentReceiptModel[];
-  paymentReceipts?: PaymentReceiptModel[];
+  role!: RoleEnum[];
+
+  department!: DepartmentModel[];
+  
+
 }
+
+

@@ -14,7 +14,7 @@
    <button class="btn btn-success me-5" (click)="checkIn()">
     <fa-icon [icon]="faSignIn"></fa-icon> Check In
    </button>
-   <button class="btn btn-danger " (click)="checkOut()">
+   <button class="btn btn-danger" (click)="checkOut()">
     <fa-icon [icon]="faSignOut"></fa-icon> Check Out
    </button>
   </div>
@@ -40,26 +40,10 @@
      <td>{{ attendance.clockInTime | date: 'shortTime' }}</td>
      <td>{{ attendance.clockOutTime | date: 'shortTime' }}</td>
     </tr>
+    <tr *ngIf="attendances.length === 0">
+     <td colspan="5" class="text-center">No attendance records found.</td>
+    </tr>
    </tbody>
   </table>
  </div>
 </div>
-
-<ng-template #noAttendance>
- <p>No attendance records found for today.</p>
-</ng-template>
-
-
-
-<!-- <form (ngSubmit)="saveAttendance()">
- <label for="date">Date</label>
- <input type="date" [(ngModel)]="attendance.date" name="date" required>
-
- <label for="clockInTime">Clock In Time</label>
- <input type="time" [(ngModel)]="attendance.clockInTime" name="clockInTime" required>
-
- <label for="clockOutTime">Clock Out Time</label>
- <input type="time" [(ngModel)]="attendance.clockOutTime" name="clockOutTime" required>
-
- <button type="submit">Save Attendance</button>
-</form> -->

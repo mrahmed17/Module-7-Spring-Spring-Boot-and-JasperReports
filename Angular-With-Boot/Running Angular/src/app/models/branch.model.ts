@@ -1,6 +1,5 @@
 import { CompanyModel } from './company.model';
-import { DepartmentModel } from './department.model';
-import { UserModel } from './user.model';
+
 
 export class BranchModel {
   id!: number;
@@ -13,10 +12,7 @@ export class BranchModel {
   updateAt!: Date;
   photo!: string;
 
-  company!: CompanyModel;
+  company!: CompanyModel[];
 
-  department!: DepartmentModel;
-
-  // users!: UserModel;
   
 }

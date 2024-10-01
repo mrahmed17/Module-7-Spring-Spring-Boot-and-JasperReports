@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../../models/user.model';
 import { AttendanceService } from '../../../services/attendance.service';
-import { faCalendarAlt, faCalendarDay, faClock, faExclamationTriangle, faIdBadge, faListUl, faSearch, faTable, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AttendanceModel } from '../../../models/attendance.model';
 
 
@@ -11,312 +10,110 @@ import { AttendanceModel } from '../../../models/attendance.model';
   styleUrl: './report-attendance.component.css',
 })
 export class ReportAttendanceComponent implements OnInit {
-  faCalendarDay = faCalendarDay;
-  faCalendarAlt = faCalendarAlt;
-  faSearch = faSearch;
-  faTable = faTable;
-  faUser = faUser;
-  faListUl = faListUl;
-  faExclamationTriangle = faExclamationTriangle;
-  faIdBadge = faIdBadge;
-  faClock = faClock;
-  
-
-  startDate!: string;
-  endDate!: string;
-  name!: string;
-  role!: string;
-  selectedUserId: number | null = null;
-  selectedStatus: string = '';
-  users: UserModel[] = [];
-  attendances: AttendanceModel[] = [];
-  userAttendance: Map<UserModel, number> = new Map();
+  todayAttendance: AttendanceModel[] = [];
   peakAttendanceDay: any[] = [];
   peakAttendanceMonth: any[] = [];
   peakAttendanceYear: any[] = [];
-  holidayAttendance: any[] = [];
+  attendanceInRange: Map<UserModel, number> = new Map();
   lateCheckIns: AttendanceModel[] = [];
-  regularEmployees: any[] = [];
-  errorMessage: string = '';
+  usersWithHighLeaveRate: UserModel[] = [];
+  usersWithoutAttendanceToday: UserModel[] = [];
 
   constructor(private attendanceService: AttendanceService) {}
 
   ngOnInit(): void {
-    this.loadAllUsers();
-    this.loadAllAttendances();
+    this.getTodayAttendance();
+    this.getPeakAttendance();
+    this.findUsersWithoutAttendanceToday();
   }
 
-  loadAllUsers(): void {
-    this.attendanceService.getAllUsers().subscribe({
-      next: (data) => {
-        this.users = data;
+  getTodayAttendance(): void {
+    const userId = 1;
+    this.attendanceService.getTodayAttendanceByUserId(userId).subscribe(
+      {
+       next: (attendance) => {
+        this.todayAttendance = attendance;
       },
-      error: (err) => {
-        this.errorMessage = 'Failed to fetch users.';
-        console.error(err);
-      },
-    });
+     error: (error) => {
+        console.error("Error fetching today's attendance:", error);
+      }
+      }
+    );
   }
 
-  loadAllAttendances(): void {
-    this.attendanceService.getAllAttendances().subscribe({
-      next: (data) => {
-        this.attendances = data;
+ 
+  getPeakAttendance(): void {
+    this.attendanceService.getPeakAttendanceDay().subscribe(
+      (data) => {
+        this.peakAttendanceDay = data;
       },
-      error: (err) => {
-        this.errorMessage = 'Failed to fetch attendances.';
-        console.error(err);
+      (error) => {
+        console.error('Error fetching peak attendance for the day:', error);
+      }
+    );
+
+    this.attendanceService.getPeakAttendanceMonth().subscribe(
+      (data) => {
+        this.peakAttendanceMonth = data;
       },
-    });
+      (error) => {
+        console.error('Error fetching peak attendance for the month:', error);
+      }
+    );
+
+    this.attendanceService.getPeakAttendanceYear().subscribe(
+      (data) => {
+        this.peakAttendanceYear = data;
+      },
+      (error) => {
+        console.error('Error fetching peak attendance for the year:', error);
+      }
+    );
   }
 
-  getUsersWithAttendanceInRange(): void {
-    if (!this.startDate || !this.endDate) {
-      this.errorMessage = 'Please select a valid date range.';
-      return;
-    }
+  findUsersWithoutAttendanceToday(): void {
+    this.attendanceService.findUsersWithoutAttendanceToday().subscribe(
+      (users) => {
+        this.usersWithoutAttendanceToday = users;
+      },
+      (error) => {
+        console.error('Error fetching users without attendance today:', error);
+      }
+    );
+  }
 
+  getAttendanceInRange(startDate: string, endDate: string): void {
+    this.attendanceService.getAttendanceInRange(startDate, endDate).subscribe(
+      (attendance) => {
+        this.attendanceInRange = attendance;
+      },
+      (error) => {
+        console.error('Error fetching attendance in range:', error);
+      }
+    );
+  }
+
+  getLateCheckIns(lateTime: string, startDate: string, endDate: string): void {
     this.attendanceService
-      .getAttendanceInRange(this.startDate, this.endDate)
-      .subscribe({
-        next: (data: any) => {
-          console.log('Fetched Data:', data);
-          const map = new Map<UserModel, number>();
-
-          Object.keys(data).forEach((key) => {
-            const user: UserModel = this.parseUserFromKey(key);
-            const attendanceCount = data[key];
-            map.set(user, attendanceCount);
-          });
-
-          this.userAttendance = map;
-          this.errorMessage = '';
+      .getLateCheckIns(lateTime, startDate, endDate)
+      .subscribe(
+        (checkIns) => {
+          this.lateCheckIns = checkIns;
         },
-        error: (err) => {
-          this.errorMessage =
-            'Failed to fetch attendance data. Please try again.';
-          console.error(err);
-        },
-      });
+        (error) => {
+          console.error('Error fetching late check-ins:', error);
+        }
+      );
   }
 
-  // applyFilters(): void {
-  //   if (!this.startDate || !this.endDate) {
-  //     this.errorMessage = 'Please select a valid date range.';
-  //     return;
-  //   }
-
-  //   this.attendanceService
-  //     .getAttendanceInRange(this.startDate, this.endDate)
-  //     .subscribe({
-  //       next: (data: any) => {
-  //         const map = new Map<UserModel, number>();
-
-  //         Object.keys(data).forEach((key) => {
-  //           const user: UserModel = this.parseUserFromKey(key);
-  //           const attendanceCount = data[key];
-  //           map.set(user, attendanceCount);
-  //         });
-
-  //         this.userAttendance = map;
-  //         this.errorMessage = '';
-  //       },
-  //       error: (err) => {
-  //         this.errorMessage =
-  //           'Failed to fetch attendance data. Please try again.';
-  //         console.error(err);
-  //       },
-  //     });
-  // }
-
-  parseUserFromKey(key: string): UserModel {
-    // Parses the user string as per your backend response format
-    const userPattern =
-      /User\(id=(\d+), fullName=([^,]+), email=([^,]+), contact=([^,]+), role=(\w+)\), password=(\w+)\)/;
-    const match = key.match(userPattern);
-
-    if (match) {
-      return {
-        id: parseInt(match[1], 10),
-        fullName: match[2],
-        email: match[3],
-        contact: match[4],
-        role: match[5] as any,
-        password: match[6] as any,
-        address: 'unknown' as any,
-        gender: 'unknown' as any,
-        dateOfBirth: 'unknown' as any,
-        nationalId: 'unknown' as any,
-        basicSalary: 'unknown' as any,
-        joinedDate: 'unknown' as any,
-        isActive: 'unknown' as any,
-        profilePhoto: 'unknown' as any,
-        updatedAt: 'unknown' as any,
-      };
-    } else {
-      console.error('Failed to parse user from key:', key);
-      return {
-        id: 0,
-        fullName: 'Unknown',
-        email: 'unknown',
-        contact: 'unknown',
-        role: 'UNKNOWN' as any,
-        password: 'UNKNOWN' as any,
-        address: 'unknown' as any,
-        gender: 'unknown' as any,
-        dateOfBirth: 'unknown' as any,
-        nationalId: 'unknown' as any,
-        basicSalary: 'unknown' as any,
-        joinedDate: 'unknown' as any,
-        isActive: 'unknown' as any,
-        profilePhoto: 'unknown' as any,
-        updatedAt: 'unknown' as any,
-      };
-    }
-  }
-
-  resetFilters(): void {
-    this.startDate = '';
-    this.endDate = '';
-    this.selectedUserId = null;
-    this.selectedStatus = '';
-    this.loadAllAttendances();
-  }
-
-  // Fetch peak attendance by day
-  getPeakAttendanceDay(): void {
-    this.attendanceService.getPeakAttendanceDay().subscribe({
-      next: (data) => (this.peakAttendanceDay = data),
-      error: (err) => {
-        this.errorMessage =
-          'Failed to fetch peak attendance by day. Please try again.';
-        console.error(err);
+  getEmployeesWithHighLeaveRate(threshold: number): void {
+    this.attendanceService.getEmployeesWithHighLeaveRate(threshold).subscribe(
+      (employees) => {
+        this.usersWithHighLeaveRate = employees;
       },
-    });
+      (error) => {
+        console.error('Error fetching employees with high leave rate:', error);
+      }
+    );
   }
-
-  // Fetch peak attendance by month
-  getPeakAttendanceMonth(): void {
-    this.attendanceService.getPeakAttendanceMonth().subscribe({
-      next: (data) => (this.peakAttendanceMonth = data),
-      error: (err) => {
-        this.errorMessage =
-          'Failed to fetch peak attendance by month. Please try again.';
-        console.error(err);
-      },
-    });
-  }
-
-  // Fetch peak attendance by year
-  getPeakAttendanceYear(): void {
-    this.attendanceService.getPeakAttendanceYear().subscribe({
-      next: (data) => (this.peakAttendanceYear = data),
-      error: (err) => {
-        this.errorMessage =
-          'Failed to fetch peak attendance by year. Please try again.';
-        console.error(err);
-      },
-    });
-  }
-
-  // Fetch holiday attendance
-  getHolidayAttendance(holidayDates: string[]): void {
-    this.attendanceService.getHolidayAttendance(holidayDates).subscribe({
-      next: (data) => (this.holidayAttendance = data),
-      error: (err) => {
-        this.errorMessage =
-          'Failed to fetch holiday attendance. Please try again.';
-        console.error(err);
-      },
-    });
-  }
-
-  // Fetch late check-ins
-  getLateCheckIns(lateTime: string): void {
-    this.attendanceService
-      .getLateCheckIns(lateTime, this.startDate, this.endDate)
-      .subscribe({
-        next: (data) => (this.lateCheckIns = data),
-        error: (err) => {
-          this.errorMessage =
-            'Failed to fetch late check-ins. Please try again.';
-          console.error(err);
-        },
-      });
-  }
-
-  // Fetch regular employees for shift planning
-  getRegularEmployeesForShiftPlanning(): void {
-    this.attendanceService
-      .getRegularEmployeesForShiftPlanning(this.startDate, this.endDate)
-      .subscribe({
-        next: (data) => (this.regularEmployees = data),
-        error: (err) => {
-          this.errorMessage =
-            'Failed to fetch regular employees for shift planning. Please try again.';
-          console.error(err);
-        },
-      });
-  }
-
-  // Fetch attendance by user name
-  searchAttendancesByUserName(): void {
-    if (!this.name) {
-      this.errorMessage = 'Please provide a name to search.';
-      return;
-    }
-
-    this.attendanceService
-      .searchAttendancesByUserNamePart(this.name)
-      .subscribe({
-        next: (data: AttendanceModel[]) => {
-          const map = new Map<UserModel, number>();
-
-          // Assuming AttendanceModel has a user and count property
-          data.forEach((attendance) => {
-            const user: UserModel = attendance.user;
-            const count: number = map.get(user) || 0;
-            map.set(user, count + 1); // Aggregate attendance count
-          });
-
-          this.userAttendance = map;
-          this.errorMessage = '';
-        },
-        error: (err) => {
-          this.errorMessage =
-            'Failed to search attendances by user name. Please try again.';
-          console.error(err);
-        },
-      });
-  }
-
-  // Fetch attendance by role and date range
-  // searchAttendanceByRoleAndDateRange(): void {
-  //   if (!this.role || !this.startDate || !this.endDate) {
-  //     this.errorMessage = 'Please provide role and date range.';
-  //     return;
-  //   }
-
-  //   this.attendanceService
-  //     .getAttendanceInRange(this.startDate, this.endDate)
-  //     .subscribe({
-  //       next: (data: AttendanceModel[]) => {
-  //         const map = new Map<UserModel, number>();
-
-  //         data.forEach((attendance) => {
-  //           const user: UserModel = attendance.user;
-  //           const count: number = map.get(user) || 0;
-  //           map.set(user, count + 1); // Aggregate attendance count
-  //         });
-
-  //         this.userAttendance = map;
-  //         this.errorMessage = '';
-  //       },
-  //       error: (err) => {
-  //         this.errorMessage =
-  //           'Failed to search attendance by role and date range. Please try again.';
-  //         console.error(err);
-  //       },
-  //     });
-  // }
 }

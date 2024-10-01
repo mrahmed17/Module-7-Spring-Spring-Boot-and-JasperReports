@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { faCog, faEdit, faEnvelope, faEye, faIdBadge, faMoneyCheckDollar, faPhone, faTrash, faUser, faUserPlus, faUsers, faUserTag } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCog,
+  faEdit,
+  faEnvelope,
+  faEye,
+  faIdBadge,
+  faMoneyCheckDollar,
+  faPhone,
+  faTrash,
+  faUser,
+  faUserPlus,
+  faUsers,
+  faUserTag,
+} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../services/notification.service';
 import { RoleEnum } from '../../../models/role.enum';
@@ -62,11 +75,13 @@ export class ListUserComponent implements OnInit {
         user.fullName?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         user.email?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+    this.applyFilters();
   }
 
   filterByRole(): void {
     this.filteredUsers = this.users.filter(
-      (user) => this.selectedRole === null || user.role === this.selectedRole
+      (user) =>
+        this.selectedRole === null || user.role.includes(this.selectedRole) 
     );
   }
 
@@ -98,9 +113,12 @@ export class ListUserComponent implements OnInit {
   deleteUser(id: number): void {
     if (confirm('Are you sure you want to delete this user?')) {
       this.userService.deleteUserById(id).subscribe({
-        next: (response) => {
-          this.notificationService.showNotify('User deleted successfully','success');
-          this.loadUsers();
+        next: () => {
+          this.notificationService.showNotify(
+            'User deleted successfully',
+            'success'
+          );
+          this.loadUsers(); 
         },
         error: (err) => {
           this.errorMessage = 'An error occurred while deleting the user.';
@@ -120,5 +138,12 @@ export class ListUserComponent implements OnInit {
     if (id != null) {
       this.router.navigate([`/user/edit/${id}`]);
     }
+  }
+
+  applyFilters(): void {
+    this.filteredUsers = this.users;
+    this.filterByRole();
+    this.filterBySalary();
+    this.filterByGender();
   }
 }

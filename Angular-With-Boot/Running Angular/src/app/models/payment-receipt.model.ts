@@ -11,10 +11,8 @@ export class PaymentReceiptModel {
   deductions!: number;
   netPaidAmount!: number;
   status!: boolean; // Payment status is Paid or Unpaid
-  paymentPayer!: UserModel;
-  paymentReceiver!: UserModel;
-  salary!: SalaryModel;
-  advanceSalary!: AdvanceSalaryModel; // Advance salary included in the receipt
-
-  bonuses!: BonusModel; // Bonuses included in the receipt
+  paymentReceiver!: UserModel[];
+  
+  salary!: SalaryModel[];
+  
 }

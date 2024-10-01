@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface PaymentReceiptRepository extends JpaRepository <PaymentReceipt, Long> {
 
+
     List<PaymentReceipt> findByPaymentReceiver(User paymentReceiver);
 
     @Query("SELECT pr FROM PaymentReceipt pr WHERE pr.paymentDate BETWEEN :startDate AND :endDate")

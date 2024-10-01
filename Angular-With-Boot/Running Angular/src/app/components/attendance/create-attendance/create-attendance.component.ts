@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from '../../../services/attendance.service';
 import { NotificationService } from '../../../services/notification.service';
-import { faCalendarAlt, faClock, faIdBadge, faList, faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendarAlt,
+  faClock,
+  faIdBadge,
+  faList,
+  faSignInAlt,
+  faSignOutAlt,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { AttendanceModel } from '../../../models/attendance.model';
 import { UserModel } from '../../../models/user.model';
-
 
 @Component({
   selector: 'app-create-attendance',
   templateUrl: './create-attendance.component.html',
-  styleUrl: './create-attendance.component.css',
+  styleUrls: ['./create-attendance.component.css'],
 })
 export class CreateAttendanceComponent implements OnInit {
   users: UserModel[] = [];
   attendances: AttendanceModel[] = [];
   selectedUserId: number | null = null;
-  todaysAttendance: AttendanceModel[] = [];
   errorMessage: string = '';
-
-  // users: any[] = [];
-  // attendances: any[] = [];
-  // selectedUserId: number | null = null;
-  // todaysAttendance: AttendanceModel[] = [];
-  // errorMessage: string = '';
 
   faUser = faUser;
   faSignIn = faSignInAlt;
@@ -39,7 +39,6 @@ export class CreateAttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    // this.loadTodaysAttendance();
     this.loadAttendances();
   }
 
@@ -49,23 +48,10 @@ export class CreateAttendanceComponent implements OnInit {
         this.users = data;
       },
       error: (error) => {
-        console.error('Error loading users:', error);
+        this.handleError('Error loading users', error);
       },
     });
   }
-
-  // loadTodaysAttendance(): void {
-  //   this.attendanceService.getTodaysAttendance().subscribe({
-  //     next: (data) => {
-  //       this.todaysAttendance = data;
-  //       this.errorMessage = '';
-  //     },
-  //     error: (err) => {
-  //       this.errorMessage = "Failed to load today's attendance";
-  //       console.error(err);
-  //     },
-  //   });
-  // }
 
   loadAttendances(): void {
     this.attendanceService.getAllAttendances().subscribe({
@@ -74,57 +60,16 @@ export class CreateAttendanceComponent implements OnInit {
         console.log('Received Attendances:', this.attendances);
       },
       error: (error) => {
-        console.error('Error loading attendances:', error);
-        // Log raw response for debugging
-        if (error.error) {
-          console.error('Raw error response:', error.error);
-        }
+        this.handleError('Error loading attendances', error);
       },
     });
   }
-
-  // checkIn(): void {
-  //   if (this.selectedUserId) {
-  //     this.attendanceService.checkIn(this.selectedUserId).subscribe({
-  //       next: () => {
-  //         this.loadTodaysAttendance();
-  //         // alert('Check in created successfully.');
-  //         this.notificationService.showNotify(
-  //           'Check in created successfully.',
-  //           'success'
-  //         );
-  //       },
-  //       error: (error) => {
-  //         this.handleError('Error during check-in', error);
-  //       },
-  //     });
-  //   }
-  // }
-
-  // checkOut(): void {
-  //   if (this.selectedUserId) {
-  //     this.attendanceService.checkOut(this.selectedUserId).subscribe({
-  //       next: (data) => {
-  //         this.loadTodaysAttendance();
-  //         // alert('Check out created successfully.');
-  //         this.notificationService.showNotify(
-  //           'Check out created successfully.',
-  //           'success'
-  //         );
-  //       },
-  //       error: (error) => {
-  //         this.handleError('Error during check-out', error);
-  //       },
-  //     });
-  //   }
-  // }
 
   checkIn(): void {
     if (this.selectedUserId) {
       this.attendanceService.checkIn(this.selectedUserId).subscribe({
         next: () => {
           this.loadAttendances();
-          // alert('Check in created successfully.');
           this.notificationService.showNotify(
             'Check in created successfully.',
             'success'
@@ -140,9 +85,8 @@ export class CreateAttendanceComponent implements OnInit {
   checkOut(): void {
     if (this.selectedUserId) {
       this.attendanceService.checkOut(this.selectedUserId).subscribe({
-        next: (data) => {
+        next: () => {
           this.loadAttendances();
-          // alert('Check out created successfully.');
           this.notificationService.showNotify(
             'Check out created successfully.',
             'success'

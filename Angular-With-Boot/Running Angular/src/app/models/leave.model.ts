@@ -1,7 +1,6 @@
 
 
 import { LeaveTypeEnum } from './leave-type.enum';
-import { MonthEnum } from './month.enum';
 import { RequestStatusEnum } from './request-status.enum';
 import { UserModel } from './user.model';
 
@@ -12,16 +11,13 @@ export class LeaveModel {
   requestDate!: Date;
   reason!: string;
   remainingLeave!: number;
-  year!: number;
-
-  leaveMonth!: MonthEnum;
-
-  leaveType!: LeaveTypeEnum;
-
-  requestStatus!: RequestStatusEnum;
-
-  user!: UserModel;
-
   isUnpaid!: boolean;
+
+  leaveType!: LeaveTypeEnum[];
+
+  requestStatus!: RequestStatusEnum[];
+
+  user!: UserModel[];
+
 
 }

@@ -32,12 +32,12 @@ public class User {
     @Column(name = "isActive")
     private boolean active = true;
 
+    @UpdateTimestamp
+    private LocalDate updatedAt;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
-
-    @UpdateTimestamp
-    private LocalDate updatedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departmentId", nullable = false)

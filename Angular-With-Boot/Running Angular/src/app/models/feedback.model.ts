@@ -8,9 +8,7 @@ export class FeedbackModel{
  rating!: string;
  comment!: string;
 
- feedbackMonth!: MonthEnum;
-
- user!: UserModel;
+ user!: UserModel[];
 
 
 }

@@ -54,6 +54,10 @@ public class PaymentReceiptService {
         return paymentReceiptRepository.findByPaymentDateBetween(startDate, endDate);
     }
 
+    public List<PaymentReceipt> getAllPaymentReceipts() {
+        return paymentReceiptRepository.findAll();
+    }
+
     public Double getTotalAmountByYear(int year) {
         return paymentReceiptRepository.findTotalAmountByYear(year);
     }

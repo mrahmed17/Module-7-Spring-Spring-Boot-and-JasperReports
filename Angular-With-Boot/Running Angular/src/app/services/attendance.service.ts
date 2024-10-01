@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AttendanceModel } from '../models/attendance.model';
 import { Observable } from 'rxjs';
+import { AttendanceModel } from '../models/attendance.model';
 import { UserModel } from '../models/user.model';
 import { environment } from '../../environments/environment';
 
@@ -26,22 +26,24 @@ export class AttendanceService {
   }
 
   checkIn(userId: number): Observable<AttendanceModel> {
-    const body = { userId };
-    return this.http.post<AttendanceModel>(`${this.baseUrl}/checkin`, body);
+    return this.http.post<AttendanceModel>(`${this.baseUrl}/checkin`, {
+      userId,
+    });
   }
 
   checkOut(userId: number): Observable<AttendanceModel> {
-    const body = { userId };
-    return this.http.put<AttendanceModel>(`${this.baseUrl}/checkout`, body);
+    return this.http.put<AttendanceModel>(`${this.baseUrl}/checkout`, {
+      userId,
+    });
   }
 
   getAttendanceById(id: number): Observable<AttendanceModel> {
     return this.http.get<AttendanceModel>(`${this.baseUrl}/find/${id}`);
   }
 
-  getAttendancesByUserId(id: number): Observable<AttendanceModel[]> {
+  getAttendancesByUserId(userId: number): Observable<AttendanceModel[]> {
     return this.http.get<AttendanceModel[]>(
-      `${this.baseUrl}/user/${id}/attendances`
+      `${this.baseUrl}/user/${userId}/attendances`
     );
   }
 
@@ -136,7 +138,7 @@ export class AttendanceService {
       .set('startDate', startDate)
       .set('endDate', endDate);
     return this.http.get<Map<UserModel, number>>(
-      `${this.baseUrl}/attendance-by-department`,
+      `${this.baseUrl}/attendanceRange`,
       { params }
     );
   }

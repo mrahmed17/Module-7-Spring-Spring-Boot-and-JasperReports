@@ -1,24 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { NotificationService } from '../../../services/notification.service';
 import { UserModel } from '../../../models/user.model';
-import {
-  faUser,
-  faEnvelope,
-  faKey,
-  faHome,
-  faVenusMars,
-  faCalendarAlt,
-  faIdCard,
-  faPhone,
-  faDollarSign,
-  faCalendarDay,
-  faUserTag,
-  faImage,
-} from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-edit-user',
@@ -26,147 +10,65 @@ import {
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
-  faUser = faUser;
-  faEnvelope = faEnvelope;
-  faKey = faKey;
-  faHome = faHome;
-  faVenusMars = faVenusMars;
-  faCalendarAlt = faCalendarAlt;
-  faIdCard = faIdCard;
-  faPhone = faPhone;
-  faDollarSign = faDollarSign;
-  faCalendarDay = faCalendarDay;
-  faUserTag = faUserTag;
-  faImage = faImage;
-
-  editUserForm!: FormGroup;
-  errorMessage: string | null = null;
-  successMessage: string | null = null;
-  selectedFile: File | null = null;
   userId!: number;
+  user!: UserModel;
+  isLoading: boolean = true;
+  profilePhoto?: File;
 
   constructor(
-    private fb: FormBuilder,
     private userService: UserService,
-    private route: ActivatedRoute,
+    private notification: NotificationService,
     private router: Router,
-    private notificationService: NotificationService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.userId = +this.route.snapshot.paramMap.get('id')!;
     this.loadUser();
   }
 
-  initializeForm() {
-    this.editUserForm = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      address: [''],
-      gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      nationalId: ['', Validators.required],
-      contact: ['', Validators.required],
-      basicSalary: ['', Validators.required],
-      joinedDate: ['', Validators.required],
-      role: ['', Validators.required],
-      profilePhoto: [null],
+  loadUser(): void {
+    this.userService.getUserById(this.userId).subscribe({
+      next: (user) => {
+        this.user = user;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error loading user', error);
+        this.notification.showNotify('Error loading user', 'error');
+        this.isLoading = false;
+      },
     });
   }
 
-  loadUser(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.userId = +id;
-      this.userService.getUserById(this.userId).subscribe({
-        next: (user) => {
-          const userFormData = {
-            ...user,
-            dateOfBirth: user.dateOfBirth
-              ? new Date(user.dateOfBirth).toISOString().split('T')[0]
-              : '',
-            joinedDate: user.joinedDate
-              ? new Date(user.joinedDate).toISOString().split('T')[0]
-              : '',
-          };
-          this.editUserForm.patchValue(userFormData as any);
-        },
-        error: (err) => {
-          this.errorMessage = 'Error loading user details';
-          console.error(err);
-        },
-      });
-    }
+  onPhotoSelected(event: any): void {
+    this.profilePhoto = event.target.files[0];
   }
 
-  onFileChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const maxSize = 5 * 1024 * 1024; // 5MB limit
-      const allowedTypes = ['image/jpeg', 'image/png'];
-
-      if (file.size > maxSize) {
-        this.errorMessage = 'File size should be less than 5MB.';
-        this.selectedFile = null;
-      } else if (!allowedTypes.includes(file.type)) {
-        this.errorMessage =
-          'Invalid file type. Please upload a JPG or PNG file.';
-        this.selectedFile = null;
-      } else {
-        this.selectedFile = file;
-        this.editUserForm.patchValue({ profilePhoto: this.selectedFile });
-        this.errorMessage = null;
-      }
-    }
-  }
-
-  onSubmit(): void {
-    if (this.editUserForm.invalid) {
-      this.errorMessage = 'Please fill in all required fields correctly.';
+  onSubmit(form: any): void {
+    if (form.invalid) {
       return;
     }
 
-    const formValues = this.editUserForm.value;
-    const user: UserModel = {
-      ...formValues,
-      dateOfBirth: formValues.dateOfBirth
-        ? new Date(formValues.dateOfBirth)
-        : undefined,
-      joinedDate: formValues.joinedDate
-        ? new Date(formValues.joinedDate)
-        : undefined,
-    };
-
-    const formData = new FormData();
-    formData.append(
-      'user',
-      new Blob([JSON.stringify(user)], { type: 'application/json' })
-    );
-
-    if (this.selectedFile) {
-      formData.append('profilePhoto', this.selectedFile);
+    const formData: FormData = new FormData();
+    formData.append('user', JSON.stringify(this.user));
+    if (this.profilePhoto) {
+      formData.append(
+        'profilePhoto',
+        this.profilePhoto,
+        this.profilePhoto.name
+      );
     }
 
     this.userService.updateUser(this.userId, formData).subscribe({
       next: () => {
-        this.successMessage = 'User updated successfully!';
-        this.errorMessage = null;
-        this.notificationService.showNotify(
-          'User updated successfully!',
-          'success'
-        );
+        this.notification.showNotify('User updated successfully', 'success');
         this.router.navigate(['/user/list']);
       },
-      error: (err) => {
-        this.errorMessage = 'Failed to update user';
-        this.successMessage = null;
-        console.error(err);
+      error: (error) => {
+        console.error('Error updating user', error);
+        this.notification.showNotify('Error updating user', 'error');
       },
     });
-  }
-
-  cancel(): void {
-    this.router.navigate(['/user/list']);
   }
 }

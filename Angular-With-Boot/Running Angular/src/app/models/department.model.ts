@@ -1,6 +1,4 @@
 import { BranchModel } from './branch.model';
-import { CompanyModel } from './company.model';
-import { UserModel } from './user.model';
 
 export class DepartmentModel {
   id!: number;
@@ -8,9 +6,7 @@ export class DepartmentModel {
   numOfEmployees!: number;
   photo!: string;
 
-  branch!: BranchModel;
+  branch!: BranchModel[];
 
-  // companies!: CompanyModel;
 
-  users!: UserModel;
 }

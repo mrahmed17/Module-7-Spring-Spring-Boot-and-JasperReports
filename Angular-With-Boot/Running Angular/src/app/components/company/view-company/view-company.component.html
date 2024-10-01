@@ -1,0 +1,13 @@
+<div class="container">
+ <h2>Company Details</h2>
+
+ <div *ngIf="company">
+  <p><strong>Company Name:</strong> {{ company.companyName }}</p>
+  <p *ngIf="company.photo">
+   <strong>Company Photo:</strong><br />
+   <img [src]="company.photo" alt="Company Photo" class="company-photo" />
+  </p>
+ </div>
+
+ <button class="btn btn-primary" (click)="backToList()">Back to Company List</button>
+</div>

@@ -10,7 +10,7 @@ export class AdvanceSalaryModel {
   advanceDate!: Date;
   year!: number;
 
-  advanceMonth!: MonthEnum;
+  advanceMonth!: MonthEnum[];
 
-  user!: UserModel;
+  user!: UserModel[];
 }

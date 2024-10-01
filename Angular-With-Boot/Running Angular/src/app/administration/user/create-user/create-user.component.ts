@@ -1,27 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../../services/user.service';
-import { UserModel } from '../../../models/user.model';
 import { Router } from '@angular/router';
-import {
-  faArrowLeft,
-  faCalendarAlt,
-  faCalendarDay,
-  faDollarSign,
-  faEnvelope,
-  faHome,
-  faIdCard,
-  faImage,
-  faKey,
-  faPhone,
-  faPlusCircle,
-  faUser,
-  faUserPlus,
-  faUserTag,
-  faVenusMars,
-} from '@fortawesome/free-solid-svg-icons';
-import { RoleEnum } from '../../../models/role.enum';
+import { UserService } from '../../../services/user.service';
 import { NotificationService } from '../../../services/notification.service';
+import { UserModel } from '../../../models/user.model';
 
 @Component({
   selector: 'app-create-user',
@@ -29,149 +10,39 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./create-user.component.css'],
 })
 export class CreateUserComponent {
-  faUserPlus = faUserPlus;
-  faHome = faHome;
-  faVenusMars = faVenusMars;
-  faCalendarAlt = faCalendarAlt;
-  faUser = faUser;
-  faIdCard = faIdCard;
-  faCalendarDay = faCalendarDay;
-  faDollarSign = faDollarSign;
-  faEnvelope = faEnvelope;
-  faPhone = faPhone;
-  faUserTag = faUserTag;
-  faArrowLeft = faArrowLeft;
-  faImage = faImage;
-  faPlusCircle = faPlusCircle;
-  faKey = faKey;
-
-  userForm: FormGroup;
-  profilePhoto: File | null = null;
-  profilePhotoPreview: string | null = null;
-  successMessage: string | null = null;
-  errorMessage: string | null = null;
-  currentStep = 1;
-
-  genderOptions = ['Male', 'Female', 'Other'];
-  roleOptions = Object.values(RoleEnum).filter((values) =>
-    isNaN(Number(values))
-  );
+  user: UserModel = new UserModel();
+  profilePhoto?: File;
 
   constructor(
-    private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
-    private notificationService: NotificationService
-  ) {
-    this.userForm = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      address: [''],
-      gender: ['', Validators.required],
-      dateOfBirth: [''],
-      nationalId: [''],
-      contact: [''],
-      basicSalary: [''],
-      joinedDate: [''],
-      role: ['', Validators.required],
-    });
+    private notification: NotificationService,
+    private router: Router
+  ) {}
+
+  onPhotoSelected(event: any): void {
+    this.profilePhoto = event.target.files[0];
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const maxSize = 5 * 1024 * 1024; // 5MB
-      const allowedTypes = ['image/jpeg', 'image/png'];
-
-      if (!allowedTypes.includes(file.type) || file.size > maxSize) {
-        this.errorMessage =
-          'Invalid file type or size. Please upload a .jpg or .png image below 5MB.';
-        this.profilePhoto = null;
-        this.profilePhotoPreview = null;
-        return;
-      }
-
-      this.profilePhoto = file;
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.profilePhotoPreview = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  nextStep() {
-    if (this.currentStep < 3) {
-      this.currentStep++;
-    }
-  }
-
-  previousStep() {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-    }
-  }
-
-  onSubmit() {
-    if (this.userForm.invalid) {
-      this.errorMessage = 'Please fill out the form correctly.';
-      return;
-    }
-
-    const user: UserModel = {
-      id: 0,
-      fullName: this.userForm.get('fullName')?.value,
-      email: this.userForm.get('email')?.value,
-      password: this.userForm.get('password')?.value,
-      address: this.userForm.get('address')?.value || '',
-      gender: this.userForm.get('gender')?.value,
-      dateOfBirth: this.userForm.get('dateOfBirth')?.value || '',
-      nationalId: this.userForm.get('nationalId')?.value || '',
-      contact: this.userForm.get('contact')?.value || '',
-      basicSalary: this.userForm.get('basicSalary')?.value || 0,
-      joinedDate: this.userForm.get('joinedDate')?.value || '',
-      role: this.userForm.get('role')?.value,
-      isActive: true,
-      profilePhoto: '',
-      updatedAt: new Date(),
-    };
-
-    const formData = new FormData();
-    formData.append(
-      'user',
-      new Blob([JSON.stringify(user)], { type: 'application/json' })
-    );
-
+  onSubmit(form: any): void {
+    const formData: FormData = new FormData();
+    formData.append('user', JSON.stringify(this.user));
     if (this.profilePhoto) {
-      formData.append('profilePhoto', this.profilePhoto);
+      formData.append(
+        'profilePhoto',
+        this.profilePhoto,
+        this.profilePhoto.name
+      );
     }
 
     this.userService.createUser(formData).subscribe({
-      next: (message) => {
-        this.successMessage = message;
-        this.errorMessage = null;
-        this.resetForm();
-        this.notificationService.showNotify(
-          'User created successfully.',
-          'success'
-        );
+      next: () => {
+        this.notification.showNotify('User created successfully!', 'success');
         this.router.navigate(['/user/list']);
       },
-      error: (err) => {
-        this.successMessage = null;
-        this.errorMessage =
-          err?.error?.message || 'An error occurred while creating the user.';
-        console.error(err);
+      error: (error) => {
+        console.error('Error creating user', error);
+        this.notification.showNotify('Error creating user', 'error');
       },
     });
-  }
-
-  resetForm() {
-    this.userForm.reset();
-    this.userForm.markAsPristine(); // Ensure form state is clean
-    this.profilePhoto = null;
-    this.profilePhotoPreview = null;
-    this.currentStep = 1; // Reset to the first step
   }
 }

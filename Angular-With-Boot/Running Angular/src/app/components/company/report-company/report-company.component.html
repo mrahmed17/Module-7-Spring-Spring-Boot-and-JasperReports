@@ -1,0 +1,48 @@
+<div class="container">
+ <h2>Company Reporting</h2>
+
+ <div class="mb-3">
+  <label for="companySelect" class="form-label">Select Company:</label>
+  <select id="companySelect" class="form-select" (change)="loadBranches($event.target.value)">
+   <option value="" disabled selected>Select a company</option>
+   <option *ngFor="let company of companies" [value]="company.id">{{ company.companyName }}</option>
+  </select>
+ </div>
+
+ <div *ngIf="branches.length > 0">
+  <h4>Branches</h4>
+  <ul class="list-group">
+   <li *ngFor="let branch of branches" class="list-group-item">
+    {{ branch.name }}
+    <button class="btn btn-info btn-sm" (click)="countEmployeesInBranch(branch.id)">Count Employees</button>
+    <span *ngIf="employeeCountInBranch" class="badge bg-primary">{{ employeeCountInBranch }} employees</span>
+   </li>
+  </ul>
+ </div>
+
+ <div *ngIf="selectedBranchId">
+  <h4>Departments in Selected Branch</h4>
+  <button class="btn btn-secondary" (click)="loadDepartmentsByBranch(selectedBranchId)">Load Departments</button>
+  <ul class="list-group">
+   <li *ngFor="let department of departments" class="list-group-item">
+    {{ department.name }}
+    <button class="btn btn-info btn-sm" (click)="loadEmployeesByDepartment(department.id)">View Employees</button>
+   </li>
+  </ul>
+ </div>
+
+ <div *ngIf="employees.length > 0">
+  <h4>Employees in Selected Department</h4>
+  <ul class="list-group">
+   <li *ngFor="let employee of employees" class="list-group-item">
+    {{ employee.name }} ({{ employee.position }})
+   </li>
+  </ul>
+ </div>
+
+ <div *ngIf="employeeCountInCompany">
+  <h4>Total Employees in Company</h4>
+  <button class="btn btn-secondary" (click)="countEmployeesInCompany(selectedCompanyId)">Count Employees</button>
+  <span class="badge bg-primary">{{ employeeCountInCompany }} employees</span>
+ </div>
+</div>

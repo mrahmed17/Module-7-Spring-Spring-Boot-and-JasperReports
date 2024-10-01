@@ -71,6 +71,14 @@ public class PaymentReceiptRestController {
         return ResponseEntity.ok(receipts);
     }
 
+
+    @GetMapping("/all")
+    public ResponseEntity<List<PaymentReceipt>> getAllPaymentReceipts() {
+        List<PaymentReceipt> receipts = paymentReceiptService.getAllPaymentReceipts();
+        return ResponseEntity.ok(receipts);
+    }
+
+
     // Get total amount by year
     @GetMapping("/total-by-year")
     public ResponseEntity<Double> getTotalAmountByYear(@RequestParam int year) {

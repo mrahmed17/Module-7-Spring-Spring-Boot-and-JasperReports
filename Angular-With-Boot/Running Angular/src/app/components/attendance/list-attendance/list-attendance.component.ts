@@ -11,7 +11,6 @@ import {
   faClock,
   faIdBadge,
   faListUl,
-  faList,
   faSearch,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +18,7 @@ import {
 @Component({
   selector: 'app-list-attendance',
   templateUrl: './list-attendance.component.html',
-  styleUrl: './list-attendance.component.css',
+  styleUrls: ['./list-attendance.component.css'],
 })
 export class ListAttendanceComponent implements OnInit {
   faListUl = faListUl;
@@ -28,7 +27,6 @@ export class ListAttendanceComponent implements OnInit {
   faClock = faClock;
   faUser = faUser;
   faSearch = faSearch;
-  faList = faList;
 
   attendances: AttendanceModel[] = [];
   filteredAttendances: AttendanceModel[] = [];
@@ -48,15 +46,11 @@ export class ListAttendanceComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAttendances();
     this.loadUsers();
-    // this.loadAttendances();
 
-    // Search functionality with debounce
     this.searchControl.valueChanges
-      .pipe(
-        debounceTime(300) // Wait for 300ms pause in events
-      )
+      .pipe(debounceTime(300)) 
       .subscribe((searchTerm) => {
-        this.searchTerm = searchTerm ?? ''; // Provide default empty string if null
+        this.searchTerm = searchTerm ?? '';
         this.applyFilters();
       });
   }
@@ -73,25 +67,16 @@ export class ListAttendanceComponent implements OnInit {
     });
   }
 
-  getAllAttendances() {
+  getAllAttendances(): void {
     this.attendanceService.getAllAttendances().subscribe({
       next: (data) => {
         this.attendances = data;
+        this.applyFilters(); 
       },
       error: (error) => {
         console.error('Error fetching attendances', error);
       },
     });
-  }
-
-  searchAttendances(): void {
-    if (this.searchTerm) {
-      this.attendanceService
-        .searchAttendancesByUserNamePart(this.searchTerm)
-        .subscribe((data) => (this.attendances = data));
-    } else {
-      this.getAllAttendances();
-    }
   }
 
   applyFilters(): void {
@@ -107,7 +92,11 @@ export class ListAttendanceComponent implements OnInit {
       );
     }
 
-    this.filteredAttendances = filtered;
+    const startIndex = this.page * this.size;
+    this.filteredAttendances = filtered.slice(
+      startIndex,
+      startIndex + this.size
+    );
   }
 
   onUserChange(event: Event): void {
@@ -119,6 +108,26 @@ export class ListAttendanceComponent implements OnInit {
   onDateChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.selectedDate = new Date(target.value);
-    this.getAllAttendances(); // Load attendances for the selected date
+    this.getAllAttendances();
+  }
+
+  previousPage(): void {
+    if (this.page > 0) {
+      this.page--;
+      this.applyFilters(); 
+    }
+  }
+
+  nextPage(): void {
+    this.page++;
+    this.applyFilters(); 
+  }
+
+  isPreviousDisabled(): boolean {
+    return this.page <= 0;
+  }
+
+  isNextDisabled(): boolean {
+    return (this.page + 1) * this.size >= this.attendances.length;
   }
 }

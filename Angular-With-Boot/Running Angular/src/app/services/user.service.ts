@@ -20,6 +20,7 @@ export class UserService {
       })
       .pipe(catchError(this.handleError<string>('createUser')));
   }
+
   updateUser(id: number, formData: FormData): Observable<any> {
     return this.httpClient
       .put(`${this.baseUrl}/update/${id}`, formData)

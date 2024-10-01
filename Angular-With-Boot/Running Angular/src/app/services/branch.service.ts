@@ -12,9 +12,9 @@ import { UserModel } from '../models/user.model';
 })
 export class BranchService {
   private baseUrl: string = `${environment.apiUrl}/branches`;
+
   constructor(private http: HttpClient) {}
 
-  // Create a new branch with an optional photo
   createBranch(
     branch: BranchModel,
     branchPhoto?: File
@@ -33,7 +33,6 @@ export class BranchService {
       .pipe(catchError(this.handleError<BranchModel>('createBranch')));
   }
 
-  // Update an existing branch with an optional photo
   updateBranch(
     id: number,
     branch: BranchModel,
@@ -53,28 +52,24 @@ export class BranchService {
       .pipe(catchError(this.handleError<BranchModel>('updateBranch')));
   }
 
-  // Delete a branch by its ID
   deleteBranch(id: number): Observable<void> {
     return this.http
       .delete<void>(`${this.baseUrl}/delete/${id}`)
       .pipe(catchError(this.handleError<void>('deleteBranch')));
   }
 
-  // Get a branch by its ID
   getBranchById(id: number): Observable<BranchModel> {
     return this.http
       .get<BranchModel>(`${this.baseUrl}/find/${id}`)
       .pipe(catchError(this.handleError<BranchModel>('getBranchById')));
   }
 
-  // Get all branches
   getAllBranches(): Observable<BranchModel[]> {
     return this.http
       .get<BranchModel[]>(`${this.baseUrl}/all`)
       .pipe(catchError(this.handleError<BranchModel[]>('getAllBranches', [])));
   }
 
-  // Search for a branch by name
   findByBranchName(branchName: string): Observable<BranchModel> {
     const params = new HttpParams().set('branchName', branchName);
     return this.http
@@ -82,7 +77,6 @@ export class BranchService {
       .pipe(catchError(this.handleError<BranchModel>('findByBranchName')));
   }
 
-  // Get departments by branch ID
   getDepartmentsByBranchId(branchId: number): Observable<DepartmentModel[]> {
     return this.http
       .get<DepartmentModel[]>(`${this.baseUrl}/${branchId}/departments`)
@@ -93,7 +87,6 @@ export class BranchService {
       );
   }
 
-  // Get employees by branch ID
   getEmployeesByBranchId(branchId: number): Observable<UserModel[]> {
     return this.http
       .get<UserModel[]>(`${this.baseUrl}/${branchId}/employees`)
@@ -102,21 +95,18 @@ export class BranchService {
       );
   }
 
-  // Count departments by branch ID
   countDepartmentsByBranchId(branchId: number): Observable<number> {
     return this.http
       .get<number>(`${this.baseUrl}/${branchId}/department-count`)
       .pipe(catchError(this.handleError<number>('countDepartmentsByBranchId')));
   }
 
-  // Count employees by branch ID
   countEmployeesByBranchId(branchId: number): Observable<number> {
     return this.http
       .get<number>(`${this.baseUrl}/${branchId}/employee-count`)
       .pipe(catchError(this.handleError<number>('countEmployeesByBranchId')));
   }
 
-  // Get branches by company ID
   getBranchesByCompanyId(companyId: number): Observable<BranchModel[]> {
     return this.http
       .get<BranchModel[]>(`${this.baseUrl}/company/${companyId}`)
@@ -127,7 +117,6 @@ export class BranchService {
       );
   }
 
-  // Error handling method
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
@@ -135,4 +124,3 @@ export class BranchService {
     };
   }
 }
-
