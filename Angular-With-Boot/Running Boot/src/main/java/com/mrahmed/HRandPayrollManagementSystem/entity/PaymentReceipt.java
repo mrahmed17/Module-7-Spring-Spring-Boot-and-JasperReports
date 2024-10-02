@@ -17,7 +17,6 @@ public class PaymentReceipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private LocalDateTime paymentDate;
     private double totalPaidAmount;
     private double deductions;

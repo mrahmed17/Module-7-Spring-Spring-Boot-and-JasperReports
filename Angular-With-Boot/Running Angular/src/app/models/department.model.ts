@@ -4,7 +4,7 @@ export class DepartmentModel {
   id!: number;
   departmentName!: string;
   numOfEmployees!: number;
-  photo!: string;
+  photo?: string;
 
   branch!: BranchModel;
 

@@ -11,8 +11,8 @@ export class PaymentReceiptModel {
   deductions!: number;
   netPaidAmount!: number;
   status!: boolean; // Payment status is Paid or Unpaid
-  paymentReceiver!: UserModel[];
+  paymentReceiver!: UserModel;
   
-  salary!: SalaryModel[];
+  salary!: SalaryModel;
   
 }

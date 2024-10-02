@@ -1,22 +1,14 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Branch;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
-import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.repository.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class BranchService {
@@ -24,102 +16,62 @@ public class BranchService {
     @Autowired
     private BranchRepository branchRepository;
 
-    @Value("${upload.directory}")
-    private String uploadDir;
-
-    public Branch createBranch(Branch branch, MultipartFile branchPhoto) throws IOException {
-        branch.setCreatedAt(LocalDateTime.now());
-        branch.setUpdateAt(LocalDateTime.now());
-        if (branchPhoto != null && !branchPhoto.isEmpty()) {
-            String filename = saveImage(branchPhoto, branch.getBranchName());
-            branch.setPhoto(filename);
-        }
-
+    // Create a new Branch
+    @Transactional
+    public Branch createBranch(Branch branch) {
         return branchRepository.save(branch);
     }
 
-    // Method to save the image file and return the filename
-    private String saveImage(MultipartFile file, String branchName) throws IOException {
-        Path uploadPath = Paths.get(uploadDir, "branchPhoto");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        String originalFilename = file.getOriginalFilename();
-        String fileExtension = (originalFilename != null && originalFilename.contains("."))
-                ? originalFilename.substring(originalFilename.lastIndexOf("."))
-                : "";
-        String filename = branchName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
-        Path filePath = uploadPath.resolve(filename);
-        Files.copy(file.getInputStream(), filePath);
-        return filename;
+    // Get all branches
+    public List<Branch> getAllBranches() {
+        return branchRepository.findAll();
     }
 
-
-    public Branch updateBranch(Long id, Branch updatedBranch, MultipartFile branchPhoto) throws IOException {
-        Optional<Branch> existingBranchOpt = branchRepository.findById(id);
-        if (existingBranchOpt.isPresent()) {
-            Branch existingBranch = existingBranchOpt.get();
-            existingBranch.setBranchName(updatedBranch.getBranchName());
-            existingBranch.setAddress(updatedBranch.getAddress());
-            existingBranch.setCity(updatedBranch.getCity());
-            existingBranch.setZipCode(updatedBranch.getZipCode());
-            existingBranch.setCountry(updatedBranch.getCountry());
-            existingBranch.setUpdateAt(LocalDateTime.now());
-
-            if (branchPhoto != null && !branchPhoto.isEmpty()) {
-                String filename = saveImage(branchPhoto, updatedBranch.getBranchName());
-                existingBranch.setPhoto(filename);
-            }
-
-            return branchRepository.save(existingBranch);
-        }
-        return null;  // Handle the case where the branch is not found
+    // Get Branch by ID
+    public Branch getBranchById(Long id) {
+        return branchRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Branch not found with ID: " + id));
     }
 
-    public boolean deleteBranch(Long id) {
+    // Update a Branch
+    @Transactional
+    public Branch updateBranch(Long id, Branch updatedBranch) {
+        Branch existingBranch = getBranchById(id);
+        existingBranch.setBranchName(updatedBranch.getBranchName());
+        existingBranch.setCity(updatedBranch.getCity());
+        existingBranch.setCountry(updatedBranch.getCountry());
+        existingBranch.setCompany(updatedBranch.getCompany()); // Ensure you update the company if necessary
+        return branchRepository.save(existingBranch);
+    }
+
+    // Delete a Branch
+    @Transactional
+    public void deleteBranch(Long id) {
         if (branchRepository.existsById(id)) {
             branchRepository.deleteById(id);
-            return true;
-        }
-        return false;  // Branch not found
-    }
-
-    public Branch getBranchById(Long id) {
-        Optional<Branch> optionalBranch = branchRepository.findById(id);
-        if (optionalBranch.isPresent()) {
-            return optionalBranch.get();
         } else {
             throw new RuntimeException("Branch not found with ID: " + id);
         }
     }
 
-    public List<Branch> getAllBranches() {
-        return branchRepository.findAll();
-    }
-
-    public Branch findByBranchName(String branchName) {
-        return branchRepository.findByBranchName(branchName);
-    }
-
-    public List<Department> getDepartmentsByBranchId(Long branchId) {
-        return branchRepository.findAllDepartmentsByBranchId(branchId);
-    }
-
-    public List<User> getEmployeesByBranchId(Long branchId) {
-        return branchRepository.findAllEmployeesByBranchId(branchId);
-    }
-
-    public long countDepartmentsByBranchId(Long branchId) {
-        return branchRepository.countTotalDepartmentsByBranchId(branchId);
-    }
-
-    public long countEmployeesByBranchId(Long branchId) {
-        return branchRepository.countTotalEmployeesByBranchId(branchId);
-    }
-
+    // Find all branches by company ID
     public List<Branch> getBranchesByCompanyId(Long companyId) {
-        return branchRepository.findAllByCompanyId(companyId);
+        return branchRepository.findAllByCompany_Id(companyId);
+    }
+
+    // Find branches by city (case-insensitive)
+    public List<Branch> getBranchesByCity(String city) {
+        return branchRepository.findByCityIgnoreCase(city);
+    }
+
+    // Count total number of departments in a specific branch
+    public long countDepartmentsInBranch(Long branchId) {
+        return branchRepository.countDepartmentsByBranchId(branchId);
+    }
+
+    // Paginate branches by company ID
+    public Page<Branch> getBranchesByCompanyId(Long companyId, Pageable pageable) {
+        return branchRepository.findAllByCompany_Id(companyId, pageable);
     }
 
 }

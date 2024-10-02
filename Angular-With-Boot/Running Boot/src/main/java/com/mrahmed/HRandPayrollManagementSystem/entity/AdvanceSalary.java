@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,5 +21,11 @@ public class AdvanceSalary {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
+    @JsonBackReference
     private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "salaryId")
+    private Salary salary;
+
 }

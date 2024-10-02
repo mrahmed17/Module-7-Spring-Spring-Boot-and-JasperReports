@@ -3,6 +3,7 @@ import { CompanyModel } from '../../../models/company.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from '../../../services/company.service';
 import { NotificationService } from '../../../services/notification.service';
+import { faArrowLeft, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-company',
@@ -10,6 +11,9 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./view-company.component.css'],
 })
 export class ViewCompanyComponent implements OnInit {
+  faArrowLeft = faArrowLeft;
+  faBuilding = faBuilding;
+
   company: CompanyModel = new CompanyModel();
   companyId!: number;
 
@@ -33,7 +37,7 @@ export class ViewCompanyComponent implements OnInit {
       error: (error) => {
         console.error('Error fetching company details', error);
         this.notification.showNotify('Error fetching company details', 'error');
-        this.router.navigate(['/company/list']); 
+        this.router.navigate(['/company/list']);
       },
     });
   }

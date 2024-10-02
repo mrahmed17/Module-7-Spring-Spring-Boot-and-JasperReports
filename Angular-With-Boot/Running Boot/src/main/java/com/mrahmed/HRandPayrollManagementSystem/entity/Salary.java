@@ -1,5 +1,6 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,6 +43,7 @@ public class Salary {
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "leaveId")
     private Leave leaves;
+
 
 
 }

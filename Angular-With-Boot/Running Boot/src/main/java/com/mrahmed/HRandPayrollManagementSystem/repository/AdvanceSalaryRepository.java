@@ -14,25 +14,19 @@ import java.util.Optional;
 @Repository
 public interface AdvanceSalaryRepository extends JpaRepository<AdvanceSalary, Long> {
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.email = :userEmail")
-    Optional<AdvanceSalary> findAdvanceSalariesByEmail(@Param("userEmail") String userEmail);
+    // Find all advance salaries by user ID
+    List<AdvanceSalary> findAllByUser_Id(Long userId);
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<AdvanceSalary> findAdvanceSalariesByName(@Param("name") String name);
+    // Find an advance salary by its ID
+    AdvanceSalary findById(long id);
 
-    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.user.id = :userId AND LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    double getTotalAdvanceSalaryByName(@Param("userId") Long userId);
+    // Find all advance salaries greater than or equal to a certain amount
+    @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceSalary >= :amount")
+    List<AdvanceSalary> findByAdvanceSalaryGreaterThanOrEqual(@Param("amount") double amount);
 
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId")
-    List<AdvanceSalary> findAdvanceSalariesByUserId(@Param("userId") Long userId);
+    // Count total advance salaries for a specific user
+    @Query("SELECT COUNT(a) FROM AdvanceSalary a WHERE a.user.id = :userId")
+    long countByUserId(@Param("userId") Long userId);
 
-    @Query("SELECT SUM(a.advanceSalary) FROM AdvanceSalary a WHERE a.user.id = :userId")
-    double getTotalAdvanceSalaryByUserId(@Param("userId") Long userId);
-
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.advanceDate BETWEEN :startDate AND :endDate")
-    List<AdvanceSalary> findAdvanceSalariesByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
-
-    @Query("SELECT a FROM AdvanceSalary a WHERE a.user.id = :userId ORDER BY a.advanceDate DESC")
-    List<AdvanceSalary> findLatestAdvanceSalaryByUserId(@Param("userId") Long userId);
 
 }

@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,144 +24,107 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-
     @Value("${upload.directory}")
     private String uploadDir;
 
-
-    public Company createCompany(Company company, MultipartFile companyPhoto) {
-        try {
-            // Check if a company photo is provided and save it
-            if (companyPhoto != null && !companyPhoto.isEmpty()) {
-                String companyPhotoFilename = saveImage(companyPhoto, company.getCompanyName());
-                company.setPhoto(companyPhotoFilename);
-            }
-            // Save the company entity in the database
-            return companyRepository.save(company);
-
-        } catch (IOException e) {
-            throw new RuntimeException("Error saving company photo: " + e.getMessage(), e);
+    // Create Company
+    @Transactional
+    public Company createCompany(Company company, MultipartFile companyPhoto) throws IOException {
+        if (companyPhoto != null && !companyPhoto.isEmpty()) {
+            String companyPhotoFilename = saveImage(companyPhoto, company.getCompanyName());
+            company.setPhoto(companyPhotoFilename);
         }
+        return companyRepository.save(company);
     }
 
-
-
-    private String saveImage(MultipartFile file, String fullName) throws IOException {
-        // Ensure upload directory exists
-        Path uploadPath = Paths.get(uploadDir, "companyPhoto");
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-        // Extract the original file name and extension
-        String originalFilename = file.getOriginalFilename();
-        String fileExtension = (originalFilename != null && originalFilename.contains("."))
-                ? originalFilename.substring(originalFilename.lastIndexOf("."))
-                : "";
-        // Generate a unique filename
-        String filename = fullName.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
-
-        // Resolve the file path and save the file
-        Path filePath = uploadPath.resolve(filename);
-        Files.copy(file.getInputStream(), filePath);
-
-        // Return the saved filename
-        return filename;
-    }
-
-
-
-    public Company updateCompany(Long id, Company updatedCompany, MultipartFile companyPhoto) {
-        Optional<Company> existingCompanyOpt = companyRepository.findById(id);
-
-        // Check if the company exists
-        if (existingCompanyOpt.isPresent()) {
-            Company existingCompany = existingCompanyOpt.get();
-
-            // Update the company name
-            existingCompany.setCompanyName(updatedCompany.getCompanyName());
-
-            try {
-                // If a new photo is provided, handle the update of the photo
-                if (companyPhoto != null && !companyPhoto.isEmpty()) {
-                    String companyPhotoFilename = saveImage(companyPhoto, updatedCompany.getCompanyName());
-                    existingCompany.setPhoto(companyPhotoFilename);
-                }
-
-//                // Update branches if needed
-//                if (updatedCompany.getBranches() != null) {
-//                    existingCompany.setBranches(updatedCompany.getBranches());
-//                }
-
-                // Save the updated company entity in the database
-                return companyRepository.save(existingCompany);
-
-            } catch (IOException e) {
-                throw new RuntimeException("Error updating company photo: " + e.getMessage(), e);
-            }
-
-        } else {
-            throw new RuntimeException("Company not found with ID: " + id);
-        }
-    }
-
-
-
+    // Read Company by ID
     public Company getCompanyById(Long id) {
-        Optional<Company> optionalCompany = companyRepository.findById(id);
-        if (optionalCompany.isPresent()) {
-            return optionalCompany.get();
-        } else {
-            throw new RuntimeException("Company not found with ID: " + id);
-        }
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Company not found with ID: " + id));
     }
 
+    // Update Company
+    @Transactional
+    public Company updateCompany(Long id, Company updatedCompany, MultipartFile companyPhoto) throws IOException {
+        Company existingCompany = getCompanyById(id);
+        existingCompany.setCompanyName(updatedCompany.getCompanyName());
+
+        if (companyPhoto != null && !companyPhoto.isEmpty()) {
+            String companyPhotoFilename = saveImage(companyPhoto, updatedCompany.getCompanyName());
+            existingCompany.setPhoto(companyPhotoFilename);
+        }
+
+        return companyRepository.save(existingCompany);
+    }
+
+    // Delete Company
     @Transactional
     public void deleteCompany(Long id) {
         if (companyRepository.existsById(id)) {
             companyRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Company not found with ID: " + id);
         }
     }
 
+    // Get All Companies
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
 
+    // Find Company by Name
     public Company findByCompanyName(String companyName) {
-        return companyRepository.findByCompanyName(companyName);
+        return companyRepository.findByCompanyNameIgnoreCase(companyName);
     }
 
-    // Get branches by company ID
+    // Get Branches by Company ID
     public List<Branch> getBranchesByCompanyId(Long companyId) {
-        return companyRepository.findAllByCompanyId(companyId);
+        return companyRepository.findAllByCompany_Id(companyId);
     }
 
-    // Get departments by branch ID
+    // Get Departments by Branch ID
     public List<Department> getDepartmentsByBranchId(Long branchId) {
-        return companyRepository.findAllDepartmentsByBranchId(branchId);
+        return companyRepository.findAllByBranch_Id(branchId);
     }
 
-    // Get departments by company ID
+    // Get Departments by Company ID
     public List<Department> getDepartmentsByCompanyId(Long companyId) {
-        return companyRepository.findAllDepartmentsByCompanyId(companyId);
+        return companyRepository.findAllByBranch_Company_Id(companyId);
     }
 
-    // Get employees by department ID
+    // Get Employees by Department ID
     public List<User> getEmployeesByDepartmentId(Long departmentId) {
-        return companyRepository.findAllEmployeesByDepartmentId(departmentId);
+        return companyRepository.findAllByDepartment_Id(departmentId);
     }
 
-    // Count total employees in a company
+    // Count Employees by Company ID
     public long countEmployeesByCompanyId(Long companyId) {
-        return companyRepository.countTotalEmployeesByCompanyId(companyId);
+        return companyRepository.countByDepartment_Branch_Company_Id(companyId);
     }
 
-    // Count total employees in a branch
+    // Count Employees by Branch ID
     public long countEmployeesByBranchId(Long branchId) {
-        return companyRepository.countTotalEmployeesByBranchId(branchId);
+        return companyRepository.countByDepartment_Branch_Id(branchId);
     }
 
+    // Save Company Photo
+    private String saveImage(MultipartFile file, String name) throws IOException {
+        Path uploadPath = Paths.get(uploadDir, "companyPhotos");
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
 
+        String originalFilename = file.getOriginalFilename();
+        String fileExtension = (originalFilename != null && originalFilename.contains("."))
+                ? originalFilename.substring(originalFilename.lastIndexOf("."))
+                : "";
+        String filename = name.replaceAll("[^a-zA-Z0-9]", "_") + "_" + UUID.randomUUID() + fileExtension;
 
+        Path filePath = uploadPath.resolve(filename);
+        Files.copy(file.getInputStream(), filePath);
+
+        return filename;
+    }
 
 
 }

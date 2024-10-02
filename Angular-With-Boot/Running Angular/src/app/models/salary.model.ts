@@ -18,13 +18,13 @@ export class SalaryModel {
   tax!: number;
   netSalary!: number;
 
-  user!: UserModel[];
+  user!: UserModel;
 
-  advanceSalary!: AdvanceSalaryModel[];
+  advanceSalary!: AdvanceSalaryModel;
 
-  bonuses!: BonusModel[];
+  bonuses!: BonusModel;
 
-  leaves!: LeaveModel[];
+  leaves!: LeaveModel;
 
 }
 

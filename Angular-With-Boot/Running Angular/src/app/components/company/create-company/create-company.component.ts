@@ -35,12 +35,16 @@ export class CreateCompanyComponent {
         .createCompany(this.company, this.companyPhoto)
         .subscribe({
           next: (response) => {
-            console.log('Company created successfully', response);
-            this.notification.showNotify(
-              'Company created successfully',
-              'success'
-            );
-            this.router.navigate(['/company/list']);
+            if (response.status === 201) {
+              console.log('Company created successfully', response);
+              this.notification.showNotify(
+                'Company created successfully',
+                'success'
+              );
+              this.router.navigate(['/company/list']);
+            } else {
+              console.error('Unexpected response status:', response);
+            }
           },
           error: (error) => {
             console.error('Error creating company', error);

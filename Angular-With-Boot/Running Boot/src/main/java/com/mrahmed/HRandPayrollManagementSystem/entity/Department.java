@@ -17,16 +17,18 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String departmentName;
     private int numOfEmployees;
-    private String photo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "branchId", nullable = false)
+    @JoinColumn(name = "branchId")
     @JsonBackReference
     private Branch branch;
 
-
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<User> users;
 
 }
 

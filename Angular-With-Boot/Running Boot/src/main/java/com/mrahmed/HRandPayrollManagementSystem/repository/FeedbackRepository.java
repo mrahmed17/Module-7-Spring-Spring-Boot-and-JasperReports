@@ -12,24 +12,19 @@ import java.util.List;
 @Repository
 public interface FeedbackRepository extends JpaRepository <Feedback, Long> {
 
-    @Query("SELECT f FROM Feedback f WHERE f.user.email = :email")
-    List<Feedback> findFeedbacksByEmail(@Param("email") String email);
 
-    @Query("SELECT f FROM Feedback f WHERE LOWER(f.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<Feedback> findFeedbacksByName(@Param("name") String name);
+    // Find all feedbacks for a specific user
+    List<Feedback> findAllByUser_Id(Long userId);
 
-    @Query("SELECT f FROM Feedback f WHERE f.user.id = :userId")
-    List<Feedback> findFeedbacksByUserId(@Param("userId") Long userId);
+    // Find feedback by date range for a specific user
+    @Query("SELECT f FROM Feedback f WHERE f.user.id = :userId AND f.date BETWEEN :startDate AND :endDate")
+    List<Feedback> findFeedbackByUserIdAndDateRange(@Param("userId") Long userId,
+                                                    @Param("startDate") LocalDateTime startDate,
+                                                    @Param("endDate") LocalDateTime endDate);
 
-    @Query("SELECT f FROM Feedback f WHERE f.date BETWEEN :startDate AND :endDate")
-    List<Feedback> findFeedbacksByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
-
-    @Query("SELECT f FROM Feedback f WHERE f.user.id = :userId ORDER BY f.date DESC")
-    List<Feedback> findLatestFeedbackByUserId(@Param("userId") Long userId);
-
+    // Count total feedbacks for a specific user
     @Query("SELECT COUNT(f) FROM Feedback f WHERE f.user.id = :userId")
-    int countFeedbacksByUserId(@Param("userId") Long userId);
-
+    long countByUserId(@Param("userId") Long userId);
 
 
 }

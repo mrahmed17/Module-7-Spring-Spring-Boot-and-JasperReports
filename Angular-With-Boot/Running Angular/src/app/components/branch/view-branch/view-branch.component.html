@@ -9,7 +9,8 @@
    <p class="card-text"><strong>Country:</strong> {{ branch.country }}</p>
    <p class="card-text"><strong>Created At:</strong> {{ branch.createdAt | date }}</p>
    <p class="card-text"><strong>Updated At:</strong> {{ branch.updateAt | date }}</p>
-   <img *ngIf="branch.photo" [src]="branch.photo" class="img-fluid" alt="Branch Photo" />
+<img *ngIf="branch.photo" [src]="branch.photo ? 'http://localhost:8080/uploads/' + branch.photo : 'static/images/default.jpg'" class="img-fluid" alt="Branch Photo" />
+
    <button class="btn btn-primary mt-3" (click)="goBack()">Back to List</button>
   </div>
  </div>

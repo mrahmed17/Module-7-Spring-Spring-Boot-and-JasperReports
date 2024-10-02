@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BranchService } from '../../../services/branch.service';
 import { NotificationService } from '../../../services/notification.service';
 import { BranchModel } from '../../../models/branch.model';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-report-branch',
@@ -14,10 +14,10 @@ export class ReportBranchComponent implements OnInit {
   totalBranches: number = 0;
   totalDepartments: number = 0;
   totalEmployees: number = 0;
-  companyId: number = 0;
+  companyId: number = 0; // Set this to the actual company ID
 
   constructor(
-    public branchService: BranchService,
+    private branchService: BranchService,
     private notification: NotificationService
   ) {}
 
@@ -28,7 +28,7 @@ export class ReportBranchComponent implements OnInit {
     this.countEmployeesByCompanyId(this.companyId);
   }
 
-  loadBranches() {
+  loadBranches(): void {
     this.branchService.getAllBranches().subscribe({
       next: (data) => {
         this.branches = data;
@@ -40,7 +40,7 @@ export class ReportBranchComponent implements OnInit {
     });
   }
 
-  countTotalBranches() {
+  countTotalBranches(): void {
     this.branchService.getAllBranches().subscribe((data) => {
       this.totalBranches = data.length;
     });
@@ -54,35 +54,31 @@ export class ReportBranchComponent implements OnInit {
     return this.branchService.countDepartmentsByBranchId(branchId);
   }
 
-  countDepartmentsByCompanyId(companyId: number) {
+  countDepartmentsByCompanyId(companyId: number): void {
     this.branchService
       .getBranchesByCompanyId(companyId)
       .subscribe((branches) => {
-        let departmentCount = 0;
-        branches.forEach((branch) => {
-          this.branchService
-            .countDepartmentsByBranchId(branch.id)
-            .subscribe((count) => {
-              departmentCount += count;
-            });
+        const departmentCountRequests = branches.map((branch) =>
+          this.branchService.countDepartmentsByBranchId(branch.id)
+        );
+
+        forkJoin(departmentCountRequests).subscribe((counts) => {
+          this.totalDepartments = counts.reduce((acc, count) => acc + count, 0);
         });
-        this.totalDepartments = departmentCount;
       });
   }
 
-  countEmployeesByCompanyId(companyId: number) {
+  countEmployeesByCompanyId(companyId: number): void {
     this.branchService
       .getBranchesByCompanyId(companyId)
       .subscribe((branches) => {
-        let employeeCount = 0;
-        branches.forEach((branch) => {
-          this.branchService
-            .countEmployeesByBranchId(branch.id)
-            .subscribe((count) => {
-              employeeCount += count;
-            });
+        const employeeCountRequests = branches.map((branch) =>
+          this.branchService.countEmployeesByBranchId(branch.id)
+        );
+
+        forkJoin(employeeCountRequests).subscribe((counts) => {
+          this.totalEmployees = counts.reduce((acc, count) => acc + count, 0);
         });
-        this.totalEmployees = employeeCount;
       });
   }
 }

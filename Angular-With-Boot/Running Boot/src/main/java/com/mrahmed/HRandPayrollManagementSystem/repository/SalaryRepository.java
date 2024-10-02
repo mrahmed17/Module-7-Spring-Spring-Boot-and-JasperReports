@@ -14,21 +14,20 @@ import java.util.Optional;
 @Repository
 public interface SalaryRepository extends JpaRepository<Salary, Long> {
 
-    Optional<Salary> findById(Long id);
-
-    @Query("SELECT s FROM Salary s WHERE LOWER(s.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<Salary> findByFullName(@Param("name") String name);
-
-    @Query("SELECT s FROM Salary s WHERE s.user.email = :email")
-    Optional<Salary> findByEmail(@Param("email") String email);
-
-    @Query("SELECT s FROM Salary s WHERE s.user.id = :userId ")
-    List<Salary> findSalariesByUserId(@Param("userId") Long userId);
-
-    @Query("SELECT s FROM Salary s WHERE s.user.id = :userId ORDER BY s.paymentDate DESC")
-    List<Salary> findLatestSalaryByUser(@Param("userId") Long userId);
+    List<Salary> findAllByUser_Id(Long userId);
 
     @Query("SELECT s FROM Salary s WHERE s.paymentDate BETWEEN :startDate AND :endDate")
-    List<Salary> findSalariesByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    List<Salary> findAllByPaymentDateBetween(@Param("startDate") LocalDateTime startDate,
+                                             @Param("endDate") LocalDateTime endDate);
+
+    @Query("SELECT s FROM Salary s WHERE s.advanceSalary.id = :advanceSalaryId")
+    List<Salary> findAllByAdvanceSalaryId(@Param("advanceSalaryId") Long advanceSalaryId);
+
+    @Query("SELECT s FROM Salary s WHERE s.bonuses.id = :bonusId")
+    List<Salary> findAllByBonusId(@Param("bonusId") Long bonusId);
+
+    @Query("SELECT s FROM Salary s WHERE s.leaves.id = :leaveId")
+    List<Salary> findAllByLeaveId(@Param("leaveId") Long leaveId);
+
 
 }

@@ -11,7 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/companies")
@@ -21,17 +24,36 @@ public class CompanyRestController {
     @Autowired
     private CompanyService companyService;
 
-    // Create company with company photo upload
+    // Create Company
     @PostMapping("/create")
-    public ResponseEntity<String> saveCompany(
+    public ResponseEntity<Map<String, String>> createCompany(
             @RequestPart("company") Company company,
-            @RequestPart(value = "companyPhoto", required = false) MultipartFile companyPhoto)
-    {
-        companyService.createCompany(company, companyPhoto);
-        return new ResponseEntity<>("Company created successfully with Photo. " , HttpStatus.CREATED);
+            @RequestPart(value = "companyPhoto", required = false) MultipartFile companyPhoto) {
+        try {
+            companyService.createCompany(company, companyPhoto);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Company created successfully");
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (IOException e) {
+            return new ResponseEntity<>(Map.of("message", "Failed to create company: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
+    // Update Company
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateCompany(
+            @PathVariable Long id,
+            @RequestPart("company") Company companyDetails,
+            @RequestPart(value = "companyPhoto", required = false) MultipartFile companyPhoto) {
+        try {
+            companyService.updateCompany(id, companyDetails, companyPhoto);
+            return new ResponseEntity<>("Company updated successfully.", HttpStatus.OK);
+        } catch (IOException e) {
+            return new ResponseEntity<>("Failed to update company: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    // Get Company by ID
     @GetMapping("/find/{id}")
     public ResponseEntity<Company> getCompanyById(@PathVariable Long id) {
         try {
@@ -42,69 +64,74 @@ public class CompanyRestController {
         }
     }
 
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateCompany(
-            @PathVariable Long id,
-            @RequestPart("company") Company companyDetails,
-            @RequestPart(value = "companyPhoto", required = false) MultipartFile companyPhoto){
-        return new ResponseEntity<>("Branch updated successfully.", HttpStatus.OK);
-    }
-
-
+    // Delete Company
     @DeleteMapping("/delete/{id}")
-    public void deleteCompany(@PathVariable Long id) {
-        companyService.deleteCompany(id);
+    public ResponseEntity<Map<String, String>> deleteCompany(@PathVariable Long id) {
+        try {
+            companyService.deleteCompany(id);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Company deleted successfully");
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(Map.of("message", "Failed to delete company: " + e.getMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 
+    // Retrieve All Companies
     @GetMapping("/all")
-    public List<Company> getAllCompanies() {
-        return companyService.getAllCompanies();
+    public ResponseEntity<List<Company>> getAllCompanies() {
+        List<Company> companies = companyService.getAllCompanies();
+        return ResponseEntity.ok(companies);
     }
 
-
-    // Find a company by name
+    // Find Company by Name
     @GetMapping("/search")
-    public Company findByCompanyName(@RequestParam String companyName) {
-        return companyService.findByCompanyName(companyName);
+    public ResponseEntity<Company> findByCompanyName(@RequestParam String companyName) {
+        Company company = companyService.findByCompanyName(companyName);
+        return company != null ? ResponseEntity.ok(company) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // Get branches by company ID
+    // Retrieve Branches by Company ID
     @GetMapping("/{companyId}/branches")
-    public List<Branch> getBranchesByCompanyId(@PathVariable Long companyId) {
-        return companyService.getBranchesByCompanyId(companyId);
+    public ResponseEntity<List<Branch>> getBranchesByCompanyId(@PathVariable Long companyId) {
+        List<Branch> branches = companyService.getBranchesByCompanyId(companyId);
+        return ResponseEntity.ok(branches);
     }
 
-    // Get departments by branch ID
+    // Retrieve Departments by Branch ID
     @GetMapping("/branches/{branchId}/departments")
-    public List<Department> getDepartmentsByBranchId(@PathVariable Long branchId) {
-        return companyService.getDepartmentsByBranchId(branchId);
+    public ResponseEntity<List<Department>> getDepartmentsByBranchId(@PathVariable Long branchId) {
+        List<Department> departments = companyService.getDepartmentsByBranchId(branchId);
+        return ResponseEntity.ok(departments);
     }
 
-    // Get departments by company ID
+    // Retrieve Departments by Company ID
     @GetMapping("/{companyId}/departments")
-    public List<Department> getDepartmentsByCompanyId(@PathVariable Long companyId) {
-        return companyService.getDepartmentsByCompanyId(companyId);
+    public ResponseEntity<List<Department>> getDepartmentsByCompanyId(@PathVariable Long companyId) {
+        List<Department> departments = companyService.getDepartmentsByCompanyId(companyId);
+        return ResponseEntity.ok(departments);
     }
 
-    // Get employees by department ID
+    // Retrieve Employees by Department ID
     @GetMapping("/departments/{departmentId}/employees")
-    public List<User> getEmployeesByDepartmentId(@PathVariable Long departmentId) {
-        return companyService.getEmployeesByDepartmentId(departmentId);
+    public ResponseEntity<List<User>> getEmployeesByDepartmentId(@PathVariable Long departmentId) {
+        List<User> employees = companyService.getEmployeesByDepartmentId(departmentId);
+        return ResponseEntity.ok(employees);
     }
 
-    // Count employees in a company
+    // Count Employees in a Company
     @GetMapping("/{companyId}/employee-count")
-    public long countEmployeesByCompanyId(@PathVariable Long companyId) {
-        return companyService.countEmployeesByCompanyId(companyId);
+    public ResponseEntity<Long> countEmployeesByCompanyId(@PathVariable Long companyId) {
+        long employeeCount = companyService.countEmployeesByCompanyId(companyId);
+        return ResponseEntity.ok(employeeCount);
     }
 
-    // Count employees in a branch
+    // Count Employees in a Branch
     @GetMapping("/branches/{branchId}/employee-count")
-    public long countEmployeesByBranchId(@PathVariable Long branchId) {
-        return companyService.countEmployeesByBranchId(branchId);
+    public ResponseEntity<Long> countEmployeesByBranchId(@PathVariable Long branchId) {
+        long employeeCount = companyService.countEmployeesByBranchId(branchId);
+        return ResponseEntity.ok(employeeCount);
     }
-
 
 
 }

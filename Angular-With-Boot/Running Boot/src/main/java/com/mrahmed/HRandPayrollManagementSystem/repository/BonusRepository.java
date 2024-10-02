@@ -12,26 +12,17 @@ import java.util.List;
 @Repository
 public interface BonusRepository extends JpaRepository<Bonus, Long> {
 
-    @Query("SELECT b FROM Bonus b WHERE b.user.email = :email")
-    List<Bonus> findBonusesByEmail(@Param("email") String email);
+    // Find all bonuses for a specific user
+    List<Bonus> findAllByUser_Id(Long userId);
 
-    @Query("SELECT b FROM Bonus b WHERE LOWER(b.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<Bonus> findBonusesByName(@Param("name") String name);
+    // Find bonuses by date range for a specific user
+    @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId AND b.bonusDate BETWEEN :startDate AND :endDate")
+    List<Bonus> findBonusesByUserIdAndDateRange(@Param("userId") Long userId,
+                                                @Param("startDate") LocalDateTime startDate,
+                                                @Param("endDate") LocalDateTime endDate);
 
-    @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.user.id = :userId AND LOWER(b.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    double getTotalBonusByName(@Param("userId") Long userId);
-
-    @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId")
-    List<Bonus> findBonusesByUserId(@Param("userId") Long userId);
-
-    @Query("SELECT SUM(b.bonusAmount) FROM Bonus b WHERE b.user.id = :userId")
-    double getTotalBonusByUserId(@Param("userId") Long userId);
-
-    @Query("SELECT b FROM Bonus b WHERE b.bonusDate BETWEEN :startDate AND :endDate")
-    List<Bonus> findBonusesByDateRange(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
-
-    @Query("SELECT b FROM Bonus b WHERE b.user.id = :userId ORDER BY b.bonusDate DESC")
-    List<Bonus> findLatestBonusByUserId(@Param("userId") Long userId);
-
+    // Count total bonuses for a specific user
+    @Query("SELECT COUNT(b) FROM Bonus b WHERE b.user.id = :userId")
+    long countByUserId(@Param("userId") Long userId);
 
 }

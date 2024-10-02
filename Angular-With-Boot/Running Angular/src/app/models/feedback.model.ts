@@ -8,7 +8,7 @@ export class FeedbackModel{
  rating!: string;
  comment!: string;
 
- user!: UserModel[];
+ user!: UserModel;
 
 
 }

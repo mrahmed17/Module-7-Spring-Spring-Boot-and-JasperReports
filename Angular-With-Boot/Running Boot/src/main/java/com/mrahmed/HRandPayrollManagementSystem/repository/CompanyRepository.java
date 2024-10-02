@@ -14,26 +14,18 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository <Company, Long> {
 
-    @Query("SELECT c FROM Company c WHERE LOWER(c.companyName) LIKE LOWER(CONCAT('%', :companyName, '%'))")
-    Company findByCompanyName (@Param("companyName") String companyName);
+    Company findByCompanyNameIgnoreCase(String companyName);
 
-    @Query("SELECT b FROM Branch b WHERE b.company.id = :companyId")
-    List<Branch> findAllByCompanyId(@Param("companyId") Long companyId);
+    List<Branch> findAllByCompany_Id(Long companyId);
 
-    @Query("SELECT d FROM Department d WHERE d.branch.id = :branchId")
-    List<Department> findAllDepartmentsByBranchId(@Param("branchId") Long branchId);
+    List<Department> findAllByBranch_Id(Long branchId);
 
-    @Query("SELECT d FROM Department d WHERE d.branch.company.id = :companyId")
-    List<Department> findAllDepartmentsByCompanyId(@Param("companyId") Long companyId);
+    List<Department> findAllByBranch_Company_Id(Long companyId);
 
-    @Query("SELECT u FROM User u WHERE u.department.id = :departmentId")
-    List<User> findAllEmployeesByDepartmentId(@Param("departmentId") Long departmentId);
+    List<User> findAllByDepartment_Id(Long departmentId);
 
-    @Query("SELECT COUNT(u) FROM User u WHERE u.department.branch.company.id = :companyId")
-    long countTotalEmployeesByCompanyId(@Param("companyId") Long companyId);
+    long countByDepartment_Branch_Company_Id(Long companyId);
 
-    @Query("SELECT COUNT(u) FROM User u WHERE u.department.branch.id = :branchId")
-    long countTotalEmployeesByBranchId(@Param("branchId") Long branchId);
-
+    long countByDepartment_Branch_Id(Long branchId);
 
 }

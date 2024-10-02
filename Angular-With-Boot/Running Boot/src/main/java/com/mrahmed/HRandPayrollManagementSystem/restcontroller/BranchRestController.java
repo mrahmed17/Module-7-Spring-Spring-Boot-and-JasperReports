@@ -1,99 +1,93 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Branch;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Company;
-import com.mrahmed.HRandPayrollManagementSystem.entity.Department;
-import com.mrahmed.HRandPayrollManagementSystem.entity.User;
 import com.mrahmed.HRandPayrollManagementSystem.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/branches")
 @CrossOrigin("*")
 public class BranchRestController {
 
+
     @Autowired
     private BranchService branchService;
 
-// create branch with branch photo upload
+    // Create a new branch
     @PostMapping("/create")
-    public ResponseEntity<String> createBranch(
-            @RequestPart("branch") Branch branch,
-            @RequestPart(value = "branchPhoto", required = false) MultipartFile branchPhoto) {
-        {
-            try {
-                branchService.createBranch(branch, branchPhoto);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            return new ResponseEntity<>("Branch created successfully with Photo. " , HttpStatus.CREATED);
-        }
+    public ResponseEntity<Map<String, String>> createBranch(@RequestBody Branch branch) {
+        branchService.createBranch(branch);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Branch created successfully");
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Branch> updateBranch(
-            @PathVariable Long id,
-            @RequestPart("branch") Branch branch,
-            @RequestPart(value = "branchPhoto", required = false) MultipartFile branchPhoto) {
-        try {
-            return new ResponseEntity<>(branchService.updateBranch(id, branch, branchPhoto), HttpStatus.OK);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteBranch(@PathVariable Long id) {
-        branchService.deleteBranch(id);
-    }
-
-    @GetMapping("/find/{id}")
-    public Branch getBranchById(@PathVariable Long id) {
-        return branchService.getBranchById(id);
-    }
-
+    // Get all branches
     @GetMapping("/all")
-    public List<Branch> getAllBranches() {
-        return branchService.getAllBranches();
+    public ResponseEntity<List<Branch>> getAllBranches() {
+        List<Branch> branches = branchService.getAllBranches();
+        return ResponseEntity.ok(branches);
     }
 
-    @GetMapping("/search")
-    public Branch findByBranchName(@RequestParam String branchName) {
-        return branchService.findByBranchName(branchName);
+    // Get a branch by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
+        Branch branch = branchService.getBranchById(id);
+        return ResponseEntity.ok(branch);
     }
 
-    @GetMapping("/{branchId}/departments")
-    public List<Department> getDepartmentsByBranchId(@PathVariable Long branchId) {
-        return branchService.getDepartmentsByBranchId(branchId);
+    // Update a branch
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateBranch(@PathVariable Long id, @RequestBody Branch updatedBranch) {
+        branchService.updateBranch(id, updatedBranch);
+        return ResponseEntity.ok("Branch updated successfully.");
     }
 
-    @GetMapping("/{branchId}/employees")
-    public List<User> getEmployeesByBranchId(@PathVariable Long branchId) {
-        return branchService.getEmployeesByBranchId(branchId);
+    // Delete a branch
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, String>> deleteBranch(@PathVariable Long id) {
+        branchService.deleteBranch(id);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Branch deleted successfully");
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{branchId}/department-count")
-    public long countDepartmentsByBranchId(@PathVariable Long branchId) {
-        return branchService.countDepartmentsByBranchId(branchId);
-    }
-
-    @GetMapping("/{branchId}/employee-count")
-    public long countEmployeesByBranchId(@PathVariable Long branchId) {
-        return branchService.countEmployeesByBranchId(branchId);
-    }
-
+    // Find branches by company ID
     @GetMapping("/company/{companyId}")
-    public List<Branch> getBranchesByCompanyId(@PathVariable Long companyId) {
-        return branchService.getBranchesByCompanyId(companyId);
+    public ResponseEntity<List<Branch>> getBranchesByCompanyId(@PathVariable Long companyId) {
+        List<Branch> branches = branchService.getBranchesByCompanyId(companyId);
+        return ResponseEntity.ok(branches);
     }
+
+    // Find branches by city
+    @GetMapping("/search")
+    public ResponseEntity<List<Branch>> getBranchesByCity(@RequestParam String city) {
+        List<Branch> branches = branchService.getBranchesByCity(city);
+        return ResponseEntity.ok(branches);
+    }
+
+    // Count departments in a branch
+    @GetMapping("/{branchId}/departments/count")
+    public ResponseEntity<Long> countDepartmentsInBranch(@PathVariable Long branchId) {
+        long count = branchService.countDepartmentsInBranch(branchId);
+        return ResponseEntity.ok(count);
+    }
+
+    // Paginate branches by company ID
+    @GetMapping("/company/{companyId}/page")
+    public ResponseEntity<Page<Branch>> getBranchesByCompanyIdPaginated(@PathVariable Long companyId, Pageable pageable) {
+        Page<Branch> branches = branchService.getBranchesByCompanyId(companyId, pageable);
+        return ResponseEntity.ok(branches);
+    }
+
 
 }

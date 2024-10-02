@@ -10,9 +10,9 @@ export class BranchModel {
   country!: string;
   createdAt!: Date;
   updateAt!: Date;
-  photo!: string;
+  photo?: string;
 
-  company!: CompanyModel[];
+  company!: CompanyModel;
 
   
 }

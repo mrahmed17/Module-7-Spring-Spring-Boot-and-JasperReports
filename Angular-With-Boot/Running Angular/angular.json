@@ -23,6 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "externalDependencies": [""],
             "outputPath": "dist/hr-payroll-management-system",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -93,7 +94,10 @@
               "buildTarget": "hr-payroll-management-system:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

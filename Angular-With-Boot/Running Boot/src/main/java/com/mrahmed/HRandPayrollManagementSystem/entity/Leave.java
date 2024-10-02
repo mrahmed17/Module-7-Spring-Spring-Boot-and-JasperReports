@@ -32,8 +32,9 @@ public class Leave {
     @JoinColumn(name = "userId")
     private User user;
 
-    @Column(name = "isUnpaid")
-    private boolean isUnpaid;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "salaryId")
+    private Salary salary;
 
 
 }

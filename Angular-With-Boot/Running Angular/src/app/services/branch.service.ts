@@ -15,10 +15,7 @@ export class BranchService {
 
   constructor(private http: HttpClient) {}
 
-  createBranch(
-    branch: BranchModel,
-    branchPhoto?: File
-  ): Observable<BranchModel> {
+  createBranch(branch: BranchModel, branchPhoto?: File): Observable<string> {
     const formData = new FormData();
     formData.append(
       'branch',
@@ -29,8 +26,8 @@ export class BranchService {
     }
 
     return this.http
-      .post<BranchModel>(`${this.baseUrl}/create`, formData)
-      .pipe(catchError(this.handleError<BranchModel>('createBranch')));
+      .post<string>(`${this.baseUrl}/create`, formData)
+      .pipe(catchError(this.handleError<string>('createBranch')));
   }
 
   updateBranch(

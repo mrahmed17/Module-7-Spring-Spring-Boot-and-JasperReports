@@ -19,14 +19,7 @@ export class DepartmentService {
     department: DepartmentModel,
     departmentPhoto?: File
   ): Observable<DepartmentModel> {
-    const formData = new FormData();
-    formData.append(
-      'department',
-      new Blob([JSON.stringify(department)], { type: 'application/json' })
-    );
-    if (departmentPhoto) {
-      formData.append('departmentPhoto', departmentPhoto);
-    }
+    const formData = this.buildFormData(department, departmentPhoto);
     return this.http
       .post<DepartmentModel>(`${this.baseUrl}/create`, formData)
       .pipe(catchError(this.handleError<DepartmentModel>('createDepartment')));
@@ -37,27 +30,10 @@ export class DepartmentService {
     department: DepartmentModel,
     departmentPhoto?: File
   ): Observable<DepartmentModel> {
-    const formData = new FormData();
-    formData.append(
-      'department',
-      new Blob([JSON.stringify(department)], { type: 'application/json' })
-    );
-    if (departmentPhoto) {
-      formData.append('departmentPhoto', departmentPhoto);
-    }
+    const formData = this.buildFormData(department, departmentPhoto);
     return this.http
       .put<DepartmentModel>(`${this.baseUrl}/update/${id}`, formData)
       .pipe(catchError(this.handleError<DepartmentModel>('updateDepartment')));
-  }
-
-  getBranchesByCompanyId(companyId: number): Observable<BranchModel[]> {
-    return this.http
-      .get<BranchModel[]>(`${this.baseUrl}/branch/${companyId}`)
-      .pipe(
-        catchError(
-          this.handleError<BranchModel[]>('getBranchesByDepartmentId', [])
-        )
-      );
   }
 
   deleteDepartment(id: number): Observable<void> {
@@ -80,12 +56,24 @@ export class DepartmentService {
       );
   }
 
-  findByDepartmentName(departmentName: string): Observable<DepartmentModel> {
+  findByDepartmentName(departmentName: string): Observable<DepartmentModel[]> {
     const params = new HttpParams().set('departmentName', departmentName);
     return this.http
-      .get<DepartmentModel>(`${this.baseUrl}/search`, { params })
+      .get<DepartmentModel[]>(`${this.baseUrl}/search`, { params }) 
       .pipe(
-        catchError(this.handleError<DepartmentModel>('findByDepartmentName'))
+        catchError(
+          this.handleError<DepartmentModel[]>('findByDepartmentName', [])
+        )
+      );
+  }
+
+  getBranchesByCompanyId(companyId: number): Observable<BranchModel[]> {
+    return this.http
+      .get<BranchModel[]>(`${this.baseUrl}/branches/company/${companyId}`)
+      .pipe(
+        catchError(
+          this.handleError<BranchModel[]>('getBranchesByCompanyId', [])
+        )
       );
   }
 
@@ -132,5 +120,20 @@ export class DepartmentService {
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  private buildFormData(
+    department: DepartmentModel,
+    departmentPhoto?: File
+  ): FormData {
+    const formData = new FormData();
+    formData.append(
+      'department',
+      new Blob([JSON.stringify(department)], { type: 'application/json' })
+    );
+    if (departmentPhoto) {
+      formData.append('departmentPhoto', departmentPhoto);
+    }
+    return formData;
   }
 }

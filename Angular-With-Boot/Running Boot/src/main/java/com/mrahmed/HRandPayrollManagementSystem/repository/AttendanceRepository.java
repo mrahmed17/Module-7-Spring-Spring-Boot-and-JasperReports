@@ -17,101 +17,47 @@ import java.util.Optional;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
+    // Find all attendances for a specific user
+    List<Attendance> findAllByUser_Id(Long userId);
 
-    @Query("SELECT a FROM Attendance a WHERE LOWER(a.user.fullName) LIKE LOWER(CONCAT('%', :name, '%'))")
-    List<Attendance> findAttendancesByUserNamePart(@Param("name") String name);
+    // Find all attendances for a specific date
+    List<Attendance> findAllByDate(LocalDate date);
 
-    long countByUserIdAndDate(long userId, LocalDate date);
+    // Count total attendances for a specific user
+    @Query("SELECT COUNT(a) FROM Attendance a WHERE a.user.id = :userId")
+    long countByUserId(@Param("userId") Long userId);
 
+    // Find all late attendances for a specific user
+    List<Attendance> findAllByUser_IdAndLateTrue(Long userId);
+
+    // Find attendances by user within a date range
     @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date BETWEEN :startDate AND :endDate")
-    List<Attendance> findAttendancesByUserIdAndDateRange(@Param("userId") long userId, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    List<Attendance> findAttendancesByUserIdAndDateRange(@Param("userId") Long userId,
+                                                         @Param("startDate") LocalDate startDate,
+                                                         @Param("endDate") LocalDate endDate);
 
+    // Find today's attendance records for all users
+    @Query("SELECT a FROM Attendance a WHERE a.date = :today")
+    List<Attendance> findAttendancesForToday(@Param("today") LocalDate today);
+
+    // Find last attendance for a user on a specific date (used for check-out)
+    @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = :date ORDER BY a.clockInTime DESC")
+    Optional<Attendance> findLastAttendanceForUser(@Param("userId") Long userId,
+                                                   @Param("date") LocalDate date);
+
+    // Count today's attendance records for a user (used to prevent multiple check-ins)
+    @Query("SELECT COUNT(a) FROM Attendance a WHERE a.user.id = :userId AND a.date = :date")
+    long countByUserIdAndDate(@Param("userId") Long userId, @Param("date") LocalDate date);
+
+    // Find attendances for a specific date range
     @Query("SELECT a FROM Attendance a WHERE a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findAttendancesInRange(@Param("startDate") LocalDate startDate,
                                             @Param("endDate") LocalDate endDate);
 
-    @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = CURRENT_DATE")
-    Optional<Attendance> findTodayAttendanceByUserId(@Param("userId") long userId);
-
-    @Query("SELECT a FROM Attendance a WHERE a.user.id = :userId AND a.date = :today ORDER BY a.clockInTime DESC")
-    Optional<Attendance> findLastAttendanceForUser(@Param("userId") long userId,
-                                                   @Param("today") LocalDate today);
-
-    @Query("SELECT u FROM User u WHERE u.id NOT IN (SELECT a.user.id FROM Attendance a WHERE a.date = :today)")
-    List<User> findUsersWithoutAttendanceForToday(@Param("today") LocalDate today);
-
-
-    @Query("SELECT a.date, COUNT(a) FROM Attendance a GROUP BY a.date ORDER BY COUNT(a) DESC")
-    List<Object[]> findPeakAttendanceDay();
-
-
-    @Query("SELECT MONTH(a.date), COUNT(a) FROM Attendance a GROUP BY MONTH(a.date) ORDER BY COUNT(a) DESC")
-    List<Object[]> findPeakAttendanceMonth();
-
-
-    @Query("SELECT YEAR(a.date), COUNT(a) FROM Attendance a GROUP BY YEAR(a.date) ORDER BY COUNT(a) DESC")
-    List<Object[]> findPeakAttendanceYear();
-
-
-    @Query("SELECT a.date, COUNT(a) FROM Attendance a WHERE a.date IN (:holidayDates) GROUP BY a.date ORDER BY COUNT(a) ASC")
-    List<Object[]> findHolidayAttendance(@Param("holidayDates") List<LocalDate> holidayDates);
-
-
-    @Query("SELECT a FROM Attendance a WHERE a.clockInTime > :lateTime AND a.date BETWEEN :startDate AND :endDate ORDER BY a.clockInTime DESC")
+    // Find all late check-ins between two dates based on a specific check-in time
+    @Query("SELECT a FROM Attendance a WHERE a.clockInTime > :lateTime AND a.date BETWEEN :startDate AND :endDate")
     List<Attendance> findLateCheckIns(@Param("lateTime") LocalTime lateTime,
                                       @Param("startDate") LocalDate startDate,
                                       @Param("endDate") LocalDate endDate);
-
-
-    @Query("SELECT u.id, COUNT(a) FROM Attendance a JOIN a.user u WHERE a.date BETWEEN :startDate AND :endDate GROUP BY u.id ORDER BY COUNT(a) DESC")
-    List<Object[]> findRegularEmployeesForShiftPlanning(@Param("startDate") LocalDate startDate,
-                                                        @Param("endDate") LocalDate endDate);
-
-
-    @Query("SELECT a FROM Attendance a WHERE a.date = CURRENT_DATE")
-    List<Attendance> findAttendancesForToday();
-
-
-    @Query("SELECT a FROM Attendance a WHERE a.date BETWEEN :startDate AND :endDate AND " +
-            "((a.clockInTime BETWEEN :morningShiftStart AND :morningShiftEnd AND a.clockOutTime > :morningShiftEnd) OR " +
-            "(a.clockInTime BETWEEN :dayShiftStart AND :dayShiftEnd AND a.clockOutTime > :dayShiftEnd))")
-    List<Attendance> findOvertimeInRange(@Param("startDate") LocalDate startDate,
-                                         @Param("endDate") LocalDate endDate,
-                                         @Param("morningShiftStart") LocalTime morningShiftStart,
-                                         @Param("morningShiftEnd") LocalTime morningShiftEnd,
-                                         @Param("dayShiftStart") LocalTime dayShiftStart,
-                                         @Param("dayShiftEnd") LocalTime dayShiftEnd);
-
-    @Query("SELECT a.date, u.fullName, a.clockInTime, a.clockOutTime, a.late " +
-            "FROM Attendance a JOIN a.user u " +
-            "WHERE a.date BETWEEN :startDate AND :endDate AND u.id = :userId " +
-            "ORDER BY a.date, a.clockInTime")
-    List<Attendance> findAttendanceHistoryForUser(@Param("userId") Long userId,
-                                                  @Param("startDate") LocalDate startDate,
-                                                  @Param("endDate") LocalDate endDate);
-
-    List<Attendance> findAllByUserId(Long userId);
-
-//    @Query("SELECT d.departmentName, COUNT(a) FROM Attendance a " +
-//            "JOIN a.user u " +
-//            "JOIN u.department d " +
-//            "GROUP BY d.departmentName " +
-//            "ORDER BY COUNT(a) DESC")
-//    List<Attendance> findAttendanceByDepartment();
-
-    @Query("SELECT u FROM User u " +
-            "JOIN Attendance a ON a.user.id = u.id " +
-            "JOIN Leave l ON a.user.id = l.user.id " +
-            "WHERE l.leaveType IS NOT NULL " +
-            "GROUP BY u.id " +
-            "HAVING COUNT(l) > :threshold")
-    List<User> findEmployeesWithHighLeaveRate(@Param("threshold") long threshold);
-
-
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Attendance a WHERE a.user.id = :userId")
-    void deleteByUserId(@Param("userId") Long userId);
-
 
 }

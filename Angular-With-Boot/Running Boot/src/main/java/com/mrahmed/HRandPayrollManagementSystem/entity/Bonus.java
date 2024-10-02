@@ -21,5 +21,9 @@ public class Bonus {
     @JoinColumn(name = "userId")
     private User user;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "salaryId")
+    private Salary salary;
+
 
 }

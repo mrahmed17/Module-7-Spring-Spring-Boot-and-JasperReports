@@ -29,8 +29,7 @@ export class ListDepartmentComponent implements OnInit {
         this.departments = data;
       },
       error: (error) => {
-        console.error('Error fetching department list', error);
-        this.notification.showNotify('Error fetching department list', 'error');
+        this.handleError('fetching department list', error);
       },
     });
   }
@@ -54,22 +53,19 @@ export class ListDepartmentComponent implements OnInit {
           this.loadDepartments();
         },
         error: (error) => {
-          console.error('Error deleting department', error);
-          this.notification.showNotify('Error deleting department', 'error');
+          this.handleError('deleting department', error);
         },
       });
     }
   }
-
   searchDepartments(): void {
-    if (this.searchTerm) {
+    if (this.searchTerm.trim()) {
       this.departmentService.findByDepartmentName(this.searchTerm).subscribe({
-        next: (department) => {
-          this.departments = [department];
+        next: (departments) => {
+          this.departments = departments; 
         },
         error: (error) => {
-          console.error('Error searching departments', error);
-          this.notification.showNotify('Error searching departments', 'error');
+          this.handleError('searching departments', error);
         },
       });
     } else {
@@ -83,8 +79,7 @@ export class ListDepartmentComponent implements OnInit {
         console.log(employees);
       },
       error: (error) => {
-        console.error('Error fetching employees', error);
-        this.notification.showNotify('Error fetching employees', 'error');
+        this.handleError('fetching employees', error);
       },
     });
   }
@@ -99,9 +94,13 @@ export class ListDepartmentComponent implements OnInit {
           );
         },
         error: (error) => {
-          console.error('Error counting employees', error);
-          this.notification.showNotify('Error counting employees', 'error');
+          this.handleError('counting employees', error);
         },
       });
+  }
+
+  private handleError(operation: string, error: any): void {
+    console.error(`Error ${operation}:`, error);
+    this.notification.showNotify(`Error ${operation}`, 'error');
   }
 }
