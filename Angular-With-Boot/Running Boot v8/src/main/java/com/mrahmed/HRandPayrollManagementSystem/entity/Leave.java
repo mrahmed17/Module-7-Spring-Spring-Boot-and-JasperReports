@@ -21,7 +21,6 @@ public class Leave {
     private LocalDateTime requestDate;
     private String reason;
     private int remainingLeave; // total 25 days in a year: (reserve 10 + sick 15 days), remainingCalculation(total -(endDate-startDate))
-    private int year;
 
     @Enumerated(EnumType.STRING)
     private Month leaveMonth;

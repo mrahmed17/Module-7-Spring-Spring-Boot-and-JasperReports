@@ -35,7 +35,6 @@ public class LeaveService {
             existingLeave.setRequestDate(updatedLeave.getRequestDate());
             existingLeave.setReason(updatedLeave.getReason());
             existingLeave.setRemainingLeave(updatedLeave.getRemainingLeave());
-            existingLeave.setYear(updatedLeave.getYear());
             existingLeave.setLeaveMonth(updatedLeave.getLeaveMonth());
             existingLeave.setLeaveType(updatedLeave.getLeaveType());
             existingLeave.setRequestStatus(updatedLeave.getRequestStatus());

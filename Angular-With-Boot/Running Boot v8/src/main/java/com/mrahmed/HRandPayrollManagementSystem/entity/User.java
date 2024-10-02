@@ -6,7 +6,6 @@ import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class User {
     private LocalDate dateOfBirth;
     private String nationalId;
     private String contact;
-    private BigDecimal basicSalary;
+    private double basicSalary;
     private LocalDate joinedDate;
     private String profilePhoto;
 
@@ -43,10 +42,34 @@ public class User {
     @UpdateTimestamp
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Attendance> attendances;
 
+    @ManyToOne
+    private Department department;
+
+    @OneToMany
+    @JsonIgnore
+    private List<Feedback> feedbacks;
+
+    @OneToMany
+    @JsonIgnore
+    private List<Salary> salaries;
+
+
+
+    @OneToMany
+    @JsonIgnore
+    private List<Bonus> bonuses;
+
+    @OneToMany
+    @JsonIgnore
+    private List<Leave> leaves;
+
+    @OneToMany
+    @JsonIgnore
+    private List<AdvanceSalary> advanceSalaries;
 
 }
 
