@@ -27,7 +27,7 @@ public class Attendance {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
-
+  //ManyToMany
 
     //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
     //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)

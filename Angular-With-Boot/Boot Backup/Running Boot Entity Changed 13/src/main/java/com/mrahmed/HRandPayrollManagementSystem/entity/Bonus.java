@@ -20,6 +20,7 @@ public class Bonus {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
+    //ManyToMany
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "salaryId")
