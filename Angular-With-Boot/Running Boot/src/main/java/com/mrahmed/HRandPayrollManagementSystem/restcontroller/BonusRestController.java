@@ -1,12 +1,13 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.Bonus;
+import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.BonusService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,84 +21,111 @@ public class BonusRestController {
 
     @PostMapping("/create")
     public ResponseEntity<Bonus> createBonus(@RequestBody Bonus bonus) {
-        Bonus createdBonus = bonusService.createBonus(bonus);
-        return new ResponseEntity<>(createdBonus, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Bonus> getBonusById(@PathVariable Long id) {
-        return bonusService.getBonusById(id)
-                .map(bonus -> new ResponseEntity<>(bonus, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Bonus savedBonus = bonusService.saveBonus(bonus);
+        return ResponseEntity.ok(savedBonus);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Bonus> updateBonus(@PathVariable Long id, @RequestBody Bonus updatedBonus) {
+    public ResponseEntity<Bonus> updateBonus(
+            @PathVariable Long id,
+            @RequestBody Bonus updatedBonus
+    ) {
         Bonus bonus = bonusService.updateBonus(id, updatedBonus);
-        return bonus != null ? new ResponseEntity<>(bonus, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(bonus);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteBonus(@PathVariable Long id) {
-        bonusService.deleteBonus(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    // Calculate the bonus for a user in a specific year
+    @GetMapping("/calculate/{userId}/{year}")
+    public ResponseEntity<BigDecimal> calculateBonus(
+            @PathVariable Long userId,
+            @PathVariable int year
+    ) {
+        BigDecimal bonus = bonusService.calculateBonus(userId, year);
+        return ResponseEntity.ok(bonus);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Bonus>> getAllBonuses() {
-        List<Bonus> bonuses = bonusService.getAllBonuses();
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    // Get total bonus for a user in a specific year
+    @GetMapping("/total/{userId}/{year}")
+    public ResponseEntity<BigDecimal> getTotalBonusForUser(
+            @PathVariable Long userId,
+            @PathVariable int year
+    ) {
+        BigDecimal totalBonus = bonusService.getTotalBonusForUser(userId, year);
+        return ResponseEntity.ok(totalBonus);
     }
 
-    @GetMapping("/calculate/{userId}")
-    public ResponseEntity<Double> calculateBonus(@PathVariable Long userId) {
-        double bonusAmount = bonusService.calculateBonus(userId);
-        return new ResponseEntity<>(bonusAmount, HttpStatus.OK);
+    // Get all bonuses for a specific month and year
+    @GetMapping("/month/{month}/{year}")
+    public ResponseEntity<List<Bonus>> getBonusesByMonthAndYear(
+            @PathVariable Month month,
+            @PathVariable int year
+    ) {
+        List<Bonus> bonuses = bonusService.getBonusesByMonthAndYear(month, year);
+        return ResponseEntity.ok(bonuses);
     }
 
-    @GetMapping("/email/{email}")
-    public ResponseEntity<List<Bonus>> findBonusesByEmail(@PathVariable String email) {
-        List<Bonus> bonuses = bonusService.findBonusesByEmail(email);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    // Get the total bonus paid in a specific year
+    @GetMapping("/total/year/{year}")
+    public ResponseEntity<BigDecimal> getTotalBonusPaidInYear(@PathVariable int year) {
+        BigDecimal totalBonus = bonusService.getTotalBonusPaidInYear(year);
+        return ResponseEntity.ok(totalBonus);
     }
 
-    @GetMapping("/name/{name}")
-    public ResponseEntity<List<Bonus>> findBonusesByName(@PathVariable String name) {
-        List<Bonus> bonuses = bonusService.findBonusesByName(name);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    // Get bonus for a user for a specific month and year
+    @GetMapping("/user/{userId}/month/{month}/{year}")
+    public ResponseEntity<Bonus> getBonusForUserByMonthAndYear(
+            @PathVariable Long userId,
+            @PathVariable Month month,
+            @PathVariable int year
+    ) {
+        Bonus bonus = bonusService.getBonusForUserByMonthAndYear(userId, month, year);
+        return ResponseEntity.ok(bonus);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Bonus>> findBonusesByUserId(@PathVariable Long userId) {
-        List<Bonus> bonuses = bonusService.findBonusesByUserId(userId);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    // Get all bonuses between two dates
+    @GetMapping("/between")
+    public ResponseEntity<List<Bonus>> getBonusesBetweenDates(
+            @RequestParam("startDate") LocalDateTime startDate,
+            @RequestParam("endDate") LocalDateTime endDate
+    ) {
+        List<Bonus> bonuses = bonusService.getBonusesBetweenDates(startDate, endDate);
+        return ResponseEntity.ok(bonuses);
     }
 
-    @GetMapping("/dateRange")
-    public ResponseEntity<List<Bonus>> findBonusesByDateRange(@RequestParam LocalDateTime startDate, @RequestParam LocalDateTime endDate) {
-        List<Bonus> bonuses = bonusService.findBonusesByDateRange(startDate, endDate);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    // Get users who received a bonus in a specific year
+    @GetMapping("/users/year/{year}")
+    public ResponseEntity<List<Long>> getUsersWhoReceivedBonusInYear(@PathVariable int year) {
+        List<Long> userIds = bonusService.getUsersWhoReceivedBonusInYear(year);
+        return ResponseEntity.ok(userIds);
     }
 
+    // Get the latest bonus for a specific user
     @GetMapping("/latest/{userId}")
-    public ResponseEntity<List<Bonus>> findLatestBonusByUserId(@PathVariable Long userId) {
-        List<Bonus> bonuses = bonusService.findLatestBonusByUserId(userId);
-        return new ResponseEntity<>(bonuses, HttpStatus.OK);
+    public ResponseEntity<Bonus> getLatestBonusForUser(@PathVariable Long userId) {
+        Bonus bonus = bonusService.getLatestBonusForUser(userId);
+        return ResponseEntity.ok(bonus);
     }
 
-
-    @GetMapping("/byName/{userId}")
-    public ResponseEntity<Double> getTotalBonusByName(@PathVariable Long userId) {
-        double totalBonus = bonusService.getTotalBonusByName(userId);
-        return new ResponseEntity<>(totalBonus, HttpStatus.OK);
+    // Count the number of bonuses for a user in a specific year
+    @GetMapping("/count/{userId}/{year}")
+    public ResponseEntity<Integer> countBonusesForUserInYear(
+            @PathVariable Long userId,
+            @PathVariable int year
+    ) {
+        int count = bonusService.countBonusesForUserInYear(userId, year);
+        return ResponseEntity.ok(count);
     }
 
-    @GetMapping("/byUserId/{userId}")
-    public ResponseEntity<Double> getTotalBonusByUserId(@PathVariable Long userId) {
-        double totalBonus = bonusService.getTotalBonusByUserId(userId);
-        return new ResponseEntity<>(totalBonus, HttpStatus.OK);
+    // Get total bonus for a specific month and year
+    @GetMapping("/total/month/{month}/{year}")
+    public ResponseEntity<BigDecimal> getTotalBonusForMonthAndYear(
+            @PathVariable Month month,
+            @PathVariable int year
+    ) {
+        BigDecimal totalBonus = bonusService.getTotalBonusForMonthAndYear(month, year);
+        return ResponseEntity.ok(totalBonus);
     }
 
 
 }
-

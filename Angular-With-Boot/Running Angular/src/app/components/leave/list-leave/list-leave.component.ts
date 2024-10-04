@@ -14,7 +14,7 @@ import { UserService } from '../../../services/user.service';
 export class ListLeaveComponent implements OnInit {
   leaves: LeaveModel[] = [];
   filteredLeaves: LeaveModel[] = [];
-  filterUserid!: number;
+  filterUserId?: number;
   filterStartDate?: Date;
   filterEndDate?: Date;
   filterLeaveType?: LeaveTypeEnum;
@@ -61,27 +61,27 @@ export class ListLeaveComponent implements OnInit {
     });
   }
 
-  // applyFilter(): void {
-  //   this.filteredLeaves = this.leaves.filter((leave) => {
-  //     const leaveTypeMatch =
-  //       !this.filterLeaveType || leave.leaveType === this.filterLeaveType;
-  //     const statusMatch =
-  //       !this.filterStatus || leave.requestStatus === this.filterStatus;
+  applyFilter(): void {
+    this.filteredLeaves = this.leaves.filter((leave) => {
+      const leaveTypeMatch =
+        !this.filterLeaveType || leave.leaveType === this.filterLeaveType;
+      const statusMatch =
+        !this.filterStatus || leave.requestStatus === this.filterStatus;
 
-  //     return (
-  //       (!this.filterUserId || leave.user.id === this.filterUserId) &&
-  //       (!this.filterStartDate ||
-  //         new Date(leave.startDate) >= this.filterStartDate) &&
-  //       (!this.filterEndDate ||
-  //         new Date(leave.endDate) <= this.filterEndDate) &&
-  //       leaveTypeMatch &&
-  //       statusMatch
-  //     );
-  //   });
-  // }
+      return (
+        (!this.filterUserId || leave.user.id === this.filterUserId) &&
+        (!this.filterStartDate ||
+          new Date(leave.startDate) >= this.filterStartDate) &&
+        (!this.filterEndDate ||
+          new Date(leave.endDate) <= this.filterEndDate) &&
+        leaveTypeMatch &&
+        statusMatch
+      );
+    });
+  }
 
   clearFilters(): void {
-    // this.filterUserId = undefined;
+    this.filterUserId = undefined;
     this.filterStartDate = undefined;
     this.filterEndDate = undefined;
     this.filterLeaveType = undefined;

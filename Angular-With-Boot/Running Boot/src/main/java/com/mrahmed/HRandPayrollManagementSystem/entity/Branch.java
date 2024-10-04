@@ -1,30 +1,36 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.List;
-
-@Entity
-@Table(name = "branches")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Branch {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private String branchName;
-    private String city;
-    private String country;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companyId", nullable = false)
-    private Company company;
-
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Department> departments;
-
-
-}
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import jakarta.persistence.*;
+//import lombok.*;
+//
+//import java.time.LocalDateTime;
+//import java.util.List;
+//
+//@Entity
+//@Table(name = "branches")
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//public class Branch {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
+//    private String name;
+//    private String address;
+//    private String city;
+//    private String zipCode;
+//    private String country;
+//    private LocalDateTime createdAt;
+//    private LocalDateTime updateAt;
+//    private String photo;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "companyId")
+//    private Company company;
+//
+//    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private List<User> users;
+//
+//}

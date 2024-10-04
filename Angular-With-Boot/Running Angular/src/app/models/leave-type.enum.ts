@@ -1,10 +1,8 @@
 
 
 export enum LeaveTypeEnum {
-  
-  UNPAID,
-  RESERVE,
-
-  
+  SICK_PAID,
+  SICK_UNPAID,
+  RESERVE_UNPAID,
 }
 

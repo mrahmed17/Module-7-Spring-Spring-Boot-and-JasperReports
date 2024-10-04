@@ -1,32 +1,45 @@
-<div>
+<div class="container">
   <h1>Attendance Report</h1>
 
-  <h2>Today's Attendance</h2>
-  <ul>
-    <li *ngFor="let attendance of todayAttendance">
-      User ID: {{ attendance.user.id }}, Full Name: {{ attendance.user.fullName }},
-      Status: {{ attendance.status }},
-      Clock In: {{ attendance.clockInTime | date:'shortTime' }},
-      Clock Out: {{ attendance.clockOutTime ? (attendance.clockOutTime | date:'shortTime') : 'Not Checked Out' }}
-    </li>
-  </ul>
+  <div class="date-range">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" [(ngModel)]="startDate" />
 
-  <h2>Peak Attendance</h2>
-  <div>
-    <h3>Day</h3>
-    <p *ngFor="let day of peakAttendanceDay">{{ day | json }}</p>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" [(ngModel)]="endDate" />
 
-    <h3>Month</h3>
-    <p *ngFor="let month of peakAttendanceMonth">{{ month | json }}</p>
+    <button (click)="getAttendanceInRange()">Fetch Attendance</button>
+  </div>  
 
-    <h3>Year</h3>
-    <p *ngFor="let year of peakAttendanceYear">{{ year | json }}</p>
+  <div class="search">
+    <label for="nameSearch">Search by Name:</label>
+    <input type="text" id="nameSearch" [(ngModel)]="nameSearch" (input)="searchByName()" placeholder="Enter name" />
+    <button (click)="resetFilters()" class="btn btn-secondary">Reset Filters</button>
   </div>
 
-  <h2>Users Without Attendance Today</h2>
-  <ul>
-    <li *ngFor="let user of usersWithoutAttendanceToday">
-      User ID: {{ user.id }}, Full Name: {{ user.fullName }}
-    </li>
-  </ul>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <div class="attendance-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Attendance Count</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendance of filteredAttendance">
+          <td>{{ attendance.user.fullName }}</td>
+          <td>{{ attendance.attendanceCount }}</td>
+          <td>
+            <button (click)="viewDetails(attendance)" class="btn btn-info">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="filteredAttendance.length === 0" class="alert alert-warning">No attendance records found.</div>
+  </div>
+
 </div>

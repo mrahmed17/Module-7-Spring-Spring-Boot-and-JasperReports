@@ -11,7 +11,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class LeaveHistoryComponent implements OnInit {
   leaveHistory: LeaveModel[] = [];
-  user!: UserModel; // Replace with actual logged-in user info
+  user!: UserModel;
 
   constructor(
     private leaveService: LeaveService,
@@ -19,7 +19,7 @@ export class LeaveHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.loadUserAndHistory();
+    this.loadUserAndHistory();
   }
 
   // getLeaveHistory() {
@@ -41,20 +41,20 @@ export class LeaveHistoryComponent implements OnInit {
   // }
 
   // Load user data and fetch leave history
-  // loadUserAndHistory() {
-  //   this.authService.getLoggedInUser().subscribe({
-  //     next: (userData: UserModel) => {
-  //       this.user = userData;
-  //       this.getLeaveHistory();
-  //     },
-  //     error: (error) => {
-  //       console.error('Error fetching user data', error);
-  //     },
-  //   });
-  // }
+  loadUserAndHistory() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (userData: UserModel) => {
+        this.user = userData;
+        this.getLeaveHistory();
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+      },
+    });
+  }
 
   getLeaveHistory() {
-    const userId = this.user?.id ?? 0; // Default to 0 if userId is undefined
+    const userId = this.user?.id ?? 0;
 
     if (userId !== 0) {
       this.leaveService.getCurrentYearLeaves(userId).subscribe({

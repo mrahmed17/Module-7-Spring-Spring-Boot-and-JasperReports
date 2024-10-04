@@ -11,9 +11,8 @@ export class NotificationService {
   }>();
   notification$ = this.notificationSubject.asObservable();
 
-  showNotify(message: string, type: string) :void {
+  showNotify(message: string, type: string) {
     this.notificationSubject.next({ message, type });
-     alert(`${type.toUpperCase()}: ${message}`);
   }
   // private notificationSubject = new Subject<string>();
   // notification$ = this.notificationSubject.asObservable();

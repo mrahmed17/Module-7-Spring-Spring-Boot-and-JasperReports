@@ -1,11 +1,13 @@
-<!-- <div class="container">
+<div class="container">
   <h2 class="my-4">Leave Requests</h2>
 
+  <!-- Filter Section -->
   <div class="card mb-4">
     <div class="card-body">
       <h5 class="card-title">Filter Leaves</h5>
 
       <div class="row">
+        <!-- User Filter -->
         <div class="col-md-3 mb-3">
           <label for="filterUserId" class="form-label">User</label>
           <select class="form-select" [(ngModel)]="filterUserId" (change)="applyFilter()" id="filterUserId">
@@ -16,7 +18,7 @@
           </select>
         </div>
 
-  
+        <!-- Leave Type Filter -->
         <div class="col-md-3 mb-3">
           <label for="filterLeaveType" class="form-label">Leave Type</label>
           <select class="form-select" [(ngModel)]="filterLeaveType" (change)="applyFilter()" id="filterLeaveType">
@@ -25,6 +27,7 @@
           </select>
         </div>
 
+        <!-- Request Status Filter -->
         <div class="col-md-3 mb-3">
           <label for="filterStatus" class="form-label">Status</label>
           <select class="form-select" [(ngModel)]="filterStatus" (change)="applyFilter()" id="filterStatus">
@@ -33,18 +36,21 @@
           </select>
         </div>
 
+        <!-- Start Date Filter -->
         <div class="col-md-3 mb-3">
           <label for="filterStartDate" class="form-label">Start Date</label>
           <input type="date" class="form-control" [(ngModel)]="filterStartDate" (change)="applyFilter()"
             id="filterStartDate" />
         </div>
 
+        <!-- End Date Filter -->
         <div class="col-md-3 mb-3">
           <label for="filterEndDate" class="form-label">End Date</label>
           <input type="date" class="form-control" [(ngModel)]="filterEndDate" (change)="applyFilter()"
             id="filterEndDate" />
         </div>
 
+        <!-- Clear Filters Button -->
         <div class="col-md-3 align-self-end mb-3">
           <button class="btn btn-secondary" (click)="clearFilters()">
             Clear Filters
@@ -54,6 +60,7 @@
     </div>
   </div>
 
+  <!-- Leave Requests Table -->
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Leave Request List</h5>
@@ -76,6 +83,7 @@
             <td>{{ leave.requestStatus }}</td>
             <td>{{ formatDate(leave.startDate) }}</td>
             <td>{{ formatDate(leave.endDate) }}</td>
+            <!-- Remove 'leave.reason' if the reason field doesn't exist in your model -->
             <td>{{ leave.reason || 'N/A' }}</td>
           </tr>
           <tr *ngIf="filteredLeaves.length === 0">
@@ -85,4 +93,4 @@
       </table>
     </div>
   </div>
-</div> -->
+</div>

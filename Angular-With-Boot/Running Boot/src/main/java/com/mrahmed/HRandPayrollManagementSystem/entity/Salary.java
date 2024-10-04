@@ -1,10 +1,11 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "salaries")
@@ -12,38 +13,45 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Salary {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime paymentDate;
-    private double medicare;
-    private double providentFund;
-    private double insurance;
-    private double transportAllowance;
-    private double telephoneSubsidy;
-    private double utilityAllowance;
-    private double domesticAllowance;
-    private double lunchAllowance;
-    private double tax;
-    private double netSalary;
+    private BigDecimal medicare;
+    private BigDecimal providentFund; // baseSalary * (2% = 0.02)
+    private BigDecimal insurance;
+    private BigDecimal transportAllowance;
+    private BigDecimal telephoneSubsidy;
+    private BigDecimal utilityAllowance;
+    private BigDecimal domesticAllowance;
+    private BigDecimal lunchAllowance;
+    private BigDecimal netSalary;
+    private int year;
+    private BigDecimal tax;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "overTime")
+    private List<Attendance> overTime; //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
+    //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)
+
+    @Enumerated(EnumType.STRING)
+    private Month payrollMonth;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "advanceSalaryId")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "advanceSalary_id")
     private AdvanceSalary advanceSalary;
 
-    @OneToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "bonusId")
-    private Bonus bonuses;
+    @OneToMany (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "bonus_id")
+    private List<Bonus> bonuses;
 
-    @OneToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "leaveId")
-    private Leave leaves;
-
+    @OneToMany (fetch = FetchType.LAZY)
+    @JoinColumn(name = "leave_id")
+    private List<Leave> leaves;
 
 
 }

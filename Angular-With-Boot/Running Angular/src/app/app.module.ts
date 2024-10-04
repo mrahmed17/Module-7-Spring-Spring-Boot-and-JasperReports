@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   BrowserModule,
   provideClientHydration,
@@ -27,7 +26,7 @@ import { DashboardComponent } from './template/dashboard/dashboard.component';
 import { HomeComponent } from './template/home/home.component';
 import { SidebarComponent } from './template/sidebar/sidebar.component';
 import { NotificationComponent } from './errorhandling/notification/notification.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from './errorhandling/error/error.component';
 import { NotfoundComponent } from './errorhandling/notfound/notfound.component';
@@ -53,25 +52,12 @@ import { CreateAdvanceSalaryComponent } from './components/advance-salary/create
 import { ListAdvanceSalaryComponent } from './components/advance-salary/list-advance-salary/list-advance-salary.component';
 import { EditAdvanceSalaryComponent } from './components/advance-salary/edit-advance-salary/edit-advance-salary.component';
 import { ViewAdvanceSalaryComponent } from './components/advance-salary/view-advance-salary/view-advance-salary.component';
-import { CreateSalaryComponent } from './components/salary/create-salary/create-salary.component';
-import { ListSalaryComponent } from './components/salary/list-salary/list-salary.component';
-import { EditSalaryComponent } from './components/salary/edit-salary/edit-salary.component';
-import { ReportAdvanceSalaryComponent } from './components/advance-salary/report-advance-salary/report-advance-salary.component';
-import { CreateCompanyComponent } from './components/company/create-company/create-company.component';
-import { UpdateCompanyComponent } from './components/company/update-company/update-company.component';
-import { ViewCompanyComponent } from './components/company/view-company/view-company.component';
-import { ListCompanyComponent } from './components/company/list-company/list-company.component';
-import { ReportCompanyComponent } from './components/company/report-company/report-company.component';
-import { CreateBranchComponent } from './components/branch/create-branch/create-branch.component';
-import { UpdateBranchComponent } from './components/branch/update-branch/update-branch.component';
-import { ViewBranchComponent } from './components/branch/view-branch/view-branch.component';
-import { ListBranchComponent } from './components/branch/list-branch/list-branch.component';
-import { ReportBranchComponent } from './components/branch/report-branch/report-branch.component';
-import { CreateDepartmentComponent } from './components/department/create-department/create-department.component';
-import { UpdateDepartmentComponent } from './components/department/update-department/update-department.component';
-import { ViewDepartmentComponent } from './components/department/view-department/view-department.component';
-import { ListDepartmentComponent } from './components/department/list-department/list-department.component';
-import { ReportDepartmentComponent } from './components/department/report-department/report-department.component';
+import { FilterAdvanceSalaryComponent } from './components/advance-salary/filter-advance-salary/filter-advance-salary.component';
+import { CreatesalaryComponent } from './components/salary/createsalary/createsalary.component';
+
+import { DetailsSalaryComponent } from './components/salary/details-salary/details-salary.component';
+import { ManageSalaryComponent } from './components/salary/manage-salary/manage-salary.component';
+import { UserSalaryComponent } from './components/salary/user-salary/user-salary.component';
 
 
 @NgModule({
@@ -112,25 +98,11 @@ import { ReportDepartmentComponent } from './components/department/report-depart
     ListAdvanceSalaryComponent,
     EditAdvanceSalaryComponent,
     ViewAdvanceSalaryComponent,
-    CreateSalaryComponent,
-    ListSalaryComponent,
-    EditSalaryComponent,
-    ReportAdvanceSalaryComponent,
-    CreateCompanyComponent,
-    UpdateCompanyComponent,
-    ViewCompanyComponent,
-    ListCompanyComponent,
-    ReportCompanyComponent,
-    CreateBranchComponent,
-    UpdateBranchComponent,
-    ViewBranchComponent,
-    ListBranchComponent,
-    ReportBranchComponent,
-    CreateDepartmentComponent,
-    UpdateDepartmentComponent,
-    ViewDepartmentComponent,
-    ListDepartmentComponent,
-    ReportDepartmentComponent,
+    FilterAdvanceSalaryComponent,
+    CreatesalaryComponent,
+    DetailsSalaryComponent,
+    ManageSalaryComponent,
+    UserSalaryComponent,
   ],
   imports: [
     BrowserModule,

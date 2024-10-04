@@ -1,30 +1,18 @@
-<div class="container mt-4">
+<div *ngIf="leaveDetails">
  <h2>Leave Details</h2>
-
- <div *ngIf="leaveDetails; else loadingTemplate">
-  <div class="card">
-   <div class="card-header">
-    <h5>Leave ID: {{ leaveDetails.id }}</h5>
-   </div>
-   <div class="card-body">
-    <h5 class="card-title">Leave Type: {{ getLeaveTypeName(leaveDetails.leaveType) }}</h5>
-    <p><strong>Employee Name:</strong> {{ leaveDetails.user.fullName }}</p>
-    <p><strong>Start Date:</strong> {{ leaveDetails.startDate | date:'mediumDate' }}</p>
-    <p><strong>End Date:</strong> {{ leaveDetails.endDate | date:'mediumDate' }}</p>
-    <p><strong>Status:</strong> {{ getRequestStatusName(leaveDetails.requestStatus) }}</p>
-    <p><strong>Reason:</strong> {{ leaveDetails.reason }}</p>
-    <p><strong>Remaining Leave:</strong> {{ leaveDetails.remainingLeave }}</p>
-    <p><strong>Request Date:</strong> {{ leaveDetails.requestDate | date:'medium' }}</p>
-   </div>
-   <div class="card-footer text-muted">
-    <button class="btn btn-primary" (click)="goBack()">Back</button>
-   </div>
-  </div>
+ <div class="leave-info">
+  <p><strong>Start Date:</strong> {{ leaveDetails.startDate | date }}</p>
+  <p><strong>End Date:</strong> {{ leaveDetails.endDate | date }}</p>
+  <p><strong>Leave Month:</strong> {{ getMonthName(leaveDetails.leaveMonth) }}</p>
+  <p><strong>Leave Type:</strong> {{ getLeaveTypeName(leaveDetails.leaveType) }}</p>
+  <p><strong>Request Status:</strong> {{ leaveDetails.requestStatus }}</p>
+  <p><strong>Remaining Leave:</strong> {{ leaveDetails.remainingLeave }}</p>
+  <p><strong>Reason:</strong> {{ leaveDetails.reason }}</p> <!-- Added leave reason here -->
  </div>
 
- <ng-template #loadingTemplate>
-  <div class="spinner-border" role="status">
-   <span class="sr-only">Loading...</span>
-  </div>
- </ng-template>
+ <button routerLink="/leave-list" class="btn btn-primary">Back to List</button>
+</div>
+
+<div *ngIf="!leaveDetails">
+ <p>Loading leave details...</p>
 </div>

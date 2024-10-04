@@ -1,119 +1,107 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AttendanceService,
+  UserAttendanceCount,
+} from '../../../services/attendance.service';
+import {
+  faCalendarDay,
+  faExclamationTriangle,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 import { UserModel } from '../../../models/user.model';
-import { AttendanceService } from '../../../services/attendance.service';
-import { AttendanceModel } from '../../../models/attendance.model';
-
 
 @Component({
   selector: 'app-report-attendance',
   templateUrl: './report-attendance.component.html',
-  styleUrl: './report-attendance.component.css',
+  styleUrls: ['./report-attendance.component.css'],
 })
 export class ReportAttendanceComponent implements OnInit {
-  todayAttendance: AttendanceModel[] = [];
-  peakAttendanceDay: any[] = [];
-  peakAttendanceMonth: any[] = [];
-  peakAttendanceYear: any[] = [];
-  attendanceInRange: Map<UserModel, number> = new Map();
-  lateCheckIns: AttendanceModel[] = [];
-  usersWithHighLeaveRate: UserModel[] = [];
-  usersWithoutAttendanceToday: UserModel[] = [];
+  faCalendarDay = faCalendarDay;
+  faExclamationTriangle = faExclamationTriangle;
+  faSearch = faSearch;
+  errorMessage: string = '';
+  attendances: UserAttendanceCount[] = []; // Update type
+  filteredAttendance: UserAttendanceCount[] = []; // Update type
+  nameSearch: string = '';
+  startDate: string = '';
+  endDate: string = '';
 
   constructor(private attendanceService: AttendanceService) {}
 
   ngOnInit(): void {
-    this.getTodayAttendance();
-    this.getPeakAttendance();
-    this.findUsersWithoutAttendanceToday();
+    // Optionally load all attendance records initially
+    this.loadAttendances();
   }
 
-  getTodayAttendance(): void {
-    const userId = 1;
-    this.attendanceService.getTodayAttendanceByUserId(userId).subscribe(
-      {
-       next: (attendance) => {
-        this.todayAttendance = attendance;
+  loadAttendances(): void {
+    this.attendanceService.getAllAttendances().subscribe({
+      next: (data) => {
+        // Assuming data is in the expected format
+        this.attendances = data.map((attendance) => ({
+          user: attendance.user,
+          attendanceCount: 1, // Default count; modify as necessary
+        }));
+        this.filteredAttendance = this.attendances;
+        this.errorMessage = '';
       },
-     error: (error) => {
-        console.error("Error fetching today's attendance:", error);
-      }
-      }
-    );
+      error: (err) => {
+        this.errorMessage =
+          'Failed to fetch attendance records. Please try again.';
+        console.error(err);
+      },
+    });
   }
 
- 
-  getPeakAttendance(): void {
-    this.attendanceService.getPeakAttendanceDay().subscribe(
-      (data) => {
-        this.peakAttendanceDay = data;
-      },
-      (error) => {
-        console.error('Error fetching peak attendance for the day:', error);
-      }
-    );
-
-    this.attendanceService.getPeakAttendanceMonth().subscribe(
-      (data) => {
-        this.peakAttendanceMonth = data;
-      },
-      (error) => {
-        console.error('Error fetching peak attendance for the month:', error);
-      }
-    );
-
-    this.attendanceService.getPeakAttendanceYear().subscribe(
-      (data) => {
-        this.peakAttendanceYear = data;
-      },
-      (error) => {
-        console.error('Error fetching peak attendance for the year:', error);
-      }
-    );
+  getAttendanceInRange(): void {
+    if (this.startDate && this.endDate) {
+      this.attendanceService
+        .getAttendanceInRange(this.startDate, this.endDate)
+        .subscribe({
+          next: (data) => {
+            // Convert the Map<UserModel, number> to UserAttendanceCount[]
+            this.attendances = Array.from(data.entries()).map(
+              ([user, count]) => ({
+                user,
+                attendanceCount: count,
+              })
+            );
+            this.filteredAttendance = this.attendances; // Now UserAttendanceCount[]
+            this.errorMessage = '';
+          },
+          error: (err) => {
+            this.errorMessage =
+              'Failed to fetch attendance records for the specified date range.';
+            console.error(err);
+          },
+        });
+    } else {
+      this.errorMessage = 'Please select both start and end dates.';
+    }
   }
 
-  findUsersWithoutAttendanceToday(): void {
-    this.attendanceService.findUsersWithoutAttendanceToday().subscribe(
-      (users) => {
-        this.usersWithoutAttendanceToday = users;
-      },
-      (error) => {
-        console.error('Error fetching users without attendance today:', error);
-      }
-    );
-  }
-
-  getAttendanceInRange(startDate: string, endDate: string): void {
-    this.attendanceService.getAttendanceInRange(startDate, endDate).subscribe(
-      (attendance) => {
-        this.attendanceInRange = attendance;
-      },
-      (error) => {
-        console.error('Error fetching attendance in range:', error);
-      }
-    );
-  }
-
-  getLateCheckIns(lateTime: string, startDate: string, endDate: string): void {
-    this.attendanceService
-      .getLateCheckIns(lateTime, startDate, endDate)
-      .subscribe(
-        (checkIns) => {
-          this.lateCheckIns = checkIns;
-        },
-        (error) => {
-          console.error('Error fetching late check-ins:', error);
-        }
+  searchByName(): void {
+    if (this.nameSearch) {
+      this.filteredAttendance = this.attendances.filter((attendance) =>
+        attendance.user.fullName
+          .toLowerCase()
+          .includes(this.nameSearch.toLowerCase())
       );
+    } else {
+      this.filteredAttendance = this.attendances; // Reset filter
+    }
   }
 
-  getEmployeesWithHighLeaveRate(threshold: number): void {
-    this.attendanceService.getEmployeesWithHighLeaveRate(threshold).subscribe(
-      (employees) => {
-        this.usersWithHighLeaveRate = employees;
-      },
-      (error) => {
-        console.error('Error fetching employees with high leave rate:', error);
-      }
+  resetFilters(): void {
+    this.nameSearch = '';
+    this.filteredAttendance = this.attendances;
+    this.startDate = '';
+    this.endDate = '';
+  }
+
+  viewDetails(attendance: UserAttendanceCount): void {
+    alert(
+      `Details for ${attendance.user.fullName}: \nAttendance Count: ${attendance.attendanceCount}` // Adjusted for new structure
     );
+    console.log('Viewing details for:', attendance);
   }
 }

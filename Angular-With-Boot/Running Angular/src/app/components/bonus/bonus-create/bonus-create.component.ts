@@ -42,7 +42,7 @@ export class BonusCreateComponent implements OnInit {
 
     this.bonusService.createBonus(bonus).subscribe(
       () => {
-        this.router.navigate(['/bonus-summary']); // Redirect to bonus summary or another page
+        this.router.navigate(['/bonus/summary']);
       },
       (error) => {
         console.error('Error creating bonus:', error);

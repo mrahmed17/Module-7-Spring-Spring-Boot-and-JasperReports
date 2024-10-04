@@ -21,7 +21,7 @@
  </div>
 
  <div class="col-md-8">
-  <h2><fa-icon [icon]="faList"></fa-icon> Attendance List</h2>
+  <h2><fa-icon [icon]="faList"></fa-icon> Today's Attendance List</h2>
   <table class="table table-striped">
    <thead>
     <tr>
@@ -33,17 +33,21 @@
     </tr>
    </thead>
    <tbody>
-    <tr *ngFor="let attendance of attendances">
+    <tr *ngFor="let attendance of todaysAttendance">
      <td>{{ attendance.id }}</td>
      <td>{{ attendance.user.fullName }}</td>
      <td>{{ attendance.date | date }}</td>
      <td>{{ attendance.clockInTime | date: 'shortTime' }}</td>
      <td>{{ attendance.clockOutTime | date: 'shortTime' }}</td>
     </tr>
-    <tr *ngIf="attendances.length === 0">
-     <td colspan="5" class="text-center">No attendance records found.</td>
-    </tr>
    </tbody>
   </table>
+
+  <!-- Display a message when no attendance records are found -->
+  <ng-container *ngIf="todaysAttendance.length === 0">
+   <ng-template #noAttendance>
+    <p>No attendance records found for today.</p>
+   </ng-template>
+  </ng-container>
  </div>
 </div>

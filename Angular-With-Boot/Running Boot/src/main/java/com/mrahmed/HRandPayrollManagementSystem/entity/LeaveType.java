@@ -1,8 +1,9 @@
 package com.mrahmed.HRandPayrollManagementSystem.entity;
 
 public enum LeaveType {
-    UNPAID,
-    RESERVE
+    SICK_PAID,
+    SICK_UNPAID,
+    RESERVE_UNPAID
 
 }
 

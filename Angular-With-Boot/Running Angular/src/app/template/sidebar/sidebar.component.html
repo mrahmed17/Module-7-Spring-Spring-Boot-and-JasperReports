@@ -15,52 +15,36 @@
       <ul class="nav flex-column">
         <!-- Dashboard -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">
-            <span data-feather="menu" class="icon">Menu</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/dashboard">
             <span data-feather="dashboard" class="icon">Dashboard</span>
           </a>
         </li>
 
-        <!-- Company Dropdown -->
+        <!-- Attendances Dropdown -->
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="companyDropdown" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle" href="#" id="attendancesDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <i class="fas fa-dollar-sign"></i> Company
+            <span data-feather="check-circle" class="icon">Attendance</span>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="companyDropdown">
-            <li><a class="dropdown-item" routerLink="/company/create">Create Company</a></li>
-            <li><a class="dropdown-item" routerLink="/company/list">Company List</a></li>
-            <li><a class="dropdown-item" routerLink="/company/report">Company Report</a></li>
-          </ul>
-        </li>
-
-        <!-- Branch Dropdown -->
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="branchDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <i class="fas fa-dollar-sign"></i> Branch
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="branchDropdown">
-            <li><a class="dropdown-item" routerLink="/branch/create">Create Branch</a></li>
-            <li><a class="dropdown-item" routerLink="/branch/list">Branch List</a></li>
-            <li><a class="dropdown-item" routerLink="/branch/report">Branch Report</a></li>
-          </ul>
-        </li>
-
-        <!-- Department Dropdown -->
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="departmentDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <i class="fas fa-dollar-sign"></i> Department
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
-            <li><a class="dropdown-item" routerLink="/department/create">Create Department</a></li>
-            <li><a class="dropdown-item" routerLink="/department/list">Department List</a></li>
-            <li><a class="dropdown-item" routerLink="/department/report">Department Report</a></li>
+          <ul class="dropdown-menu" aria-labelledby="attendancesDropdown">
+            <li>
+              <a class="nav-link" routerLink="/attendance/create">
+                <fa-icon [icon]="faClock"></fa-icon>
+                Give Attendance
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/attendance/list">
+                <fa-icon [icon]="faList"></fa-icon>
+                Attendance List
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/attendance/report">
+                <fa-icon [icon]="faFileAlt"></fa-icon>
+                Attendance Report
+              </a>
+            </li>
           </ul>
         </li>
 
@@ -86,46 +70,6 @@
           </ul>
         </li>
 
-        <!-- Attendances Dropdown -->
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="attendancesDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <span data-feather="check-circle" class="icon">Attendance</span>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="attendancesDropdown">
-            <li>
-              <a class="nav-link" routerLink="/attendance/create">
-                <fa-icon [icon]="faClock"></fa-icon>
-                Give Attendance
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/attendance/list">
-                <fa-icon [icon]="faList"></fa-icon>
-                Attendance List
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/attendance/details">
-                <fa-icon [icon]="faList"></fa-icon>
-                Attendance Details
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/attendance/summary">
-                <fa-icon [icon]="faList"></fa-icon>
-                Attendance Summary
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/attendance/report">
-                <fa-icon [icon]="faFileAlt"></fa-icon>
-                Attendance Report
-              </a>
-            </li>
-          </ul>
-        </li>
-
         <!-- Bonus Dropdown -->
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="bonusDropdown" role="button" data-bs-toggle="dropdown"
@@ -134,10 +78,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="bonusDropdown">
             <li><a class="dropdown-item" routerLink="/bonus/create">Create Bonus</a></li>
-            <li><a class="dropdown-item" routerLink="/bonus/analytics">Bonus Analytics</a></li>
+            <!-- <li><a class="dropdown-item" routerLink="/bonus/analytics">Bonus Analytics</a></li>
             <li><a class="dropdown-item" routerLink="/bonus/history">Bonus History</a></li>
             <li><a class="dropdown-item" routerLink="/bonus/management">Bonus Management</a></li>
-            <li><a class="dropdown-item" routerLink="/bonus/report">Bonus Report</a></li>
+            <li><a class="dropdown-item" routerLink="/bonus/report">Bonus Report</a></li> -->
             <li><a class="dropdown-item" routerLink="/bonus/summary">Bonus Summary</a></li>
           </ul>
         </li>
@@ -157,6 +101,17 @@
           </ul>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="salaryDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-dollar-sign"></i>Salary
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="salaryDropdown">
+            <li><a class="dropdown-item" routerLink="/salary/create">Create Salary</a></li>
+            <li><a class="dropdown-item" routerLink="/salary/details">Total Salary</a></li>
+          </ul>
+        </li>
+
         <!-- Leaves Dropdown -->
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="leavesDropdown" role="button" data-bs-toggle="dropdown"
@@ -164,17 +119,13 @@
             <span data-feather="calendar" class="icon">Leaves</span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="leavesDropdown">
-            <li> <a class="nav-link" routerLink="/leave/apply"> <fa-icon [icon]="faCalendarPlus"></fa-icon> Apply Leave
-              </a>
-            </li>
-            <li> <a class="nav-link" routerLink="/leave/list"> <fa-icon [icon]="faList"></fa-icon> Leaves List </a>
-            </li>
             <li>
-              <a class="nav-link" routerLink="/leave/details/:id">
-                <fa-icon [icon]="faInfoCircle"></fa-icon>
-                Leave Details
+              <a class="nav-link" routerLink="/leave/apply">
+                <fa-icon [icon]="faCalendarPlus"></fa-icon>
+                Apply Leave
               </a>
             </li>
+
             <li>
               <a class="nav-link" routerLink="/leave/approval">
                 <fa-icon [icon]="faCheckCircle"></fa-icon>
@@ -182,48 +133,41 @@
               </a>
             </li>
             <li>
-              <a class="nav-link" routerLink="/leave/history">
-                <fa-icon [icon]="faHistory"></fa-icon>
-                Leave History
+              <a class="nav-link" routerLink="/leave/list">
+                <fa-icon [icon]="faList"></fa-icon>
+                Leaves List
               </a>
             </li>
+
             <li>
               <a class="nav-link" routerLink="/leave/summary">
                 <fa-icon [icon]="faChartPie"></fa-icon>
                 Leave Summary
               </a>
             </li>
+
+            <li>
+              <a class="nav-link" routerLink="/leave/history">
+                <fa-icon [icon]="faHistory"></fa-icon>
+                Leave History
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" routerLink="/leave/details">
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+                Leave Details
+              </a>
+            </li>
           </ul>
         </li>
 
-        <!-- Payrolls Dropdown -->
-        <!-- <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="payrollsDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <span data-feather="dollar-sign" class="icon">Payrolls</span>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="payrollsDropdown">
-            <li>
-              <a class="nav-link" routerLink="/payrolls/list">
-                <fa-icon [icon]="faList"></fa-icon>
-                Payrolls List
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" routerLink="/payrolls/create">
-                <fa-icon [icon]="faDollarSign"></fa-icon>
-                Create Payroll
-              </a>
-            </li>
-          </ul>
-        </li> -->
 
         <!-- Logout -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/logout">
             <span data-feather="log-out" class="icon">Logout</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </nav>

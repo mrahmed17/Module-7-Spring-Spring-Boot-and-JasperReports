@@ -1,10 +1,12 @@
 package com.mrahmed.HRandPayrollManagementSystem.service;
 
 import com.mrahmed.HRandPayrollManagementSystem.entity.AdvanceSalary;
+import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.repository.AdvanceSalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -12,29 +14,24 @@ import java.util.Optional;
 @Service
 public class AdvanceSalaryService {
 
+
     @Autowired
     private AdvanceSalaryRepository advanceSalaryRepository;
 
-    public AdvanceSalary createAdvanceSalary(AdvanceSalary advanceSalary) {
+    // Save new advance salary record
+    public AdvanceSalary saveAdvanceSalary(AdvanceSalary advanceSalary) {
         return advanceSalaryRepository.save(advanceSalary);
     }
 
-    public Optional<AdvanceSalary> getAdvanceSalaryById(Long id) {
-        return advanceSalaryRepository.findById(id);
-    }
-
-    public List<AdvanceSalary> getAllAdvanceSalaries() {
-        return advanceSalaryRepository.findAll();
-    }
-
+    // Update existing advance salary record
     public AdvanceSalary updateAdvanceSalary(AdvanceSalary advanceSalary) {
-        if (advanceSalaryRepository.existsById(advanceSalary.getId())) {
+        if (advanceSalary.getId() != 0 && advanceSalaryRepository.existsById(advanceSalary.getId())) {
             return advanceSalaryRepository.save(advanceSalary);
-        } else {
-            throw new IllegalArgumentException("AdvanceSalary with ID " + advanceSalary.getId() + " does not exist.");
         }
+        throw new IllegalArgumentException("AdvanceSalary with ID " + advanceSalary.getId() + " does not exist.");
     }
 
+    // Delete advance salary record by ID
     public void deleteAdvanceSalary(Long id) {
         if (advanceSalaryRepository.existsById(id)) {
             advanceSalaryRepository.deleteById(id);
@@ -43,38 +40,39 @@ public class AdvanceSalaryService {
         }
     }
 
-    public Optional<AdvanceSalary> getAdvanceSalariesByEmail(String userEmail) {
-        return advanceSalaryRepository.findAdvanceSalariesByEmail(userEmail);
+    // Find advance salary record by ID
+    public Optional<AdvanceSalary> getAdvanceSalaryById(Long id) {
+        return advanceSalaryRepository.findById(id);
     }
 
-    public List<AdvanceSalary> getAdvanceSalariesByName(String name) {
-        return advanceSalaryRepository.findAdvanceSalariesByName(name);
+    // Find advance salaries by user and year
+    public List<AdvanceSalary> getAdvanceSalariesByUserAndYear(Long userId, int year) {
+        return advanceSalaryRepository.findByUserIdAndYear(userId, year);
     }
 
-    public double getTotalAdvanceSalaryByName(Long userId) {
-        return advanceSalaryRepository.getTotalAdvanceSalaryByName(userId);
+    // Find advance salaries by user, year, and month
+    public List<AdvanceSalary> getAdvanceSalariesByUserYearAndMonth(Long userId, int year, Month month) {
+        return advanceSalaryRepository.findByUserIdYearAndMonth(userId, year, month);
     }
 
-
-    public List<AdvanceSalary> getAdvanceSalariesByUserId(Long userId) {
-        return advanceSalaryRepository.findAdvanceSalariesByUserId(userId);
+    // Calculate total advance salary for a user in a specific year
+    public BigDecimal getTotalAdvanceSalaryByUserAndYear(Long userId, int year) {
+        return advanceSalaryRepository.getTotalAdvanceSalaryByUserAndYear(userId, year);
     }
 
-    public double getTotalAdvanceSalaryByUserId(Long userId) {
-        return advanceSalaryRepository.getTotalAdvanceSalaryByUserId(userId);
-    }
-
-
+    // Find advance salaries within a specific date range
     public List<AdvanceSalary> getAdvanceSalariesByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
-        return advanceSalaryRepository.findAdvanceSalariesByDateRange(startDate, endDate);
+        return advanceSalaryRepository.findByDateRange(startDate, endDate);
     }
 
-
-    public Optional<AdvanceSalary> getLatestAdvanceSalaryByUserId(Long userId) {
-        List<AdvanceSalary> salaries = advanceSalaryRepository.findLatestAdvanceSalaryByUserId(userId);
-        return salaries.isEmpty() ? Optional.empty() : Optional.of(salaries.get(0));
+    // Find advance salaries for a specific month and year
+    public List<AdvanceSalary> getAdvanceSalariesByMonthAndYear(Month month, int year) {
+        return advanceSalaryRepository.findByMonthAndYear(month, year);
     }
 
-
+    // Find latest advance salary record for a user
+    public List<AdvanceSalary> getLatestAdvanceSalaryByUser(Long userId) {
+        return advanceSalaryRepository.findLatestAdvanceSalaryByUser(userId);
+    }
 
 }

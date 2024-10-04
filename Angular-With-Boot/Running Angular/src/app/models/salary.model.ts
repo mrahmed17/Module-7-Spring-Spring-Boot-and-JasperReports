@@ -1,11 +1,14 @@
+
+
 import { AdvanceSalaryModel } from './advance-salary.model';
+import { AttendanceModel } from './attendance.model';
 import { BonusModel } from './bonus.model';
 import { LeaveModel } from './leave.model';
+import { MonthEnum } from './month.enum';
 import { UserModel } from './user.model';
 
 export class SalaryModel {
-  
-  id!: number;
+  id?: number;
   paymentDate!: Date;
   medicare!: number;
   providentFund!: number;
@@ -17,6 +20,11 @@ export class SalaryModel {
   lunchAllowance!: number;
   tax!: number;
   netSalary!: number;
+  year!: number;
+
+  overTime!: AttendanceModel;
+
+  payrollMonth!: MonthEnum;
 
   user!: UserModel;
 
@@ -25,6 +33,4 @@ export class SalaryModel {
   bonuses!: BonusModel;
 
   leaves!: LeaveModel;
-
 }
-

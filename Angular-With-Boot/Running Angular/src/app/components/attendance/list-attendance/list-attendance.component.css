@@ -1,15 +1,22 @@
+/* General styles for the attendance container */
+.attendance-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 /* Table container */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 30px auto;
-  max-width: 1000px;
   background-color: #f9f9f9;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Table heading styles */
 h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -17,7 +24,6 @@ h2 {
   font-size: 24px;
 }
 
-/* Table heading */
 thead {
   background-color: #007BFF;
   color: white;
@@ -45,6 +51,20 @@ tbody tr:hover {
   background-color: #b6f1c2;
 }
 
+/* Search bar styles */
+.search-bar {
+  margin-bottom: 20px;
+  text-align: center; /* Center align the search bar */
+}
+
+.search-bar input {
+  padding: 8px;
+  width: 80%; /* Make the search input responsive */
+  max-width: 300px; /* Set a maximum width */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
   table {
@@ -55,4 +75,19 @@ tbody tr:hover {
     font-size: 14px;
     padding: 8px;
   }
+
+  .search-bar input {
+    width: 90%; /* Make search input full width on smaller screens */
+  }
+}
+
+/* Alert styles for no records found */
+.alert {
+  text-align: center;
+  margin-top: 20px;
+  color: #856404; /* Alert text color */
+  background-color: #fff3cd; /* Alert background color */
+  border: 1px solid #ffeeba; /* Alert border color */
+  padding: 10px;
+  border-radius: 4px;
 }

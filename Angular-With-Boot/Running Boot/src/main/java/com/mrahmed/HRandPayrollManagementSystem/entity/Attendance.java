@@ -21,16 +21,9 @@ public class Attendance {
     private LocalDateTime clockInTime;
     private LocalDateTime clockOutTime;
 
-    @Column(name = "isLate")
-    private boolean late;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-
-    //Working hours are 8. If attendance checks over the 8 hours, it will count as overtime.
-    //  Overtime salary calculation = (basicSalary from user divided 4 week * 5 days * 8 hours)
 
 
 }

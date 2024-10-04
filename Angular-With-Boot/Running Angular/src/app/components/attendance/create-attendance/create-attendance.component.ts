@@ -16,11 +16,11 @@ import { UserModel } from '../../../models/user.model';
 @Component({
   selector: 'app-create-attendance',
   templateUrl: './create-attendance.component.html',
-  styleUrls: ['./create-attendance.component.css'],
+  styleUrls: ['./create-attendance.component.css'], // Corrected 'styleUrl' to 'styleUrls'
 })
 export class CreateAttendanceComponent implements OnInit {
   users: UserModel[] = [];
-  attendances: AttendanceModel[] = [];
+  todaysAttendance: AttendanceModel[] = [];
   selectedUserId: number | null = null;
   errorMessage: string = '';
 
@@ -39,7 +39,7 @@ export class CreateAttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    this.loadAttendances();
+    this.loadTodaysAttendance();
   }
 
   loadUsers(): void {
@@ -48,19 +48,20 @@ export class CreateAttendanceComponent implements OnInit {
         this.users = data;
       },
       error: (error) => {
-        this.handleError('Error loading users', error);
+        console.error('Error loading users:', error);
       },
     });
   }
 
-  loadAttendances(): void {
-    this.attendanceService.getAllAttendances().subscribe({
+  loadTodaysAttendance(): void {
+    this.attendanceService.getTodaysAttendance().subscribe({
       next: (data) => {
-        this.attendances = data;
-        console.log('Received Attendances:', this.attendances);
+        this.todaysAttendance = data;
+        this.errorMessage = '';
       },
-      error: (error) => {
-        this.handleError('Error loading attendances', error);
+      error: (err) => {
+        this.errorMessage = "Failed to load today's attendance";
+        console.error(err);
       },
     });
   }
@@ -69,7 +70,7 @@ export class CreateAttendanceComponent implements OnInit {
     if (this.selectedUserId) {
       this.attendanceService.checkIn(this.selectedUserId).subscribe({
         next: () => {
-          this.loadAttendances();
+          this.loadTodaysAttendance(); // Refresh only today's attendance
           this.notificationService.showNotify(
             'Check in created successfully.',
             'success'
@@ -86,7 +87,7 @@ export class CreateAttendanceComponent implements OnInit {
     if (this.selectedUserId) {
       this.attendanceService.checkOut(this.selectedUserId).subscribe({
         next: () => {
-          this.loadAttendances();
+          this.loadTodaysAttendance(); // Refresh only today's attendance
           this.notificationService.showNotify(
             'Check out created successfully.',
             'success'

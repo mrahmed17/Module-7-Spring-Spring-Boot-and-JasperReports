@@ -1,6 +1,8 @@
 package com.mrahmed.HRandPayrollManagementSystem.restcontroller;
 
-import com.mrahmed.HRandPayrollManagementSystem.entity.*;
+import com.mrahmed.HRandPayrollManagementSystem.entity.Leave;
+import com.mrahmed.HRandPayrollManagementSystem.entity.LeaveType;
+import com.mrahmed.HRandPayrollManagementSystem.entity.Month;
 import com.mrahmed.HRandPayrollManagementSystem.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,194 +18,121 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class LeaveRestController {
 
+
     @Autowired
     private LeaveService leaveService;
 
-
-    @PostMapping("/create")
-    public ResponseEntity<Leave> createLeaveRequest(@RequestBody Leave leave) {
+    // Save a leave request
+    @PostMapping("/save")
+    public ResponseEntity<Leave> saveLeaveRequest(@RequestBody Leave leave) {
         Leave savedLeave = leaveService.saveLeaveRequest(leave);
         return ResponseEntity.ok(savedLeave);
     }
 
-
+    // Update a leave request
     @PutMapping("/update/{id}")
-    public ResponseEntity<Leave> updateLeaveRequest(@PathVariable Long id, @RequestBody Leave leave) {
+    public ResponseEntity<Leave> updateLeaveRequest(@PathVariable("id") Long id, @RequestBody Leave leave) {
         Leave updatedLeave = leaveService.updateLeaveRequest(id, leave);
         return ResponseEntity.ok(updatedLeave);
     }
 
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteLeaveRequest(@PathVariable Long id) {
-        leaveService.deleteLeave(id);
+    // Delete a leave by ID
+    @DeleteMapping("/delete/{leaveId}")
+    public ResponseEntity<Void> deleteLeave(@PathVariable Long leaveId) {
+        leaveService.deleteLeave(leaveId);
         return ResponseEntity.noContent().build();
     }
 
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Leave> getLeaveById(@PathVariable Long id) {
-        Optional<Leave> leave = leaveService.getLeaveById(id);
-        return leave.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    // Find a leave by ID
+    @GetMapping("/find/{leaveId}")
+    public ResponseEntity<Leave> getLeaveById(@PathVariable Long leaveId) {
+        Optional<Leave> leave = leaveService.getLeaveById(leaveId);
+        return leave.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     // Approve a leave request
-    @PutMapping("/approve/{id}")
-    public ResponseEntity<Leave> approveLeaveRequest(@PathVariable Long id) {
-        Leave approvedLeave = leaveService.approveLeaveRequest(id);
+    @PostMapping("/approve/{leaveId}")
+    public ResponseEntity<Leave> approveLeaveRequest(@PathVariable Long leaveId) {
+        Leave approvedLeave = leaveService.approveLeaveRequest(leaveId);
         return ResponseEntity.ok(approvedLeave);
     }
 
-    //getAllLeaves
-    @GetMapping("/all")
-    public ResponseEntity<List<Leave>> getAllLeaves() {
-        List<Leave> leaves = leaveService.getAllLeaves();
-        return ResponseEntity.ok(leaves);
-    }
-
     // Reject a leave request
-    @PutMapping("/reject/{id}")
-    public ResponseEntity<Leave> rejectLeaveRequest(@PathVariable Long id) {
-        Leave rejectedLeave = leaveService.rejectLeaveRequest(id);
+    @PostMapping("/reject/{leaveId}")
+    public ResponseEntity<Leave> rejectLeaveRequest(@PathVariable Long leaveId) {
+        Leave rejectedLeave = leaveService.rejectLeaveRequest(leaveId);
         return ResponseEntity.ok(rejectedLeave);
     }
 
-    // Get all unpaid leaves by user ID
-    @GetMapping("/user/{userId}/unpaid")
-    public ResponseEntity<List<Leave>> getUnpaidLeavesByUserId(@PathVariable Long userId) {
-        List<Leave> unpaidLeaves = leaveService.getUnpaidLeavesByUserId(userId);
-        return ResponseEntity.ok(unpaidLeaves);
-    }
-
-    // Get leaves by request date
-    @GetMapping("/request-date/{date}")
-    public ResponseEntity<List<Leave>> getLeavesByRequestDate(@PathVariable LocalDate date) {
-        List<Leave> leaves = leaveService.getLeavesByRequestDate(date);
+    // Get all leaves for a user in a specific year
+    @GetMapping("/user/{userId}/year/{year}")
+    public ResponseEntity<List<Leave>> getLeavesByUserAndYear(@PathVariable Long userId, @PathVariable int year) {
+        List<Leave> leaves = leaveService.getLeavesByUserAndYear(userId, year);
         return ResponseEntity.ok(leaves);
     }
 
-    // Get leaves by request status
-    @GetMapping("/status/{status}")
-    public ResponseEntity<List<Leave>> getLeavesByStatus(@PathVariable RequestStatus status) {
-        List<Leave> leaves = leaveService.getLeavesByRequestStatus(status);
-        return ResponseEntity.ok(leaves);
-    }
-
-
-    // Get unpaid leaves
-    @GetMapping("/unpaid")
-    public ResponseEntity<List<Leave>> getAllUnpaidLeaves() {
-        List<Leave> unpaidLeaves = leaveService.getUnpaidLeaves();
-        return ResponseEntity.ok(unpaidLeaves);
-    }
-
-    // Count leaves by user ID and status
-    @GetMapping("/count/user/{userId}/status/{status}")
-    public ResponseEntity<Long> countLeavesByUserAndStatus(@PathVariable Long userId, @PathVariable RequestStatus status) {
-        long count = leaveService.countLeavesByUserAndStatus(userId, status);
-        return ResponseEntity.ok(count);
-    }
-
-
-
-    // Get pending leave requests
+    // Get all pending leave requests
     @GetMapping("/pending")
     public ResponseEntity<List<Leave>> getPendingLeaveRequests() {
         List<Leave> pendingLeaves = leaveService.getPendingLeaveRequests();
         return ResponseEntity.ok(pendingLeaves);
     }
 
-    // Get approved leave requests
-    @GetMapping("/approved")
-    public ResponseEntity<List<Leave>> getApprovedLeaveRequests() {
-        List<Leave> approvedLeaves = leaveService.getApprovedLeaveRequests();
-        return ResponseEntity.ok(approvedLeaves);
+    // Get all leaves for a specific month and year
+    @GetMapping("/month/{month}/year/{year}")
+    public ResponseEntity<List<Leave>> getLeavesByMonthAndYear(@PathVariable Month month, @PathVariable int year) {
+        List<Leave> leaves = leaveService.getLeavesByMonthAndYear(month, year);
+        return ResponseEntity.ok(leaves);
     }
 
-    // Get rejected leave requests
-    @GetMapping("/rejected")
-    public ResponseEntity<List<Leave>> getRejectedLeaveRequests() {
-        List<Leave> rejectedLeaves = leaveService.getRejectedLeaveRequests();
-        return ResponseEntity.ok(rejectedLeaves);
-    }
-
-    // Get leaves by type
+    // Get all leaves by leave type
     @GetMapping("/type/{leaveType}")
     public ResponseEntity<List<Leave>> getLeavesByType(@PathVariable LeaveType leaveType) {
         List<Leave> leaves = leaveService.getLeavesByType(leaveType);
         return ResponseEntity.ok(leaves);
     }
 
-    // Get approved leaves by user
-    @GetMapping("/approved/user/{userId}")
+    // Get approved leaves for a specific user
+    @GetMapping("/user/{userId}/approved")
     public ResponseEntity<List<Leave>> getApprovedLeavesByUser(@PathVariable Long userId) {
-        List<Leave> leaves = leaveService.getApprovedLeavesByUser(userId);
+        List<Leave> approvedLeaves = leaveService.getApprovedLeavesByUser(userId);
+        return ResponseEntity.ok(approvedLeaves);
+    }
+
+    // Get leaves for a user in a specific date range
+    @GetMapping("/user/{userId}/range")
+    public ResponseEntity<List<Leave>> getLeavesByUserAndDateRange(
+            @PathVariable Long userId,
+            @RequestParam("startDate") LocalDate startDate,
+            @RequestParam("endDate") LocalDate endDate) {
+        List<Leave> leaves = leaveService.getLeavesByUserAndDateRange(userId, startDate, endDate);
         return ResponseEntity.ok(leaves);
     }
 
-    // Get rejected leaves by user
-    @GetMapping("/rejected/user/{userId}")
-    public ResponseEntity<List<Leave>> getRejectedLeavesByUser(@PathVariable Long userId) {
-        List<Leave> leaves = leaveService.getRejectedLeavesByUser(userId);
-        return ResponseEntity.ok(leaves);
-    }
-
-    // Get leaves by date range
-    @GetMapping("/date-range")
-    public ResponseEntity<List<Leave>> getLeavesByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
-        List<Leave> leaves = leaveService.getLeavesByDateRange(startDate, endDate);
-        return ResponseEntity.ok(leaves);
-    }
-
-    // Get leaves by reason
-    @GetMapping("/reason")
-    public ResponseEntity<List<Leave>> getLeavesByReason(@RequestParam String reason) {
-        List<Leave> leaves = leaveService.getLeavesByReason(reason);
-        return ResponseEntity.ok(leaves);
-    }
-
-    // Get leaves by user ID
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Leave>> getLeavesByUserId(@PathVariable Long userId) {
-        List<Leave> leaves = leaveService.getLeavesByUserId(userId);
-        return ResponseEntity.ok(leaves);
-    }
-
-    // Calculate remaining leaves by user
-    @GetMapping("/remaining/user/{userId}")
-    public ResponseEntity<Integer> calculateRemainingLeavesByUser(@PathVariable Long userId) {
-        Integer remainingLeaves = leaveService.calculateRemainingLeavesByUser(userId);
+    // Calculate remaining leaves for a user in a specific year
+    @GetMapping("/user/{userId}/remaining/year/{year}")
+    public ResponseEntity<Integer> calculateRemainingLeavesByUserAndYear(
+            @PathVariable Long userId, @PathVariable int year) {
+        Integer remainingLeaves = leaveService.calculateRemainingLeavesByUserAndYear(userId, year);
         return ResponseEntity.ok(remainingLeaves);
     }
 
-    // Get total unpaid leave days for a specific user
-    @GetMapping("/unpaid/user/{userId}")
-    public ResponseEntity<Integer> getTotalUnpaidLeaveDays(@PathVariable Long userId, @RequestParam List<LeaveType> leaveTypes) {
-        int totalUnpaidDays = leaveService.getTotalUnpaidLeaveDays(userId, leaveTypes);
+    // Get total unpaid leave days for a user in a given year
+    @GetMapping("/user/{userId}/unpaid/year/{year}")
+    public ResponseEntity<Integer> getTotalUnpaidLeaveDays(
+            @PathVariable Long userId,
+            @RequestParam("leaveTypes") List<LeaveType> leaveTypes,
+            @PathVariable int year) {
+        int totalUnpaidDays = leaveService.getTotalUnpaidLeaveDays(userId, leaveTypes, year);
         return ResponseEntity.ok(totalUnpaidDays);
     }
 
-    // Find users by full name (or part of the name)
-    @GetMapping("/users/fullname")
-    public ResponseEntity<List<User>> findUsersByFullName(@RequestParam String name) {
-        List<User> users = leaveService.findUsersByFullName(name);
-        return ResponseEntity.ok(users);
+    // Get current year leaves for a specific user
+    @GetMapping("/user/{userId}/current")
+    public ResponseEntity<List<Leave>> getCurrentYearLeaves(@PathVariable Long userId) {
+        List<Leave> leaves = leaveService.getCurrentYearLeaves(userId);
+        return ResponseEntity.ok(leaves);
     }
-
-    // Find user by email
-    @GetMapping("/users/email")
-    public ResponseEntity<Optional<User>> findUserByEmail(@RequestParam String email) {
-        Optional<User> user = leaveService.findUserByEmail(email);
-        return ResponseEntity.ok(user);
-    }
-
-    // Count the total leaves taken by a user
-    @GetMapping("/countLeaves")
-    public ResponseEntity<Integer> countTotalLeaves(@RequestParam Long userId) {
-        int totalLeaves = leaveService.countTotalLeaves(userId);
-        return ResponseEntity.ok(totalLeaves);
-    }
-
 
 }
 

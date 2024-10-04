@@ -39,37 +39,44 @@ export class ApplyLeaveComponent implements OnInit {
     });
   }
 
+  applyLeave() {
+    if (this.leaveForm.valid) {
+      // Placeholder user object. Replace with actual user data once login is implemented
+      const placeholderUser: UserModel = { id: 1, fullName: 'Md. Raju Ahmed',email: 'raju@mail.com', password:'123456' };
+
+      this.leaveModel = {
+        ...this.leaveForm.value,
+        year: new Date().getFullYear(),
+        requestDate: new Date(),
+        remainingLeave: 0, // This will likely be calculated on the backend
+        requestStatus: RequestStatusEnum.PENDING,
+        user: placeholderUser, // Replace with the actual logged-in user
+      };
+
+      this.leaveService.applyLeave(this.leaveModel).subscribe({
+        next: (response) => {
+          alert('Leave request submitted successfully!');
+          this.leaveForm.reset();
+        },
+        error: (error) => {
+          console.error(error);
+          alert('Error while submitting the leave request.');
+        },
+      });
+    } else {
+      alert('Please fill out all required fields.');
+    }
+  }
+
   // applyLeave() {
   //   if (this.leaveForm.valid) {
-  //     const placeholderUser: UserModel = {
-  //       id: 1,
-  //       fullName: 'Md. Raju Ahmed',
-  //       email: 'raju@mail.com',
-  //       password: '123456',
-  // address:'Near Lalbagh Kella',
-  //       gender: 'Male',
-  // dateOfBirth: 02-02-2022,
-  // nationalid: '123546',
-  // contact: '2323',
-  // basicSalary: 123456,
-  // joinedDate: ,
-  // isActive: true,
-  // profilePhoto: 'http://www.github.com/mrahmed17',
-  // updatedAt: 02-02-2002,
-
-  // role: "ADMIN",
-
-  // department:"Department"
-
-  //     };
-
   //     this.leaveModel = {
   //       ...this.leaveForm.value,
   //       year: new Date().getFullYear(),
   //       requestDate: new Date(),
-  //       remainingLeave: 0, 
+  //       remainingLeave: 0, // This will likely be calculated on the backend
   //       requestStatus: RequestStatusEnum.PENDING,
-  //       user: placeholderUser,
+  //       user: this.user, // Replace with the actual logged-in user
   //     };
 
   //     this.leaveService.applyLeave(this.leaveModel).subscribe({
@@ -86,6 +93,4 @@ export class ApplyLeaveComponent implements OnInit {
   //     alert('Please fill out all required fields.');
   //   }
   // }
-
-
 }

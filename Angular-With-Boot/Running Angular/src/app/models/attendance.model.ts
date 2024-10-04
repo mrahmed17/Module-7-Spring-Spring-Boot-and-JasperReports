@@ -1,23 +1,14 @@
-import { UserModel } from './user.model';
 
-export class AttendanceModel {
-  id!: number;
 
-  date!: Date;
-  clockInTime!: Date;
-  clockOutTime!: Date | null;
+import { UserModel } from "./user.model";
 
-  late!: boolean;
+export class AttendanceModel{
+ id?: number;
+ date!: Date;
+ clockInTime!: Date;
+ clockOutTime!: Date;
 
-  user!: UserModel;
-
-  get status(): string {
-    if (!this.clockInTime) {
-      return 'Absent';
-    }
-    if (!this.clockOutTime) {
-      return 'Checked In';
-    }
-    return 'Checked Out';
-  }
+ user!: UserModel;
 }
+
+

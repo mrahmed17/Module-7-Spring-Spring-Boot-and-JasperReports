@@ -1,17 +1,21 @@
 <div class="container">
   <h2>User List</h2>
 
+  <!-- Error Message -->
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
+  <!-- Search and Filter Controls -->
   <div class="mb-3">
     <form class="d-flex flex-column flex-sm-row">
+      <!-- Search Input -->
       <div class="me-2 flex-grow-1">
         <input type="text" class="form-control" placeholder="Search by name or email" [(ngModel)]="searchQuery"
           [ngModelOptions]="{ standalone: true }" (ngModelChange)="searchUsers()" />
       </div>
 
+      <!-- Role Filter -->
       <div class="me-2">
         <select class="form-select" [(ngModel)]="selectedRole" [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="filterByRole()">
@@ -20,6 +24,7 @@
         </select>
       </div>
 
+      <!-- Salary Filter -->
       <div class="me-2">
         <input type="number" class="form-control" placeholder="Min Salary" [(ngModel)]="minSalary"
           [ngModelOptions]="{ standalone: true }" (ngModelChange)="filterBySalary()" />
@@ -29,6 +34,7 @@
           [ngModelOptions]="{ standalone: true }" (ngModelChange)="filterBySalary()" />
       </div>
 
+      <!-- Gender Filter -->
       <div class="me-2">
         <select class="form-select" [(ngModel)]="genderFilter" [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="filterByGender()">
@@ -39,12 +45,14 @@
         </select>
       </div>
 
+      <!-- Reset Filters Button -->
       <div class="me-2">
         <button type="button" class="btn btn-secondary" (click)="resetFilters()">Reset Filters</button>
       </div>
     </form>
   </div>
 
+  <!-- User List Table -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -63,8 +71,8 @@
         <td>{{ user.id }}</td>
         <td class="user-photo">
           <img
-            [src]="user.profilePhoto ? 'http://localhost:8080/images/profilePhotos/' + user.profilePhoto : 'static/images/default.jpg'"
-            alt="Profile Photo" class="img-thumbnail" (click)="viewUser(user.id)" title="View" />
+            [src]="user.profilePhoto ? 'http://localhost:8080/images/profilePhotos/' + user.profilePhoto : 'static/images/*.jpg'"
+            alt="Profile Photo" class="img-thumbnail" />
         </td>
         <td>{{ user.fullName }}</td>
         <td>{{ user.email }}</td>
@@ -72,13 +80,13 @@
         <td>{{ user.gender }}</td>
         <td>{{ user.role }}</td>
         <td>
-          <button class="btn btn-info" (click)="viewUser(user.id)" title="View">
+          <button *ngIf="user.id !== undefined" class="btn btn-info" (click)="viewUser(user.id)" title="View">
             <fa-icon [icon]="faEye"></fa-icon>
           </button>
-          <button class="btn btn-warning" (click)="editUser(user.id)" title="Edit">
+          <button *ngIf="user.id !== undefined" class="btn btn-warning" (click)="editUser(user.id)" title="Edit">
             <fa-icon [icon]="faEdit"></fa-icon>
           </button>
-          <button class="btn btn-danger" (click)="deleteUser(user.id)" title="Delete">
+          <button *ngIf="user.id !== undefined" class="btn btn-danger" (click)="deleteUser(user.id)" title="Delete">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button>
         </td>
