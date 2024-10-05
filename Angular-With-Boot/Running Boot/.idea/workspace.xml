@@ -5,297 +5,214 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a302932-fba9-4b9a-9560-18bdeeb793bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/forgetpassword/forgetpassword.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/forgetpassword/forgetpassword.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/forgetpassword/forgetpassword.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/forgetpassword/forgetpassword.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/login/login.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/login/login.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/login/login.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/login/login.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/logout/logout.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/logout/logout.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/logout/logout.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/logout/logout.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/create-user/create-user.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/create-user/create-user.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/create-user/create-user.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/create-user/create-user.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/edit-user/edit-user.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/edit-user/edit-user.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/edit-user/edit-user.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/edit-user/edit-user.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/list-user/list-user.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/list-user/list-user.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/list-user/list-user.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/list-user/list-user.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/user-detail/user-detail.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/user-detail/user-detail.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/user-detail/user-detail.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/administration/user/user-detail/user-detail.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app-routing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.module.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/app.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/create-attendance/create-attendance.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/create-attendance/create-attendance.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/create-attendance/create-attendance.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/create-attendance/create-attendance.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/list-attendance/list-attendance.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/list-attendance/list-attendance.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/list-attendance/list-attendance.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/list-attendance/list-attendance.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/report-attendance/report-attendance.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/report-attendance/report-attendance.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/report-attendance/report-attendance.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/report-attendance/report-attendance.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/view-attendance/view-attendance.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/view-attendance/view-attendance.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/view-attendance/view-attendance.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/attendance/view-attendance/view-attendance.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-analytics/bonus-analytics.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-analytics/bonus-analytics.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-analytics/bonus-analytics.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-analytics/bonus-analytics.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-create/bonus-create.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-create/bonus-create.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-create/bonus-create.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-create/bonus-create.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-history/bonus-history.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-history/bonus-history.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-history/bonus-history.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-history/bonus-history.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-management/bonus-management.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-management/bonus-management.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-management/bonus-management.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-management/bonus-management.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-report/bonus-report.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-report/bonus-report.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-report/bonus-report.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-report/bonus-report.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-summary/bonus-summary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-summary/bonus-summary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-summary/bonus-summary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/bonus/bonus-summary/bonus-summary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/apply-leave/apply-leave.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/apply-leave/apply-leave.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/apply-leave/apply-leave.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/apply-leave/apply-leave.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/details-leave/details-leave.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/details-leave/details-leave.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/details-leave/details-leave.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/details-leave/details-leave.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-approval/leave-approval.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-approval/leave-approval.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-approval/leave-approval.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-approval/leave-approval.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-history/leave-history.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-history/leave-history.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-history/leave-history.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-history/leave-history.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-summary/leave-summary.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-summary/leave-summary.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-summary/leave-summary.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/leave-summary/leave-summary.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/list-leave/list-leave.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/list-leave/list-leave.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/list-leave/list-leave.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/components/leave/list-leave/list-leave.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/error/error.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/error/error.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/error/error.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/error/error.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notfound/notfound.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notfound/notfound.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notfound/notfound.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notfound/notfound.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notification/notification.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notification/notification.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notification/notification.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/errorhandling/notification/notification.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/advance-salary.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/attendance.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/bonus.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/leave-type.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/leave.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/month.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/request-status.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/role.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/salary.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/models/user.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/advancesalary.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/attendance.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/auth.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/bonus.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/leave.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/notification.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/salary.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/services/user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/breadcrumb/breadcrumb.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/breadcrumb/breadcrumb.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/breadcrumb/breadcrumb.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/breadcrumb/breadcrumb.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/dashboard/dashboard.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/dashboard/dashboard.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/dashboard/dashboard.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/dashboard/dashboard.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/header/header.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/header/header.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/header/header.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/header/header.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/home/home.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/home/home.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/home/home.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/home/home.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/sidebar/sidebar.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/sidebar/sidebar.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/sidebar/sidebar.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/app/template/sidebar/sidebar.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/environments/environment.prod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/main.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/src/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Running Angular v6/tsconfig.spec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Neyamul_Islam_1b897bae-93f6-4495-8214-3790f32482bf.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/ApprovalStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/BonusType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/LeaveStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/LeaveType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/allenum/WorkSchedule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Attendance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Feedback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Payroll.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../First Project with Model/src/test/java/com/mrahmed/HRandPayrollManagementSystem/HRandPayrollManagementSystemApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/report-branch/report-branch.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/report-branch/report-branch.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/report-branch/report-branch.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/report-branch/report-branch.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/branch/view-branch/view-branch.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/company/create-company/create-company.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/report-company/report-company.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/company/report-company/report-company.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/company/view-company/view-company.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/department/create-department/create-department.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/components/department/list-department/list-department.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/branch.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/branch.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/company.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/company.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/department.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/department.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/feedback.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/feedback.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/payment-receipt.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/payment-receipt.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/models/salary.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/models/salary.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/branch.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/branch.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/company.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/company.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/services/department.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/services/department.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Angular/src/file-saver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/file-saver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/AdvanceSalary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Bonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Leave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/PaymentReceipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/Salary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AdvanceSalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BonusRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BranchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/BranchRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/CompanyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/DepartmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/FeedbackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/FeedbackRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/LeaveRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/PaymentReceiptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/PaymentReceiptRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/SalaryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/AttendanceRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BranchRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/BranchRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/CompanyRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/CompanyRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/DepartmentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/DepartmentRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/restcontroller/UserRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BranchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/BranchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/CompanyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/DepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/java/com/mrahmed/HRandPayrollManagementSystem/webconfig/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Azimpur_6fec9c3f-8933-4687-8c36-99d652ce6ced.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/branchPhoto/Lalbagh_0265eb35-da6f-42b0-a7cd-fa36c175f7e7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Azimpur_961891a4-aa02-49b7-a623-5fbc7a8a8c43.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/branchPhoto/Lalbagh_e76951f3-5e07-480a-a3a9-d211ea2ab035.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Java_8340090b-c2a1-47a6-8960-5a026957786f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Java_8a20df5d-e7ed-41bd-a6b7-d789b2671ee5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Lalbagh_7648b543-b330-453d-a920-aa9c340aadde.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/Lalbagh_f828bb45-4f37-4803-89ab-df1b504b5a01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhoto/BD_Tech_Ltd__85360c85-9529-4d0b-ad8b-413d0dc2e4ff.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhotos/BD_Tech_Solution_4204db0c-6440-4d84-9560-1c4d35a70520.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhoto/BD_Tech_Solutions_Ltd__1dda8ea1-67b5-427c-8a6f-d3b5a92ac9e7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhoto/Tech_Solutions_Ltd__031955fc-037c-4596-a08e-0db3681ac373.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/branchPhoto/Dhanmondi_f24db857-ca87-4048-9dbf-b799ba9c01de.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhoto/Tech_Solutions_Ltd__5c05b491-d4da-4056-ae54-50574f671c54.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/companyPhoto/Tech_Solutions_Ltd__db074bef-612d-4f6d-a6be-08995e14ede7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/departmentPhoto/dfdsaf_a5535276-fbc6-4b07-8c99-d4737e269ed7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/profilePhotos/Sanaullah_f74ffbee-35f3-4008-a59b-b67a10bf42e8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Running Boot/src/main/resources/static/images/profilePhotos/Towhid_c2a86bbe-10d4-494a-92c3-2af8a69f131a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/forgetpassword/forgetpassword.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/forgetpassword/forgetpassword.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/forgetpassword/forgetpassword.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/forgetpassword/forgetpassword.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/login/login.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/login/login.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/logout/logout.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/logout/logout.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/logout/logout.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/logout/logout.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/create-user/create-user.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/create-user/create-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/create-user/create-user.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/create-user/create-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/edit-user/edit-user.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/edit-user/edit-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/edit-user/edit-user.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/edit-user/edit-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/list-user/list-user.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/list-user/list-user.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/list-user/list-user.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/list-user/list-user.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/user-detail/user-detail.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/user-detail/user-detail.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/user-detail/user-detail.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/administration/user/user-detail/user-detail.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.module.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/create-advance-salary/create-advance-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/edit-advance-salary/edit-advance-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/filter-advance-salary/filter-advance-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/list-advance-salary/list-advance-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/advance-salary/view-advance-salary/view-advance-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/create-attendance/create-attendance.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/create-attendance/create-attendance.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/create-attendance/create-attendance.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/create-attendance/create-attendance.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/list-attendance/list-attendance.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/list-attendance/list-attendance.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/list-attendance/list-attendance.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/list-attendance/list-attendance.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/report-attendance/report-attendance.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/report-attendance/report-attendance.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/report-attendance/report-attendance.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/report-attendance/report-attendance.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/view-attendance/view-attendance.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/view-attendance/view-attendance.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/view-attendance/view-attendance.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/attendance/view-attendance/view-attendance.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-analytics/bonus-analytics.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-analytics/bonus-analytics.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-analytics/bonus-analytics.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-analytics/bonus-analytics.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-create/bonus-create.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-create/bonus-create.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-create/bonus-create.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-create/bonus-create.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-history/bonus-history.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-history/bonus-history.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-history/bonus-history.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-history/bonus-history.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-management/bonus-management.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-management/bonus-management.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-management/bonus-management.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-management/bonus-management.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-report/bonus-report.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-report/bonus-report.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-report/bonus-report.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-report/bonus-report.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-summary/bonus-summary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-summary/bonus-summary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-summary/bonus-summary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/bonus/bonus-summary/bonus-summary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/apply-leave/apply-leave.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/apply-leave/apply-leave.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/apply-leave/apply-leave.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/apply-leave/apply-leave.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/details-leave/details-leave.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/details-leave/details-leave.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/details-leave/details-leave.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/details-leave/details-leave.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-approval/leave-approval.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-approval/leave-approval.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-approval/leave-approval.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-approval/leave-approval.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-history/leave-history.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-history/leave-history.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-history/leave-history.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-history/leave-history.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-summary/leave-summary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-summary/leave-summary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-summary/leave-summary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/leave-summary/leave-summary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/list-leave/list-leave.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/list-leave/list-leave.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/list-leave/list-leave.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/leave/list-leave/list-leave.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/createsalary/createsalary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/createsalary/createsalary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/createsalary/createsalary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/createsalary/createsalary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/details-salary/details-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/details-salary/details-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/details-salary/details-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/details-salary/details-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/manage-salary/manage-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/manage-salary/manage-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/manage-salary/manage-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/manage-salary/manage-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/user-salary/user-salary.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/user-salary/user-salary.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/user-salary/user-salary.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/components/salary/user-salary/user-salary.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/error/error.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/error/error.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/error/error.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/error/error.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notfound/notfound.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notfound/notfound.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notfound/notfound.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notfound/notfound.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notification/notification.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notification/notification.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notification/notification.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/errorhandling/notification/notification.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/advance-salary.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/attendance.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/bonus.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/leave-type.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/leave.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/month.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/request-status.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/role.enum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/salary.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/models/user.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/advancesalary.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/attendance.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/auth.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/bonus.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/leave.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/notification.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/salary.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/services/user.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/breadcrumb/breadcrumb.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/breadcrumb/breadcrumb.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/breadcrumb/breadcrumb.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/breadcrumb/breadcrumb.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/dashboard/dashboard.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/dashboard/dashboard.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/dashboard/dashboard.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/dashboard/dashboard.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/header/header.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/header/header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/header/header.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/header/header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/home/home.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/home/home.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/home/home.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/home/home.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/sidebar/sidebar.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/sidebar/sidebar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/sidebar/sidebar.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/app/template/sidebar/sidebar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/main.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular v7/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Running Angular/src/app/administration/user/edit-user/edit-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/profilePhotos/Neyamul_Islam_1b897bae-93f6-4495-8214-3790f32482bf.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,7 +273,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -425,6 +342,7 @@
       <workItem from="1727544895775" duration="84000" />
       <workItem from="1727836865263" duration="2171000" />
       <workItem from="1727839081207" duration="8633000" />
+      <workItem from="1728039737482" duration="3157000" />
     </task>
     <servers />
   </component>

@@ -103,16 +103,21 @@ export class EditUserComponent implements OnInit {
 
       const fileToSend: File | undefined = this.selectedFile || undefined;
 
-      this.userService.updateUser(this.userId, user, fileToSend).subscribe(
-        (response) => {
+      this.userService.updateUser(this.userId, user, fileToSend).subscribe({
+        next: (response) => {
           this.successMessage = 'User updated successfully!';
           this.errorMessage = '';
+          this.notificationService.showNotify(
+            'User updated successfully!',
+            'success'
+          );
+          this.router.navigate(['/user/list']);
         },
-        (error) => {
+        error: (error) => {
           this.errorMessage = 'Failed to update user';
           this.successMessage = '';
-        }
-      );
+        },
+      });
     } else {
       this.errorMessage = 'Please fill in all required fields';
       this.successMessage = '';
